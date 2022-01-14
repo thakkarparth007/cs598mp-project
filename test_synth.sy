@@ -1,69 +1,113 @@
+
 (set-logic ALL)
 
 (declare-sort Node)
 (declare-sort Epoch)
 
-;; universe for Epoch:
-;;   Epoch!val!3 Epoch!val!4 Epoch!val!2 Epoch!val!1 Epoch!val!0 
-;; -----------
-;; definitions for universe elements:
-(declare-fun Epoch!val!3 () Epoch)
-(declare-fun Epoch!val!4 () Epoch)
-(declare-fun Epoch!val!2 () Epoch)
+(declare-fun Node!val!0 () Node)
+(declare-fun Node!val!1 () Node)
+(declare-fun Node!val!2 () Node)
+
 (declare-fun Epoch!val!1 () Epoch)
 (declare-fun Epoch!val!0 () Epoch)
-;; cardinality constraint: - not having here
+(declare-fun Epoch!val!3 () Epoch)
+(declare-fun Epoch!val!2 () Epoch)
 
-;; -----------
-;; universe for Node:
-;;   Node!val!0 
-;; -----------
-;; definitions for universe elements:
-(declare-fun Node!val!0 () Node)
-;; cardinality constraint: - not having here
 
 (declare-fun held (Node) Bool)
 (declare-fun locked (Epoch Node) Bool)
 (declare-fun transfer (Epoch Node) Bool)
 (declare-fun ep (Node) Epoch)
+(declare-fun le (Epoch Epoch) Bool)
+(declare-fun zero () Epoch)
+(declare-fun one () Epoch)
+(declare-fun first () Node)
 
-(synth-fun inv ((x Node)) Bool
-    
+(synth-fun inv ((n1 Node) (e1 Epoch)) Bool
+
     ;; Declare the non-terminals that would be used in the grammar
-    ((Start Bool) (Atom Bool))
+    ((Start Bool) (Atom Bool) (Node_ Node) (Epoch_ Epoch))
 
-    ;; Define the grammar for allowed implementations of max2
+    ;; Define the grammar for allowed implementations of inv
     (
         (Start Bool 
-               (
+            (
                 (and Atom Atom)
                 (or Atom Atom)
                 (=> Atom Atom)
                 (not Atom)
-               )
+            )
         )
 
         (Atom Bool 
-               (
-                (held x)
-               )
+            (
+                (held Node_)
+                (locked Epoch_ Node_)
+                (transfer Epoch_ Node_)
+                (le Epoch_ Epoch_)
+            )
         )
-     
+
+        (Node_ Node
+            (
+                n1
+            )
+        )
+
+        (Epoch_ Epoch
+            (
+                e1
+                (ep Node_)
+            )
+        )
+    
     )
 )
 
-(constraint (=> (and (= (locked Epoch!val!3 Node!val!0) false)
-         (= (locked Epoch!val!4 Node!val!0) false)
-         (= (locked Epoch!val!2 Node!val!0) false)
-         (= (locked Epoch!val!1 Node!val!0) false)
-         (= (locked Epoch!val!0 Node!val!0) false)
-         (= (ep Node!val!0) Epoch!val!2)
-         (= (held Node!val!0) true)
-         (= (transfer Epoch!val!3 Node!val!0) false)
-         (= (transfer Epoch!val!4 Node!val!0) false)
-         (= (transfer Epoch!val!2 Node!val!0) true)
-         (= (transfer Epoch!val!1 Node!val!0) false)
-         (= (transfer Epoch!val!0 Node!val!0) false))
-    (not (and (inv Node!val!0)))))
+(constraint (=> (and (= zero Epoch!val!3)
+         (= first Node!val!2)
+         (= one Epoch!val!2)
+         (= (locked Epoch!val!3 Node!val!0) true)
+         (= (locked Epoch!val!3 Node!val!1) true)
+         (= (locked Epoch!val!3 Node!val!2) true)
+         (= (locked Epoch!val!2 Node!val!0) true)
+         (= (locked Epoch!val!2 Node!val!1) true)
+         (= (locked Epoch!val!2 Node!val!2) true)
+         (= (locked Epoch!val!1 Node!val!0) true)
+         (= (locked Epoch!val!1 Node!val!1) true)
+         (= (locked Epoch!val!1 Node!val!2) true)
+         (= (locked Epoch!val!0 Node!val!0) true)
+         (= (locked Epoch!val!0 Node!val!1) true)
+         (= (locked Epoch!val!0 Node!val!2) true)
+         (= (le Epoch!val!3 Epoch!val!3) true)
+         (= (le Epoch!val!3 Epoch!val!2) true)
+         (= (le Epoch!val!3 Epoch!val!1) true)
+         (= (le Epoch!val!3 Epoch!val!0) true)
+         (= (le Epoch!val!2 Epoch!val!3) false)
+         (= (le Epoch!val!2 Epoch!val!2) true)
+         (= (le Epoch!val!2 Epoch!val!1) true)
+         (= (le Epoch!val!2 Epoch!val!0) true)
+         (= (le Epoch!val!1 Epoch!val!3) false)
+         (= (le Epoch!val!1 Epoch!val!2) false)
+         (= (le Epoch!val!1 Epoch!val!1) true)
+         (= (le Epoch!val!1 Epoch!val!0) true)
+         (= (le Epoch!val!0 Epoch!val!3) false)
+         (= (le Epoch!val!0 Epoch!val!2) false)
+         (= (le Epoch!val!0 Epoch!val!1) false)
+         (= (le Epoch!val!0 Epoch!val!0) true)
+         true)
+    (not (and (inv Node!val!0 Epoch!val!3)
+              (inv Node!val!0 Epoch!val!2)
+              (inv Node!val!0 Epoch!val!1)
+              (inv Node!val!0 Epoch!val!0)
+              (inv Node!val!1 Epoch!val!3)
+              (inv Node!val!1 Epoch!val!2)
+              (inv Node!val!1 Epoch!val!1)
+              (inv Node!val!1 Epoch!val!0)
+              (inv Node!val!2 Epoch!val!3)
+              (inv Node!val!2 Epoch!val!2)
+              (inv Node!val!2 Epoch!val!1)
+              (inv Node!val!2 Epoch!val!0)))))
 
 (check-synth)
+        

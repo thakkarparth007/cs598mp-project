@@ -581,7 +581,7 @@ class CEX():
     def exists(self):
         return self.z3model is not None
 
-    def get_constraint(invar_expr):
+    def get_constraint(known_invars, invar_expr):
         """
         Takes an expression that asserts that an invariant holds in a given model.
         This expression is used to form the constraint, depending upon the type of CEX.
@@ -616,10 +616,12 @@ class CEX():
         """
         raise NotImplementedError()
     
-    def get_formula_of_state(self, S, include_global=False):
+    def get_formula_of_state(self, S, known_invars, include_global=False):
         """
         Converts a given state into a boolean formula describing the state.
-        Specifically, converts relations of a state S from z3 function to a ground formula in the model's universe"""
+        Specifically, converts relations of a state S from z3 function to a ground formula in the model's universe
+        Appends the known invariants to the formula.
+        """
 
         node_univ, epoch_univ = self.z3model.get_universe(Node), self.z3model.get_universe(Epoch)
         univ = {Node: node_univ, Epoch: epoch_univ}
@@ -635,7 +637,10 @@ class CEX():
             func_as_formula = And([d(*args) == self.z3model.eval(d(*args), model_completion=True) for args in all_args])
             formulas[d.name()] = func_as_formula
 
-        return formulas, And(*[f for n, f in formulas.items() if n != 'inv'])
+        known_invars = And(*[inv(self.M, S) for inv in known_invars])
+        return formulas, And(
+            *([f for n, f in formulas.items() if n != 'inv'] + [known_invars])
+        )
 
 
 # %%
@@ -644,8 +649,8 @@ class PositiveCEX(CEX):
         super().__init__(solver, z3model, M)
         self.S = S
     
-    def get_constraint(self, invar_expr):
-        _, formula = self.get_formula_of_state(self.S, include_global=True)
+    def get_constraint(self, known_invars, invar_expr):
+        _, formula = self.get_formula_of_state(self.S, known_invars, include_global=True)
         return Implies(formula, invar_expr)
 
 # %%
@@ -654,8 +659,8 @@ class NegativeCEX(CEX):
         super().__init__(solver, z3model, M)
         self.S = S
     
-    def get_constraint(self, invar_expr):
-        _, formula = self.get_formula_of_state(self.S, include_global=True)
+    def get_constraint(self, known_invars, invar_expr):
+        _, formula = self.get_formula_of_state(self.S, known_invars, include_global=True)
         return Implies(formula, Not(invar_expr))
 
 # %%
@@ -665,9 +670,9 @@ class InductivenessCEX(CEX):
         self.S1 = S1
         self.S2 = S2
     
-    def get_constraint(self, invar_expr):
-        _, pre_formula = self.get_formula_of_state(self.S1, include_global=True)
-        _, post_formula = self.get_formula_of_state(self.S2) # no need for global here.
+    def get_constraint(self, known_invars, invar_expr):
+        _, pre_formula = self.get_formula_of_state(self.S1, known_invars, include_global=True)
+        _, post_formula = self.get_formula_of_state(self.S2, known_invars) # no need for global here.
 
         constraint1 = Implies(simplify(pre_formula), Not(simplify(invar_expr)))
         constraint2 = Implies(Or(simplify(pre_formula), simplify(post_formula)), simplify(invar_expr))
@@ -862,9 +867,9 @@ import subprocess
 
 class CEGISLearner():
     # TODO:
-    #   (1) Add the invariants discovered so far to the synth_str
-    #   (2) Don't move to a new template till we can't find invariants for the current template
-    #   (3) Just because our template has an epoch variable doesn't mean the invariant generated will use epoch at all. This causes duplicates that we must be aware of.
+    #   (X) Add the invariants discovered so far to the synth_str
+    #   (X) Don't move to a new template till we can't find invariants for the current template
+    #   [ ] Just because our template has an epoch variable doesn't mean the invariant generated will use epoch at all. This causes duplicates that we must be aware of.
     def __init__(self, invars=[], max_terms = 5):
         self.allowed_quantifiers = ['FORALL'] #, 'EXISTS']
         self.allowed_sorts = [Node, Epoch]
@@ -947,19 +952,20 @@ $constraints
         """)
     
     def loop(self, max_iters=10, debug=False):
-        for i in range(max_iters):
+        synth_generator = self.synth()
+        for i in tqdm(range(max_iters)):
             cex = get_positive_cex(self.invars + [self.cur_invar], debug)
             if cex.exists():
                 self.counter_examples.append(cex)
                 # overwrite the current invariant, it's useless
-                self.cur_invar = self.synth()
+                self.cur_invar = next(synth_generator)
                 continue
 
             cex = get_inductiveness_cex(self.invars + [self.cur_invar], debug)
             if cex.exists():
                 self.counter_examples.append(cex)
                 # overwrite the current invariant, it's useless
-                self.cur_invar = self.synth()
+                self.cur_invar = next(synth_generator)
                 continue
                 
             # store the current invariant, because it's inductive
@@ -968,7 +974,7 @@ $constraints
             cex = get_negative_cex(self.invars, debug)
             if cex.exists():
                 self.counter_examples.append(cex)
-                self.cur_invar = self.synth()
+                self.cur_invar = next(synth_generator)
             else:
                 print("No counter-example found.")
                 return True
@@ -996,7 +1002,7 @@ $constraints
                 for elem in univ:
                     universes[s].add(str(elem))
             inv_expr = get_invar_expr_for_model(synthesized_inv, qs, sorts, cex.z3model)
-            constraint = cex.get_constraint(inv_expr)
+            constraint = cex.get_constraint(self.invars, inv_expr)
             sexpr = constraint.sexpr().replace("pre.", "").replace("post.", "")
             constraints.append(f"(constraint {sexpr})")
         
@@ -1027,23 +1033,34 @@ $constraints
         )
     
     def synth(self):
-        qs, sorts = next(self.template_generator)
+        while True:
+            qs, sorts = next(self.template_generator)
 
-        synth_str = self.get_synth_str(qs, sorts)
-        synth_file = 'test_synth.sy'
-        with open(synth_file,'w') as f:
-            f.write(synth_str)
-        
-        synthesized_invar_defs = self.run_minisy(synth_file, nsols=1)
-        return [self.parse_inv_defn(qs, sorts, defn) for defn in synthesized_invar_defs][0]
+            synth_str = self.get_synth_str(qs, sorts)
+            synth_file = 'test_synth.sy'
+            with open(synth_file,'w') as f:
+                f.write(synth_str)
+            
+            synthesized_invar_defs = self.run_minisy(synth_file, nsols=1)
+            for defn in synthesized_invar_defs:
+                yield self.parse_inv_defn(qs, sorts, defn)
+        #return [self.parse_inv_defn(qs, sorts, defn) for defn in synthesized_invar_defs][0]
 
     def run_minisy(self, synth_file, nsols=1):
-        out = subprocess.check_output(
-            f'source ~/.zshrc; minisy {synth_file} --num-solutions={nsols}',
-            shell=True, executable="/bin/zsh", encoding='utf-8'
-        )
-        print(out)
-        lines = out.split('\n')
+        #cmd = f'source ~/.zshrc; minisy {synth_file} --num-solutions={nsols}'
+        cmd = f'source ~/.zshrc; minisy {synth_file} --stream'
+        process = subprocess.Popen(cmd,
+            shell=True,
+            executable='/bin/zsh',
+            encoding='utf-8',
+            stdout=subprocess.PIPE)
+        # out = subprocess.check_output(
+        #     ,
+        #     shell=True, executable="/bin/zsh", encoding='utf-8'
+        # )
+        #print(out)
+        #lines = out.split('\n')
+        lines = iter(process.stdout.readline, b'')
         defs = []
         for line in lines:
             if line == 'sat':
@@ -1051,11 +1068,15 @@ $constraints
             if line == 'unsat':
                 break
             if line.startswith('(define-fun'):
+                if len(defs):
+                    yield defs[-1].strip()
                 defs.append(line)
             else:
                 # print("BRO", line, defs)
                 defs[-1] += '\n' + line
-        return [d.strip() for d in defs]
+        if len(defs):
+            yield defs[-1].strip()
+        #return [d.strip() for d in defs]
     
     def parse_inv_defn(self, quantifiers, sorts, defn):
         defn += "\n"
@@ -1084,13 +1105,13 @@ $constraints
             sorts = {'Node': Node, 'Epoch': Epoch}
             decls = {'held': S.held, 'locked': S.locked, 'transfer': S.transfer,
                     'ep': S.ep, 'le': M.le}
-            return parse_smt2_string(defn, sorts=sorts, decls=decls)[0]
+            return simplify(parse_smt2_string(defn, sorts=sorts, decls=decls)[0])
         
         return inv
 
 
 cegis_learner = CEGISLearner()
-cegis_learner.loop()
+cegis_learner.loop(max_iters=200)
 
 # %%
 
