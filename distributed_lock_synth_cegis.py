@@ -638,8 +638,9 @@ class CEX():
             formulas[d.name()] = func_as_formula
 
         known_invars = And(*[inv(self.M, S) for inv in known_invars])
+        extra = True # known_invars -> this is unnecessary, I think
         return formulas, And(
-            *([f for n, f in formulas.items() if n != 'inv'] + [known_invars])
+            *([f for n, f in formulas.items() if n != 'inv'] + [extra])
         )
 
 
@@ -651,7 +652,9 @@ class PositiveCEX(CEX):
     
     def get_constraint(self, known_invars, invar_expr):
         _, formula = self.get_formula_of_state(self.S, known_invars, include_global=True)
-        return Implies(formula, invar_expr)
+        known_invars = And(*[inv(self.M, S) for inv in known_invars])
+        extra = Not(Implies(known_invars, invar_expr)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
+        return And(Implies(formula, invar_expr), extra)
 
 # %%
 class NegativeCEX(CEX):
@@ -661,7 +664,9 @@ class NegativeCEX(CEX):
     
     def get_constraint(self, known_invars, invar_expr):
         _, formula = self.get_formula_of_state(self.S, known_invars, include_global=True)
-        return Implies(formula, Not(invar_expr))
+        known_invars = And(*[inv(self.M, S) for inv in known_invars])
+        extra = Not(Implies(known_invars, invar_expr)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
+        return And(Implies(formula, Not(invar_expr)), extra)
 
 # %%
 class InductivenessCEX(CEX):
@@ -676,7 +681,11 @@ class InductivenessCEX(CEX):
 
         constraint1 = Implies(simplify(pre_formula), Not(simplify(invar_expr)))
         constraint2 = Implies(Or(simplify(pre_formula), simplify(post_formula)), simplify(invar_expr))
-        return And(constraint1, constraint2)
+
+        known_invars = And(*[inv(self.M, S) for inv in known_invars])
+        extra = Not(Implies(known_invars, invar_expr)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
+
+        return And(And(constraint1, constraint2), extra)
 
 # %%
 class SolverWrapper(Solver):
@@ -875,8 +884,8 @@ class CEGISLearner():
         self.allowed_sorts = [Node, Epoch]
     
         self.counter_examples = []
-        self.invars = invars
-        self.cur_invar = lambda M, S: True
+        self.invars = [lambda M, S: M.get_axioms()] + invars
+        self.cur_invar = lambda M, S: False
         self.template_generator = template_generator(
             self.allowed_quantifiers,
             self.allowed_sorts,
@@ -961,13 +970,27 @@ $constraints
                 self.cur_invar = next(synth_generator)
                 continue
 
+            # # now that we've found an invariant that includes the initial
+            # # state, we don't need to worry about positive counter examples
+            # # because all future invariants will be ANDed with the
+            # # invariants that include the initial state.
+            # self.counter_examples = []
+
             cex = get_inductiveness_cex(self.invars + [self.cur_invar], debug)
             if cex.exists():
                 self.counter_examples.append(cex)
                 # overwrite the current invariant, it's useless
                 self.cur_invar = next(synth_generator)
                 continue
-                
+            
+            # # check if our invariant is already implied by existing invariants
+            # # if so, it's useless
+            # solver = Solver()
+            # known_invars = And(*[inv(M, S) for inv in self.invars])
+            # solver.add(Not(Implies(known_invars, self.cur_invar(M, S))))
+            # if solver.check() == unsat and False:
+            #     continue
+            
             # store the current invariant, because it's inductive
             self.invars.append(self.cur_invar)
             
@@ -1003,8 +1026,11 @@ $constraints
                     universes[s].add(str(elem))
             inv_expr = get_invar_expr_for_model(synthesized_inv, qs, sorts, cex.z3model)
             constraint = cex.get_constraint(self.invars, inv_expr)
-            sexpr = constraint.sexpr().replace("pre.", "").replace("post.", "")
+            sexpr = constraint.sexpr() #.replace("pre.", "").replace("post.", "")
             constraints.append(f"(constraint {sexpr})")
+        
+        # known_invars = And(*[inv(M, S) for inv in self.invars])
+        # constraints.append(f"(constraint (not (=> {known_invars.sexpr()} {synthesized_inv.sexpr()})))")
         
         universe_declarations = []
         for s, elems in universes.items():
@@ -1029,54 +1055,57 @@ $constraints
             inv_args=' '.join(inv_args),
             node_universe=node_universe,
             epoch_universe=epoch_universe,
-            constraints='\n'.join(constraints)
+            constraints='\n'.join(constraints).replace("pre.", "").replace("post.", "")
         )
     
     def synth(self):
-        while True:
-            qs, sorts = next(self.template_generator)
+        for qs, sorts in self.template_generator:
+            while True:
+                synth_str = self.get_synth_str(qs, sorts)
+                synth_file = 'test_synth.sy'
+                with open(synth_file,'w') as f:
+                    f.write(synth_str)
 
-            synth_str = self.get_synth_str(qs, sorts)
-            synth_file = 'test_synth.sy'
-            with open(synth_file,'w') as f:
-                f.write(synth_str)
-            
-            synthesized_invar_defs = self.run_minisy(synth_file, nsols=1)
-            for defn in synthesized_invar_defs:
-                yield self.parse_inv_defn(qs, sorts, defn)
-        #return [self.parse_inv_defn(qs, sorts, defn) for defn in synthesized_invar_defs][0]
+                synthesized_invar_defs = self.run_minisy(synth_file, nsols=1)
+
+                if len(synthesized_invar_defs) == 0:
+                    break
+
+                for defn in synthesized_invar_defs:
+                    yield self.parse_inv_defn(qs, sorts, defn)
 
     def run_minisy(self, synth_file, nsols=1):
-        #cmd = f'source ~/.zshrc; minisy {synth_file} --num-solutions={nsols}'
-        cmd = f'source ~/.zshrc; minisy {synth_file} --stream'
-        process = subprocess.Popen(cmd,
-            shell=True,
-            executable='/bin/zsh',
-            encoding='utf-8',
-            stdout=subprocess.PIPE)
-        # out = subprocess.check_output(
-        #     ,
-        #     shell=True, executable="/bin/zsh", encoding='utf-8'
-        # )
+        cmd = f'source ~/.zshrc; minisy {synth_file} --num-solutions={nsols}'
+        # cmd = f'source ~/.zshrc; minisy {synth_file} --stream'
+        # process = subprocess.Popen(cmd,
+        #     shell=True,
+        #     executable='/bin/zsh',
+        #     encoding='utf-8',
+        #     stdout=subprocess.PIPE)
+        out = subprocess.check_output(
+            cmd,
+            shell=True, executable="/bin/zsh", encoding='utf-8'
+        )
         #print(out)
-        #lines = out.split('\n')
-        lines = iter(process.stdout.readline, b'')
+        lines = out.split('\n')
+        # lines = iter(process.stdout.readline, b'')
         defs = []
         for line in lines:
-            if line == 'sat':
+            line = line.strip()
+            if line == 'sat' or line == '':
                 continue
             if line == 'unsat':
                 break
             if line.startswith('(define-fun'):
-                if len(defs):
-                    yield defs[-1].strip()
+                # if len(defs):
+                #     yield defs[-1].strip()
                 defs.append(line)
             else:
                 # print("BRO", line, defs)
                 defs[-1] += '\n' + line
-        if len(defs):
-            yield defs[-1].strip()
-        #return [d.strip() for d in defs]
+        # if len(defs):
+        #     yield defs[-1].strip()
+        return [d.strip() for d in defs]
     
     def parse_inv_defn(self, quantifiers, sorts, defn):
         defn += "\n"
