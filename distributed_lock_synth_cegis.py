@@ -2,6 +2,7 @@
 from z3 import *
 from tqdm import tqdm
 import itertools
+from functools import partial
 
 # %% [markdown]
 # Todo:
@@ -29,6 +30,7 @@ import itertools
 
 # %%
 # create uninterpreted sort Node and Epoch
+ModelId = DeclareSort('ModelId')
 Node = DeclareSort('Node')
 Epoch = DeclareSort('Epoch')
 
@@ -37,7 +39,8 @@ Epoch = DeclareSort('Epoch')
 
 # %%
 class DistLockState():
-    def __init__(self, name):
+    def __init__(self, model_name, name):
+        self.model_name = model_name
         self.name = name
 
         # relations
@@ -46,22 +49,26 @@ class DistLockState():
         self.transfer = Function(f'{name}.transfer', Epoch, Node, BoolSort())
         self.locked = Function(f'{name}.locked', Epoch, Node, BoolSort())
 
-DistLockState('test_pre') # only for testing
+DistLockState(Const('m', ModelId), 'test_pre') # only for testing
 
 # %%
 class DistLockModel():
-    def __init__(self):
+    def __init__(self, model_name='m'):
         # constants
+        self.model_name = model_name
+        self.m = Function('Model_' + str(model_name), ModelId)()
         self.le = Function(f'le', Epoch, Epoch, BoolSort())
-        self.zero = Const(f'zero', Epoch)
-        self.one = Const(f'one', Epoch)
-        self.first = Const(f'first', Node)
+        # can't use partial here because these are constants, and we need to evaluate the function directly.
+        # would've been nice if partial returned the function evaluation if the function accepted only a single argument.
+        self.zero = Function(f'zero', Epoch)()
+        self.one = Function(f'one', Epoch)()
+        self.first = Function(f'first', Node)()
 
         self.states = {}
     
     def get_state(self, name):
         if name not in self.states:
-            self.states[name] = DistLockState(name)
+            self.states[name] = DistLockState(self.model_name, name)
         return self.states[name]
     
     def get_axioms(self):
@@ -104,7 +111,56 @@ class DistLockModel():
 
         return cond
     
-    def get_interp(self, model: ModelRef):
+    def store_z3model(self, m):
+        self.z3model = m
+        self.universe = {
+            Node: {},
+            Epoch: {},
+        }
+        self.substitution_map = []
+        self.substitution_map2 = {}
+
+        for s in self.universe.keys():
+            # TODO: translate the z3 model's elements by adding the model id
+            # what's unclear is if we should be modifying all the expressions such as le, transfer etc. too
+            # e.g., z3 model may refer to le(m, Epoch!Val!0, Epoch!Val!1) and we'd have to translate Epoch!Val!0 to
+            # Epoch!Val!0 (m) and Epoch!Val!1 to Epoch!Val!1 (m)
+            
+            self.universe[s] = []
+            for elem in self.z3model.get_universe(s):
+                fn = Function(str(elem) + "_m", ModelId, s)(self.m)
+                self.substitution_map.append((elem, fn))
+                self.substitution_map2[fn] = elem
+                self.universe[s].append(fn)
+
+        # def substitute_func(funcDecl, funcInterp):
+        #     F = Function(funcDecl.name() + "_m", ModelId, *[funcDecl.domain(i) for i in range(funcDecl.arity())])
+        #     F = partial(self.m)
+
+        #     def helper(func_list):
+        #         if len(func_list) == 1:
+        #             return substitute(func_list[0], *self.substitution_map)
+                
+        #         cur, rest = func_list[0], func_list[1:]
+        #         args = [substitute(a, *self.substitution_map) for a in cur[:-1]]
+        #         res = substitute(cur[-1], *self.substitution_map)
+        #         rest = helper(rest)
+        #         return 
+
+        # self.interp = {}
+        # for f in self.z3model.decls():
+        #     inp = model.get_interp(f)
+        #     if isinstance(inp, FuncInterp):
+
+    
+    def get_universe(self, sort):
+        return self.universe[sort]
+    
+    def get_interp(self, model: ModelRef = None):
+        if model is None:
+            model = self.z3model
+        if self.z3model is None:
+            self.z3model = model
         # create a dict of all the functions
         interp = {}
         for f in model.decls():
@@ -569,19 +625,23 @@ solver.check()
 cex_id = 0
 
 class CEX():
-    def __init__(self, solver, z3model, M):
+    def __init__(self, solver, z3model, M, cand_invar):
         global cex_id
         self.id = cex_id
         self.solver = solver
         self.z3model = z3model
         self.M = M
+        self.cand_invar = cand_invar
+        if self.z3model:
+            self.M.store_z3model(self.z3model)
+            self.bro = self.z3model.sexpr()
 
         cex_id += 1
     
     def exists(self):
         return self.z3model is not None
 
-    def get_constraint(known_invars, invar_expr):
+    def get_synth_constraint(known_invars, invar_expr):
         """
         Takes an expression that asserts that an invariant holds in a given model.
         This expression is used to form the constraint, depending upon the type of CEX.
@@ -623,69 +683,89 @@ class CEX():
         Appends the known invariants to the formula.
         """
 
-        node_univ, epoch_univ = self.z3model.get_universe(Node), self.z3model.get_universe(Epoch)
+        node_univ, epoch_univ = self.M.get_universe(Node), self.M.get_universe(Epoch)
         univ = {Node: node_univ, Epoch: epoch_univ}
         decls = self.z3model.decls()
 
         #global_decls = must be included in general
-        decls_ = [d for d in decls if d.name().startswith(S.name) or (include_global and "." not in d.name())]
+        decls_ = []
+        for d in decls:
+            if d.name().endswith("_m") or d.name().startswith("Model_") or d.name().startswith("inv"):
+                continue
+            if d.name().startswith(S.name) or (include_global and "." not in d.name()):
+                dargs = [d.domain(i) for i in range(d.arity())]
+                drange = d.range()
+                fn = Function(d.name() + "_m", ModelId, *dargs, drange)
+                decls_.append((d, fn))
+        
         formulas = {}
-        for d in decls_:
+        for d, fn in decls_:
             universes = [univ[d.domain(i)] for i in range(d.arity())]
             all_args = itertools.product(*universes)
             # TODO Optimization: remove those for which model_completion was necessary (i.e, don't care inputs)
-            func_as_formula = And([d(*args) == self.z3model.eval(d(*args), model_completion=True) for args in all_args])
-            formulas[d.name()] = func_as_formula
+            conjuncts = []
+            for args in all_args:
+                args2 = [self.M.substitution_map2[a] for a in args]
+                lhs = fn(self.M.m, *args)
+                rhs = self.z3model.eval(d(*args2), model_completion=True)
+                rhs = substitute(rhs, *self.M.substitution_map)
+                conjuncts.append(lhs == rhs)
+            
+            func_as_formula = And(*conjuncts)
+            formulas[fn.name()] = func_as_formula
 
         known_invars = And(*[inv(self.M, S) for inv in known_invars])
         extra = True # known_invars -> this is unnecessary, I think
         return formulas, And(
-            *([f for n, f in formulas.items() if n != 'inv'] + [extra])
+            *([f for n, f in formulas.items() if n != 'inv']) # + [extra])
         )
 
 
 # %%
 class PositiveCEX(CEX):
-    def __init__(self, solver, z3model, M, S):
-        super().__init__(solver, z3model, M)
+    def __init__(self, solver, z3model, M, cand_invar, S):
+        super().__init__(solver, z3model, M, cand_invar)
         self.S = S
     
-    def get_constraint(self, known_invars, invar_expr):
+    def get_synth_constraint(self, known_invars, invar_expr):
         _, formula = self.get_formula_of_state(self.S, known_invars, include_global=True)
         known_invars = And(*[inv(self.M, S) for inv in known_invars])
         extra = Not(Implies(known_invars, invar_expr)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
-        return And(Implies(formula, invar_expr), extra)
+        return And(formula, invar_expr) #Implies(formula, invar_expr)
+        #return And(Implies(formula, invar_expr), extra)
 
 # %%
 class NegativeCEX(CEX):
-    def __init__(self, solver, z3model, M, S):
-        super().__init__(solver, z3model, M)
+    def __init__(self, solver, z3model, M, cand_invar, S):
+        super().__init__(solver, z3model, M, cand_invar)
         self.S = S
     
-    def get_constraint(self, known_invars, invar_expr):
+    def get_synth_constraint(self, known_invars, invar_expr):
         _, formula = self.get_formula_of_state(self.S, known_invars, include_global=True)
         known_invars = And(*[inv(self.M, S) for inv in known_invars])
         extra = Not(Implies(known_invars, invar_expr)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
-        return And(Implies(formula, Not(invar_expr)), extra)
+        #return And(Implies(formula, Not(invar_expr)), extra)
+        return And(formula, Not(invar_expr)) #, (get_safety_property_as_expr(self.M, self.S))) #Implies(formula, Not(invar_expr))
 
 # %%
 class InductivenessCEX(CEX):
-    def __init__(self, solver, z3model, M, S1, S2):
-        super().__init__(solver, z3model, M)
+    def __init__(self, solver, z3model, M, cand_invar, S1, S2):
+        super().__init__(solver, z3model, M, cand_invar)
         self.S1 = S1
         self.S2 = S2
     
-    def get_constraint(self, known_invars, invar_expr):
+    def get_synth_constraint(self, known_invars, invar_expr):
         _, pre_formula = self.get_formula_of_state(self.S1, known_invars, include_global=True)
         _, post_formula = self.get_formula_of_state(self.S2, known_invars) # no need for global here.
 
-        constraint1 = Implies(simplify(pre_formula), Not(simplify(invar_expr)))
-        constraint2 = Implies(Or(simplify(pre_formula), simplify(post_formula)), simplify(invar_expr))
+        constraint1 = And(simplify(pre_formula), Not(simplify(invar_expr)))
+        constraint2 = And(Or(simplify(pre_formula), simplify(post_formula)), simplify(invar_expr))
 
         known_invars = And(*[inv(self.M, S) for inv in known_invars])
         extra = Not(Implies(known_invars, invar_expr)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
 
-        return And(And(constraint1, constraint2), extra)
+        return Or(constraint1, constraint2)
+        #return And(Or(constraint1, constraint2), extra)
 
 # %%
 class SolverWrapper(Solver):
@@ -708,57 +788,60 @@ s.unsat_core()
 
 # %%
 
-def get_positive_cex(invars, assert_and_track=False):
-    M = DistLockModel()
-    S1 = M.get_state('pre')
+def get_positive_cex(model_id, invars, assert_and_track=False):
+    M = DistLockModel(model_id)
+    S1 = M.get_state('init')
 
     inv = lambda M, S: And(*[inv(M, S) for inv in invars])
 
     solver = SolverWrapper(assert_and_track)
     solver.add(M.get_init_state_cond(), "1")
-    solver.add(M.get_axioms(), "2")
-    solver.add(Not(inv(M, M.get_state('init'))), "3")
+    solver.add(M.get_axioms(), "2") # check if it's necessary to add the axioms
+
+    cand_invar = inv(M, M.get_state('init'))
+    solver.add(Not(cand_invar), "3")
 
     if solver.check() == sat:
-        return PositiveCEX(solver, solver.model(), M, S1)
+        return PositiveCEX(solver, solver.model(), M, cand_invar, S1)
     
-    return PositiveCEX(solver, None, M, S1)
+    return PositiveCEX(solver, None, M, cand_invar, S1)
 
-cex = get_positive_cex(distai_invars[:1])
+cex = get_positive_cex(model_id=1, invars=distai_invars[:1])
 print(cex.exists())
 
 # %%
 
-def get_negative_cex(invars, assert_and_track=False):
-    M = DistLockModel()
+def get_negative_cex(model_id, invars, assert_and_track=False):
+    M = DistLockModel(model_id)
     S = M.get_state('pre')
 
     inv = lambda M, S: And(*[inv(M, S) for inv in invars])
 
     solver = SolverWrapper(assert_and_track)
-    solver.add(M.get_init_state_cond(), "1")
+    # solver.add(M.get_init_state_cond(), "1")
     solver.add(M.get_axioms(), "2")
-    solver.add(inv(M, S), "3")
+    cand_invar = inv(M, S)
+    solver.add(cand_invar, "3")
 
     ## Safety VC:
     solver.add(Not(get_safety_inv(M, S)), "8")
 
     if solver.check() == sat:
-        return NegativeCEX(solver, solver.model(), M, S)
+        return NegativeCEX(solver, solver.model(), M, cand_invar, S)
     
-    return NegativeCEX(solver, None, M, S)
+    return NegativeCEX(solver, None, M, cand_invar, S)
 
-cex = get_negative_cex(distai_invars[:1])
+cex = get_negative_cex(model_id=1, invars=distai_invars[:1])
 print(cex.exists())
 
 # %%
-def get_inductiveness_cex(invars, assert_and_track=False):
-    M = DistLockModel()
+def get_inductiveness_cex(model_id, invars, assert_and_track=False):
+    M = DistLockModel(model_id)
     S1 = M.get_state('pre')
     S2 = M.get_state('post')
 
     solver = SolverWrapper()
-    solver.add(M.get_init_state_cond(), "1")
+    # solver.add(M.get_init_state_cond(), "1")
     solver.add(M.get_axioms(), "2")
     # solver.add(inv(M, S1), "3")
     solver.add(get_grant_action(M, S1, S2), "4")
@@ -777,21 +860,29 @@ def get_inductiveness_cex(invars, assert_and_track=False):
 
     ## So we manually "unroll" as below.
     ## It is equivalent because AND(P, Not(q1, q2)) == Or(And(P, Not(q1)), And(P, Not(q2)))
-    enumeration = tqdm(enumerate(invars[:])) if assert_and_track else enumerate(invars[:])
-    for i, inv_i in enumeration:
-        solver.push()
-        for j, inv_j in enumerate(invars[:i+1]):
-            solver.add(inv_j(M, S1), "6.5_" + str(j))
-        solver.add(Not(inv_i(M, S2)), "7")
-        if solver.check() == sat:
-            # print("Invariant set is not inductive")
-            return InductivenessCEX(solver, solver.model(), M, S1, S2)
-        solver.pop()
+    #enumeration = tqdm(enumerate(invars[:])) if assert_and_track else enumerate(invars[:])
+    # for i, inv_i in enumeration:
+    #     solver.push()
+    #     for j, inv_j in enumerate(invars[:i+1]):
+    #         solver.add(inv_j(M, S1), "6.5_" + str(j))
+    #     solver.add(Not(inv_i(M, S2)), "7")
+    #     if solver.check() == sat:
+    #         # print("Invariant set is not inductive")
+    #         return InductivenessCEX(solver, solver.model(), M, S1, S2)
+    #     solver.pop()
+
+    for i, inv_i in enumerate(invars):
+        solver.add(inv_i(M, S1), "6.5_" + str(i))
+    # for sanity check: maybe assert all invars[:-1] hold on S2.
+    cand_invar = invars[-1](M, S2)
+    solver.add(Not(cand_invar), "7")
+    if solver.check() == sat:
+        return InductivenessCEX(solver, solver.model(), M, cand_invar, S1, S2)
 
     # print("Invariant set is inductive.")
-    return InductivenessCEX(solver, None, M, S1, S2)
+    return InductivenessCEX(solver, None, M, cand_invar, S1, S2)
 
-cex = get_inductiveness_cex(distai_invars[:2])
+cex = get_inductiveness_cex(model_id=1, invars=distai_invars[:2])
 # cex = get_inductiveness_cex([lambda M, S: True])
 cex.exists()
 
@@ -841,8 +932,23 @@ def get_invar_expr_for_model(inv, quantifiers, sorts, model):
 
 # inv_expr = synth_invar(['FORALL', 'FORALL'], [Epoch, Epoch], m)
 synthesized_inv = Function('inv', *([Epoch, Epoch] + [BoolSort()]))
-inv_expr = get_invar_expr_for_model(synthesized_inv, ['FORALL', 'EXISTS'], [Epoch, Epoch], cex.z3model)
+inv_expr = get_invar_expr_for_model(synthesized_inv, ['FORALL', 'EXISTS'], [Epoch, Epoch], cex.M)
 print(inv_expr.sexpr())
+
+# %%
+
+def get_safety_property_as_expr(M, S):
+    locked_m = Function('locked_m', ModelId, Epoch, Node, BoolSort())
+    def prop_eval(e1, n1, n2):
+        return Implies(And(
+            locked_m(M.m, e1, n1),
+            locked_m(M.m, e1, n2),
+        ), n1 == n2)
+    return simplify(get_invar_expr_for_model(prop_eval, ['FORALL', 'FORALL', 'FORALL'], [Epoch, Node, Node], M))
+
+prop = get_safety_property_as_expr(cex.M, cex.S1)
+print(prop)
+# print(simplify(prop))
 
 # %%
 
@@ -900,21 +1006,22 @@ class CEGISLearner():
         self.synth_str_template = Template("""
 (set-logic ALL)
 
+(declare-sort ModelId)
 (declare-sort Node)
 (declare-sort Epoch)
 
 $universe_declarations
 
-(declare-fun held (Node) Bool)
-(declare-fun locked (Epoch Node) Bool)
-(declare-fun transfer (Epoch Node) Bool)
-(declare-fun ep (Node) Epoch)
-(declare-fun le (Epoch Epoch) Bool)
-(declare-fun zero () Epoch)
-(declare-fun one () Epoch)
-(declare-fun first () Node)
+(declare-fun held_m (ModelId Node) Bool)
+(declare-fun locked_m (ModelId Epoch Node) Bool)
+(declare-fun transfer_m (ModelId Epoch Node) Bool)
+(declare-fun ep_m (ModelId Node) Epoch)
+(declare-fun le_m (ModelId Epoch Epoch) Bool)
+(declare-fun zero_m (ModelId) Epoch)
+(declare-fun one_m (ModelId) Epoch)
+(declare-fun first_m (ModelId) Node)
 
-(synth-fun inv ($inv_args) Bool
+(synth-fun inv ((m ModelId) $inv_args) Bool
 
     ;; Declare the non-terminals that would be used in the grammar
     ((Start Bool) (Atom Bool) (Node_ Node) (Epoch_ Epoch))
@@ -932,10 +1039,10 @@ $universe_declarations
 
         (Atom Bool 
             (
-                (held Node_)
-                (locked Epoch_ Node_)
-                (transfer Epoch_ Node_)
-                (le Epoch_ Epoch_)
+                (held_m m Node_)
+                (locked_m m Epoch_ Node_)
+                (transfer_m m Epoch_ Node_)
+                (le_m m Epoch_ Epoch_)
             )
         )
 
@@ -948,7 +1055,7 @@ $universe_declarations
         (Epoch_ Epoch
             (
                 $epoch_universe
-                (ep Node_)
+                (ep_m m Node_)
             )
         )
     
@@ -957,14 +1064,22 @@ $universe_declarations
 
 $constraints
 
+(declare-fun DUMMYMODEL () ModelId)
+$dummy_vars
+
+$unique_invar_asserts
+(assert (not (= (inv DUMMYMODEL $dummy_args) true)))
+
 (check-synth)
         """)
     
     def loop(self, max_iters=10, debug=False):
         synth_generator = self.synth()
+        model_id = 0
         for i in tqdm(range(max_iters)):
-            cex = get_positive_cex(self.invars + [self.cur_invar], debug)
+            cex = get_positive_cex(model_id, self.invars + [self.cur_invar], debug)
             if cex.exists():
+                model_id += 1
                 self.counter_examples.append(cex)
                 # overwrite the current invariant, it's useless
                 self.cur_invar = next(synth_generator)
@@ -976,8 +1091,9 @@ $constraints
             # # invariants that include the initial state.
             # self.counter_examples = []
 
-            cex = get_inductiveness_cex(self.invars + [self.cur_invar], debug)
+            cex = get_inductiveness_cex(model_id, self.invars + [self.cur_invar], debug)
             if cex.exists():
+                model_id += 1
                 self.counter_examples.append(cex)
                 # overwrite the current invariant, it's useless
                 self.cur_invar = next(synth_generator)
@@ -993,9 +1109,17 @@ $constraints
             
             # store the current invariant, because it's inductive
             self.invars.append(self.cur_invar)
+            print("WINNER: ", self.cur_invar(M, S))
+            # throw away all inductive cexs.
+            # because the inductive cexs may be spurios.
+            # ideally, we only wanna throw away those inductive cexs where
+            # cur_invar(cex.S1) is false. Meaning, that counter example's pre state
+            # is unreachable. (see discussion with adithya)
+            # self.counter_examples = [cex for cex in self.counter_examples if not(isinstance(cex, InductivenessCEX))]
             
-            cex = get_negative_cex(self.invars, debug)
+            cex = get_negative_cex(model_id, self.invars, debug)
             if cex.exists():
+                model_id += 1
                 self.counter_examples.append(cex)
                 self.cur_invar = next(synth_generator)
             else:
@@ -1012,22 +1136,47 @@ $constraints
         return None
     
     def get_synth_str(self, qs, sorts):
-        synthesized_inv = Function('inv', *(sorts + [BoolSort()]))
+        synthesized_inv = Function('inv', ModelId, *(sorts + [BoolSort()]))
 
         universes = {}
         for s in self.allowed_sorts:
             universes[s] = set()
-        
+        universes[ModelId] = set()
+
         constraints = []
         for cex in self.counter_examples:
+            universes[ModelId].add(cex.M.m)
+            
+            constraints.append('; candidate invariant was : (cex type: ' + str(type(cex)) + ')')
+            constraints.append("\n".join([
+                "; " + l for l in cex.cand_invar.sexpr().split("\n")
+            ]))
+            cex_constraints = str(cex.solver)
+            constraints.append("\n".join([
+                "; " + l for l in cex_constraints.split("\n")
+            ]))
+            constraints.append("\n".join([
+                "; " + l for l in cex.bro.split("\n")
+            ]))
+
             for s in self.allowed_sorts:
+                # shouldn't be cex.M, because we want the generic constant names,
+                # not the constants bound to the model
                 univ = cex.z3model.get_universe(s)
                 for elem in univ:
                     universes[s].add(str(elem))
-            inv_expr = get_invar_expr_for_model(synthesized_inv, qs, sorts, cex.z3model)
-            constraint = cex.get_constraint(self.invars, inv_expr)
-            sexpr = constraint.sexpr() #.replace("pre.", "").replace("post.", "")
+                
+                elems = " ".join(
+                    [f"({str(elem)}_m {cex.M.m}) " for elem in univ]
+                )
+                constraints.append(f"(constraint (distinct {elems}))")
+            
+            # here we need cex.M because we want the constants bound to the model
+            inv_expr = get_invar_expr_for_model(partial(synthesized_inv, cex.M.m), qs, sorts, cex.M)
+            constraint = cex.get_synth_constraint(self.invars, inv_expr)
+            sexpr = constraint.sexpr() #.replace("init.", "").replace("pre.", "").replace("post.", "")
             constraints.append(f"(constraint {sexpr})")
+            constraints.append("\n")
         
         # known_invars = And(*[inv(M, S) for inv in self.invars])
         # constraints.append(f"(constraint (not (=> {known_invars.sexpr()} {synthesized_inv.sexpr()})))")
@@ -1035,15 +1184,32 @@ $constraints
         universe_declarations = []
         for s, elems in universes.items():
             for elem in elems:
-                universe_declarations.append(f"(declare-fun {elem} () {s.name()})")
+                if s != ModelId:
+                    universe_declarations.append(f"(declare-fun {elem}_m (ModelId) {s.name()})")
+                else:
+                    universe_declarations.append(f"(declare-fun {elem} () {s.name()})")
             universe_declarations.append("")
         
         inv_args = []
+        dummy_vars = []
+        dummy_args = []
         args_of_type = {Node: [], Epoch: []}
         for s in sorts:
             arg_name = s.name().lower()[0] + str(len(args_of_type[s])+1)
             args_of_type[s].append(arg_name)
             inv_args.append(f"({arg_name} {s.name()})")
+            dummy_vars += [f"(declare-fun {arg_name.upper()} () {s.name()})"]
+            dummy_args += [arg_name.upper()]
+        
+        inv_args = " ".join(inv_args)
+        dummy_vars = "\n".join(dummy_vars)
+        dummy_args = ' '.join(dummy_args)
+        unique_invar_asserts = []
+        for i, inv1 in enumerate(self.cur_templ_invars):
+            unique_invar_asserts.append(inv1)
+            lhs = f"(inv{i} DUMMYMODEL {dummy_args})"
+            rhs = f"(inv DUMMYMODEL {dummy_args})"
+            unique_invar_asserts.append(f"(assert (not (= {lhs} {rhs})))")
         
         node_universe = '\n'.join(args_of_type[Node])
         epoch_universe = '\n'.join(args_of_type[Epoch])
@@ -1052,27 +1218,37 @@ $constraints
 
         return self.synth_str_template.substitute(
             universe_declarations='\n'.join(universe_declarations),
-            inv_args=' '.join(inv_args),
+            inv_args=inv_args,
             node_universe=node_universe,
             epoch_universe=epoch_universe,
-            constraints='\n'.join(constraints).replace("pre.", "").replace("post.", "")
+            constraints='\n'.join(constraints).replace("init.", "").replace("pre.", "").replace("post.", ""),
+            dummy_vars=dummy_vars,
+            dummy_args=dummy_args,
+            unique_invar_asserts='\n'.join(unique_invar_asserts)
         )
     
     def synth(self):
         for qs, sorts in self.template_generator:
+            self.cur_templ_invars = []
             while True:
                 synth_str = self.get_synth_str(qs, sorts)
                 synth_file = 'test_synth.sy'
                 with open(synth_file,'w') as f:
                     f.write(synth_str)
 
-                synthesized_invar_defs = self.run_minisy(synth_file, nsols=1)
+                synthesized_invar_defs, invars_orig = self.run_minisy(synth_file, nsols=1)
 
                 if len(synthesized_invar_defs) == 0:
                     break
 
-                for defn in synthesized_invar_defs:
-                    yield self.parse_inv_defn(qs, sorts, defn)
+                for defn, defn_orig in zip(synthesized_invar_defs, invars_orig):
+                    print("Candidate: ", defn)
+                    L = len(self.cur_templ_invars)
+                    inv_str = defn_orig.replace("inv ", f"inv{L} ")
+                    self.cur_templ_invars.append(inv_str)
+                    res = self.parse_inv_defn(qs, sorts, defn)
+                    #print("Simplified candidate: ", res(M, S))
+                    yield res
 
     def run_minisy(self, synth_file, nsols=1):
         cmd = f'source ~/.zshrc; minisy {synth_file} --num-solutions={nsols}'
@@ -1090,6 +1266,7 @@ $constraints
         lines = out.split('\n')
         # lines = iter(process.stdout.readline, b'')
         defs = []
+        defs2 = []
         for line in lines:
             line = line.strip()
             if line == 'sat' or line == '':
@@ -1099,13 +1276,18 @@ $constraints
             if line.startswith('(define-fun'):
                 # if len(defs):
                 #     yield defs[-1].strip()
+                defs2.append(line)
+                line = line.replace("(m ModelId) ", "")
+                line = line.replace("_m m", "")
+                # TODO: in the invariant definition, there'll be references to held_m, ep_m, etc., which need to be replaced. Or maybe don't call them that in the grammar?
                 defs.append(line)
             else:
                 # print("BRO", line, defs)
                 defs[-1] += '\n' + line
+                defs2[-1] += "\n" + line
         # if len(defs):
         #     yield defs[-1].strip()
-        return [d.strip() for d in defs]
+        return [d.strip() for d in defs], [d.strip() for d in defs2]
     
     def parse_inv_defn(self, quantifiers, sorts, defn):
         defn += "\n"
@@ -1140,8 +1322,9 @@ $constraints
 
 
 cegis_learner = CEGISLearner()
-cegis_learner.loop(max_iters=200)
+cegis_learner.loop(max_iters=50)
 
+exit()
 # %%
 
 # %%
