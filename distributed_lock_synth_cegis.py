@@ -758,13 +758,19 @@ class InductivenessCEX(CEX):
         _, pre_formula = self.get_formula_of_state(self.S1, known_invars, include_global=True)
         _, post_formula = self.get_formula_of_state(self.S2, known_invars) # no need for global here.
 
-        constraint1 = And(simplify(pre_formula), Not(simplify(invar_expr)))
-        constraint2 = And(Or(simplify(pre_formula), simplify(post_formula)), simplify(invar_expr))
+        #constraint1 = And(pre_formula, Not(invar_expr))
+        #constraint2 = And(Or(pre_formula, post_formula), invar_expr)
+        # it should be Implies(Or(pre, post), invar) but implies gets abused
+        # so I'm using And(...) instead of Implies(...)
+        # But if I use And(Or(pre, post), invar), then the solver finds a solution
+        # where pre is not satisfied, but post and invar are satisfied.
+        # solvers are adverserial!
 
-        known_invars = And(*[inv(self.M, S) for inv in known_invars])
-        extra = Not(Implies(known_invars, invar_expr)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
+        #known_invars = And(*[inv(self.M, S) for inv in known_invars])
+        #extra = Not(Implies(known_invars, invar_expr)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
 
-        return Or(constraint1, constraint2)
+        #return Or(constraint1, constraint2)
+        return Implies(And(pre_formula, invar_expr), And(post_formula, invar_expr))
         #return And(Or(constraint1, constraint2), extra)
 
 # %%
@@ -844,14 +850,14 @@ def get_inductiveness_cex(model_id, invars, assert_and_track=False):
     # solver.add(M.get_init_state_cond(), "1")
     solver.add(M.get_axioms(), "2")
     # solver.add(inv(M, S1), "3")
-    solver.add(get_grant_action(M, S1, S2), "4")
-    solver.add(get_accept_action(M, S1, S2), "5")
+    #solver.add(get_grant_action(M, S1, S2), "4")
+    #solver.add(get_accept_action(M, S1, S2), "5")
 
     # important. This asserts that at least one of the actions is taken.
     # More specifically, it asserts that pre-condition for at least one of the actions is true.
     # Without this, z3 is free to come up with a non sensical Pre state. The reason is,
     # our transition relation is defined as prec -> post, and z3 is free to set prec == False.
-    solver.add(Or(get_grant_action(M, S1, S2, True), get_accept_action(M, S1, S2, True)), "6")
+    #solver.add(Or(get_grant_action(M, S1, S2, True), get_accept_action(M, S1, S2, True)), "6")
 
     # However, ideally, the above thing shouldn't be required and should be captured by the invariant.
 
@@ -876,13 +882,29 @@ def get_inductiveness_cex(model_id, invars, assert_and_track=False):
     # for sanity check: maybe assert all invars[:-1] hold on S2.
     cand_invar = invars[-1](M, S2)
     solver.add(Not(cand_invar), "7")
-    if solver.check() == sat:
-        return InductivenessCEX(solver, solver.model(), M, cand_invar, S1, S2)
+
+    # check inductiveness of each action individually
+    # this is because, without this, z3 is forced to take "all" actions consecutively.
+    # meaning, if it can take grant action, it is forced to take accept action.
+    # the reason is, grant action sets transfer(e, n2) == true.
+    # and accept action has Implies(transfer(e, n2) ==> locked(e, n))
+    # meaning, z3 can never find a state where only grant action has been taken so far.
+    actions = [get_grant_action, get_accept_action]
+    for action in actions:
+        solver.push()
+        solver.add(action(M, S1, S2, True), "8")
+        solver.add(action(M, S1, S2), "9")
+        if solver.check() == sat:
+            return InductivenessCEX(solver, solver.model(), M, cand_invar, S1, S2)
+        solver.pop()
+
+    # if solver.check() == sat:
+    #     return InductivenessCEX(solver, solver.model(), M, cand_invar, S1, S2)
 
     # print("Invariant set is inductive.")
     return InductivenessCEX(solver, None, M, cand_invar, S1, S2)
 
-cex = get_inductiveness_cex(model_id=1, invars=distai_invars[:2])
+cex = get_inductiveness_cex(model_id=1, invars=distai_invars[1:2])
 # cex = get_inductiveness_cex([lambda M, S: True])
 cex.exists()
 
@@ -1067,12 +1089,12 @@ $constraints
 (declare-fun DUMMYMODEL () ModelId)
 $dummy_vars
 
-$unique_invar_asserts
+
 (assert (not (= (inv DUMMYMODEL $dummy_args) true)))
 
 (check-synth)
         """)
-    
+    # $unique_invar_asserts ^ insert above    
     def loop(self, max_iters=10, debug=False):
         synth_generator = self.synth()
         model_id = 0
@@ -1151,13 +1173,17 @@ $unique_invar_asserts
             constraints.append("\n".join([
                 "; " + l for l in cex.cand_invar.sexpr().split("\n")
             ]))
+            constraints.append(";;;;;;;; Counter example generation constraints: ;;;;;;;;")
             cex_constraints = str(cex.solver)
             constraints.append("\n".join([
                 "; " + l for l in cex_constraints.split("\n")
             ]))
+            constraints.append(";;;;;;;; Counter example generation constraints end ;;;;;;;;")
+            constraints.append(";;;;;;;; Counter example model description: ;;;;;;;;")
             constraints.append("\n".join([
                 "; " + l for l in cex.bro.split("\n")
             ]))
+            constraints.append(";;;;;;;; Counter example model description end ;;;;;;;;")
 
             for s in self.allowed_sorts:
                 # shouldn't be cex.M, because we want the generic constant names,
@@ -1174,7 +1200,7 @@ $unique_invar_asserts
             # here we need cex.M because we want the constants bound to the model
             inv_expr = get_invar_expr_for_model(partial(synthesized_inv, cex.M.m), qs, sorts, cex.M)
             constraint = cex.get_synth_constraint(self.invars, inv_expr)
-            sexpr = constraint.sexpr() #.replace("init.", "").replace("pre.", "").replace("post.", "")
+            sexpr = constraint.sexpr().replace("init.", "").replace("pre.", "").replace("post.", "")
             constraints.append(f"(constraint {sexpr})")
             constraints.append("\n")
         
@@ -1221,7 +1247,7 @@ $unique_invar_asserts
             inv_args=inv_args,
             node_universe=node_universe,
             epoch_universe=epoch_universe,
-            constraints='\n'.join(constraints).replace("init.", "").replace("pre.", "").replace("post.", ""),
+            constraints='\n'.join(constraints),
             dummy_vars=dummy_vars,
             dummy_args=dummy_args,
             unique_invar_asserts='\n'.join(unique_invar_asserts)
