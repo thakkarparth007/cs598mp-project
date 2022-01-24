@@ -299,30 +299,28 @@ def test3():
 test3()
 
 # %%
-def test_init_conds():
+def test_init_conds(all_invars, expect_pass):
     M = DistLockModel('M1')
     S = M.get_state('pre')
 
-    all_invars = distai_invars[1:2]
     inv = lambda M, S: And(*[
         inv(M, S) for inv in all_invars[:]])
 
     solver = SolverWrapper()
     solver.add(M.get_z3_init_state_cond(), "1")
     solver.add(M.get_z3_axioms(), "2")
-    solver.push()
     solver.add(Not(inv(M, M.get_state('init'))), "3")
 
-    assert solver.check() == unsat
+    if solver.check() == unsat:
+        assert expect_pass
+    else:
+        assert not expect_pass
 
-    solver.pop()
-    inv = lambda M, S: \
-        QForAll([Node], lambda N: Not(S.held(N))).z3expr
-    
-    solver.add(Not(inv(M, M.get_state('init'))), "4")
-    assert solver.check() == sat
+test_init_conds(distai_invars[:1], True)
+test_init_conds(distai_invars, True)
 
-test_init_conds()
+inv = lambda M, S: QForAll([Node], lambda N: Not(S.held(N))).z3expr
+test_init_conds([inv], False)
 
 # %%
 def test_inductiveness(all_invars, expect_pass):
@@ -330,7 +328,7 @@ def test_inductiveness(all_invars, expect_pass):
     S1 = M.get_state('pre')
     S2 = M.get_state('post')
 
-    solver = SolverWrapper(debug=False)
+    solver = SolverWrapper(debug=True)
 
     solver.add(M.get_z3_axioms(), "axioms")
     
@@ -340,33 +338,49 @@ def test_inductiveness(all_invars, expect_pass):
             solver.add(inv_prev(M, S1), f"{i}_{j}")
         solver.add(Not(inv_i(M, S2)), f"{i}_post")
 
+        # we should get unsat for every action
+        # otherwise, it means, that the invariant
+        # is not inductive on at least one
+        # possible action.
+
+        passed = 0
         for name, action in M.get_actions():
             solver.push()
             solver.add(
                 action.get_z3_prec(M, S1, S2),
                 f"{i}_{name}_prec")
             solver.add(
-                Not(action.get_z3_formula(M, S1, S2)),
+                (action.get_z3_formula(M, S1, S2)),
                 f"{i}_{name}_trans")
             
             if solver.check() == sat:
                 # print(i, solver.check())
+                if expect_pass:
+                    print(solver.sexpr())
+                    print("==========================\n")
+                    print(solver.model().sexpr())
                 assert not expect_pass
             else:
-                assert expect_pass
+                passed += 1
             #print(solver.unsat_core())
             #print(solver.sexpr())
             solver.pop()
+        
+        if passed == len(M.get_actions()):
+            assert expect_pass
     
 test_inductiveness(distai_invars[:2], True)
 test_inductiveness(distai_invars[1:2], False)
 test_inductiveness(distai_invars[2:3], False)
 
-for i in range(len(invariants)):
-    test_inductiveness(distai_invars[:i+1], True)
-    print("Passed till ", i)
+# for i in range(len(invariants)):
+#     test_inductiveness(distai_invars[:i+1], True)
+#     print("Passed till ", i)
 
+test_inductiveness(swiss_invars[:1], True)
+test_inductiveness(swiss_invars[:], True)
 print("Passed all")
+
 # %%
 def test_safety(all_invars, expect_pass):
     M = DistLockModel('M1')
@@ -384,6 +398,10 @@ def test_safety(all_invars, expect_pass):
 
     print(solver.check())
     if solver.check() == sat:
+        if expect_pass:
+            print(solver.sexpr())
+            print("==========================\n")
+            print(solver.model().sexpr())
         assert not expect_pass
     else:
         assert expect_pass
@@ -392,3 +410,7 @@ test_safety(distai_invars[:1], False)
 test_safety(distai_invars[:2], False)
 test_safety(distai_invars[:10], False)
 test_safety(distai_invars[:], True)
+
+test_safety(swiss_invars[:1], False)
+test_safety(swiss_invars[:], True) # this one still fails for some reason.
+# %%
