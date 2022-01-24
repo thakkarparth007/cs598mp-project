@@ -1,0 +1,250 @@
+# %%
+import sys
+sys.path.append('/home/parth/598mp/')
+
+from z3 import *
+import itertools
+from invar_synth.protocols.dist_lock import *
+from invar_synth.utils.solver_wrapper import *
+
+# %%
+
+cex_id = 0
+
+class CEX():
+    def __init__(self, solver, z3model, M, cand_invar):
+        global cex_id
+        self.id = cex_id
+        self.solver = solver
+        self.z3model = z3model
+        self.M = M
+        self.cand_invar = cand_invar
+        if self.z3model:
+            self.M.store_z3model(self.z3model)
+            self.bro = self.z3model.sexpr()
+
+        cex_id += 1
+    
+    def exists(self):
+        return self.z3model is not None
+
+    def get_synth_constraint(known_invars, invar_expr):
+        """
+        Takes an expression that asserts that an invariant holds in a given model.
+        This expression is used to form the constraint, depending upon the type of CEX.
+
+        Positive CEX:
+            This counter example is a (model, S) pair, where S is the state that the invariant doesn't
+            include, but it should.
+
+            The constraint will be of the form:
+                S => invar_expr
+
+        Negative CEX:
+            This counter example is a (model, S) pair, where S is the state that the invariant
+            includes, but is not safe.
+
+            The constraint will be of the form:
+                state_conditions => NOT(invar_expr)   | all evaluations done in the context of the model
+        
+        Inductiveness CEX:
+            This counter example is a (model, S1, S2) triplet, where invariant holds in S1, but not in S2.
+            We want our new invariant to either not hold in S1 or hold in both.
+
+            The constraint will be of the form:
+                S1 => Not(invar_expr) OR (S1 => invar_expr AND S2 => invar_expr)  | all evaluations done in the context of the model
+                S1 => Not(invar_expr) OR ((S1 OR S2) => invar_expr)               | all evaluations done in the context of the model
+            
+            p => q AND r => q
+            (~p V q) AND (~r V q)
+            (~p AND ~r) V q
+            ~(p OR r) V q
+            (p V r) => q
+        """
+        raise NotImplementedError()
+    
+    def get_formula_of_state(self, S, include_global=False):
+        """
+        Converts a given state into a boolean formula describing the state.
+        Specifically, converts relations of a state S from z3 function to a ground formula in the model's universe
+        Appends the known invariants to the formula.
+        """
+
+        univ = {}
+        for s in self.M.sorts:
+            univ[s] = self.M.get_universe(s)
+        
+        decls = [(n, fn, False) for n, fn in S.vars.items()]
+        if include_global:
+            decls += [(n, fn, True) for n, fn in self.M.globals.items()]
+
+        formulas = {}
+        for name, fn, is_global in decls:
+            start = 1 if is_global else 2
+            universes = [univ[fn.func.domain(i)] for i in range(start, fn.func.arity())]
+            
+            all_args = itertools.product(*universes)
+            # TODO Optimization: remove those for which model_completion was necessary (i.e, don't care inputs)
+            conjuncts = []
+            for args in all_args:
+                lhs = fn(*args)
+                rhs = self.z3model.eval(fn(*args), model_completion=True)
+                conjuncts.append(lhs == rhs)
+            
+            func_as_formula = And(*conjuncts)
+            formulas[name] = func_as_formula
+
+        return formulas, And(
+           *(formulas.values())
+        )
+
+def test1():
+    M = DistLockModel('M1')
+    S = M.get_state('pre')
+
+    solver = SolverWrapper()
+    solver.add(M.get_z3_init_state_cond(), "1")
+    solver.add(M.get_z3_axioms(), "2")
+
+    print(solver.check())
+    model = solver.model()
+    print(model)
+
+    c = CEX(solver, model, M, None)
+    print(c.get_formula_of_state(S, True))
+
+test1()
+
+# %%
+class PositiveCEX(CEX):
+    def __init__(self, solver, z3model, M, cand_invar, S):
+        super().__init__(solver, z3model, M, cand_invar)
+        self.S = S
+    
+    def get_synth_constraint(self, known_invars, inv_fn):
+        _, formula = self.get_formula_of_state(
+            self.S, include_global=True
+        )
+        
+        #known_invars = And(*[inv(self.M, self.S) for inv in known_invars])
+        #extra = Not(Implies(known_invars, invar_expr)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
+        return And(formula, inv_fn(self.M, self.S))
+        #Implies(formula, invar_expr)
+        #return And(Implies(formula, invar_expr), extra)
+
+# %%
+class NegativeCEX(CEX):
+    def __init__(self, solver, z3model, M, cand_invar, S):
+        super().__init__(solver, z3model, M, cand_invar)
+        self.S = S
+    
+    def get_synth_constraint(self, known_invars, inv_fn):
+        _, formula = self.get_formula_of_state(self.S, include_global=True)
+        #known_invars = And(*[inv(self.M, S) for inv in known_invars])
+        #extra = Not(Implies(known_invars, inv_fn)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
+        #return And(Implies(formula, Not(invar_expr)), extra)
+        
+        # negative cex = a state that is not safe, so the invariant should
+        # not include it.
+        return And(formula, Not(inv_fn(self.M, self.S)))
+        #, (get_safety_property_as_expr(self.M, self.S))) #Implies(formula, Not(invar_expr))
+
+# %%
+class ImplicationCEX(CEX):
+    def __init__(self, solver, z3model, M, cand_invar, S1, S2):
+        super().__init__(solver, z3model, M, cand_invar)
+        self.S1 = S1
+        self.S2 = S2
+    
+    def get_synth_constraint(self, known_invars, inv_fn):
+        _, pre_formula = self.get_formula_of_state(self.S1, include_global=True)
+        _, post_formula = self.get_formula_of_state(self.S2) # no need for global here.
+
+        inv1, inv2 = inv_fn(self.M, self.S1), inv_fn(self.M, self.S2)
+        
+        constraint1 = And(pre_formula, Not(inv1))
+        constraint2 = And(pre_formula, inv1, post_formula, inv2)
+
+        return Or(constraint1, constraint2)
+
+# %%
+
+class CEXGen():
+    def __init__(self, protocol_model):
+        self.invars = []
+        self.cex_ctr = 0
+        self.protocol_model = protocol_model
+    
+    def add_invariant(self, inv):
+        self.invars.append(inv)
+    
+    def get_cex(self, cand_invar):
+        pcex = self.get_pos_cex(cand_invar)
+        if pcex.exists():
+            return pcex
+        
+        icex = self.get_implication_cex(cand_invar)
+        if icex.exists():
+            return icex
+        
+        ncex = self.get_neg_cex(cand_invar)
+        if ncex.exists():
+            return ncex
+        
+        return None
+    
+    def get_pos_cex(self, cand_invar):
+        M = self.protocol_model(f'{self.cex_ctr}_pos')
+        S = M.get_state('init')
+
+        inv = lambda M, S: And(*[inv(M, S) for inv in self.invars])
+
+        solver = SolverWrapper()
+        solver.add(M.get_z3_init_state_cond(), "1")
+        solver.add(M.get_z3_axioms(), "2") # not sure if this is required
+        cand_invar = inv(M, S)
+        solver.add(Not(cand_invar), "3")
+
+        if solver.check() == sat:
+            self.cex_ctr += 1
+            return PositiveCEX(solver, solver.model(), M, cand_invar, S)
+        
+        return PositiveCEX(solver, None, M, cand_invar, S)
+    
+    def get_neg_cex(self, cand_invar):
+        M = self.protocol_model(f'{self.cex_ctr}_neg')
+        S = M.get_state('S1')
+
+        inv = lambda M, S: And(*[inv(M, S) for inv in self.invars])
+
+        solver = SolverWrapper()
+        solver.add(M.get_z3_axioms(), "2")
+        solver.add(inv(M, S), "3")
+        solver.add(cand_invar(M, S), "4")
+        solver.add(Not(M.get_z3_safety_cond(S)), "5")
+
+        if solver.check() == sat:
+            self.cex_ctr += 1
+            return NegativeCEX(solver, solver.model(), M, cand_invar, S)
+        
+        return NegativeCEX(solver, None, M, cand_invar, S)
+    
+    def get_implication_cex(self, cand_invar):
+        M = self.protocol_model(f'{self.cex_ctr}_ice')
+        S1 = M.get_state('S1')
+        S2 = M.get_state('S2')
+
+        inv = lambda M, S: And(*[inv(M, S) for inv in self.invars])
+
+        solver = SolverWrapper()
+        solver.add(M.get_z3_axioms(), "2")
+        solver.add(inv(M, S1), "3")
+        solver.add(cand_invar(M, S1), "3")
+        #solver.add(inv(M, S2), "4") -> do we need this?
+        solver.add(Not(cand_invar(M, S2)), "5")
+
+        if solver.check() == sat:
+            self.cex_ctr += 1
+            return ImplicationCEX(solver, solver.model(), M, cand_invar, S1, S2)
+        
+        return ImplicationCEX(solver, None, M, cand_invar, S1, S2)
