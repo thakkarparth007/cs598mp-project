@@ -1,0 +1,425 @@
+
+(set-logic ALL)
+
+(declare-sort ModelId)
+(declare-sort Node)
+(declare-sort Epoch)
+
+(declare-fun Node!val!0_m (ModelId) Node)
+(declare-fun Node!val!1_m (ModelId) Node)
+(declare-fun Node!val!2_m (ModelId) Node)
+
+(declare-fun Epoch!val!4_m (ModelId) Epoch)
+(declare-fun Epoch!val!0_m (ModelId) Epoch)
+(declare-fun Epoch!val!2_m (ModelId) Epoch)
+(declare-fun Epoch!val!3_m (ModelId) Epoch)
+(declare-fun Epoch!val!1_m (ModelId) Epoch)
+
+(declare-fun Model_0 () ModelId)
+(declare-fun Model_3 () ModelId)
+(declare-fun Model_2 () ModelId)
+(declare-fun Model_4 () ModelId)
+(declare-fun Model_1 () ModelId)
+
+
+(declare-fun held_m (ModelId Node) Bool)
+(declare-fun locked_m (ModelId Epoch Node) Bool)
+(declare-fun transfer_m (ModelId Epoch Node) Bool)
+(declare-fun ep_m (ModelId Node) Epoch)
+(declare-fun le_m (ModelId Epoch Epoch) Bool)
+(declare-fun zero_m (ModelId) Epoch)
+(declare-fun one_m (ModelId) Epoch)
+(declare-fun first_m (ModelId) Node)
+
+ (define-fun inv ((m ModelId) (n1 Node) (e1 Epoch)) Bool
+   (or (le_m m (ep_m m n1) e1) (held_m m n1))
+)
+
+
+; candidate invariant was : (cex type: <class '__main__.InductivenessCEX'>)
+; (forall ((n1 Node) (e1 Epoch)) (or (post.held n1) (le (post.ep n1) e1)))
+;;;;;;;; Counter example generation constraints: ;;;;;;;;
+; [ForAll([e1, e2, e3],
+;         And(le(e1, e1),
+;             Implies(And(le(e1, e2), le(e2, e3)), le(e1, e3)),
+;             Implies(And(le(e1, e2), le(e2, e1)), e1 == e2),
+;             Or(le(e1, e2), le(e2, e1)),
+;             le(zero, e1),
+;             one != zero)),
+;  ForAll([e1, e2, e3],
+;         And(le(e1, e1),
+;             Implies(And(le(e1, e2), le(e2, e3)), le(e1, e3)),
+;             Implies(And(le(e1, e2), le(e2, e1)), e1 == e2),
+;             Or(le(e1, e2), le(e2, e1)),
+;             le(zero, e1),
+;             one != zero)),
+;  ForAll([n1, e1],
+;         Or(pre.transfer(e1, n1), le(pre.ep(n1), pre.ep(n1)))),
+;  ForAll([n1, e1], Or(pre.held(n1), le(pre.ep(n1), e1))),
+;  Not(ForAll([n1, e1],
+;             Or(post.held(n1), le(post.ep(n1), e1)))),
+;  Exists([n1, n2, e],
+;         And(pre.held(n1), Not(le(e, pre.ep(n1))))),
+;  ForAll([n1, n2, e],
+;         Implies(And(pre.held(n1), Not(le(e, pre.ep(n1)))),
+;                 And(ForAll([EE, NN],
+;                            post.transfer(EE, NN) ==
+;                            If(And(EE == e, NN == n2),
+;                               True,
+;                               pre.transfer(EE, NN))),
+;                     ForAll(NN,
+;                            post.held(NN) ==
+;                            If(NN == n1, False, pre.held(NN))),
+;                     ForAll([EE, NN],
+;                            post.locked(EE, NN) ==
+;                            pre.locked(EE, NN)),
+;                     ForAll(NN, post.ep(NN) == pre.ep(NN)))))]
+;;;;;;;; Counter example generation constraints end ;;;;;;;;
+;;;;;;;; Counter example model description: ;;;;;;;;
+; ;; universe for Epoch:
+; ;;   Epoch!val!1 Epoch!val!2 Epoch!val!3 Epoch!val!4 Epoch!val!0 
+; ;; -----------
+; ;; definitions for universe elements:
+; (declare-fun Epoch!val!1 () Epoch)
+; (declare-fun Epoch!val!2 () Epoch)
+; (declare-fun Epoch!val!3 () Epoch)
+; (declare-fun Epoch!val!4 () Epoch)
+; (declare-fun Epoch!val!0 () Epoch)
+; ;; cardinality constraint:
+; (forall ((x Epoch))
+;         (or (= x Epoch!val!1)
+;             (= x Epoch!val!2)
+;             (= x Epoch!val!3)
+;             (= x Epoch!val!4)
+;             (= x Epoch!val!0)))
+; ;; -----------
+; ;; universe for Node:
+; ;;   Node!val!0 
+; ;; -----------
+; ;; definitions for universe elements:
+; (declare-fun Node!val!0 () Node)
+; ;; cardinality constraint:
+; (forall ((x Node)) (= x Node!val!0))
+; ;; -----------
+; (define-fun one () Epoch
+;   Epoch!val!3)
+; (define-fun zero () Epoch
+;   Epoch!val!4)
+; (define-fun le ((x!0 Epoch) (x!1 Epoch)) Bool
+;   (or (and (= x!0 Epoch!val!3) (= x!1 Epoch!val!1) (not (= x!1 Epoch!val!3)))
+;       (and (= x!0 Epoch!val!3) (= x!1 Epoch!val!3))
+;       (and (= x!0 Epoch!val!3)
+;            (= x!1 Epoch!val!0)
+;            (not (= x!1 Epoch!val!4))
+;            (not (= x!1 Epoch!val!1))
+;            (not (= x!1 Epoch!val!3)))
+;       (and (= x!0 Epoch!val!4)
+;            (not (= x!0 Epoch!val!1))
+;            (not (= x!0 Epoch!val!3))
+;            (= x!1 Epoch!val!3))
+;       (and (= x!0 Epoch!val!0)
+;            (not (= x!0 Epoch!val!4))
+;            (not (= x!0 Epoch!val!1))
+;            (not (= x!0 Epoch!val!3))
+;            (= x!1 Epoch!val!0)
+;            (not (= x!1 Epoch!val!4))
+;            (not (= x!1 Epoch!val!1))
+;            (not (= x!1 Epoch!val!3)))
+;       (and (= x!0 Epoch!val!3)
+;            (not (= x!1 Epoch!val!0))
+;            (not (= x!1 Epoch!val!4))
+;            (not (= x!1 Epoch!val!1))
+;            (not (= x!1 Epoch!val!3)))
+;       (and (= x!0 Epoch!val!0)
+;            (not (= x!0 Epoch!val!4))
+;            (not (= x!0 Epoch!val!1))
+;            (not (= x!0 Epoch!val!3))
+;            (not (= x!1 Epoch!val!0))
+;            (not (= x!1 Epoch!val!4))
+;            (not (= x!1 Epoch!val!1))
+;            (not (= x!1 Epoch!val!3)))
+;       (and (= x!0 Epoch!val!4)
+;            (not (= x!0 Epoch!val!1))
+;            (not (= x!0 Epoch!val!3))
+;            (= x!1 Epoch!val!0)
+;            (not (= x!1 Epoch!val!4))
+;            (not (= x!1 Epoch!val!1))
+;            (not (= x!1 Epoch!val!3)))
+;       (and (= x!0 Epoch!val!4)
+;            (not (= x!0 Epoch!val!1))
+;            (not (= x!0 Epoch!val!3))
+;            (= x!1 Epoch!val!4)
+;            (not (= x!1 Epoch!val!1))
+;            (not (= x!1 Epoch!val!3)))
+;       (and (not (= x!0 Epoch!val!0))
+;            (not (= x!0 Epoch!val!4))
+;            (not (= x!0 Epoch!val!1))
+;            (not (= x!0 Epoch!val!3))
+;            (not (= x!1 Epoch!val!0))
+;            (not (= x!1 Epoch!val!4))
+;            (not (= x!1 Epoch!val!1))
+;            (not (= x!1 Epoch!val!3)))
+;       (and (= x!0 Epoch!val!1)
+;            (not (= x!0 Epoch!val!3))
+;            (= x!1 Epoch!val!1)
+;            (not (= x!1 Epoch!val!3)))
+;       (and (= x!0 Epoch!val!4)
+;            (not (= x!0 Epoch!val!1))
+;            (not (= x!0 Epoch!val!3))
+;            (= x!1 Epoch!val!1)
+;            (not (= x!1 Epoch!val!3)))
+;       (and (= x!0 Epoch!val!0)
+;            (not (= x!0 Epoch!val!4))
+;            (not (= x!0 Epoch!val!1))
+;            (not (= x!0 Epoch!val!3))
+;            (= x!1 Epoch!val!1)
+;            (not (= x!1 Epoch!val!3)))
+;       (and (= x!0 Epoch!val!4)
+;            (not (= x!0 Epoch!val!1))
+;            (not (= x!0 Epoch!val!3))
+;            (not (= x!1 Epoch!val!0))
+;            (not (= x!1 Epoch!val!4))
+;            (not (= x!1 Epoch!val!1))
+;            (not (= x!1 Epoch!val!3)))
+;       (and (not (= x!0 Epoch!val!0))
+;            (not (= x!0 Epoch!val!4))
+;            (not (= x!0 Epoch!val!1))
+;            (not (= x!0 Epoch!val!3))
+;            (= x!1 Epoch!val!1)
+;            (not (= x!1 Epoch!val!3)))))
+; (define-fun post.ep ((x!0 Node)) Epoch
+;   Epoch!val!2)
+; (define-fun post.locked ((x!0 Epoch) (x!1 Node)) Bool
+;   false)
+; (define-fun pre.transfer ((x!0 Epoch) (x!1 Node)) Bool
+;   false)
+; (define-fun pre.held ((x!0 Node)) Bool
+;   true)
+; (define-fun post.transfer ((x!0 Epoch) (x!1 Node)) Bool
+;   (and (= x!0 Epoch!val!1) (not (= x!0 Epoch!val!3))))
+; (define-fun pre.ep ((x!0 Node)) Epoch
+;   Epoch!val!2)
+; (define-fun post.held ((x!0 Node)) Bool
+;   false)
+; (define-fun pre.locked ((x!0 Epoch) (x!1 Node)) Bool
+;   false)
+;;;;;;;; Counter example model description end ;;;;;;;;
+(assert (distinct (Node!val!0_m Model_3) ))
+(assert (distinct (Epoch!val!1_m Model_3)  (Epoch!val!2_m Model_3)  (Epoch!val!3_m Model_3)  (Epoch!val!4_m Model_3)  (Epoch!val!0_m Model_3) ))
+(assert (let ((a!1 (and (inv Model_3 (Node!val!0_m Model_3) (Epoch!val!1_m Model_3))
+                (inv Model_3 (Node!val!0_m Model_3) (Epoch!val!2_m Model_3))
+                (inv Model_3 (Node!val!0_m Model_3) (Epoch!val!3_m Model_3))
+                (inv Model_3 (Node!val!0_m Model_3) (Epoch!val!4_m Model_3))
+                (inv Model_3 (Node!val!0_m Model_3) (Epoch!val!0_m Model_3)))))
+(let ((a!2 (and (= (one_m Model_3) (Epoch!val!3_m Model_3))
+                (= (zero_m Model_3) (Epoch!val!4_m Model_3))
+                (= (le_m Model_3
+                         (Epoch!val!1_m Model_3)
+                         (Epoch!val!1_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!1_m Model_3)
+                         (Epoch!val!2_m Model_3))
+                   false)
+                (= (le_m Model_3
+                         (Epoch!val!1_m Model_3)
+                         (Epoch!val!3_m Model_3))
+                   false)
+                (= (le_m Model_3
+                         (Epoch!val!1_m Model_3)
+                         (Epoch!val!4_m Model_3))
+                   false)
+                (= (le_m Model_3
+                         (Epoch!val!1_m Model_3)
+                         (Epoch!val!0_m Model_3))
+                   false)
+                (= (le_m Model_3
+                         (Epoch!val!2_m Model_3)
+                         (Epoch!val!1_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!2_m Model_3)
+                         (Epoch!val!2_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!2_m Model_3)
+                         (Epoch!val!3_m Model_3))
+                   false)
+                (= (le_m Model_3
+                         (Epoch!val!2_m Model_3)
+                         (Epoch!val!4_m Model_3))
+                   false)
+                (= (le_m Model_3
+                         (Epoch!val!2_m Model_3)
+                         (Epoch!val!0_m Model_3))
+                   false)
+                (= (le_m Model_3
+                         (Epoch!val!3_m Model_3)
+                         (Epoch!val!1_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!3_m Model_3)
+                         (Epoch!val!2_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!3_m Model_3)
+                         (Epoch!val!3_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!3_m Model_3)
+                         (Epoch!val!4_m Model_3))
+                   false)
+                (= (le_m Model_3
+                         (Epoch!val!3_m Model_3)
+                         (Epoch!val!0_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!4_m Model_3)
+                         (Epoch!val!1_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!4_m Model_3)
+                         (Epoch!val!2_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!4_m Model_3)
+                         (Epoch!val!3_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!4_m Model_3)
+                         (Epoch!val!4_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!4_m Model_3)
+                         (Epoch!val!0_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!0_m Model_3)
+                         (Epoch!val!1_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!0_m Model_3)
+                         (Epoch!val!2_m Model_3))
+                   true)
+                (= (le_m Model_3
+                         (Epoch!val!0_m Model_3)
+                         (Epoch!val!3_m Model_3))
+                   false)
+                (= (le_m Model_3
+                         (Epoch!val!0_m Model_3)
+                         (Epoch!val!4_m Model_3))
+                   false)
+                (= (le_m Model_3
+                         (Epoch!val!0_m Model_3)
+                         (Epoch!val!0_m Model_3))
+                   true)
+                (= (transfer_m Model_3
+                                   (Epoch!val!1_m Model_3)
+                                   (Node!val!0_m Model_3))
+                   false)
+                (= (transfer_m Model_3
+                                   (Epoch!val!2_m Model_3)
+                                   (Node!val!0_m Model_3))
+                   false)
+                (= (transfer_m Model_3
+                                   (Epoch!val!3_m Model_3)
+                                   (Node!val!0_m Model_3))
+                   false)
+                (= (transfer_m Model_3
+                                   (Epoch!val!4_m Model_3)
+                                   (Node!val!0_m Model_3))
+                   false)
+                (= (transfer_m Model_3
+                                   (Epoch!val!0_m Model_3)
+                                   (Node!val!0_m Model_3))
+                   false)
+                (= (held_m Model_3 (Node!val!0_m Model_3)) true)
+                (= (ep_m Model_3 (Node!val!0_m Model_3))
+                   (Epoch!val!2_m Model_3))
+                (= (locked_m Model_3
+                                 (Epoch!val!1_m Model_3)
+                                 (Node!val!0_m Model_3))
+                   false)
+                (= (locked_m Model_3
+                                 (Epoch!val!2_m Model_3)
+                                 (Node!val!0_m Model_3))
+                   false)
+                (= (locked_m Model_3
+                                 (Epoch!val!3_m Model_3)
+                                 (Node!val!0_m Model_3))
+                   false)
+                (= (locked_m Model_3
+                                 (Epoch!val!4_m Model_3)
+                                 (Node!val!0_m Model_3))
+                   false)
+                (= (locked_m Model_3
+                                 (Epoch!val!0_m Model_3)
+                                 (Node!val!0_m Model_3))
+                   false)
+                a!1))
+      (a!3 (and (= (ep_m Model_3 (Node!val!0_m Model_3))
+                   (Epoch!val!2_m Model_3))
+                (= (locked_m Model_3
+                                  (Epoch!val!1_m Model_3)
+                                  (Node!val!0_m Model_3))
+                   false)
+                (= (locked_m Model_3
+                                  (Epoch!val!2_m Model_3)
+                                  (Node!val!0_m Model_3))
+                   false)
+                (= (locked_m Model_3
+                                  (Epoch!val!3_m Model_3)
+                                  (Node!val!0_m Model_3))
+                   false)
+                (= (locked_m Model_3
+                                  (Epoch!val!4_m Model_3)
+                                  (Node!val!0_m Model_3))
+                   false)
+                (= (locked_m Model_3
+                                  (Epoch!val!0_m Model_3)
+                                  (Node!val!0_m Model_3))
+                   false)
+                (= (transfer_m Model_3
+                                    (Epoch!val!1_m Model_3)
+                                    (Node!val!0_m Model_3))
+                   true)
+                (= (transfer_m Model_3
+                                    (Epoch!val!2_m Model_3)
+                                    (Node!val!0_m Model_3))
+                   false)
+                (= (transfer_m Model_3
+                                    (Epoch!val!3_m Model_3)
+                                    (Node!val!0_m Model_3))
+                   false)
+                (= (transfer_m Model_3
+                                    (Epoch!val!4_m Model_3)
+                                    (Node!val!0_m Model_3))
+                   false)
+                (= (transfer_m Model_3
+                                    (Epoch!val!0_m Model_3)
+                                    (Node!val!0_m Model_3))
+                   false)
+                (= (held_m Model_3 (Node!val!0_m Model_3)) false)
+                a!1)))
+  (=> a!2 a!3))))
+
+
+
+
+
+(declare-fun DUMMYMODEL () ModelId)
+(declare-fun N1 () Node)
+(declare-fun E1 () Epoch)
+
+
+(assert (not (= (inv DUMMYMODEL N1 E1) true)))
+
+(check-sat)
+(get-model)
+
+(eval (and (inv Model_3 (Node!val!0_m Model_3) (Epoch!val!1_m Model_3))
+                (inv Model_3 (Node!val!0_m Model_3) (Epoch!val!2_m Model_3))
+                (inv Model_3 (Node!val!0_m Model_3) (Epoch!val!3_m Model_3))
+                (inv Model_3 (Node!val!0_m Model_3) (Epoch!val!4_m Model_3))
+                (inv Model_3 (Node!val!0_m Model_3) (Epoch!val!0_m Model_3))))
+

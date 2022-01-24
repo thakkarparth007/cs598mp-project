@@ -1,12 +1,10 @@
 # %%
 
-import sys
-sys.path.append('/home/parth/598mp/')
-
 from z3 import *
 import itertools
 from invar_synth.protocols.dist_lock import *
 from invar_synth.utils.solver_wrapper import *
+import pytest
 
 # %%
 def inv_fn_0(M, S, model = None, nodes = None, epochs = None):
@@ -128,59 +126,64 @@ def inv_fn_3(M, S, model=None, nodes=None, epochs=None):
     inv = ForAll([N, N1, E], body(N, N1, E))
     return inv
 
-swiss_invars = [inv_fn_0, inv_fn_1, inv_fn_2, inv_fn_3]
+@pytest.fixture
+def swiss_invars():
+    return [inv_fn_0, inv_fn_1, inv_fn_2, inv_fn_3]
 
 # %% [markdown]
 # ### DistAI invariants
 
 # %%
-invariants = """
-le(E1, E2) & E1 ~= E2 -> le(E1,ep(N1)) | ~le(E2,ep(N1))
-le(E1, E2) & E1 ~= E2 -> locked(E1,N1) | ~transfer(E1,N1) | ~transfer(E2,N1)
-le(E1, E2) & E1 ~= E2 -> locked(E1,N1) | ~transfer(E1,N1) | ~le(E2,ep(N1))
-le(E1, E2) & E1 ~= E2 -> le(E1,ep(N1)) | ~locked(E2,N1)
-le(E1, E2) & E1 ~= E2 -> locked(E1,N1) | ~transfer(E1,N1) | ~locked(E2,N1)
-le(E1, E2) & E1 ~= E2 -> le(E1,ep(N1)) | ~transfer(E1,N1) | ~transfer(E2,N1)
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> ~le(E2,ep(N1)) | ~le(ep(N1),ep(N2)) | ~le(ep(N2),ep(N1))
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~locked(E2,N2)
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~transfer(E1,N1) | ~locked(E2,N2)
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> locked(E1,N1) | ~transfer(E1,N1) | ~le(E2,ep(N2))
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~held(N2) | ~transfer(E2,N1)
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~transfer(E1,N1) | ~le(E2,ep(N2))
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~locked(E2,N2) | ~le(ep(N2),ep(N1))
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> locked(E1,N1) | ~transfer(E1,N1) | ~transfer(E2,N2)
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~le(E2,ep(N2))
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~transfer(E1,N1) | ~transfer(E2,N2)
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~transfer(E2,N1) | ~le(E2,ep(N2))
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~le(ep(N2),ep(N1)) | ~le(E2,ep(N2))
-le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> locked(E1,N1) | ~transfer(E1,N1) | ~locked(E2,N2)
-locked(E1,N1) | ~transfer(E1,N1) | ~le(E1,ep(N1))
-locked(E1,N1) | ~held(N1) | ~transfer(E1,N1)
-le(E1,ep(N1)) | ~held(N1) | ~transfer(E1,N1)
-transfer(E1,N1) | ~locked(E1,N1)
-le(E1,ep(N1)) | ~locked(E1,N1)
-N1 ~= N2 -> ~le(ep(N1),ep(N2)) | ~le(ep(N2),ep(N1)) | ~first=N1
-N1 ~= N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~locked(E1,N2)
-N1 ~= N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~le(E1,ep(N2))
-N1 ~= N2 -> le(ep(N1),ep(N2)) | ~held(N2)
-N1 ~= N2 -> ~held(N1) | ~le(ep(N1),ep(N2))
-N1 ~= N2 -> locked(E1,N1) | ~held(N2) | ~transfer(E1,N1)
-N1 ~= N2 -> le(ep(N1),ep(N2)) | le(ep(N2),ep(N1))
-N1 ~= N2 -> le(E1,ep(N1)) | ~locked(E1,N2) | ~le(ep(N2),ep(N1))
-N1 ~= N2 -> ~held(N1) | ~held(N2)
-N1 ~= N2 -> locked(E1,N1) | ~transfer(E1,N1) | ~le(E1,ep(N2))
-N1 ~= N2 -> ~locked(E1,N1) | ~locked(E1,N2)
-N1 ~= N2 -> ~first=N1 | ~first=N2
-N1 ~= N2 -> ~transfer(E1,N1) | ~transfer(E1,N2)
-N1 ~= N2 -> le(E1,ep(N1)) | ~held(N1) | ~transfer(E1,N2)
-N1 ~= N2 -> ~transfer(E1,N1) | ~locked(E1,N2)
-N1 ~= N2 -> ~locked(E1,N1) | ~le(ep(N1),ep(N2)) | ~le(ep(N2),ep(N1))
-N1 ~= N2 -> le(E1,ep(N1)) | ~held(N1) | ~locked(E1,N2)
-N1 ~= N2 -> le(E1,ep(N1)) | ~le(ep(N2),ep(N1)) | ~le(E1,ep(N2))
-N1 ~= N2 -> le(E1,ep(N1)) | ~held(N1) | ~le(E1,ep(N2))
-N1 ~= N2 -> le(E1,ep(N1)) | ~held(N2) | ~transfer(E1,N1)
-N1 ~= N2 -> le(E1,ep(N1)) | ~transfer(E1,N1) | ~le(E1,ep(N2))
-""".replace("~=", "!=").strip().split("\n")
+
+@pytest.fixture
+def distai_invars_strs():
+    return """
+    le(E1, E2) & E1 ~= E2 -> le(E1,ep(N1)) | ~le(E2,ep(N1))
+    le(E1, E2) & E1 ~= E2 -> locked(E1,N1) | ~transfer(E1,N1) | ~transfer(E2,N1)
+    le(E1, E2) & E1 ~= E2 -> locked(E1,N1) | ~transfer(E1,N1) | ~le(E2,ep(N1))
+    le(E1, E2) & E1 ~= E2 -> le(E1,ep(N1)) | ~locked(E2,N1)
+    le(E1, E2) & E1 ~= E2 -> locked(E1,N1) | ~transfer(E1,N1) | ~locked(E2,N1)
+    le(E1, E2) & E1 ~= E2 -> le(E1,ep(N1)) | ~transfer(E1,N1) | ~transfer(E2,N1)
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> ~le(E2,ep(N1)) | ~le(ep(N1),ep(N2)) | ~le(ep(N2),ep(N1))
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~locked(E2,N2)
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~transfer(E1,N1) | ~locked(E2,N2)
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> locked(E1,N1) | ~transfer(E1,N1) | ~le(E2,ep(N2))
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~held(N2) | ~transfer(E2,N1)
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~transfer(E1,N1) | ~le(E2,ep(N2))
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~locked(E2,N2) | ~le(ep(N2),ep(N1))
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> locked(E1,N1) | ~transfer(E1,N1) | ~transfer(E2,N2)
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~le(E2,ep(N2))
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~transfer(E1,N1) | ~transfer(E2,N2)
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~transfer(E2,N1) | ~le(E2,ep(N2))
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> le(E1,ep(N1)) | ~le(ep(N2),ep(N1)) | ~le(E2,ep(N2))
+    le(E1, E2) & E1 ~= E2 & N1 ~= N2 -> locked(E1,N1) | ~transfer(E1,N1) | ~locked(E2,N2)
+    locked(E1,N1) | ~transfer(E1,N1) | ~le(E1,ep(N1))
+    locked(E1,N1) | ~held(N1) | ~transfer(E1,N1)
+    le(E1,ep(N1)) | ~held(N1) | ~transfer(E1,N1)
+    transfer(E1,N1) | ~locked(E1,N1)
+    le(E1,ep(N1)) | ~locked(E1,N1)
+    N1 ~= N2 -> ~le(ep(N1),ep(N2)) | ~le(ep(N2),ep(N1)) | ~first=N1
+    N1 ~= N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~locked(E1,N2)
+    N1 ~= N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~le(E1,ep(N2))
+    N1 ~= N2 -> le(ep(N1),ep(N2)) | ~held(N2)
+    N1 ~= N2 -> ~held(N1) | ~le(ep(N1),ep(N2))
+    N1 ~= N2 -> locked(E1,N1) | ~held(N2) | ~transfer(E1,N1)
+    N1 ~= N2 -> le(ep(N1),ep(N2)) | le(ep(N2),ep(N1))
+    N1 ~= N2 -> le(E1,ep(N1)) | ~locked(E1,N2) | ~le(ep(N2),ep(N1))
+    N1 ~= N2 -> ~held(N1) | ~held(N2)
+    N1 ~= N2 -> locked(E1,N1) | ~transfer(E1,N1) | ~le(E1,ep(N2))
+    N1 ~= N2 -> ~locked(E1,N1) | ~locked(E1,N2)
+    N1 ~= N2 -> ~first=N1 | ~first=N2
+    N1 ~= N2 -> ~transfer(E1,N1) | ~transfer(E1,N2)
+    N1 ~= N2 -> le(E1,ep(N1)) | ~held(N1) | ~transfer(E1,N2)
+    N1 ~= N2 -> ~transfer(E1,N1) | ~locked(E1,N2)
+    N1 ~= N2 -> ~locked(E1,N1) | ~le(ep(N1),ep(N2)) | ~le(ep(N2),ep(N1))
+    N1 ~= N2 -> le(E1,ep(N1)) | ~held(N1) | ~locked(E1,N2)
+    N1 ~= N2 -> le(E1,ep(N1)) | ~le(ep(N2),ep(N1)) | ~le(E1,ep(N2))
+    N1 ~= N2 -> le(E1,ep(N1)) | ~held(N1) | ~le(E1,ep(N2))
+    N1 ~= N2 -> le(E1,ep(N1)) | ~held(N2) | ~transfer(E1,N1)
+    N1 ~= N2 -> le(E1,ep(N1)) | ~transfer(E1,N1) | ~le(E1,ep(N2))
+    """.replace("~=", "!=").strip().split("\n")
 
 def parse(inv_str, vars):
     inv_str = inv_str.strip()
@@ -254,13 +257,19 @@ def get_inv_fn(fn_name, inv_str, only_code=False):
     exec(f"ldict['fn'] = {fn_name}")
     return ldict['fn']
 
-distai_invars = [get_inv_fn("inv_fn_" + str(i), inv) for i, inv in enumerate(invariants)]
+@pytest.fixture
+def distai_invars(distai_invars_strs):
+    return [
+        get_inv_fn("inv_fn_" + str(i), inv)
+        for i, inv in enumerate(distai_invars_strs)
+    ]
 
-
+@pytest.fixture
+def M():
+    return DistLockModel('M1')
 # %%
 
-def test1():
-    M = DistLockModel('M1')
+def test_1(M):
     S1 = M.get_state('S1')
     S2 = M.get_state('S2')
 
@@ -276,35 +285,38 @@ def test1():
     print(M.get_z3_init_state_cond().sexpr())
     print("==========================\n")
 
-test1()
-
 # %%
 
-def test2():
-    M = DistLockModel('M1')
+def test_2(M, distai_invars_strs, distai_invars):
     S = M.get_state('pre')
 
-    print(invariants[0])
+    print(distai_invars_strs[0])
     print(distai_invars[0](M, S))
 
-test2()
 
 # %%
-def test3():
-    M = DistLockModel('M1')
+def test_3(M):
     S = M.get_state('pre')
 
     print(M.get_z3_safety_cond(S).sexpr())
 
-test3()
-
 # %%
-def test_init_conds(all_invars, expect_pass):
+@pytest.mark.parametrize("all_invars,I,J,expect_pass", [
+    ("distai_invars", 0,    1, True),
+    ("distai_invars", 0, None, True),
+    ([lambda M, S: QForAll([Node], lambda N: Not(S.held(N))).z3expr],
+      0, None, False),
+])
+def test_init_conds(all_invars, I, J, expect_pass, request):
     M = DistLockModel('M1')
     S = M.get_state('pre')
 
+    if type(all_invars) == str:
+        all_invars = request.getfixturevalue(all_invars)
+    all_invars = all_invars[I:J]
+
     inv = lambda M, S: And(*[
-        inv(M, S) for inv in all_invars[:]])
+        inv(M, S) for inv in all_invars])
 
     solver = SolverWrapper()
     solver.add(M.get_z3_init_state_cond(), "1")
@@ -316,22 +328,31 @@ def test_init_conds(all_invars, expect_pass):
     else:
         assert not expect_pass
 
-test_init_conds(distai_invars[:1], True)
-test_init_conds(distai_invars, True)
-
-inv = lambda M, S: QForAll([Node], lambda N: Not(S.held(N))).z3expr
-test_init_conds([inv], False)
-
 # %%
-def test_inductiveness(all_invars, expect_pass):
+@pytest.mark.parametrize("all_invars,I,J,expect_pass", [
+    ("distai_invars", 0, 2, True),
+    ("distai_invars", 1, 2, False),
+    ("distai_invars", 2, 3, False),
+    ("swiss_invars",  0, 1, True),
+    ("swiss_invars",  0, None, True),
+] + [
+    ("distai_invars", 0, i+1, True)
+    for i in range(45)
+])
+def test_inductiveness(all_invars, I, J, expect_pass, request):
     M = DistLockModel('M1')
     S1 = M.get_state('pre')
     S2 = M.get_state('post')
 
-    solver = SolverWrapper(debug=True)
+    solver = SolverWrapper(debug=False)
 
     solver.add(M.get_z3_axioms(), "axioms")
     
+    if type(all_invars) == str:
+        all_invars = request.getfixturevalue(all_invars)
+    
+    all_invars = all_invars[I:J]
+
     for i, inv_i in (enumerate(all_invars[:])):
         solver.push()
         for j, inv_prev in enumerate(all_invars[:i+1]):
@@ -368,23 +389,25 @@ def test_inductiveness(all_invars, expect_pass):
         
         if passed == len(M.get_actions()):
             assert expect_pass
-    
-test_inductiveness(distai_invars[:2], True)
-test_inductiveness(distai_invars[1:2], False)
-test_inductiveness(distai_invars[2:3], False)
-
-# for i in range(len(invariants)):
-#     test_inductiveness(distai_invars[:i+1], True)
-#     print("Passed till ", i)
-
-test_inductiveness(swiss_invars[:1], True)
-test_inductiveness(swiss_invars[:], True)
-print("Passed all")
 
 # %%
-def test_safety(all_invars, expect_pass):
+@pytest.mark.parametrize("all_invars,I,J,expect_pass", [
+    ("distai_invars", 0, 1, False),
+    ("distai_invars", 0, 2, False),
+    ("distai_invars", 0, 10, False),
+    ("distai_invars", 0, None, True),
+
+    ("swiss_invars", 0, 1, False),
+    ("swiss_invars", 0, None, False),
+    # this one still fails for some reason.
+])
+def test_safety(all_invars, I, J, expect_pass, request):
     M = DistLockModel('M1')
     S = M.get_state('S')
+
+    if type(all_invars) == str:
+        all_invars = request.getfixturevalue(all_invars)
+    all_invars = all_invars[I:J]
 
     inv = lambda M, S: And(*[inv(M, S) for inv in all_invars[:]])
 
@@ -406,11 +429,4 @@ def test_safety(all_invars, expect_pass):
     else:
         assert expect_pass
 
-test_safety(distai_invars[:1], False)
-test_safety(distai_invars[:2], False)
-test_safety(distai_invars[:10], False)
-test_safety(distai_invars[:], True)
-
-test_safety(swiss_invars[:1], False)
-test_safety(swiss_invars[:], True) # this one still fails for some reason.
 # %%
