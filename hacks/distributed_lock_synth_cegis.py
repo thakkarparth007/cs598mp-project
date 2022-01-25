@@ -990,8 +990,8 @@ def template_generator(allowed_quantifiers, allowed_sorts, max_terms = 5):
             # loop over i-permutations of sorts
             for sorts in picker(allowed_sorts, i):
                 # hack
-                if len(set(sorts)) != len(allowed_sorts):
-                    continue
+                #if len(set(sorts)) != len(allowed_sorts):
+                #    continue
                 yield list(quantifiers), list(sorts)
 
 a = [t for t in template_generator(['FORALL'], [Node, Epoch], 3)]

@@ -1,13 +1,6 @@
-# %%
-import sys
-sys.path.append('/home/parth/598mp/')
-
 from z3 import *
 import itertools
-from invar_synth.protocols.dist_lock import *
 from invar_synth.utils.solver_wrapper import *
-
-# %%
 
 cex_id = 0
 
@@ -18,7 +11,7 @@ class CEX():
         self.solver = solver
         self.z3model = z3model
         self.M = M
-        self.cand_invar = cand_invar
+        self.cand_invar = None
         if self.z3model:
             self.M.store_z3model(self.z3model)
             self.bro = self.z3model.sexpr()
@@ -98,28 +91,11 @@ class CEX():
            *(formulas.values())
         )
 
-def test1():
-    M = DistLockModel('M1')
-    S = M.get_state('pre')
-
-    solver = SolverWrapper()
-    solver.add(M.get_z3_init_state_cond(), "1")
-    solver.add(M.get_z3_axioms(), "2")
-
-    print(solver.check())
-    model = solver.model()
-    print(model)
-
-    c = CEX(solver, model, M, None)
-    print(c.get_formula_of_state(S, True))
-
-test1()
-
-# %%
 class PositiveCEX(CEX):
     def __init__(self, solver, z3model, M, cand_invar, S):
         super().__init__(solver, z3model, M, cand_invar)
         self.S = S
+        self.cand_invar = cand_invar(M, S)
     
     def get_synth_constraint(self, known_invars, inv_fn):
         _, formula = self.get_formula_of_state(
@@ -132,11 +108,11 @@ class PositiveCEX(CEX):
         #Implies(formula, invar_expr)
         #return And(Implies(formula, invar_expr), extra)
 
-# %%
 class NegativeCEX(CEX):
     def __init__(self, solver, z3model, M, cand_invar, S):
         super().__init__(solver, z3model, M, cand_invar)
         self.S = S
+        self.cand_invar = cand_invar(M, S)
     
     def get_synth_constraint(self, known_invars, inv_fn):
         _, formula = self.get_formula_of_state(self.S, include_global=True)
@@ -155,6 +131,7 @@ class ImplicationCEX(CEX):
         super().__init__(solver, z3model, M, cand_invar)
         self.S1 = S1
         self.S2 = S2
+        self.cand_invar = cand_invar(M, S1)
     
     def get_synth_constraint(self, known_invars, inv_fn):
         _, pre_formula = self.get_formula_of_state(self.S1, include_global=True)
@@ -178,32 +155,32 @@ class CEXGen():
     def add_invariant(self, inv):
         self.invars.append(inv)
     
-    def get_cex(self, cand_invar):
-        pcex = self.get_pos_cex(cand_invar)
+    def get_cex(self, cand_invar, debug=False):
+        pcex = self.get_pos_cex(cand_invar, debug)
         if pcex.exists():
             return pcex
         
-        icex = self.get_implication_cex(cand_invar)
+        icex = self.get_implication_cex(cand_invar, debug)
         if icex.exists():
             return icex
         
-        ncex = self.get_neg_cex(cand_invar)
+        ncex = self.get_neg_cex(cand_invar, debug)
         if ncex.exists():
             return ncex
         
         return None
     
-    def get_pos_cex(self, cand_invar):
+    def get_pos_cex(self, cand_invar, debug=False):
         M = self.protocol_model(f'{self.cex_ctr}_pos')
         S = M.get_state('init')
 
         inv = lambda M, S: And(*[inv(M, S) for inv in self.invars])
 
-        solver = SolverWrapper()
+        solver = SolverWrapper(debug=debug)
         solver.add(M.get_z3_init_state_cond(), "1")
         solver.add(M.get_z3_axioms(), "2") # not sure if this is required
-        cand_invar = inv(M, S)
-        solver.add(Not(cand_invar), "3")
+        # solver.add(inv(M, S), "3") # redundant
+        solver.add(Not(cand_invar(M, S)), "4")
 
         if solver.check() == sat:
             self.cex_ctr += 1
@@ -211,13 +188,13 @@ class CEXGen():
         
         return PositiveCEX(solver, None, M, cand_invar, S)
     
-    def get_neg_cex(self, cand_invar):
+    def get_neg_cex(self, cand_invar, debug=False):
         M = self.protocol_model(f'{self.cex_ctr}_neg')
         S = M.get_state('S1')
 
         inv = lambda M, S: And(*[inv(M, S) for inv in self.invars])
 
-        solver = SolverWrapper()
+        solver = SolverWrapper(debug=debug)
         solver.add(M.get_z3_axioms(), "2")
         solver.add(inv(M, S), "3")
         solver.add(cand_invar(M, S), "4")
@@ -229,22 +206,47 @@ class CEXGen():
         
         return NegativeCEX(solver, None, M, cand_invar, S)
     
-    def get_implication_cex(self, cand_invar):
+    def get_implication_cex(self, cand_invar, debug=False):
         M = self.protocol_model(f'{self.cex_ctr}_ice')
         S1 = M.get_state('S1')
         S2 = M.get_state('S2')
 
         inv = lambda M, S: And(*[inv(M, S) for inv in self.invars])
 
-        solver = SolverWrapper()
+        solver = SolverWrapper(debug=debug)
         solver.add(M.get_z3_axioms(), "2")
         solver.add(inv(M, S1), "3")
         solver.add(cand_invar(M, S1), "3")
         #solver.add(inv(M, S2), "4") -> do we need this?
         solver.add(Not(cand_invar(M, S2)), "5")
 
-        if solver.check() == sat:
-            self.cex_ctr += 1
-            return ImplicationCEX(solver, solver.model(), M, cand_invar, S1, S2)
+        
+        # wrong
+        #solver.add(Or(...every actin's precdontion))
+        #solver.add(And(every action's formula of the form prec => post))
+
+        # loop over all actions
+        # one sat query for every action.
+        # if you find at least one counter example, return it.
+
+        passed = 0
+        for name, action in M.get_actions():
+            solver.push()
+            solver.add(
+                action.get_z3_prec(M, S1, S2), f"{name}_prec"
+            )
+            # should assert that the prec is satisfiable
+            # but i've asserted not(cand_invar(M, S2)) above for efficiency
+
+            solver.add(
+                action.get_z3_formula(M, S1, S2),
+                f"{name}_formula"
+            )
+
+            if solver.check() == sat:
+                self.cex_ctr += 1
+                return ImplicationCEX(solver, solver.model(), M, cand_invar, S1, S2)
+            
+            solver.pop()
         
         return ImplicationCEX(solver, None, M, cand_invar, S1, S2)

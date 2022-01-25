@@ -329,15 +329,18 @@ def test_init_conds(all_invars, I, J, expect_pass, request):
         assert not expect_pass
 
 # %%
+# @pytest.mark.parametrize("all_invars,I,J,expect_pass", [
+#     #("distai_invars", 0, 2, True),
+#     ("distai_invars", 1, 2, False),
+#     #("distai_invars", 2, 3, False),
+#     #("swiss_invars",  0, 1, True),
+#     #("swiss_invars",  0, None, True),
+# ] + [
+#     #("distai_invars", 0, i+1, True)
+#     #for i in range(45)
+# ])
 @pytest.mark.parametrize("all_invars,I,J,expect_pass", [
-    ("distai_invars", 0, 2, True),
     ("distai_invars", 1, 2, False),
-    ("distai_invars", 2, 3, False),
-    ("swiss_invars",  0, 1, True),
-    ("swiss_invars",  0, None, True),
-] + [
-    ("distai_invars", 0, i+1, True)
-    for i in range(45)
 ])
 def test_inductiveness(all_invars, I, J, expect_pass, request):
     M = DistLockModel('M1')
