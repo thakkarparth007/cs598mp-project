@@ -1,3 +1,4 @@
+import time
 from z3 import *
 import itertools
 from invar_synth.protocols.protocol import *
@@ -38,6 +39,7 @@ class CEGISLearner():
         self.allowed_quantifiers = ['FORALL'] #, 'EXISTS']
         self.allowed_sorts = [Node, Epoch]
 
+        set_option('smt.random_seed', 123)
         self.cex_gen = CEXGen(DistLockModel)
 
         self.dummyM = DistLockModel('M1')
@@ -59,6 +61,8 @@ class CEGISLearner():
         #   $epoch_universe
         self.synth_str_template = Template("""
 (set-logic ALL)
+
+(set-option :random-seed 123)
 
 (declare-sort ModelId)
 (declare-sort StateId)
@@ -85,10 +89,11 @@ $universe_declarations
     (
         (Start Bool 
             (
+                Atom
                 (and Atom Atom)
                 (or Atom Atom)
                 (=> Atom Atom)
-                (not Atom)                
+                (not Atom)
             )
         )
 
@@ -99,10 +104,13 @@ $universe_declarations
                 (transfer m s Epoch_ Node_)
                 (le m Epoch_ Epoch_)
 
+                (= Node_ Node_)
+                (= Epoch_ Epoch_)
+
                 (and Atom Atom)
                 (or Atom Atom)
                 (=> Atom Atom)
-                (not Atom)
+                (not Atom)     
             )
         )
 
@@ -137,7 +145,10 @@ $dummy_vars
     def loop(self, max_iters=10, debug=False):
         synth_generator = self.synth()
         for i in tqdm(range(max_iters)):
+            start = time.time()
             cex = self.cex_gen.get_pos_cex(self.cur_invar, debug)
+            end = time.time()
+            print("Pos-CEX query time: {}".format(end-start))
             if cex.exists():
                 self.counter_examples.append(cex)
                 # overwrite the current invariant, it's useless
@@ -150,7 +161,10 @@ $dummy_vars
             # # invariants that include the initial state.
             # self.counter_examples = []
 
+            start = time.time()
             cex = self.cex_gen.get_implication_cex(self.cur_invar, debug)
+            end = time.time()
+            print("I-CEX query time: {}".format(end-start))
             if cex.exists():
                 self.counter_examples.append(cex)
                 # overwrite the current invariant, it's useless
@@ -174,14 +188,22 @@ $dummy_vars
             # ideally, we only wanna throw away those inductive cexs where
             # cur_invar(cex.S1) is false. Meaning, that counter example's pre state
             # is unreachable. (see discussion with adithya)
-            # self.counter_examples = [cex for cex in self.counter_examples if not(isinstance(cex, InductivenessCEX))]
+            self.counter_examples = [cex for cex in self.counter_examples if (isinstance(cex, PositiveCEX))]
             
+            start = time.time()
             cex = self.cex_gen.get_neg_cex(lambda *args: True, debug)
+            end = time.time()
+            print("Neg-CEX query time: {}".format(end-start))
             if cex.exists():
                 self.counter_examples.append(cex)
                 self.cur_invar = next(synth_generator)
             else:
                 print("No counter-example found.")
+                print("==========================================================")
+                for inv in self.invars:
+                    print("Inv: ", inv(self.dummyM, self.dummyS))
+                print("==========================================================")
+                break
                 return True
 
         return False
@@ -305,7 +327,11 @@ $dummy_vars
                 with open(synth_file,'w') as f:
                     f.write(synth_str)
 
+                # time this function
+                start = time.time()
                 synthesized_invar_defs = self.run_minisy(synth_file, nsols=1)
+                end = time.time()
+                print(f"Time taken for: {len(sorts)}", end - start)
 
                 if len(synthesized_invar_defs) == 0:
                     break
@@ -323,7 +349,7 @@ $dummy_vars
                     yield res
 
     def run_minisy(self, synth_file, nsols=1):
-        cmd = f'source ~/.zshrc; minisy {synth_file} --num-solutions={nsols} --max-depth=4'
+        cmd = f'source ~/.zshrc; minisy {synth_file} --num-solutions={nsols} --max-depth=3'
         # cmd = f'source ~/.zshrc; minisy {synth_file} --stream'
         # process = subprocess.Popen(cmd,
         #     shell=True,
@@ -397,5 +423,5 @@ $dummy_vars
         return inv
 
 if __name__ == '__main__':
-    cegis_learner = CEGISLearner()
-    cegis_learner.loop(max_iters=50)
+    cegis_learner = CEGISLearner(max_terms=3)
+    cegis_learner.loop(max_iters=1000)

@@ -168,7 +168,7 @@ class CEXGen():
         if ncex.exists():
             return ncex
         
-        return None
+        return ncex
     
     def get_pos_cex(self, cand_invar, debug=False):
         M = self.protocol_model(f'{self.cex_ctr}_pos')

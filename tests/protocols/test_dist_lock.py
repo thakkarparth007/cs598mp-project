@@ -4,6 +4,7 @@ from z3 import *
 import itertools
 from invar_synth.protocols.dist_lock import *
 from invar_synth.utils.solver_wrapper import *
+from invar_synth.cegis.cex import *
 import pytest
 
 # %%
@@ -433,3 +434,18 @@ def test_safety(all_invars, I, J, expect_pass, request):
         assert expect_pass
 
 # %%
+
+def test_temp():
+    M = DistLockModel('M1')
+    S = M.get_state('pre')
+
+    cg = CEXGen(DistLockModel)
+    cg.invars = [inv_fn_0, inv_fn_1, inv_fn_2, inv_fn_3]
+    cex = cg.get_neg_cex(lambda M, S: True)
+
+    return cex
+    assert not cex.exists()
+
+cex = test_temp()
+# %%
+
