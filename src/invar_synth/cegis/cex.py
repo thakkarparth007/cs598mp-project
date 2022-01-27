@@ -232,9 +232,9 @@ class CEXGen():
         passed = 0
         for name, action in M.get_actions():
             solver.push()
-            solver.add(
-                action.get_z3_prec(M, S1, S2), f"{name}_prec"
-            )
+            #solver.add(
+            #    action.get_z3_prec(M, S1, S2), f"{name}_prec"
+            #)
             # should assert that the prec is satisfiable
             # but i've asserted not(cand_invar(M, S2)) above for efficiency
 

@@ -48,9 +48,16 @@ class ProtocolAction():
         return self.get_prec(M, S1, S2).z3expr
     
     def get_formula(self, M, S1, S2):
-        return QForAll(
+        #return QForAll(
+        #    self.sorts,
+        #    lambda *args: Implies(
+        #        self._prec_impl(M, S1, S2, *args),
+        #        self._postc_impl(M, S1, S2, *args)
+        #    )
+        #)
+        return QExists(
             self.sorts,
-            lambda *args: Implies(
+            lambda *args: And(
                 self._prec_impl(M, S1, S2, *args),
                 self._postc_impl(M, S1, S2, *args)
             )
