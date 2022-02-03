@@ -449,3 +449,11 @@ def test_temp():
 cex = test_temp()
 # %%
 
+
+# %%
+def test_get_pos_cex_from_traces(M):
+    # just making sure that we don't get any exception here.
+    M.get_pos_cex_from_traces()
+# %%
+
+# %%

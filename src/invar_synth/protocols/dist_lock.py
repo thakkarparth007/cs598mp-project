@@ -6,6 +6,9 @@ sys.path.append('/home/parth/598mp/')
 from z3 import *
 from invar_synth.protocols.protocol import ProtocolModel, ProtocolState, ProtocolAction
 from invar_synth.utils.qexpr import QForAll
+from invar_synth.cegis.cex import PositiveCEX
+
+import pandas as pd
 
 # %%
 
@@ -92,6 +95,70 @@ class DistLockModel(ProtocolModel):
                 n1 == n2
             )
         )
+    
+    def get_pos_cex_from_traces(self):
+        cexes = []
+
+        df = pd.read_csv("/home/parth/598mp/DistAI/traces/distributed_lock.csv")
+        cols = df.columns
+        
+        N1, N2 = Consts('N1 N2', Node)
+        E1, E2 = Consts('E1 E2', Epoch)
+
+        for I, row in enumerate(df.to_dict(orient="records")):
+            M = DistLockModel(f'M{I}_trace_pos')
+            S1 = M.get_state('S1')
+
+            e = Const('e', Epoch)
+            n = Const('n', Node)
+            constraints = [
+                #ForAll([e], Or(e == E1, e == E2)),
+                #ForAll([n], Or(n == N1, n == N2)),
+            ]
+            for col in cols:
+                fn = col.split('(')[0]
+                if fn in S1.vars:
+                    fn = S1.vars[fn]
+                elif fn in M.globals:
+                    fn = M.globals[fn]
+                elif fn.startswith("first="):
+                    fn = M.globals['first']
+                    val = col.split('=')[1]
+                    val = {'N1': N1, 'N2': N2}[val]
+                    if row[col] == '1':
+                        constraints.append(fn() == val)
+                    else:
+                        constraints.append(fn() != val)
+                    continue
+                else:
+                    raise ValueError(f"Unknown function {fn}")
+
+                args = col[col.index('(')+1 : -1].split(',')
+                for i in range(len(args)):
+                    if args[i] == 'ep(N1)':
+                        args[i] = S1.ep(N1)
+                    elif args[i] == 'ep(N2)':
+                        args[i] = S1.ep(N2)
+                    else:
+                        args[i] = {'N1': N1, 'N2': N2, 'E1': E1, 'E2': E2}[args[i]]
+                
+                if row[col] == 1:
+                    constraints.append(fn(*args) == True)
+                else:
+                    constraints.append(fn(*args) == False)
+            
+            solver = Solver()
+            solver.add(And(*constraints))
+            #print(And(*constraints).sexpr())
+            print(I, solver.check())
+            z3model = solver.model()
+            pos_cex = PositiveCEX(solver, z3model, M, lambda M, S: False, S1)
+            cexes.append(pos_cex)
+            #model_desc = And(*[constraints])
+            #print(model_desc.sexpr())
+            #break
+        
+        return cexes
 
 # %%
 
