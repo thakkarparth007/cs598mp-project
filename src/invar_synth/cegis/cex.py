@@ -217,17 +217,13 @@ class CEXGen():
         solver.add(M.get_z3_axioms(), "2")
         solver.add(inv(M, S1), "3")
         solver.add(cand_invar(M, S1), "3")
-        #solver.add(inv(M, S2), "4") -> do we need this?
+        solver.add(inv(M, S2), "4") #-> do we need this?
         solver.add(Not(cand_invar(M, S2)), "5")
 
-        
-        # wrong
-        #solver.add(Or(...every actin's precdontion))
-        #solver.add(And(every action's formula of the form prec => post))
-
-        # loop over all actions
-        # one sat query for every action.
-        # if you find at least one counter example, return it.
+        # optimization: check for counter examples that are safe
+        solver.push()
+        solver.add(M.get_z3_safety_cond(S1), "6")
+        solver.add(M.get_z3_safety_cond(S2), "7")
 
         passed = 0
         for name, action in M.get_actions():
@@ -248,5 +244,36 @@ class CEXGen():
                 return ImplicationCEX(solver, solver.model(), M, cand_invar, S1, S2)
             
             solver.pop()
+        
+        # if we didn't find such counter examples, find "stupid" counter examples.
+        solver.pop()
+
+        passed = 0
+        for name, action in M.get_actions():
+            solver.push()
+            #solver.add(
+            #    action.get_z3_prec(M, S1, S2), f"{name}_prec"
+            #)
+            # should assert that the prec is satisfiable
+            # but i've asserted not(cand_invar(M, S2)) above for efficiency
+
+            solver.add(
+                action.get_z3_formula(M, S1, S2),
+                f"{name}_formula"
+            )
+
+            if solver.check() == sat:
+                self.cex_ctr += 1
+                return ImplicationCEX(solver, solver.model(), M, cand_invar, S1, S2)
+            
+            solver.pop()
+        
+        # wrong
+        #solver.add(Or(...every actin's precdontion))
+        #solver.add(And(every action's formula of the form prec => post))
+
+        # loop over all actions
+        # one sat query for every action.
+        # if you find at least one counter example, return it.
         
         return ImplicationCEX(solver, None, M, cand_invar, S1, S2)

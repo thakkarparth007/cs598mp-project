@@ -1,3 +1,4 @@
+# %%
 import time
 from z3 import *
 import itertools
@@ -35,7 +36,7 @@ class CEGISLearner():
     #   (X) Add the invariants discovered so far to the synth_str
     #   (X) Don't move to a new template till we can't find invariants for the current template
     #   [ ] Just because our template has an epoch variable doesn't mean the invariant generated will use epoch at all. This causes duplicates that we must be aware of.
-    def __init__(self, invars=[], max_terms = 5):
+    def __init__(self, invars=[], max_terms = 5, load_N_pos_cex_from_traces=0):
         self.allowed_quantifiers = ['FORALL'] #, 'EXISTS']
         self.allowed_sorts = [Node, Epoch]
 
@@ -45,14 +46,17 @@ class CEGISLearner():
         self.dummyM = DistLockModel('M1')
         self.dummyS = self.dummyM.get_state('S')
     
-        self.counter_examples = []
+        self.counter_examples = self.dummyM.get_pos_cex_from_traces()[:load_N_pos_cex_from_traces]
+
         self.invars = [lambda M, S: M.get_axioms()] + invars
         self.cur_invar = lambda M, S: False
-        self.template_generator = template_generator(
+        self.template_generator = list(template_generator(
             self.allowed_quantifiers,
             self.allowed_sorts,
             max_terms
-        )
+        ))
+        self.perm_storage = {} # maps template index to random crap
+        self.perm_storage['cex'] = []
 
         # vars:
         #   $universe_declarations
@@ -142,8 +146,8 @@ $dummy_vars
 (check-synth)
         """)
     # $unique_invar_asserts ^ insert above    
-    def loop(self, max_iters=10, debug=False):
-        synth_generator = self.synth()
+    def loop(self, max_iters=10, min_depth=1, max_depth=4, debug=False):
+        synth_generator = self.synth(min_depth, max_depth)
         for i in tqdm(range(max_iters)):
             start = time.time()
             cex = self.cex_gen.get_pos_cex(self.cur_invar, debug)
@@ -151,6 +155,7 @@ $dummy_vars
             print("Pos-CEX query time: {}".format(end-start))
             if cex.exists():
                 self.counter_examples.append(cex)
+                self.perm_storage['cex'].append(cex)
                 # overwrite the current invariant, it's useless
                 self.cur_invar = next(synth_generator)
                 continue
@@ -167,6 +172,7 @@ $dummy_vars
             print("I-CEX query time: {}".format(end-start))
             if cex.exists():
                 self.counter_examples.append(cex)
+                self.perm_storage['cex'].append(cex)
                 # overwrite the current invariant, it's useless
                 self.cur_invar = next(synth_generator)
                 continue
@@ -183,6 +189,9 @@ $dummy_vars
             self.invars.append(self.cur_invar)
             self.cex_gen.invars.append(self.cur_invar)
             print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS))
+            # reset synth_generator
+            synth_generator = self.synth(min_depth, max_depth)
+            
             # throw away all inductive cexs.
             # because the inductive cexs may be spurios.
             # ideally, we only wanna throw away those inductive cexs where
@@ -196,17 +205,19 @@ $dummy_vars
             print("Neg-CEX query time: {}".format(end-start))
             if cex.exists():
                 self.counter_examples.append(cex)
+                self.perm_storage['cex'].append(cex)
                 self.cur_invar = next(synth_generator)
             else:
                 print("No counter-example found.")
-                print("==========================================================")
-                for inv in self.invars:
-                    print("Inv: ", inv(self.dummyM, self.dummyS))
-                print("==========================================================")
-                break
                 return True
 
         return False
+    
+    def print_winners_so_far(self):
+        print("==========================================================")
+        for inv in self.invars:
+            print("Inv: ", inv(self.dummyM, self.dummyS))
+        print("==========================================================")
     
     def get_synth_str(self, qs, sorts):
         synthesized_inv = Function('inv', ModelId, StateId, *(sorts + [BoolSort()]))
@@ -218,6 +229,9 @@ $dummy_vars
         universes[StateId] = set()
 
         constraints = []
+        # for inv in self.invars:
+        #     if isinstance(inv, ExprRef):
+
         for cex in self.counter_examples:
             universes[ModelId].add(cex.M.model_sym)
             if isinstance(cex, ImplicationCEX):
@@ -231,6 +245,8 @@ $dummy_vars
                 constraints.append("\n".join([
                     "; " + l for l in cex.cand_invar.sexpr().split("\n")
                 ]))
+            else:
+                constraints.append("; " + str(cex.cand_invar))
             constraints.append(";;;;;;;; Counter example generation constraints: ;;;;;;;;")
             cex_constraints = str(cex.solver)
             constraints.append("\n".join([
@@ -314,55 +330,58 @@ $dummy_vars
             unique_invar_asserts='\n'.join(unique_invar_asserts)
         )
     
-    def synth(self):
-        for qs, sorts in self.template_generator:
-            print("New template ", qs, sorts)
-            if Node not in sorts:
-                # hack
-                continue
-            self.cur_templ_invars = []
-            while True:
+    def synth(self, min_depth, max_depth):
+        for depth in range(min_depth, max_depth+1):
+            valid_templates = [(qs, sorts) for qs, sorts in self.template_generator if Node in sorts]
+            templ_ptr = 0
+            while templ_ptr < len(valid_templates):
+                qs, sorts = valid_templates[templ_ptr]
+                print(f"Depth={depth}, template=", qs, sorts)
+
                 synth_str = self.get_synth_str(qs, sorts)
-                synth_file = 'test_synth.sy'
+                synth_file = '/home/parth/598mp/src/invar_synth/cegis/test_synth.sy'
                 with open(synth_file,'w') as f:
-                    f.write(synth_str)
+                   f.write(synth_str)
 
                 # time this function
                 start = time.time()
-                synthesized_invar_defs = self.run_minisy(synth_file, nsols=1)
+                synthesized_invar_defs = self.run_minisy(synth_file, min_depth=depth, max_depth=depth)
                 end = time.time()
-                print(f"Time taken for: {len(sorts)}", end - start)
+                print(f"Time taken for synth: ", end - start)
 
                 if len(synthesized_invar_defs) == 0:
-                    break
+                    print(f"-------------------Depth={depth} Exhausted template ", qs, sorts, '-------------------\n')
+                    #valid_templates = valid_templates[:templ_ptr] + valid_templates[templ_ptr+1:]
+                    #if len(valid_templates) == 0:
+                    #    break
+                    #templ_ptr = (templ_ptr) % len(valid_templates)
+                    templ_ptr = (templ_ptr + 1) #% len(valid_templates)
+                    continue
+                
+                #templ_ptr = (templ_ptr + 1) % len(valid_templates)
 
                 for defn in synthesized_invar_defs:
                     print("Candidate: ", defn)
                     with open(synth_file,'a') as f:
                         f.write('; Synthesized invariant:\n')
                         f.write('; ' + defn)
-                    L = len(self.cur_templ_invars)
-                    inv_str = defn.replace("inv ", f"inv{L} ")
-                    self.cur_templ_invars.append(inv_str)
+                    #L = len(self.cur_templ_invars)
+                    #inv_str = defn.replace("inv ", f"inv{L} ")
+                    #self.cur_templ_invars.append(inv_str)
                     res = self.parse_inv_defn(qs, sorts, defn)
                     #print("Simplified candidate: ", res(M, S))
                     yield res
+            
+            print(f"=================Depth exhausted: {depth}===========================\n")
 
-    def run_minisy(self, synth_file, nsols=1):
-        cmd = f'source ~/.zshrc; minisy {synth_file} --num-solutions={nsols} --max-depth=3'
-        # cmd = f'source ~/.zshrc; minisy {synth_file} --stream'
-        # process = subprocess.Popen(cmd,
-        #     shell=True,
-        #     executable='/bin/zsh',
-        #     encoding='utf-8',
-        #     stdout=subprocess.PIPE)
+    def run_minisy(self, synth_file, min_depth, max_depth):
+        cmd = f'source ~/.zshrc; minisy {synth_file} --min-depth={min_depth} --max-depth={max_depth}'
+        print(f"Running {cmd}")
         out = subprocess.check_output(
             cmd,
             shell=True, executable="/bin/zsh", encoding='utf-8'
         )
-        #print(out)
         lines = out.split('\n')
-        # lines = iter(process.stdout.readline, b'')
         defs = []
         for line in lines:
             line = line.strip()
@@ -371,14 +390,10 @@ $dummy_vars
             if line == 'unsat':
                 break
             if line.startswith('(define-fun'):
-                # if len(defs):
-                #     yield defs[-1].strip()
                 defs.append(line)
             else:
-                # print("BRO", line, defs)
                 defs[-1] += '\n' + line
-        # if len(defs):
-        #     yield defs[-1].strip()
+
         return [d.strip() for d in defs]
     
     def parse_inv_defn(self, quantifiers, sorts, defn):
@@ -405,23 +420,32 @@ $dummy_vars
         # return
 
         def inv(M, S):
-            sorts = {'Node': Node, 'Epoch': Epoch,
-                     'StateId': StateId, 'ModelId': ModelId}
+            sorts = {'StateId': StateId, 'ModelId': ModelId}
+            for s in M.sorts:
+                sorts[str(s)] = s
             
-            decls = {
+            decls = {'m': M.model_sym, 's': S.state_sym}
+            for name, partial_func in \
+                    list(M.globals.items()) + \
+                    list(S.vars.items()):
                 # need .func at the end because they're partials and not functions
-                'held': S.held.func,
-                'locked': S.locked.func,
-                'transfer': S.transfer.func,
-                'ep': S.ep.func,
-                'le': M.le.func,
-                'm': M.model_sym,
-                's': S.state_sym
-            }
+                decls[name] = partial_func.func
+            
             return simplify(parse_smt2_string(defn, sorts=sorts, decls=decls)[0])
         
         return inv
 
 if __name__ == '__main__':
-    cegis_learner = CEGISLearner(max_terms=3)
-    cegis_learner.loop(max_iters=1000)
+    cegis_learner = CEGISLearner(max_terms=3, load_N_pos_cex_from_traces=10)
+    try:
+        cegis_learner.loop(max_iters=1000)
+        # cegis_learner.template_generator = [(('FORALL', 'FORALL', 'FORALL'), (Node, Node, Epoch)),]
+        # cegis_learner.loop(max_iters=1000, min_depth=4, max_depth=4)
+    except:
+        print("Error")
+        cegis_learner.print_winners_so_far()
+        raise
+
+    cegis_learner.print_winners_so_far()
+
+# %%

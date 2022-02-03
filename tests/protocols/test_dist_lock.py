@@ -232,22 +232,31 @@ def get_inv_fn(fn_name, inv_str, only_code=False):
     vars = set()
     inv_fn_str = parse(inv_str, vars)
 
-    nodes = [v for v in vars if v.startswith("N")]
-    epochs = [v for v in vars if v.startswith("E")]
+    vars = [v for v in vars if v != '']
+    sorts = ['Node' if v.startswith("N") else 'Epoch'
+            for v in vars]
 
-    code = []
-    if len(nodes) == 1:
-        code += [nodes[0] + " = Const('" + nodes[0] + "', Node)"]
-    elif len(nodes) > 1:
-        code += [", ".join(nodes) + " = Consts('" + " ".join(nodes) + "', Node)"]
+    lamb_da = f"""lambda {','.join(vars)}: {inv_fn_str}"""
+    expr = f"""QForAll([{','.join(sorts)}], {lamb_da}).z3expr"""
+
+    code = [f"return {expr}"]
+
+    # nodes = [v for v in vars if v.startswith("N")]
+    # epochs = [v for v in vars if v.startswith("E")]
+
+    # code = []
+    # if len(nodes) == 1:
+    #     code += [nodes[0] + " = Const('" + nodes[0] + "', Node)"]
+    # elif len(nodes) > 1:
+    #     code += [", ".join(nodes) + " = Consts('" + " ".join(nodes) + "', Node)"]
     
-    if len(epochs) == 1:
-        code += [epochs[0] + " = Const('" + epochs[0] + "', Epoch)"]
-    elif len(epochs) > 1:
-        code += [", ".join(epochs) + " = Consts('" + " ".join(epochs) + "', Epoch)"]
+    # if len(epochs) == 1:
+    #     code += [epochs[0] + " = Const('" + epochs[0] + "', Epoch)"]
+    # elif len(epochs) > 1:
+    #     code += [", ".join(epochs) + " = Consts('" + " ".join(epochs) + "', Epoch)"]
     
-    code += ["inv = ForAll([" + ", ".join(vars) + "], " + inv_fn_str + ")"]
-    code += ["return inv"]
+    # code += ["inv = ForAll([" + ", ".join(vars) + "], " + inv_fn_str + ")"]
+    # code += ["return inv"]
 
     code = f"def {fn_name}(M, S):\n\t" + "\n\t".join(code)
     if only_code:
@@ -435,18 +444,47 @@ def test_safety(all_invars, I, J, expect_pass, request):
 
 # %%
 
-def test_temp():
-    M = DistLockModel('M1')
-    S = M.get_state('pre')
+# def test_safety2(all_invars, I, J, expect_pass):
+#     M = DistLockModel('M1')
+#     S = M.get_state('S')
 
-    cg = CEXGen(DistLockModel)
-    cg.invars = [inv_fn_0, inv_fn_1, inv_fn_2, inv_fn_3]
-    cex = cg.get_neg_cex(lambda M, S: True)
+#     #if type(all_invars) == str:
+#     #    all_invars = request.getfixturevalue(all_invars)
+#     all_invars = all_invars[I:J]
 
-    return cex
-    assert not cex.exists()
+#     inv = lambda M, S: And(*[inv(M, S) for inv in all_invars[:]])
 
-cex = test_temp()
+#     solver = SolverWrapper(False)
+#     solver.add(M.get_z3_init_state_cond(), "1")
+#     solver.add(M.get_z3_axioms(), "2")
+#     solver.add(inv(M, S), "3")
+
+#     ## Safety VC:
+#     solver.add(Not(M.get_z3_safety_cond(S)), "8")
+
+#     print(solver.check())
+#     if solver.check() == sat:
+#         if expect_pass:
+#             print(solver.sexpr())
+#             print("==========================\n")
+#             print(solver.model().sexpr())
+#         assert not expect_pass
+#     else:
+#         assert expect_pass
+
+
+# def test_temp():
+#     M = DistLockModel('M1')
+#     S = M.get_state('pre')
+
+#     cg = CEXGen(DistLockModel)
+#     cg.invars = [inv_fn_0, inv_fn_1, inv_fn_2, inv_fn_3]
+#     cex = cg.get_neg_cex(lambda M, S: True)
+
+#     return cex
+#     assert not cex.exists()
+
+# cex = test_temp()
 # %%
 
 
