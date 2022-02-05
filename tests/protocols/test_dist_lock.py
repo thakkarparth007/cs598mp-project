@@ -136,7 +136,7 @@ def swiss_invars():
 
 # %%
 
-@pytest.fixture
+# @pytest.fixture
 def distai_invars_strs():
     return """
     le(E1, E2) & E1 ~= E2 -> le(E1,ep(N1)) | ~le(E2,ep(N1))
@@ -267,7 +267,7 @@ def get_inv_fn(fn_name, inv_str, only_code=False):
     exec(f"ldict['fn'] = {fn_name}")
     return ldict['fn']
 
-@pytest.fixture
+# @pytest.fixture
 def distai_invars(distai_invars_strs):
     return [
         get_inv_fn("inv_fn_" + str(i), inv)
@@ -339,19 +339,21 @@ def test_init_conds(all_invars, I, J, expect_pass, request):
         assert not expect_pass
 
 # %%
-# @pytest.mark.parametrize("all_invars,I,J,expect_pass", [
-#     #("distai_invars", 0, 2, True),
-#     ("distai_invars", 1, 2, False),
-#     #("distai_invars", 2, 3, False),
-#     #("swiss_invars",  0, 1, True),
-#     #("swiss_invars",  0, None, True),
-# ] + [
-#     #("distai_invars", 0, i+1, True)
-#     #for i in range(45)
-# ])
 @pytest.mark.parametrize("all_invars,I,J,expect_pass", [
+    ("distai_invars", 0, 2, False),
     ("distai_invars", 1, 2, False),
+    ("distai_invars", 2, 3, False),
+    ("swiss_invars",  0, 1, True),
+    ("swiss_invars",  0, None, True),
+] + [
+    # ("distai_invars", 0, i+1, True)
+    # for i in range(45)
 ])
+# @pytest.mark.parametrize("all_invars,I,J,expect_pass", [
+#     ("distai_invars", 0, 1, True),
+#     ("distai_invars", 0, 2, True),
+#     ("distai_invars", 1, 2, True),
+# ])
 def test_inductiveness(all_invars, I, J, expect_pass, request):
     M = DistLockModel('M1')
     S1 = M.get_state('pre')
@@ -380,9 +382,9 @@ def test_inductiveness(all_invars, I, J, expect_pass, request):
         passed = 0
         for name, action in M.get_actions():
             solver.push()
-            solver.add(
-                action.get_z3_prec(M, S1, S2),
-                f"{i}_{name}_prec")
+            #solver.add(
+            #    action.get_z3_prec(M, S1, S2),
+            #    f"{i}_{name}_prec")
             solver.add(
                 (action.get_z3_formula(M, S1, S2)),
                 f"{i}_{name}_trans")
@@ -400,6 +402,8 @@ def test_inductiveness(all_invars, I, J, expect_pass, request):
             #print(solver.sexpr())
             solver.pop()
         
+        solver.pop()
+
         if passed == len(M.get_actions()):
             assert expect_pass
 
@@ -489,9 +493,73 @@ def test_safety(all_invars, I, J, expect_pass, request):
 
 
 # %%
-def test_get_pos_cex_from_traces(M):
-    # just making sure that we don't get any exception here.
-    M.get_pos_cex_from_traces()
+def test_get_pos_cex_from_traces(M, distai_invars, distai_invars_strs):
+    pos_cexes = M.get_pos_cex_from_traces()
+
+    for inv, inv_str in zip(distai_invars, distai_invars_strs):
+        for j, cex in enumerate(pos_cexes):
+            solver = Solver()
+            solver.add(cex.get_synth_constraint(None, inv))
+            if solver.check() != sat:
+                raise Exception(f"Failed for cex {j} for {inv_str}. {solver.sexpr()}")
+    #cex_gen = CEXGen(DistLockModel)
+    #cex_gen.invars = distai_invars
+    #cex = cex_gen.get_cex(lambda M, S: True)
+
+    #assert not cex.exists()
 # %%
 
+# %%
+def test_first_distai_invar(M, distai_invars):
+    first = distai_invars[0]
+    axioms = M.get_z3_axioms()
+
+    S1 = M.get_state('S1')
+    
+    solver = Solver()
+    solver.add(axioms)
+    solver.add(Not(first(M, S1)))
+
+    assert solver.check() == unsat
+
+# %%
+def foobar():
+    """
+    Independent invariants:
+0: `le(E1, E2) & E1 != E2 -> le(E1,ep(N1)) | ~le(E2,ep(N1))`
+	^ this is implies by axioms
+3: `le(E1, E2) & E1 != E2 -> le(E1,ep(N1)) | ~locked(E2,N1)`
+14: `le(E1, E2) & E1 != E2 & N1 != N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~le(E2,ep(N2))`
+	^ this is implies by axioms
+17: `le(E1, E2) & E1 != E2 & N1 != N2 -> le(E1,ep(N1)) | ~le(ep(N2),ep(N1)) | ~le(E2,ep(N2))`
+	^ this is implies by axioms
+22: `transfer(E1,N1) | ~locked(E1,N1)`
+23: `le(E1,ep(N1)) | ~locked(E1,N1)`
+26: `N1 != N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~le(E1,ep(N2))`
+	^ this is implies by axioms
+30: `N1 != N2 -> le(ep(N1),ep(N2)) | le(ep(N2),ep(N1))`
+	^ this is implies by axioms
+35: `N1 != N2 -> ~first=N1 | ~first=N2`
+	^ this is implies by axioms
+41: `N1 != N2 -> le(E1,ep(N1)) | ~le(ep(N2),ep(N1)) | ~le(E1,ep(N2))`
+	^ this is implies by axioms
+    """
+    M = DistLockModel('M1')
+    cg = CEXGen(DistLockModel)
+
+    invars_strs = distai_invars_strs()
+    invars = distai_invars(invars_strs)
+    print("Independent invariants:")
+    for i in range(len(invars)):
+        cex = cg.get_implication_cex(invars[i])
+        if not cex.exists():
+            print(f"{i}: `{invars_strs[i].strip()}`")
+
+            solver = Solver()
+            solver.add(M.get_z3_axioms())
+            solver.add(Not(invars[i](M, M.get_state('S1'))))
+            if solver.check() == unsat:
+                print("\t^ this is implied by axioms")
+# %%
+#foobar()
 # %%

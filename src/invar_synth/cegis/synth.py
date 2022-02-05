@@ -46,9 +46,9 @@ class CEGISLearner():
         self.dummyM = DistLockModel('M1')
         self.dummyS = self.dummyM.get_state('S')
     
-        self.counter_examples = self.dummyM.get_pos_cex_from_traces()[:load_N_pos_cex_from_traces]
+        self.counter_examples = [] #self.dummyM.get_pos_cex_from_traces()[:load_N_pos_cex_from_traces]
 
-        self.invars = [lambda M, S: M.get_axioms()] + invars
+        self.invars = [lambda M, S: M.get_z3_axioms()] + invars
         self.cur_invar = lambda M, S: False
         self.template_generator = list(template_generator(
             self.allowed_quantifiers,
@@ -136,12 +136,12 @@ $universe_declarations
 
 $constraints
 
-;(declare-fun DUMMYMODEL () ModelId)
-;(declare-fun DUMMYSTATE () StateId)
+(declare-fun Model_DUMMYMODEL () ModelId)
+(declare-fun DUMMYSTATE () StateId)
 $dummy_vars
 
-
-;(assert (not (= (inv DUMMYMODEL DUMMYSTATE $dummy_args) true)))
+$unique_invar_asserts
+(assert (not (inv Model_DUMMYMODEL DUMMYSTATE $dummy_args)))
 
 (check-synth)
         """)
@@ -191,7 +191,7 @@ $dummy_vars
             print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS))
             # reset synth_generator
             synth_generator = self.synth(min_depth, max_depth)
-            
+
             # throw away all inductive cexs.
             # because the inductive cexs may be spurios.
             # ideally, we only wanna throw away those inductive cexs where
@@ -204,8 +204,8 @@ $dummy_vars
             end = time.time()
             print("Neg-CEX query time: {}".format(end-start))
             if cex.exists():
-                self.counter_examples.append(cex)
-                self.perm_storage['cex'].append(cex)
+                #self.counter_examples.append(cex)
+                #self.perm_storage['cex'].append(cex)
                 self.cur_invar = next(synth_generator)
             else:
                 print("No counter-example found.")
@@ -308,6 +308,13 @@ $dummy_vars
         dummy_vars = "\n".join(dummy_vars)
         dummy_args = ' '.join(dummy_args)
         unique_invar_asserts = []
+
+        # TODO: witness thing. Find an invariant that eliminates at least one state that other invariants don't.
+
+        DUMMYMODEL = DistLockModel('DUMMYMODEL')
+        DUMMYSTATE = DUMMYMODEL.get_state('DUMMYSTATE')
+        for inv1 in self.invars:
+            unique_invar_asserts.append(f"(assert {inv1(DUMMYMODEL, DUMMYSTATE).sexpr()})")
         # for i, inv1 in enumerate(self.cur_templ_invars):
         #     unique_invar_asserts.append(inv1)
         #     lhs = f"(inv{i} DUMMYMODEL {dummy_args})"
@@ -436,7 +443,7 @@ $dummy_vars
         return inv
 
 if __name__ == '__main__':
-    cegis_learner = CEGISLearner(max_terms=3, load_N_pos_cex_from_traces=10)
+    cegis_learner = CEGISLearner(max_terms=3, load_N_pos_cex_from_traces=0)
     try:
         cegis_learner.loop(max_iters=1000)
         # cegis_learner.template_generator = [(('FORALL', 'FORALL', 'FORALL'), (Node, Node, Epoch)),]

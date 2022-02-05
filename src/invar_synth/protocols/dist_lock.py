@@ -112,8 +112,8 @@ class DistLockModel(ProtocolModel):
             e = Const('e', Epoch)
             n = Const('n', Node)
             constraints = [
-                #ForAll([e], Or(e == E1, e == E2)),
-                #ForAll([n], Or(n == N1, n == N2)),
+                ForAll([e], Or(e == E1, e == E2, e == S1.ep(N1), e == S1.ep(N2), e == M.zero(), e == M.one())),
+                ForAll([n], Or(n == N1, n == N2, n == M.first())),
             ]
             for col in cols:
                 fn = col.split('(')[0]
