@@ -43,7 +43,7 @@ class CEGISLearner():
         set_option('smt.random_seed', 123)
         self.cex_gen = CEXGen(DistLockModel)
 
-        self.dummyM = DistLockModel('M1')
+        self.dummyM = DistLockModel('DUMMYMODEL')
         self.dummyS = self.dummyM.get_state('S')
     
         self.counter_examples = [] #self.dummyM.get_pos_cex_from_traces()[:load_N_pos_cex_from_traces]
@@ -57,32 +57,64 @@ class CEGISLearner():
         ))
         self.perm_storage = {} # maps template index to random crap
         self.perm_storage['cex'] = []
+        self.safe = False
 
         # vars:
         #   $universe_declarations
         #   $inv_args
         #   $node_universe
         #   $epoch_universe
-        self.synth_str_template = Template("""
-(set-logic ALL)
-
+        self.synth_str_template = Template(f"""
 (set-option :random-seed 123)
 
-(declare-sort ModelId)
-(declare-sort StateId)
-(declare-sort Node)
-(declare-sort Epoch)
+;(declare-sort ModelId)
+;(declare-sort StateId)
+;(declare-sort Node)
+;(declare-sort Epoch)
 
 $universe_declarations
 
-(declare-fun held (ModelId StateId Node) Bool)
-(declare-fun locked (ModelId StateId Epoch Node) Bool)
-(declare-fun transfer (ModelId StateId Epoch Node) Bool)
-(declare-fun ep (ModelId StateId Node) Epoch)
-(declare-fun le (ModelId Epoch Epoch) Bool)
-(declare-fun zero (ModelId) Epoch)
-(declare-fun one (ModelId) Epoch)
-(declare-fun first (ModelId) Node)
+;(declare-fun held (ModelId StateId Node) Bool)
+;(declare-fun locked (ModelId StateId Epoch Node) Bool)
+;(declare-fun transfer (ModelId StateId Epoch Node) Bool)
+;(declare-fun ep (ModelId StateId Node) Epoch)
+;(declare-fun le (ModelId Epoch Epoch) Bool)
+;(declare-fun zero (ModelId) Epoch)
+;(declare-fun one (ModelId) Epoch)
+;(declare-fun first (ModelId) Node)
+
+(declare-fun held_dummy (ModelId StateId Node) Bool)
+(define-fun held ((a0 ModelId) (a1 StateId) (a2 Node)) Bool
+    $held_desc_str
+)
+(declare-fun locked_dummy (ModelId StateId Epoch Node) Bool)
+(define-fun locked ((a0 ModelId) (a1 StateId) (a2 Epoch) (a3 Node)) Bool
+    $locked_desc_str
+)
+(declare-fun transfer_dummy (ModelId StateId Epoch Node) Bool)
+(define-fun transfer ((a0 ModelId) (a1 StateId) (a2 Epoch) (a3 Node)) Bool
+    $transfer_desc_str
+)
+(declare-fun ep_dummy (ModelId StateId Node) Epoch)
+(define-fun ep ((a0 ModelId) (a1 StateId) (a2 Node)) Epoch
+    $ep_desc_str
+)
+(declare-fun le_dummy (ModelId Epoch Epoch) Bool)
+(define-fun le ((a0 ModelId) (a1 Epoch) (a2 Epoch)) Bool
+    $le_desc_str
+)
+(declare-fun zero_dummy (ModelId) Epoch)
+(define-fun zero ((a0 ModelId)) Epoch
+    $zero_desc_str
+)
+(declare-fun one_dummy (ModelId) Epoch)
+(define-fun one ((a0 ModelId)) Epoch
+    $one_desc_str
+)
+(declare-fun first_dummy (ModelId) Node)
+(define-fun first ((a0 ModelId)) Node
+    $first_desc_str
+)
 
 (synth-fun inv ((m ModelId) (s StateId) $inv_args) Bool
 
@@ -136,11 +168,13 @@ $universe_declarations
 
 $constraints
 
-(declare-fun Model_DUMMYMODEL () ModelId)
-(declare-fun DUMMYSTATE () StateId)
+;(declare-fun Model_DUMMYMODEL () ModelId)
+;(declare-fun DUMMYSTATE () StateId)
 $dummy_vars
 
+; this one includes assertion of axioms, so no need to assert it again
 $unique_invar_asserts
+
 (assert (not (inv Model_DUMMYMODEL DUMMYSTATE $dummy_args)))
 
 (check-synth)
@@ -209,6 +243,7 @@ $unique_invar_asserts
                 self.cur_invar = next(synth_generator)
             else:
                 print("No counter-example found.")
+                self.safe = True
                 return True
 
         return False
@@ -218,6 +253,31 @@ $unique_invar_asserts
         for inv in self.invars:
             print("Inv: ", inv(self.dummyM, self.dummyS))
         print("==========================================================")
+        print(f"Protocol proved safe? : {self.safe}")
+    
+    def get_ite_from_val_list(self, name, val_list, default_val=None):
+        if len(val_list) == 0:
+            return f"\t{default_val}"
+        
+        lhs, rhs = val_list[0]
+        cond = "(and "
+        for i, L in enumerate(lhs):
+            dummyVar = f"a{i}"
+            cond += f"(= {dummyVar} {L}) "
+        cond += ")"
+
+        if default_val is None:
+            default_val = f"({name}_dummy "
+            for i in range(len(lhs)):
+                default_val += f"a{i} "
+            default_val += ")"
+
+        if isinstance(rhs, bool) or "BoolRef" in str(type(rhs)):
+            rhs = "true" if rhs else "false"
+
+        else_str = self.get_ite_from_val_list(name, val_list[1:], default_val)
+
+        return f"\t(ite {cond} {rhs}\n{else_str})"
     
     def get_synth_str(self, qs, sorts):
         synthesized_inv = Function('inv', ModelId, StateId, *(sorts + [BoolSort()]))
@@ -229,10 +289,18 @@ $unique_invar_asserts
         universes[StateId] = set()
 
         constraints = []
+        model_descs = {}
         # for inv in self.invars:
         #     if isinstance(inv, ExprRef):
 
         for cex in self.counter_examples:
+            model_desc = cex.get_model_desc()
+            for name, desc in model_desc.items():
+                if name in model_descs:
+                    model_descs[name] += desc
+                else:
+                    model_descs[name] = desc
+            
             universes[ModelId].add(cex.M.model_sym)
             if isinstance(cex, ImplicationCEX):
                 universes[StateId].add(cex.S1.state_sym)
@@ -276,22 +344,39 @@ $unique_invar_asserts
                 partial(synthesized_inv, M.model_sym, S.state_sym))\
                     .to_ground_expr(arg_values)
 
-            constraint = cex.get_synth_constraint(self.invars, inv_expr)
+            constraint = cex.get_synth_constraint(self.invars, inv_expr, False)
             sexpr = constraint.sexpr()
             constraints.append(f"(constraint {sexpr})")
             constraints.append("\n")
         
+        model_desc_tmpl_strs = {}
+        for name, desc in model_descs.items():
+            if name in ["held", "locked", "transfer", "le"]:
+                default_val = "false"
+            elif name in ["ep", "zero", "one"]:
+                default_val = list(universes[Epoch])[0]
+            elif name in ["first"]:
+                default_val = list(universes[Node])[0]
+            else:
+                raise Exception("Unknown model description function: " + name)
+            model_desc_tmpl_strs[name + "_desc_str"] = self.get_ite_from_val_list(name, desc)
+
         # known_invars = And(*[inv(M, S) for inv in self.invars])
         # constraints.append(f"(constraint (not (=> {known_invars.sexpr()} {synthesized_inv.sexpr()})))")
         
         universe_declarations = []
         for s, elems in universes.items():
+            universe_declarations += [f"(declare-datatypes ( ({s.name()} 0) ) (("]
+            if s == ModelId:
+                universe_declarations.append("(Model_DUMMYMODEL) ")
+            elif s == StateId:
+                universe_declarations.append("(DUMMYSTATE) ")
             for elem in elems:
                 #if s != ModelId:
                 #    universe_declarations.append(f"(declare-fun {elem}_m (ModelId) {s.name()})")
                 #else:
-                universe_declarations.append(f"(declare-fun {elem} () {s.name()})")
-            universe_declarations.append("")
+                universe_declarations.append(f"({elem}) ")
+            universe_declarations.append(")))\n")
         
         inv_args = []
         dummy_vars = []
@@ -311,15 +396,15 @@ $unique_invar_asserts
 
         # TODO: witness thing. Find an invariant that eliminates at least one state that other invariants don't.
 
-        DUMMYMODEL = DistLockModel('DUMMYMODEL')
+        DUMMYMODEL = self.dummyM
         DUMMYSTATE = DUMMYMODEL.get_state('DUMMYSTATE')
         for inv1 in self.invars:
-            unique_invar_asserts.append(f"(assert {inv1(DUMMYMODEL, DUMMYSTATE).sexpr()})")
+           unique_invar_asserts.append(f"(assert {inv1(DUMMYMODEL, DUMMYSTATE).sexpr()})")
         # for i, inv1 in enumerate(self.cur_templ_invars):
-        #     unique_invar_asserts.append(inv1)
-        #     lhs = f"(inv{i} DUMMYMODEL {dummy_args})"
-        #     rhs = f"(inv DUMMYMODEL {dummy_args})"
-        #     unique_invar_asserts.append(f"(assert (not (= {lhs} {rhs})))")
+            # unique_invar_asserts.append(inv1)
+            # lhs = f"(inv{i} DUMMYMODEL {dummy_args})"
+            # rhs = f"(inv DUMMYMODEL {dummy_args})"
+            # unique_invar_asserts.append(f"(assert (not (= {lhs} {rhs})))")
         
         node_universe = '\n'.join(args_of_type[Node])
         epoch_universe = '\n'.join(args_of_type[Epoch])
@@ -334,7 +419,8 @@ $unique_invar_asserts
             constraints='\n'.join(constraints),
             dummy_vars=dummy_vars,
             dummy_args=dummy_args,
-            unique_invar_asserts='\n'.join(unique_invar_asserts)
+            unique_invar_asserts='\n'.join(unique_invar_asserts),
+            **model_desc_tmpl_strs
         )
     
     def synth(self, min_depth, max_depth):
@@ -445,7 +531,7 @@ $unique_invar_asserts
 if __name__ == '__main__':
     cegis_learner = CEGISLearner(max_terms=3, load_N_pos_cex_from_traces=0)
     try:
-        cegis_learner.loop(max_iters=1000)
+        cegis_learner.loop(max_iters=4)
         # cegis_learner.template_generator = [(('FORALL', 'FORALL', 'FORALL'), (Node, Node, Epoch)),]
         # cegis_learner.loop(max_iters=1000, min_depth=4, max_depth=4)
     except:

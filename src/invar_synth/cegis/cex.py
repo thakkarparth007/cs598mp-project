@@ -90,6 +90,44 @@ class CEX():
         return formulas, And(
            *(formulas.values())
         )
+    
+    def get_formula_of_state_for_ite(self, S, include_global=False):
+        """
+        Same as get_formula_of_state, but returns a formula that can be used in an ITE.
+        Specifically, returns a dictionary mapping names to a list of (lhs, rhs) pairs.
+        This is essentially a partial evaluation of the functions describing the model/state.
+
+        "Partial" because we're only evaluating the functions for this specific state in this specific model (cex).
+        """
+        univ = {}
+        for s in self.M.sorts:
+            univ[s] = self.M.get_universe(s)
+        
+        decls = [(n, fn, False) for n, fn in S.vars.items()]
+        if include_global:
+            decls += [(n, fn, True) for n, fn in self.M.globals.items()]
+
+        formulas = {}
+        for name, fn, is_global in decls:
+            start = 1 if is_global else 2
+            universes = [univ[fn.func.domain(i)] for i in range(start, fn.func.arity())]
+            
+            all_args = itertools.product(*universes)
+            # TODO Optimization: remove those for which model_completion was necessary (i.e, don't care inputs)
+            formulas[name] = []
+            for args in all_args:
+                lhs = [self.M.model_sym]
+                if not is_global:
+                    lhs.append(S.state_sym)
+                lhs += args
+
+                rhs = self.z3model.eval(fn(*args), model_completion=True)
+                formulas[name].append((lhs, rhs))
+
+        return formulas
+    
+    def get_model_desc(self):
+        return self.get_formula_of_state_for_ite(self.S, True)
 
 class PositiveCEX(CEX):
     def __init__(self, solver, z3model, M, cand_invar, S):
@@ -97,14 +135,16 @@ class PositiveCEX(CEX):
         self.S = S
         self.cand_invar = cand_invar(M, S)
     
-    def get_synth_constraint(self, known_invars, inv_fn):
+    def get_synth_constraint(self, known_invars, inv_fn, include_state=True):
         _, formula = self.get_formula_of_state(
             self.S, include_global=True
         )
         
         #known_invars = And(*[inv(self.M, self.S) for inv in known_invars])
         #extra = Not(Implies(known_invars, invar_expr)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
-        return And(formula, inv_fn(self.M, self.S))
+        if include_state:
+            return And(formula, inv_fn(self.M, self.S))
+        return inv_fn(self.M, self.S)
         #Implies(formula, invar_expr)
         #return And(Implies(formula, invar_expr), extra)
 
@@ -114,7 +154,7 @@ class NegativeCEX(CEX):
         self.S = S
         self.cand_invar = cand_invar(M, S)
     
-    def get_synth_constraint(self, known_invars, inv_fn):
+    def get_synth_constraint(self, known_invars, inv_fn, include_state=True):
         _, formula = self.get_formula_of_state(self.S, include_global=True)
         #known_invars = And(*[inv(self.M, S) for inv in known_invars])
         #extra = Not(Implies(known_invars, inv_fn)) # to make sure we get meaningful results, we don't want our new invariant to be directly implied by known invariants
@@ -122,7 +162,9 @@ class NegativeCEX(CEX):
         
         # negative cex = a state that is not safe, so the invariant should
         # not include it.
-        return And(formula, Not(inv_fn(self.M, self.S)))
+        if include_state:
+            return And(formula, Not(inv_fn(self.M, self.S)))
+        return Not(inv_fn(self.M, self.S))
         #, (get_safety_property_as_expr(self.M, self.S))) #Implies(formula, Not(invar_expr))
 
 # %%
@@ -133,15 +175,27 @@ class ImplicationCEX(CEX):
         self.S2 = S2
         self.cand_invar = cand_invar(M, S1)
     
-    def get_synth_constraint(self, known_invars, inv_fn):
+    def get_model_desc(self):
+        formulas = self.get_formula_of_state_for_ite(self.S1, True)
+        formulas2 = self.get_formula_of_state_for_ite(self.S2, False)
+        for name, f in formulas2.items():
+            formulas[name] += f
+        return formulas
+    
+    def get_synth_constraint(self, known_invars, inv_fn, include_state=True):
         _, pre_formula = self.get_formula_of_state(self.S1, include_global=True)
         _, post_formula = self.get_formula_of_state(self.S2) # no need for global here.
 
         inv1, inv2 = inv_fn(self.M, self.S1), inv_fn(self.M, self.S2)
         
-        constraint1 = And(pre_formula, Not(inv1))
-        constraint2 = And(pre_formula, inv1, post_formula, inv2)
+        if include_state:
+            constraint1 = And(pre_formula, Not(inv1))
+            constraint2 = And(pre_formula, inv1, post_formula, inv2)
 
+            return Or(constraint1, constraint2)
+        
+        constraint1 = Not(inv1)
+        constraint2 = And(inv1, inv2)
         return Or(constraint1, constraint2)
 
 # %%
