@@ -1,5 +1,5 @@
 from invar_synth.protocols.dist_lock import *
-from invar_synth.cegis.synth import *
+from invar_synth.cegis.learners.learner import *
 
 def test_templ():
     a = [t for t in template_generator(['FORALL'], [Node, Epoch], 3)]

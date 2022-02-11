@@ -136,7 +136,7 @@ def swiss_invars():
 
 # %%
 
-# @pytest.fixture
+@pytest.fixture
 def distai_invars_strs():
     return """
     le(E1, E2) & E1 ~= E2 -> le(E1,ep(N1)) | ~le(E2,ep(N1))
@@ -267,7 +267,7 @@ def get_inv_fn(fn_name, inv_str, only_code=False):
     exec(f"ldict['fn'] = {fn_name}")
     return ldict['fn']
 
-# @pytest.fixture
+@pytest.fixture
 def distai_invars(distai_invars_strs):
     return [
         get_inv_fn("inv_fn_" + str(i), inv)
@@ -404,8 +404,8 @@ def test_inductiveness(all_invars, I, J, expect_pass, request):
         
         solver.pop()
 
-        if passed == len(M.get_actions()):
-            assert expect_pass
+    if passed == len(M.get_actions()):
+        assert expect_pass
 
 # %%
 @pytest.mark.parametrize("all_invars,I,J,expect_pass", [
