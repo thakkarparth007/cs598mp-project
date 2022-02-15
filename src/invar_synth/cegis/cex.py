@@ -91,6 +91,12 @@ class CEX():
            *(formulas.values())
         )
     
+    def get_violating_elems(self, invar_fn):
+        """
+        An invar_fn 
+        """
+        pass
+    
     def get_formula_of_state_for_ite(self, S, include_global=False):
         """
         Same as get_formula_of_state, but returns a formula that can be used in an ITE.
@@ -228,13 +234,13 @@ class CEXGen():
         M = self.protocol_model(f'{self.cex_ctr}_pos')
         S = M.get_state('init')
 
-        inv = lambda M, S: And(*[inv(M, S) for inv in self.invars])
+        inv = lambda M, S: And(*[inv(M, S).z3expr for inv in self.invars])
 
         solver = SolverWrapper(debug=debug)
         solver.add(M.get_z3_init_state_cond(), "1")
         solver.add(M.get_z3_axioms(), "2") # not sure if this is required
         # solver.add(inv(M, S), "3") # redundant
-        solver.add(Not(cand_invar(M, S)), "4")
+        solver.add(Not(cand_invar(M, S).z3expr), "4")
 
         if solver.check() == sat:
             self.cex_ctr += 1
@@ -242,37 +248,37 @@ class CEXGen():
         
         return PositiveCEX(solver, None, M, cand_invar, S)
     
-    def get_neg_cex(self, cand_invar, debug=False):
+    def get_neg_cex(self, debug=False):
         M = self.protocol_model(f'{self.cex_ctr}_neg')
         S = M.get_state('S1')
 
-        inv = lambda M, S: And(*[inv(M, S) for inv in self.invars])
+        inv = lambda M, S: And(*[inv(M, S).z3expr for inv in self.invars])
 
         solver = SolverWrapper(debug=debug)
         solver.add(M.get_z3_axioms(), "2")
         solver.add(inv(M, S), "3")
-        solver.add(cand_invar(M, S), "4")
+        #solver.add(cand_invar(M, S).z3expr, "4")
         solver.add(Not(M.get_z3_safety_cond(S)), "5")
 
         if solver.check() == sat:
             self.cex_ctr += 1
-            return NegativeCEX(solver, solver.model(), M, cand_invar, S)
+            return NegativeCEX(solver, solver.model(), M, self.invars[-1], S)
         
-        return NegativeCEX(solver, None, M, cand_invar, S)
+        return NegativeCEX(solver, None, M, self.invars[-1], S)
     
     def get_implication_cex(self, cand_invar, debug=False):
         M = self.protocol_model(f'{self.cex_ctr}_ice')
         S1 = M.get_state('S1')
         S2 = M.get_state('S2')
 
-        inv = lambda M, S: And(*[inv(M, S) for inv in self.invars])
+        inv = lambda M, S: And(*[inv(M, S).z3expr for inv in self.invars])
 
         solver = SolverWrapper(debug=debug)
         solver.add(M.get_z3_axioms(), "2")
         solver.add(inv(M, S1), "3")
-        solver.add(cand_invar(M, S1), "3")
+        solver.add(cand_invar(M, S1).z3expr, "3")
         solver.add(inv(M, S2), "4") #-> do we need this?
-        solver.add(Not(cand_invar(M, S2)), "5")
+        solver.add(Not(cand_invar(M, S2).z3expr), "5")
 
         # optimization: check for counter examples that are safe
         solver.push()

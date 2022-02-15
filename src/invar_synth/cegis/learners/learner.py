@@ -5,6 +5,7 @@ import itertools
 from invar_synth.protocols.protocol import ProtocolModel
 from invar_synth.protocols.dist_lock import Node
 from invar_synth.cegis.cex import *
+from invar_synth.utils.qexpr import QForAll
 from tqdm import tqdm
 
 def template_generator(allowed_quantifiers, allowed_sorts, max_terms = 5):
@@ -44,8 +45,8 @@ class CEGISLearner():
 
         self.counter_examples = [] #self.dummyM.get_pos_cex_from_traces()[:load_N_pos_cex_from_traces]
 
-        self.invars = [lambda M, S: M.get_z3_axioms()] + invars
-        self.cur_invar = lambda M, S: False
+        self.invars = [lambda M, S: M.get_axioms()] + invars
+        self.cur_invar = lambda M, S: QForAll([Node], lambda n1: False)
         self.template_generator = list(template_generator(
             self.allowed_quantifiers,
             self.allowed_sorts,
@@ -98,7 +99,7 @@ class CEGISLearner():
             # store the current invariant, because it's inductive
             self.invars.append(self.cur_invar)
             self.cex_gen.invars.append(self.cur_invar)
-            print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS))
+            print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS).z3expr)
             # reset synth_generator
             synth_generator = self.synth(min_depth, max_depth)
 
@@ -110,7 +111,7 @@ class CEGISLearner():
             self.counter_examples = [cex for cex in self.counter_examples if (isinstance(cex, PositiveCEX))]
             
             start = time.time()
-            cex = self.cex_gen.get_neg_cex(lambda *args: True, debug)
+            cex = self.cex_gen.get_neg_cex(debug)
             end = time.time()
             print("Neg-CEX query time: {}".format(end-start))
             if cex.exists():
@@ -127,7 +128,7 @@ class CEGISLearner():
     def print_winners_so_far(self):
         print("==========================================================")
         for inv in self.invars:
-            print("Inv: ", inv(self.dummyM, self.dummyS))
+            print("Inv: ", inv(self.dummyM, self.dummyS).z3expr)
         print("==========================================================")
         print(f"Protocol proved safe? : {self.safe}")
     
