@@ -1,0 +1,1784 @@
+Pos-CEX query time: 0.022936344146728516
+Depth=1, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4015507698059082
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (held m s n1))
+Pos-CEX query time: 0.027981996536254883
+Depth=1, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.27813005447387695
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.41089844703674316
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4471302032470703
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (transfer m s e1 n1) (locked m s e1 n1)))
+Pos-CEX query time: 0.025519847869873047
+I-CEX query time: 0.0274198055267334
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3936023712158203
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (locked m s e1 n1)))
+Pos-CEX query time: 0.019707918167114258
+I-CEX query time: 0.03344225883483887
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.47201108932495117
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n1)))
+Pos-CEX query time: 0.02514028549194336
+I-CEX query time: 0.04124021530151367
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4801514148712158
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (transfer m s e1 n1)))
+Pos-CEX query time: 0.02434396743774414
+I-CEX query time: 0.03750729560852051
+WINNER:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(Not(locked(Model_DUMMYMODEL,
+                            S,
+                            Epoch_1,
+                            Node_1)),
+                 transfer(Model_DUMMYMODEL,
+                          S,
+                          Epoch_1,
+                          Node_1))))
+Neg-CEX query time: 0.03267931938171387
+Depth=1, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2910792827606201
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4400320053100586
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4302055835723877
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (transfer m s e1 n1) (locked m s e1 n1)))
+Pos-CEX query time: 0.025071144104003906
+I-CEX query time: 0.030226707458496094
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3622720241546631
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (locked m s e1 n1)))
+Pos-CEX query time: 0.013605833053588867
+I-CEX query time: 0.02481675148010254
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4127931594848633
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n1)))
+Pos-CEX query time: 0.022158384323120117
+I-CEX query time: 0.033393144607543945
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.42374134063720703
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.40844273567199707
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2957799434661865
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4951930046081543
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.28395867347717285
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.32020020484924316
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2834615707397461
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.29516124725341797
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2956559658050537
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.5119061470031738
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2829110622406006
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.28478002548217773
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.28302979469299316
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3050999641418457
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.29096341133117676
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.5349054336547852
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.30281519889831543
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (transfer m s (ep m s n1) n1) (held m s n1)))
+Pos-CEX query time: 0.017413854598999023
+I-CEX query time: 0.02137446403503418
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.2907717227935791
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (=> (= n1 n1) (held m s n1)) (le m (ep m s n1) (ep m s n1))))
+Pos-CEX query time: 0.01588726043701172
+I-CEX query time: 0.019465923309326172
+WINNER:  ForAll(Node_1,
+       Or(held(Model_DUMMYMODEL, S, Node_1),
+          le(Model_DUMMYMODEL,
+             ep(Model_DUMMYMODEL, S, Node_1),
+             ep(Model_DUMMYMODEL, S, Node_1))))
+Neg-CEX query time: 0.02283334732055664
+Depth=1, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2791121006011963
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.27229952812194824
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3955543041229248
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (transfer m s e1 n1)))
+Pos-CEX query time: 0.018850088119506836
+I-CEX query time: 0.023451805114746094
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2661433219909668
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (locked m s e1 n1)))
+Pos-CEX query time: 0.013897418975830078
+I-CEX query time: 0.023169279098510742
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2632334232330322
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n1)))
+Pos-CEX query time: 0.014320135116577148
+I-CEX query time: 0.03325629234313965
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.29601311683654785
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2704122066497803
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.27828502655029297
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n2)))
+Pos-CEX query time: 0.01393580436706543
+I-CEX query time: 0.029029130935668945
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3293318748474121
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.6401679515838623
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2631967067718506
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2915174961090088
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2788679599761963
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3009645938873291
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3332557678222656
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.6416811943054199
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3955874443054199
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2865474224090576
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.31035280227661133
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2933778762817383
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3593170642852783
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.6798136234283447
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.4641880989074707
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (le m (ep m s n1) (ep m s n1)))
+Pos-CEX query time: 0.02627396583557129
+I-CEX query time: 0.04143667221069336
+WINNER:  ForAll(Node_1,
+       le(Model_DUMMYMODEL,
+          ep(Model_DUMMYMODEL, S, Node_1),
+          ep(Model_DUMMYMODEL, S, Node_1)))
+Neg-CEX query time: 0.031561851501464844
+Depth=1, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2788512706756592
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.36243343353271484
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2916381359100342
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (transfer m s e1 n1)))
+Pos-CEX query time: 0.019924163818359375
+I-CEX query time: 0.03823566436767578
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.32915472984313965
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (locked m s e1 n1)))
+Pos-CEX query time: 0.0198974609375
+I-CEX query time: 0.03328084945678711
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3366677761077881
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n1)))
+Pos-CEX query time: 0.0175168514251709
+I-CEX query time: 0.03180527687072754
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2933666706085205
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.28926634788513184
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.31757688522338867
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n2)))
+Pos-CEX query time: 0.0157473087310791
+I-CEX query time: 0.035535335540771484
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.32994914054870605
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.6558916568756104
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2744588851928711
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.263031005859375
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3347287178039551
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3018462657928467
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.37896037101745605
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.7197091579437256
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.31432461738586426
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.29151225090026855
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3142211437225342
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.38241004943847656
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3455944061279297
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.6421329975128174
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.29620933532714844
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (transfer m s (ep m s n1) n1) (or (held m s n1) (held m s n1))))
+Pos-CEX query time: 0.014757633209228516
+I-CEX query time: 0.02415156364440918
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.3063673973083496
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (locked m s (ep m s n1) n1) (transfer m s (ep m s n1) n1)))
+Pos-CEX query time: 0.016411542892456055
+I-CEX query time: 0.02779364585876465
+WINNER:  ForAll(Node_1,
+       Or(Not(locked(Model_DUMMYMODEL,
+                     S,
+                     ep(Model_DUMMYMODEL, S, Node_1),
+                     Node_1)),
+          transfer(Model_DUMMYMODEL,
+                   S,
+                   ep(Model_DUMMYMODEL, S, Node_1),
+                   Node_1)))
+Neg-CEX query time: 0.02335381507873535
+Depth=1, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.586702823638916
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.30976057052612305
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.30260348320007324
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (transfer m s e1 n1)))
+Pos-CEX query time: 0.018497705459594727
+I-CEX query time: 0.04336142539978027
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.5948522090911865
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (locked m s e1 n1)))
+Pos-CEX query time: 0.02655172348022461
+I-CEX query time: 0.03185868263244629
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3147149085998535
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n1)))
+Pos-CEX query time: 0.019901037216186523
+I-CEX query time: 0.0343477725982666
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.467348575592041
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.37966132164001465
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.30911779403686523
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (e1 Epoch)) Bool (=> (locked m s e1 n2) (held m s n1)))
+Pos-CEX query time: 0.016363143920898438
+I-CEX query time: 0.031166553497314453
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.6466169357299805
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.6832089424133301
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.30596160888671875
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3804500102996826
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.35564732551574707
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.30664539337158203
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.40128445625305176
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.6061873435974121
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2615482807159424
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3977630138397217
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.29296326637268066
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.28037405014038086
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.30834436416625977
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.5989017486572266
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.43782711029052734
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (locked m s (ep m s n1) n1) (=> (= n1 n1) (held m s n1))))
+Pos-CEX query time: 0.015281438827514648
+I-CEX query time: 0.022907018661499023
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.305774450302124
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (transfer m s (ep m s n1) n1) (locked m s (ep m s n1) n1)))
+Pos-CEX query time: 0.015471696853637695
+I-CEX query time: 0.021368741989135742
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.2971060276031494
+-------------------Depth=4 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.5034351348876953
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.6506664752960205
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (or (le m (ep m s n1) e1) (le m e1 (ep m s n1))))
+Pos-CEX query time: 0.016344308853149414
+I-CEX query time: 0.022576093673706055
+WINNER:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(le(Model_DUMMYMODEL,
+                    ep(Model_DUMMYMODEL, S, Node_1),
+                    Epoch_1),
+                 le(Model_DUMMYMODEL,
+                    Epoch_1,
+                    ep(Model_DUMMYMODEL, S, Node_1)))))
+Neg-CEX query time: 0.026554107666015625
+Depth=1, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.39745521545410156
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3917973041534424
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.37813401222229004
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (locked m s e1 n1)))
+Pos-CEX query time: 0.016672611236572266
+I-CEX query time: 0.02592635154724121
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.38447046279907227
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (transfer m s e1 n1)))
+Pos-CEX query time: 0.014610767364501953
+I-CEX query time: 0.02399277687072754
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.42986249923706055
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n1)))
+Pos-CEX query time: 0.014822959899902344
+I-CEX query time: 0.030765056610107422
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.28699803352355957
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.42955899238586426
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.42098236083984375
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.5822830200195312
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.49379420280456543
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.45856642723083496
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3057239055633545
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.46030116081237793
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3622610569000244
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.6155314445495605
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.4551682472229004
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3508598804473877
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.4937245845794678
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.41307735443115234
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.4934990406036377
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.5827174186706543
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.45476245880126953
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (locked m s (ep m s n1) n1) (=> (= n1 n1) (held m s n1))))
+Pos-CEX query time: 0.01736283302307129
+I-CEX query time: 0.03365206718444824
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.30768895149230957
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (transfer m s (ep m s n1) n1) (locked m s (ep m s n1) n1)))
+Pos-CEX query time: 0.020877361297607422
+I-CEX query time: 0.03771471977233887
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.3249948024749756
+-------------------Depth=4 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.46204543113708496
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (locked m s (ep m s n1) n1) (held m s n2)))
+Pos-CEX query time: 0.01580953598022461
+I-CEX query time: 0.030335187911987305
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.47832703590393066
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7504522800445557
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (and (transfer m s e1 n1) (held m s n1)) (=> (= e1 e1) (locked m s e1 n1))))
+Pos-CEX query time: 0.01520085334777832
+I-CEX query time: 0.028415918350219727
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.6937236785888672
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (=> (le m e1 e1) (locked m s e1 n1)) (= e1 (ep m s n1))))
+Pos-CEX query time: 0.018316030502319336
+I-CEX query time: 0.030945539474487305
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7193629741668701
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (or (=> (transfer m s e1 n1) (held m s n1)) (le m (ep m s n1) e1)))
+Pos-CEX query time: 0.019496440887451172
+I-CEX query time: 0.040169715881347656
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7351748943328857
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (or (transfer m s (ep m s n1) n1) (not (locked m s e1 n1))))
+Pos-CEX query time: 0.020507097244262695
+I-CEX query time: 0.028802156448364258
+WINNER:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(Not(locked(Model_DUMMYMODEL,
+                            S,
+                            Epoch_1,
+                            Node_1)),
+                 transfer(Model_DUMMYMODEL,
+                          S,
+                          ep(Model_DUMMYMODEL, S, Node_1),
+                          Node_1))))
+Neg-CEX query time: 0.029271841049194336
+Depth=1, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3923048973083496
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.41216421127319336
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4084312915802002
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (locked m s e1 n1)))
+Pos-CEX query time: 0.018707752227783203
+I-CEX query time: 0.03004765510559082
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4050881862640381
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (transfer m s e1 n1)))
+Pos-CEX query time: 0.016780376434326172
+I-CEX query time: 0.02369999885559082
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.6435568332672119
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n1)))
+Pos-CEX query time: 0.028385400772094727
+I-CEX query time: 0.036890506744384766
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3204009532928467
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4042680263519287
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.43375396728515625
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.5834031105041504
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.38521575927734375
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.41188979148864746
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.40996217727661133
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.41649436950683594
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.41034364700317383
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.5942187309265137
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.39603519439697266
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.40841054916381836
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.40520763397216797
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.41397786140441895
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.4196643829345703
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.624234676361084
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.41341066360473633
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (locked m s (ep m s n1) n1) (=> (= n1 n1) (held m s n1))))
+Pos-CEX query time: 0.01446676254272461
+I-CEX query time: 0.022612333297729492
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.29753613471984863
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (transfer m s (ep m s n1) n1) (locked m s (ep m s n1) n1)))
+Pos-CEX query time: 0.01726508140563965
+I-CEX query time: 0.02795267105102539
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.305908203125
+-------------------Depth=4 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.4296283721923828
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.6772506237030029
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (and (held m s n1) (transfer m s e1 n1)) (transfer m s (ep m s n1) n1)))
+Pos-CEX query time: 0.014992475509643555
+I-CEX query time: 0.028307676315307617
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.6169328689575195
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s (ep m s n1) n1) (le m e1 (ep m s n1))))
+Pos-CEX query time: 0.015155792236328125
+I-CEX query time: 0.035056114196777344
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7578327655792236
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (=> (= e1 e1) (locked m s e1 n1)) (= (ep m s n1) e1)))
+Pos-CEX query time: 0.02131962776184082
+I-CEX query time: 0.03498435020446777
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.8023240566253662
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (or (=> (transfer m s e1 n1) (locked m s e1 n1)) (le m (ep m s n1) e1)))
+Pos-CEX query time: 0.022423744201660156
+I-CEX query time: 0.040671586990356445
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7683243751525879
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (or (locked m s (ep m s n1) n1) (not (locked m s e1 n1))))
+Pos-CEX query time: 0.017995834350585938
+I-CEX query time: 0.030178308486938477
+WINNER:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(locked(Model_DUMMYMODEL,
+                        S,
+                        ep(Model_DUMMYMODEL, S, Node_1),
+                        Node_1),
+                 Not(locked(Model_DUMMYMODEL,
+                            S,
+                            Epoch_1,
+                            Node_1)))))
+Neg-CEX query time: 0.029575824737548828
+Depth=1, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.38349008560180664
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.395557165145874
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.40836548805236816
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (locked m s e1 n1)))
+Pos-CEX query time: 0.018364906311035156
+I-CEX query time: 0.02669382095336914
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4008045196533203
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (transfer m s e1 n1)))
+Pos-CEX query time: 0.017638683319091797
+I-CEX query time: 0.02798151969909668
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.41365599632263184
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n1)))
+Pos-CEX query time: 0.017409324645996094
+I-CEX query time: 0.034105539321899414
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.28972554206848145
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.41146326065063477
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.48514318466186523
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n2)))
+Pos-CEX query time: 0.021503210067749023
+I-CEX query time: 0.048719167709350586
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.32682275772094727
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.6750264167785645
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.28712892532348633
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.30994176864624023
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2885403633117676
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2693345546722412
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.30954551696777344
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.6904191970825195
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.27086424827575684
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2676713466644287
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.28897976875305176
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.29010677337646484
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3125636577606201
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.6883673667907715
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.3016929626464844
+-------------------Depth=4 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.4716804027557373
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (locked m s (ep m s n2) n2) (and (= n2 n1) (held m s n2))))
+Pos-CEX query time: 0.018675565719604492
+I-CEX query time: 0.033293962478637695
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.45012593269348145
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.6742815971374512
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (or (=> (held m s n1) (locked m s e1 n1)) (not (transfer m s e1 n1))))
+Pos-CEX query time: 0.016518354415893555
+I-CEX query time: 0.027889728546142578
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.6813983917236328
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s (ep m s n1) n1) (le m e1 (ep m s n1))))
+Pos-CEX query time: 0.016426563262939453
+I-CEX query time: 0.03081536293029785
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7313065528869629
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (= e1 (ep m s n1))))
+Pos-CEX query time: 0.01569843292236328
+I-CEX query time: 0.033925533294677734
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.8356289863586426
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (or (le m (ep m s n1) e1) (=> (transfer m s e1 n1) (held m s n1))))
+Pos-CEX query time: 0.024503231048583984
+I-CEX query time: 0.03923177719116211
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.8283994197845459
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (le m e1 (ep m s n1))))
+Pos-CEX query time: 0.023169517517089844
+I-CEX query time: 0.04145193099975586
+WINNER:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(Not(locked(Model_DUMMYMODEL,
+                            S,
+                            Epoch_1,
+                            Node_1)),
+                 le(Model_DUMMYMODEL,
+                    Epoch_1,
+                    ep(Model_DUMMYMODEL, S, Node_1)))))
+Neg-CEX query time: 0.038451194763183594
+Depth=1, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4146111011505127
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.41984128952026367
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.42183732986450195
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (locked m s e1 n1)))
+Pos-CEX query time: 0.01775813102722168
+I-CEX query time: 0.03078770637512207
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4082679748535156
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (transfer m s e1 n1)))
+Pos-CEX query time: 0.014280557632446289
+I-CEX query time: 0.027150392532348633
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4524219036102295
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n1)))
+Pos-CEX query time: 0.01583409309387207
+I-CEX query time: 0.04272723197937012
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3113534450531006
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4398837089538574
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.47405362129211426
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n2)))
+Pos-CEX query time: 0.03359699249267578
+I-CEX query time: 0.09865689277648926
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3260185718536377
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.7994825839996338
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.29819560050964355
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.29611730575561523
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.29389500617980957
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3076169490814209
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.4324374198913574
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  1.0650849342346191
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2779109477996826
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3128805160522461
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.29438209533691406
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.28833532333374023
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.37145566940307617
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.7203919887542725
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.4110066890716553
+-------------------Depth=4 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.5086030960083008
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (locked m s (ep m s n1) n1) (and (held m s n2) (= n2 n1))))
+Pos-CEX query time: 0.016275644302368164
+I-CEX query time: 0.02629542350769043
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7582681179046631
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7218761444091797
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s (ep m s n1) n1) (le m e1 (ep m s n1))))
+Pos-CEX query time: 0.018842458724975586
+I-CEX query time: 0.041237831115722656
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7600588798522949
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (or (not (transfer m s e1 n1)) (le m (ep m s n1) e1)))
+Pos-CEX query time: 0.017709970474243164
+I-CEX query time: 0.034261465072631836
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.8354465961456299
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (and (held m s n1) (transfer m s e1 n1)) (locked m s (ep m s n1) n1)))
+Pos-CEX query time: 0.025656461715698242
+I-CEX query time: 0.04514598846435547
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.8447842597961426
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (or (not (locked m s e1 n1)) (= (ep m s n1) e1)))
+Pos-CEX query time: 0.016473770141601562
+I-CEX query time: 0.03169894218444824
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.8812601566314697
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.8948156833648682
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  1.9876298904418945
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (e1 Epoch)) Bool (or (le m (ep m s n2) e1) (=> (locked m s e1 n1) (held m s n2))))
+Pos-CEX query time: 0.0201108455657959
+I-CEX query time: 0.058144569396972656
+Depth=4, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  2.2212586402893066
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  12.508927583694458
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 4===========================
+
+Depth=5, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  0.7220215797424316
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (=> (le m (ep m s n1) (ep m s n1)) (=> (= n1 n1) (held m s n1))) (=> (transfer m s (ep m s n1) n1) (locked m s (ep m s n1) n1))))
+Pos-CEX query time: 0.015650272369384766
+I-CEX query time: 0.032094478607177734
+Depth=5, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  1.0840604305267334
+-------------------Depth=5 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  6.871954917907715
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (and (=> (transfer m s (ep m s n1) n1) (locked m s (ep m s n1) n2)) (or (le m (ep m s n1) (ep m s n2)) (=> (held m s n2) (= n2 n1)))))
+Pos-CEX query time: 0.02254939079284668
+I-CEX query time: 0.04032254219055176
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  7.354423761367798
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (le m (ep m s n1) (ep m s n2)) (transfer m s (ep m s n2) n2)) (=> (or (= n1 n2) (held m s n2)) (locked m s (ep m s n2) n2))))
+Pos-CEX query time: 0.02521061897277832
+I-CEX query time: 0.037281036376953125
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  5.724125862121582
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (=> (= n1 n1) (= n2 n1)) (transfer m s (ep m s n1) n1)) (=> (and (held m s n2) (held m s n1)) (locked m s (ep m s n2) n2))))
+Pos-CEX query time: 0.021303176879882812
+I-CEX query time: 0.05105948448181152
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  9.373101234436035
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (and (=> (=> (held m s n2) (held m s n1)) (le m (ep m s n2) (ep m s n1))) (=> (transfer m s (ep m s n2) n2) (locked m s (ep m s n2) n1))))
+Pos-CEX query time: 0.026497364044189453
+I-CEX query time: 0.05432939529418945
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  10.651508331298828
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (le m (ep m s n1) (ep m s n2)) (transfer m s (ep m s n1) n2)) (=> (=> (= n2 n2) (held m s n2)) (locked m s (ep m s n2) n2))))
+Pos-CEX query time: 0.020513296127319336
+I-CEX query time: 0.043799400329589844
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  10.402523040771484
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (le m (ep m s n1) (ep m s n2)) (transfer m s (ep m s n2) n2)) (=> (and (= n2 n2) (held m s n2)) (locked m s (ep m s n2) n2))))
+Pos-CEX query time: 0.025376319885253906
+I-CEX query time: 0.03361344337463379
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  13.06760859489441
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (le m (ep m s n1) (ep m s n2)) (transfer m s (ep m s n1) n1)) (=> (=> (= n2 n2) (held m s n2)) (locked m s (ep m s n2) n2))))
+Pos-CEX query time: 0.02254962921142578
+I-CEX query time: 0.04804563522338867
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  14.513549327850342
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (le m (ep m s n2) (ep m s n1)) (transfer m s (ep m s n1) n2)) (=> (and (held m s n1) (held m s n2)) (locked m s (ep m s n2) n2))))
+Pos-CEX query time: 0.02072620391845703
+I-CEX query time: 0.03720569610595703
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  14.365227222442627
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (le m (ep m s n2) (ep m s n1)) (transfer m s (ep m s n2) n2)) (=> (and (held m s n2) (held m s n1)) (locked m s (ep m s n2) n2))))
+Pos-CEX query time: 0.021132230758666992
+I-CEX query time: 0.03419661521911621
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  17.978790521621704
+-------------------Depth=5 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  16.48077630996704
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (and (or (=> (transfer m s e1 n1) (held m s n1)) (le m e1 (ep m s n1))) (not (locked m s (ep m s n1) n1))))
+Pos-CEX query time: 0.027390718460083008
+I-CEX query time: 0.051413774490356445
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  10.228345155715942
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (=> (= n1 n1) (le m e1 (ep m s n1))) (=> (le m (ep m s n1) e1) (= e1 (ep m s n1)))))
+Pos-CEX query time: 0.01952648162841797
+I-CEX query time: 0.031138181686401367
+WINNER:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(Epoch_1 == ep(Model_DUMMYMODEL, S, Node_1),
+                 Not(le(Model_DUMMYMODEL,
+                        ep(Model_DUMMYMODEL, S, Node_1),
+                        Epoch_1)),
+                 Not(le(Model_DUMMYMODEL,
+                        Epoch_1,
+                        ep(Model_DUMMYMODEL, S, Node_1))))))
+Neg-CEX query time: 0.03914499282836914
+Depth=1, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.38162922859191895
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4129774570465088
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.444291353225708
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (transfer m s e1 n1)))
+Pos-CEX query time: 0.02706742286682129
+I-CEX query time: 0.05494832992553711
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.38532447814941406
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (locked m s e1 n1)))
+Pos-CEX query time: 0.027679920196533203
+I-CEX query time: 0.05002284049987793
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.4592163562774658
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s e1 n1) (held m s n1)))
+Pos-CEX query time: 0.029732465744018555
+I-CEX query time: 0.041765451431274414
+Depth=1, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3014695644378662
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.5444538593292236
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.46942830085754395
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.6406443119049072
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.42702460289001465
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.4308586120605469
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.4294877052307129
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.42724156379699707
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3340606689453125
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.6456398963928223
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.42102670669555664
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.46834850311279297
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.42493486404418945
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.43782567977905273
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.4620034694671631
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=3, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.6272964477539062
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.44717860221862793
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (transfer m s (ep m s n1) n1) (locked m s (ep m s n1) n1)))
+Pos-CEX query time: 0.017857074737548828
+I-CEX query time: 0.03269195556640625
+Depth=4, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.496260404586792
+-------------------Depth=4 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.4978351593017578
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.6297721862792969
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (locked m s (ep m s n1) n1) (le m e1 (ep m s n1))))
+Pos-CEX query time: 0.019179821014404297
+I-CEX query time: 0.0373537540435791
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7161860466003418
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (=> (held m s n1) (transfer m s e1 n1)) (le m (ep m s n1) e1)))
+Pos-CEX query time: 0.037941694259643555
+I-CEX query time: 0.057951927185058594
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.6828656196594238
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (=> (le m e1 e1) (locked m s e1 n1)) (= (ep m s n1) e1)))
+Pos-CEX query time: 0.020023107528686523
+I-CEX query time: 0.03777885437011719
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7220656871795654
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (=> (and (held m s n1) (transfer m s e1 n1)) (le m e1 (ep m s n1))))
+Pos-CEX query time: 0.020287036895751953
+I-CEX query time: 0.03925466537475586
+Depth=4, template= ['FORALL', 'FORALL'] [Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.7371125221252441
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  0.8428905010223389
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  1.2957985401153564
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=4, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  4.34929347038269
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch) (e2 Epoch)) Bool (=> (and (locked m s e1 n1) (locked m s e2 n1)) (and (le m e2 e1) (held m s n1))))
+Pos-CEX query time: 0.02066659927368164
+I-CEX query time: 0.043358564376831055
+Depth=4, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  7.992325305938721
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch) (e2 Epoch)) Bool (=> (and (locked m s e1 n1) (transfer m s e2 n1)) (= e2 (ep m s n1))))
+Pos-CEX query time: 0.021470308303833008
+I-CEX query time: 0.037516117095947266
+Depth=4, template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=4 --max-depth=4
+Time taken for synth:  9.611522912979126
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 4===========================
+
+Depth=5, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  0.7313125133514404
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (=> (le m (ep m s n1) (ep m s n1)) (=> (= n1 n1) (held m s n1))) (=> (transfer m s (ep m s n1) n1) (locked m s (ep m s n1) n1))))
+Pos-CEX query time: 0.020679473876953125
+I-CEX query time: 0.030849933624267578
+Depth=5, template= ['FORALL'] [Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  0.8590168952941895
+-------------------Depth=5 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  3.8081839084625244
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (and (=> (and (held m s n2) (= n2 n2)) (le m (ep m s n1) (ep m s n2))) (=> (transfer m s (ep m s n1) n1) (locked m s (ep m s n2) n1))))
+Pos-CEX query time: 0.025343894958496094
+I-CEX query time: 0.04645705223083496
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  5.658663749694824
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (=> (held m s n1) (= n2 n1)) (transfer m s (ep m s n1) n2)) (=> (le m (ep m s n1) (ep m s n2)) (locked m s (ep m s n1) n1))))
+Pos-CEX query time: 0.021223068237304688
+I-CEX query time: 0.03748369216918945
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  7.024573564529419
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (=> (held m s n2) (= n1 n2)) (transfer m s (ep m s n1) n1)) (=> (le m (ep m s n2) (ep m s n1)) (locked m s (ep m s n2) n2))))
+Pos-CEX query time: 0.02387857437133789
+I-CEX query time: 0.045896291732788086
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  9.265499114990234
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (le m (ep m s n1) (ep m s n2)) (transfer m s (ep m s n1) n2)) (=> (=> (held m s n1) (held m s n2)) (locked m s (ep m s n1) n1))))
+Pos-CEX query time: 0.021409273147583008
+I-CEX query time: 0.049619436264038086
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  9.150372743606567
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (and (=> (=> (held m s n2) (held m s n1)) (le m (ep m s n2) (ep m s n1))) (=> (transfer m s (ep m s n1) n1) (locked m s (ep m s n2) n1))))
+Pos-CEX query time: 0.024006128311157227
+I-CEX query time: 0.04854607582092285
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  17.638680458068848
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (=> (held m s n2) (= n2 n1)) (transfer m s (ep m s n2) n1)) (=> (=> (= n2 n2) (held m s n1)) (locked m s (ep m s n2) n2))))
+Pos-CEX query time: 0.03608965873718262
+I-CEX query time: 0.056845664978027344
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  13.857372522354126
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (and (= n1 n2) (= n1 n2)) (transfer m s (ep m s n1) n1)) (=> (and (held m s n1) (held m s n2)) (locked m s (ep m s n2) n1))))
+Pos-CEX query time: 0.025151968002319336
+I-CEX query time: 0.040099382400512695
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  14.059795379638672
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (le m (ep m s n1) (ep m s n2)) (transfer m s (ep m s n2) n1)) (=> (=> (= n2 n2) (held m s n2)) (locked m s (ep m s n2) n2))))
+Pos-CEX query time: 0.02409076690673828
+I-CEX query time: 0.057944536209106445
+Depth=5, template= ['FORALL', 'FORALL'] [Node, Node]
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/cegis/test_synth.sy --min-depth=5 --max-depth=5
+Time taken for synth:  18.305536031723022
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (=> (le m (ep m s n1) (ep m s n2)) (transfer m s (ep m s n2) n2)) (=> (=> (= n2 n2) (held m s n2)) (locked m s (ep m s n2) n2))))
+==========================================================
+Inv:  ForAll(Epoch_1,
+       ForAll(Epoch_2,
+              ForAll(Epoch_3,
+                     And(le(Model_DUMMYMODEL,
+                            Epoch_1,
+                            Epoch_1),
+                         Implies(And(le(Model_DUMMYMODEL,
+                                        Epoch_1,
+                                        Epoch_2),
+                                     le(Model_DUMMYMODEL,
+                                        Epoch_2,
+                                        Epoch_3)),
+                                 le(Model_DUMMYMODEL,
+                                    Epoch_1,
+                                    Epoch_3)),
+                         Implies(And(le(Model_DUMMYMODEL,
+                                        Epoch_1,
+                                        Epoch_2),
+                                     le(Model_DUMMYMODEL,
+                                        Epoch_2,
+                                        Epoch_1)),
+                                 Epoch_1 == Epoch_2),
+                         Or(le(Model_DUMMYMODEL,
+                               Epoch_1,
+                               Epoch_2),
+                            le(Model_DUMMYMODEL,
+                               Epoch_2,
+                               Epoch_1)),
+                         le(Model_DUMMYMODEL,
+                            zero(Model_DUMMYMODEL),
+                            Epoch_1),
+                         one(Model_DUMMYMODEL) !=
+                         zero(Model_DUMMYMODEL)))))
+Inv:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(Not(locked(Model_DUMMYMODEL,
+                            S,
+                            Epoch_1,
+                            Node_1)),
+                 transfer(Model_DUMMYMODEL,
+                          S,
+                          Epoch_1,
+                          Node_1))))
+Inv:  ForAll(Node_1,
+       Or(held(Model_DUMMYMODEL, S, Node_1),
+          le(Model_DUMMYMODEL,
+             ep(Model_DUMMYMODEL, S, Node_1),
+             ep(Model_DUMMYMODEL, S, Node_1))))
+Inv:  ForAll(Node_1,
+       le(Model_DUMMYMODEL,
+          ep(Model_DUMMYMODEL, S, Node_1),
+          ep(Model_DUMMYMODEL, S, Node_1)))
+Inv:  ForAll(Node_1,
+       Or(Not(locked(Model_DUMMYMODEL,
+                     S,
+                     ep(Model_DUMMYMODEL, S, Node_1),
+                     Node_1)),
+          transfer(Model_DUMMYMODEL,
+                   S,
+                   ep(Model_DUMMYMODEL, S, Node_1),
+                   Node_1)))
+Inv:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(le(Model_DUMMYMODEL,
+                    ep(Model_DUMMYMODEL, S, Node_1),
+                    Epoch_1),
+                 le(Model_DUMMYMODEL,
+                    Epoch_1,
+                    ep(Model_DUMMYMODEL, S, Node_1)))))
+Inv:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(Not(locked(Model_DUMMYMODEL,
+                            S,
+                            Epoch_1,
+                            Node_1)),
+                 transfer(Model_DUMMYMODEL,
+                          S,
+                          ep(Model_DUMMYMODEL, S, Node_1),
+                          Node_1))))
+Inv:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(locked(Model_DUMMYMODEL,
+                        S,
+                        ep(Model_DUMMYMODEL, S, Node_1),
+                        Node_1),
+                 Not(locked(Model_DUMMYMODEL,
+                            S,
+                            Epoch_1,
+                            Node_1)))))
+Inv:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(Not(locked(Model_DUMMYMODEL,
+                            S,
+                            Epoch_1,
+                            Node_1)),
+                 le(Model_DUMMYMODEL,
+                    Epoch_1,
+                    ep(Model_DUMMYMODEL, S, Node_1)))))
+Inv:  ForAll(Node_1,
+       ForAll(Epoch_1,
+              Or(Not(le(Model_DUMMYMODEL,
+                        Epoch_1,
+                        ep(Model_DUMMYMODEL, S, Node_1))),
+                 Epoch_1 == ep(Model_DUMMYMODEL, S, Node_1),
+                 Not(le(Model_DUMMYMODEL,
+                        ep(Model_DUMMYMODEL, S, Node_1),
+                        Epoch_1)))))
+==========================================================
+Protocol proved safe? : False
