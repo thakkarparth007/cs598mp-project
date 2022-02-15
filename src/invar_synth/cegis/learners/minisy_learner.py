@@ -94,9 +94,9 @@ def get_ite_from_val_list2(name, val_list):
                     r2L_map[rhs] = set([L])
 
         ret = ""
-        allLs = merged_Ls + list(r2L_map.values())
         forbidden_splits.add(best_arg)
 
+        allLs = sorted(merged_Ls + list(r2L_map.values()), key=lambda x: len(x))
         for Ls in allLs[:-1]:
             val_lists = []
             for L in Ls:
