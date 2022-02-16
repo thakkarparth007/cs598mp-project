@@ -29,7 +29,7 @@ def main():
 
     cegis_learner = Learner(Protocol, invars=[], max_terms=3, load_N_pos_cex_from_traces=0)
     try:
-        cegis_learner.loop(max_depth=7, max_iters=100)
+        cegis_learner.loop(max_depth=7, max_iters=500)
         # cegis_learner.template_generator = [(('FORALL', 'FORALL', 'FORALL'), (Node, Node, Epoch)),]
         # cegis_learner.loop(max_iters=1000, min_depth=4, max_depth=4)
     except:
