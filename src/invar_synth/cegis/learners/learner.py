@@ -3,7 +3,6 @@ import time
 from z3 import *
 import itertools
 from invar_synth.protocols.protocol import ProtocolModel
-from invar_synth.protocols.dist_lock import Node
 from invar_synth.cegis.cex import *
 from invar_synth.utils.qexpr import QForAll
 from tqdm import tqdm
@@ -46,7 +45,7 @@ class CEGISLearner():
         self.counter_examples = [] #self.dummyM.get_pos_cex_from_traces()[:load_N_pos_cex_from_traces]
 
         self.invars = [lambda M, S: M.get_axioms()] + invars
-        self.cur_invar = lambda M, S: QForAll([Node], lambda n1: False)
+        self.cur_invar = lambda M, S: QForAll([BoolSort()], lambda n1: False)
         self.template_generator = list(template_generator(
             self.allowed_quantifiers,
             self.allowed_sorts,
@@ -134,7 +133,7 @@ class CEGISLearner():
     
     def synth(self, min_depth, max_depth):
         for depth in range(min_depth, max_depth+1):
-            valid_templates = [(qs, sorts) for qs, sorts in self.template_generator if Node in sorts]
+            valid_templates = [(qs, sorts) for qs, sorts in self.template_generator]
             templ_ptr = 0
             while templ_ptr < len(valid_templates):
                 qs, sorts = valid_templates[templ_ptr]
