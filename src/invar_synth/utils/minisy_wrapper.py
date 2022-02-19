@@ -1,6 +1,8 @@
 from z3 import *
 from invar_synth.protocols.protocol import ModelId, StateId
 import subprocess
+import os
+
 
 from invar_synth.utils.qexpr import QExpr
 
@@ -9,15 +11,16 @@ class MiniSyWrapper():
         pass
 
     def invoke(self, synth_str, min_depth, max_depth):
-        synth_file = '/home/parth/598mp/src/invar_synth/cegis/test_synth.sy'
+        curdir = os.path.abspath('.')
+        synth_file = f'{curdir}/src/invar_synth/cegis/test_synth.sy'
         with open(synth_file,'w') as f:
             f.write(synth_str)
-        
-        cmd = f'source ~/.zshrc; minisy {synth_file} --min-depth={min_depth} --max-depth={max_depth}'
+
+        cmd = f'minisy {synth_file} --min-depth={min_depth} --max-depth={max_depth}'
         print(f"Running {cmd}")
         out = subprocess.check_output(
             cmd,
-            shell=True, executable="/bin/zsh", encoding='utf-8'
+            shell=True, executable='/bin/bash', encoding='utf-8'
         )
         lines = out.split('\n')
         defs = []
