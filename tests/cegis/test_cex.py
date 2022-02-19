@@ -39,7 +39,7 @@ def test_2():
 
     cand_invar = lambda M, S: \
         QForAll([Node, Epoch],
-        lambda n, e: Implies(S.locked(e, n), S.transfer(e, n))).z3expr
+        lambda n, e: Implies(S.locked(e, n), S.transfer(e, n)))
 
     cg = CEXGen(DistLockModel)
     cex = cg.get_implication_cex(cand_invar)
@@ -55,7 +55,8 @@ def test_2():
 
 
     cg = CEXGen(DistLockModel)
-    cex = cg.get_neg_cex(cand_invar)
+    cg.invars = [cand_invar]
+    cex = cg.get_neg_cex()
 
     return cex
     assert not cex.exists()
@@ -90,27 +91,27 @@ def test_synthed_invars():
     inv0 = lambda M, S: QForAll([Node],
             lambda n1: Implies(
                 S.locked(S.ep(n1), n1), S.transfer(S.ep(n1), n1)
-            )).z3expr
+            ))
     
     inv1 = lambda M, S: QForAll([Node, Epoch],
             lambda n1, e1: Implies(
                 S.locked(e1, n1), S.transfer(e1, n1)
-            )).z3expr
+            ))
     
     inv2 = lambda M, S: QForAll([Node, Epoch],
             lambda n1, e1: Implies(
                 S.locked(e1, n1), M.le(e1, S.ep(n1))
-            )).z3expr
+            ))
     
     inv3 = lambda M, S: QForAll([Node, Epoch],
             lambda n1, e1: Implies(
                 S.locked(e1, n1), S.transfer(S.ep(n1), n1)
-            )).z3expr
+            ))
 
     inv4 = lambda M, S: QForAll([Node],
             lambda n1: Implies(
                 S.transfer(S.ep(n1), n1), S.locked(S.ep(n1), n1)
-            )).z3expr
+            ))
     
     inv5 = lambda M, S: QForAll([Node, Node, Epoch],
             lambda n1, n2, e1: Implies(
@@ -119,7 +120,7 @@ def test_synthed_invars():
                     S.transfer(e1, n1),
                     S.transfer(e1, n2)
                 ), n2 == n1
-            )).z3expr
+            ))
     
     cg = CEXGen(DistLockModel)
     cg.invars = [inv0, inv1, inv2, inv3, inv4]

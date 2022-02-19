@@ -1,6 +1,6 @@
 from invar_synth.protocols.dist_lock import *
 from invar_synth.cegis.learners.learner import *
-from invar_synth.cegis.learners.minisy_learner import get_ite_from_val_list, get_ite_from_val_list2
+from invar_synth.cegis.learners.grammar import get_ite_from_val_list, get_ite_from_val_list2
 
 def test_templ():
     a = [t for t in template_generator(['FORALL'], [Node, Epoch], 3)]

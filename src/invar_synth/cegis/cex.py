@@ -248,7 +248,7 @@ class CEXGen():
         
         return PositiveCEX(solver, None, M, cand_invar, S)
     
-    def get_neg_cex(self, debug=False):
+    def get_neg_cex(self, cur_invar=None, debug=False):
         M = self.protocol_model(f'{self.cex_ctr}_neg')
         S = M.get_state('S1')
 
@@ -257,14 +257,17 @@ class CEXGen():
         solver = SolverWrapper(debug=debug)
         solver.add(M.get_z3_axioms(), "2")
         solver.add(inv(M, S), "3")
-        #solver.add(cand_invar(M, S).z3expr, "4")
+        if cur_invar is not None:
+            solver.add(cand_invar(M, S).z3expr, "4")
+        else:
+            cur_invar = self.invars[-1]
         solver.add(Not(M.get_z3_safety_cond(S)), "5")
 
         if solver.check() == sat:
             self.cex_ctr += 1
-            return NegativeCEX(solver, solver.model(), M, self.invars[-1], S)
+            return NegativeCEX(solver, solver.model(), M, cur_invar, S)
         
-        return NegativeCEX(solver, None, M, self.invars[-1], S)
+        return NegativeCEX(solver, None, M, cur_invar, S)
     
     def get_implication_cex(self, cand_invar, debug=False):
         M = self.protocol_model(f'{self.cex_ctr}_ice')
