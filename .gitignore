@@ -1,1 +1,6 @@
 __pycache__
+**/.tmp/*
+*/**/*.sy
+**/.ipynb_checkpoints/*
+**/.idea/**
+invar_synth.egg-info/*
