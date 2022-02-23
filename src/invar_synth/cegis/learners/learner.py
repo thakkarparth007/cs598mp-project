@@ -32,7 +32,7 @@ class CEGISLearner():
     #   (X) Add the invariants discovered so far to the synth_str
     #   (X) Don't move to a new template till we can't find invariants for the current template
     #   [ ] Just because our template has an epoch variable doesn't mean the invariant generated will use epoch at all. This causes duplicates that we must be aware of.
-    def __init__(self, protocol_model: ProtocolModel, invars=[], max_terms = 5, load_N_pos_cex_from_traces=0):
+    def __init__(self, protocol_model: ProtocolModel, invars=[], max_terms = 5, load_N_pos_cex_from_traces=0, interactive=False):
         set_option('smt.random_seed', 123)
         self.cex_gen = CEXGen(protocol_model)
 
@@ -45,7 +45,7 @@ class CEGISLearner():
         self.counter_examples = [] #self.dummyM.get_pos_cex_from_traces()[:load_N_pos_cex_from_traces]
 
         self.invars = [lambda M, S: M.get_axioms()] + invars
-        self.cur_invar = lambda M, S: QForAll([BoolSort()], lambda n1: False)
+        self.cur_invar = lambda M, S: QForAll([self.dummyM.sorts[0]], lambda n1: BoolVal(False))
         self.template_generator = list(template_generator(
             self.allowed_quantifiers,
             self.allowed_sorts,
@@ -55,8 +55,12 @@ class CEGISLearner():
         self.perm_storage['cex'] = []
         self.safe = False
 
+        self.interactive = interactive
+
     # $unique_invar_asserts ^ insert above    
-    def loop(self, max_iters=10, min_depth=1, max_depth=4, debug=False):
+    def loop(self, max_iters=10, min_depth=1, max_depth=4, debug=False, interactive=False):
+        time_loop_start = time.time()
+
         synth_generator = self.synth(min_depth, max_depth)
         for i in tqdm(range(max_iters)):
             start = time.time()
@@ -66,6 +70,10 @@ class CEGISLearner():
             if cex.exists():
                 self.counter_examples.append(cex)
                 self.perm_storage['cex'].append(cex)
+
+                # effectively only gets used when cheap constraints option is turned on
+                cex.expand_lazy_valuations_set(self.cur_invar)
+
                 # overwrite the current invariant, it's useless
                 self.cur_invar = next(synth_generator)
                 continue
@@ -98,7 +106,8 @@ class CEGISLearner():
             # store the current invariant, because it's inductive
             self.invars.append(self.cur_invar)
             self.cex_gen.invars.append(self.cur_invar)
-            print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS).z3expr)
+            print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS).z3expr,
+                 f"\nFound after {time.time() - time_loop_start} seconds")
             # reset synth_generator
             synth_generator = self.synth(min_depth, max_depth)
 
@@ -110,7 +119,7 @@ class CEGISLearner():
             self.counter_examples = [cex for cex in self.counter_examples if (isinstance(cex, PositiveCEX))]
             
             start = time.time()
-            cex = self.cex_gen.get_neg_cex(debug)
+            cex = self.cex_gen.get_neg_cex(debug=debug)
             end = time.time()
             print("Neg-CEX query time: {}".format(end-start))
             if cex.exists():
@@ -137,9 +146,11 @@ class CEGISLearner():
             templ_ptr = 0
             while templ_ptr < len(valid_templates):
                 qs, sorts = valid_templates[templ_ptr]
-                print(f"Depth={depth}, template=", qs, sorts)
+                print(f"Depth={depth}, Winners={len(self.invars)} template=", qs, sorts)
 
                 synthesized_invar_candidates = self.get_candidates(qs, sorts, min_depth=depth, max_depth=depth)
+                if self.interactive:
+                    input("Go?")
 
                 if len(synthesized_invar_candidates) == 0:
                     print(f"-------------------Depth={depth} Exhausted template ", qs, sorts, '-------------------\n')

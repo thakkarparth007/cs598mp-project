@@ -1,15 +1,27 @@
 from z3 import *
 from invar_synth.protocols.protocol import ModelId, StateId
 import subprocess
+from pathlib import Path
+import os.path as path
 
 from invar_synth.utils.qexpr import QExpr
 
 class MiniSyWrapper():
-    def __init__(self):
-        pass
+    def __init__(self, run_name=None):
+        mydir = Path(path.dirname(path.abspath(__file__)))
+
+        if run_name is not None:
+            file_loc = mydir/'../cegis/run_files/'
+            if not file_loc.exists():
+                file_loc.mkdir()
+            file_count = len([f for f in file_loc.iterdir()])
+            run_name = str(file_count) + '_' + run_name + '.sy'
+            self.file_loc = file_loc / run_name
+        else:
+            self.file_loc = mydir/'../cegis/test_synth.sy'
 
     def invoke(self, synth_str, min_depth, max_depth):
-        synth_file = '/home/parth/598mp/src/invar_synth/cegis/test_synth.sy'
+        synth_file = self.file_loc
         with open(synth_file,'w') as f:
             f.write(synth_str)
         

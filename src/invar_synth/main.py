@@ -7,6 +7,11 @@ import argparse
 argparser = argparse.ArgumentParser()
 argparser.add_argument('--learner', type=str, default='minisy_learner')
 argparser.add_argument('--protocol', type=str, default='dist_lock')
+argparser.add_argument('--cheap_constraints', action='store_true')
+argparser.add_argument('--interactive', action='store_true')
+argparser.add_argument('--num_iters', type=int, default=100)
+argparser.add_argument('--max_depth', type=int, default=6)
+argparser.add_argument('--run_name', type=str, default='run')
 args = argparser.parse_args()
 
 def get_learner(learner_name):
@@ -27,9 +32,14 @@ def main():
     Learner = get_learner(args.learner)
     Protocol = get_protocol(args.protocol)
 
-    cegis_learner = Learner(Protocol, invars=[], max_terms=3, load_N_pos_cex_from_traces=0)
+    cegis_learner = Learner(
+        Protocol, invars=[], max_terms=3, load_N_pos_cex_from_traces=0,
+        interactive=args.interactive,
+        cheap_constraints=args.cheap_constraints,
+        run_name = args.run_name
+    )
     try:
-        cegis_learner.loop(max_depth=7, max_iters=500)
+        cegis_learner.loop(max_depth=args.max_depth, max_iters=args.num_iters)
         # cegis_learner.template_generator = [(('FORALL', 'FORALL', 'FORALL'), (Node, Node, Epoch)),]
         # cegis_learner.loop(max_iters=1000, min_depth=4, max_depth=4)
     except:
