@@ -162,8 +162,8 @@ class CEX():
 
         return formulas
     
-    def get_model_desc(self):
-        return self.get_formula_of_state_for_ite(self.S, include_global=True)
+    def get_model_desc(self, cheap_constraints=False):
+        return self.get_formula_of_state_for_ite(self.S, include_global=True, cheap_universes=None)
     
     def generate_inv_expr_for_tmpl(self, tmpl_qs, tmpl_sorts, synthesized_inv, lazy=False):
         # TODO: for slowgrowth/cheap constraints, modify this part.
@@ -191,9 +191,19 @@ class PositiveCEX(CEX):
                                               # the list is lazily expanded.
         
         # unused for now.
-        # TODO: Expand the universe lazily too. i.e., only define state/model functions (e.g., held, le etc.)
-        #       relevant to the valuations under use.
-        self.lazy_universes = {}
+        # Expand the universe lazily too. i.e., only define state/model functions (e.g., held, le etc.)
+        # relevant to the valuations under use.
+        if self.exists():
+            self.lazy_universes = {
+                sort : set(self.M.get_universe(sort)[:1]) for sort in self.M.sorts
+            }
+    
+    def get_model_desc(self, cheap_constraints=False):
+        return self.get_formula_of_state_for_ite(
+            self.S,
+            include_global=True,
+            cheap_universes=self.lazy_universes if cheap_constraints else None
+        )
     
     def expand_lazy_valuations_set(self, invar_fn : Callable[[ProtocolModel, ProtocolState], QExpr]):
         invar_qexpr = invar_fn(self.M, self.S)
@@ -210,6 +220,8 @@ class PositiveCEX(CEX):
         assert valuation not in self.template_to_lazy_valuations[tmpl], \
             f"Valuation {valuation} already in lazy valuations set."
         self.template_to_lazy_valuations[tmpl].append(valuation)
+        for i, v in enumerate(valuation):
+            self.lazy_universes[tmpl_sorts[i]].add(v)
     
     def generate_inv_expr_for_tmpl(self, tmpl_qs, tmpl_sorts, synthesized_inv, lazy=True):
         if not lazy:
