@@ -1,6 +1,11 @@
+from functools import partial
+import typing
 from z3 import *
 import itertools
+from typing import Callable, List, Tuple
+from invar_synth.protocols.protocol import ProtocolModel, ProtocolState
 from invar_synth.utils.solver_wrapper import *
+from invar_synth.utils.qexpr import QExpr, QForAll
 
 cex_id = 0
 
@@ -56,6 +61,34 @@ class CEX():
         """
         raise NotImplementedError()
     
+    def get_valuations_violating_invariant(
+        self,
+        S : ProtocolState,
+        invar_fn : Callable[[ProtocolModel, ProtocolState], QExpr],
+        all=False
+    ) -> typing.Union[None, Tuple[Symbol], List[Tuple[Symbol]]]:
+        """
+        Part of the cheap constraints idea - finds valuations of the invariant that violate it.
+        invar_fn is a function that takes M and S, and returns a QExpr
+        """
+        valuations = [] # list of tuples of size |args_of_invar_fn|
+        universes = []
+        invar_qexpr = invar_fn(self.M, S)
+        for s in invar_qexpr.sorts:
+            universes.append(self.M.get_universe(s))
+        
+        all_args = itertools.product(*universes)
+        for args in all_args:
+            eval = self.z3model.eval(invar_qexpr.body(*args), model_completion=True)
+            if eval == False:
+                if all == False:
+                    return args
+                valuations.append(args)
+        
+        if len(valuations) == 0 and all == False:
+            return None
+        return valuations
+
     def get_formula_of_state(self, S, include_global=False):
         """
         Converts a given state into a boolean formula describing the state.
@@ -91,13 +124,7 @@ class CEX():
            *(formulas.values())
         )
     
-    def get_violating_elems(self, invar_fn):
-        """
-        An invar_fn 
-        """
-        pass
-    
-    def get_formula_of_state_for_ite(self, S, include_global=False):
+    def get_formula_of_state_for_ite(self, S, include_global=False, cheap_universes=False):
         """
         Same as get_formula_of_state, but returns a formula that can be used in an ITE.
         Specifically, returns a dictionary mapping names to a list of (lhs, rhs) pairs.
@@ -105,10 +132,13 @@ class CEX():
 
         "Partial" because we're only evaluating the functions for this specific state in this specific model (cex).
         """
-        univ = {}
-        for s in self.M.sorts:
-            univ[s] = self.M.get_universe(s)
         
+        univ = cheap_universes
+        if not univ:
+            univ = {}
+            for s in self.M.sorts:
+                univ[s] = self.M.get_universe(s)
+            
         decls = [(n, fn, False) for n, fn in S.vars.items()]
         if include_global:
             decls += [(n, fn, True) for n, fn in self.M.globals.items()]
@@ -133,13 +163,79 @@ class CEX():
         return formulas
     
     def get_model_desc(self):
-        return self.get_formula_of_state_for_ite(self.S, True)
+        return self.get_formula_of_state_for_ite(self.S, include_global=True)
+    
+    def generate_inv_expr_for_tmpl(self, tmpl_qs, tmpl_sorts, synthesized_inv, lazy=False):
+        # TODO: for slowgrowth/cheap constraints, modify this part.
+        #       currently it evaluates the invariant over the entire model
+        #       but cheap constraints == evaluation over selected elements
+        #
+        #       Perhaps the counter example itself could contain the information
+        #       about violating valuations.
+        assert lazy == False, "Lazy invariant expression generation should be defined for Positive/Implication counter examples. Not here."
+        arg_values = [self.M.get_universe(s) for s in tmpl_sorts]
+        inv_expr = lambda M, S: QExpr(tmpl_qs, tmpl_sorts,
+            partial(synthesized_inv, M.model_sym, S.state_sym))\
+                .to_ground_expr(arg_values)
+        
+        return inv_expr
 
 class PositiveCEX(CEX):
     def __init__(self, solver, z3model, M, cand_invar, S):
         super().__init__(solver, z3model, M, cand_invar)
         self.S = S
         self.cand_invar = cand_invar(M, S)
+
+        # the following two are related to the cheap constraints idea.
+        self.template_to_lazy_valuations = {} # maps template to list of valuations under that template.
+                                              # the list is lazily expanded.
+        
+        # unused for now.
+        # TODO: Expand the universe lazily too. i.e., only define state/model functions (e.g., held, le etc.)
+        #       relevant to the valuations under use.
+        self.lazy_universes = {}
+    
+    def expand_lazy_valuations_set(self, invar_fn : Callable[[ProtocolModel, ProtocolState], QExpr]):
+        invar_qexpr = invar_fn(self.M, self.S)
+        tmpl_qs, tmpl_sorts = invar_qexpr.qs, invar_qexpr.sorts
+        tmpl = str((tmpl_qs, tmpl_sorts))
+        if tmpl not in self.template_to_lazy_valuations:
+            self.template_to_lazy_valuations[tmpl] = []
+
+        valuation = self.get_valuations_violating_invariant(self.S, invar_fn, all=False)
+        if valuation is None:
+            # the new invariant doesn't violate this counter example. No need to expand.
+            return
+
+        assert valuation not in self.template_to_lazy_valuations[tmpl], \
+            f"Valuation {valuation} already in lazy valuations set."
+        self.template_to_lazy_valuations[tmpl].append(valuation)
+    
+    def generate_inv_expr_for_tmpl(self, tmpl_qs, tmpl_sorts, synthesized_inv, lazy=True):
+        if not lazy:
+            return super().generate_inv_expr_for_tmpl(tmpl_qs, tmpl_sorts, synthesized_inv, lazy=False)
+
+        assert "EXISTS" not in tmpl_qs, "Lazy invariant evaluation is only supported for \forall quantifiers."
+
+        tmpl = str((tmpl_qs, tmpl_sorts))
+        if tmpl in self.template_to_lazy_valuations:
+            valuations = self.template_to_lazy_valuations[tmpl]
+            assert len(valuations) > 0, f"No valuations to expand for template {tmpl}."
+        else:
+            valuations = [
+                [self.M.get_universe(s)[0] for s in tmpl_sorts]
+            ]
+            #valuations = [self.get_valuations_violating_invariant(
+            #    self.S,
+            #    lambda M, S: QForAll(tmpl_sorts, lambda *x: BoolVal(False)),
+            #    all=False
+            #)]
+
+        inv_expr = lambda M, S: QForAll(tmpl_sorts,
+            partial(synthesized_inv, M.model_sym, S.state_sym))\
+                .eval_over_valuations(valuations)
+        
+        return inv_expr
     
     def get_synth_constraint(self, known_invars, inv_fn, include_state=True):
         _, formula = self.get_formula_of_state(
@@ -258,7 +354,7 @@ class CEXGen():
         solver.add(M.get_z3_axioms(), "2")
         solver.add(inv(M, S), "3")
         if cur_invar is not None:
-            solver.add(cand_invar(M, S).z3expr, "4")
+            solver.add(cur_invar(M, S).z3expr, "4")
         else:
             cur_invar = self.invars[-1]
         solver.add(Not(M.get_z3_safety_cond(S)), "5")

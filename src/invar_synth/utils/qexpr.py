@@ -61,6 +61,15 @@ class QExpr():
 class QForAll(QExpr):
     def __init__(self, sorts, body):
         super().__init__(['FORALL']*len(sorts), sorts, body)
+    
+    def eval_over_valuations(self, valuations):
+        assert len(valuations) > 0, "Need at least one valuation"
+        assert len(valuations[0]) == len(self.formal_args), \
+            f"Incorrect format of valuations. Expected each valuation to be a list of length {len(self.formal_args)}"
+        
+        return And(*[
+            self.body(*valuation) for valuation in valuations
+        ])
 
 class QExists(QExpr):
     def __init__(self, sorts, body):
