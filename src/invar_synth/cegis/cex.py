@@ -65,7 +65,8 @@ class CEX():
         self,
         S : ProtocolState,
         invar_fn : Callable[[ProtocolModel, ProtocolState], QExpr],
-        all=False
+        all=False,
+        except_valuations=[]
     ) -> typing.Union[None, Tuple[Symbol], List[Tuple[Symbol]]]:
         """
         Part of the cheap constraints idea - finds valuations of the invariant that violate it.
@@ -79,6 +80,8 @@ class CEX():
         
         all_args = itertools.product(*universes)
         for args in all_args:
+            if args in except_valuations:
+                continue
             eval = self.z3model.eval(invar_qexpr.body(*args), model_completion=True)
             if eval == False:
                 if all == False:
@@ -205,23 +208,29 @@ class PositiveCEX(CEX):
             cheap_universes=self.lazy_universes if cheap_constraints else None
         )
     
-    def expand_lazy_valuations_set(self, invar_fn : Callable[[ProtocolModel, ProtocolState], QExpr]):
+    def expand_lazy_valuations_set(self, invar_fn : Callable[[ProtocolModel, ProtocolState], QExpr]) -> Bool:
+        """Returns True if successfully expanded, else False."""
         invar_qexpr = invar_fn(self.M, self.S)
         tmpl_qs, tmpl_sorts = invar_qexpr.qs, invar_qexpr.sorts
         tmpl = str((tmpl_qs, tmpl_sorts))
         if tmpl not in self.template_to_lazy_valuations:
+            assert False, "Should've been filled in already"
             self.template_to_lazy_valuations[tmpl] = []
 
-        valuation = self.get_valuations_violating_invariant(self.S, invar_fn, all=False)
+        valuation = self.get_valuations_violating_invariant(
+            self.S, invar_fn, all=False, except_valuations=self.template_to_lazy_valuations[tmpl]
+        )
         if valuation is None:
             # the new invariant doesn't violate this counter example. No need to expand.
-            return
+            return False
 
-        assert valuation not in self.template_to_lazy_valuations[tmpl], \
-            f"Valuation {valuation} already in lazy valuations set."
+        #assert valuation not in self.template_to_lazy_valuations[tmpl], \
+        #    f"Valuation {valuation} already in lazy valuations set."
         self.template_to_lazy_valuations[tmpl].append(valuation)
         for i, v in enumerate(valuation):
             self.lazy_universes[tmpl_sorts[i]].add(v)
+        
+        return True
     
     def generate_inv_expr_for_tmpl(self, tmpl_qs, tmpl_sorts, synthesized_inv, lazy=True):
         if not lazy:
@@ -232,11 +241,14 @@ class PositiveCEX(CEX):
         tmpl = str((tmpl_qs, tmpl_sorts))
         if tmpl in self.template_to_lazy_valuations:
             valuations = self.template_to_lazy_valuations[tmpl]
+            if len(valuations) == 0:
+                print(self.solver)
             assert len(valuations) > 0, f"No valuations to expand for template {tmpl}."
         else:
             valuations = [
                 [self.M.get_universe(s)[0] for s in tmpl_sorts]
             ]
+            self.template_to_lazy_valuations[tmpl] = valuations
             #valuations = [self.get_valuations_violating_invariant(
             #    self.S,
             #    lambda M, S: QForAll(tmpl_sorts, lambda *x: BoolVal(False)),
@@ -289,7 +301,7 @@ class ImplicationCEX(CEX):
         self.S2 = S2
         self.cand_invar = cand_invar(M, S1)
     
-    def get_model_desc(self):
+    def get_model_desc(self, cheap_constraints=False):
         formulas = self.get_formula_of_state_for_ite(self.S1, True)
         formulas2 = self.get_formula_of_state_for_ite(self.S2, False)
         for name, f in formulas2.items():
@@ -319,7 +331,7 @@ class CEXGen():
         self.invars = []
         self.cex_ctr = 0
         self.protocol_model = protocol_model
-    
+
     def add_invariant(self, inv):
         self.invars.append(inv)
     

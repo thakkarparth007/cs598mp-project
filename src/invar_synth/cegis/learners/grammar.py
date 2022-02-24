@@ -3,13 +3,15 @@ from invar_synth.protocols.protocol import *
 from invar_synth.cegis.cex import CEX, ImplicationCEX, PositiveCEX
 from invar_synth.utils.qexpr import QExpr
 
+import numpy as np
+
 from string import Template
 
 val_list_sz_sum = 0
 val_list_sz_ct  = 0
 def get_ite_from_val_list2(name, val_list):
     global val_list_sz_sum, val_list_sz_ct
-    
+
     val_list_sz_sum += len(val_list)
     val_list_sz_ct += 1
     print("Size of val_list:", len(val_list), "avg:", val_list_sz_sum/val_list_sz_ct)
@@ -134,6 +136,145 @@ def get_ite_from_val_list2(name, val_list):
     ret += ")"
     return ret
 
+def get_ite_from_val_list3(name, val_list):
+    global val_list_sz_sum, val_list_sz_ct
+
+    val_list = np.array(val_list, dtype=object)
+
+    val_list_sz_sum += len(val_list)
+    val_list_sz_ct += 1
+    print("Size of val_list:", len(val_list), "avg:", val_list_sz_sum/val_list_sz_ct)
+
+    NUM_ARGS = len(val_list[0][0])
+    ARG_IDX_SET = set(range(NUM_ARGS))
+
+    ret = "(ite (= a0 Model_DUMMYMODEL)"
+    default_val = f"({name}_dummy "
+    for i in range(NUM_ARGS):
+        default_val += f"a{i} "
+    default_val += ")"
+    ret += f" {default_val}\n"
+
+    def is_bool(val):
+        return isinstance(val, bool) or "BoolRef" in str(type(val))
+
+    # split along an attribute if there are different RHS values
+    # after splitting, we want to merge branches that lead to the same RHS value
+    # for the last RHS value, we don't need if, just use the else clause.
+    def ID3(val_list, indent=0, forbidden_splits=set()):
+        # find entropy of val_list
+        rhs_idx = {} # maps rhs value to an integer - to allow dealing with rhses via integers
+        rhs_counts = []
+        argsplit_infos = [{} for _ in range(NUM_ARGS)]
+
+        valid_js = list(ARG_IDX_SET).difference(forbidden_splits)
+        for (lhs, rhs) in val_list:
+            if rhs not in rhs_idx:
+                rhs_idx[rhs] = len(rhs_idx)
+                rhs_counts.append(0)
+            else:
+                rhs_counts[rhs_idx[rhs]] += 1
+
+        if len(rhs_counts) == 1:
+            rhs_val = list(rhs_counts.keys())[0]
+            if is_bool(rhs_val):
+                rhs_val = "true" if rhs_val else "false"
+            else:
+                rhs_val = str(rhs_val)
+            
+            # Ls = set([lhs[0] for lhs, _ in val_list])
+
+            return ("    "*(indent)) + rhs_val + "\n"
+
+        for (lhs, rhs) in val_list:
+            rhs = rhs_idx[rhs]
+            for j in valid_js:
+                L = lhs[j]
+                argsplit_infos[j][L] = argsplit_infos[j].get(L, np.zeros(len(rhs_counts)))
+                argsplit_infos[j][L][rhs] += 1
+
+        den = len(val_list)
+        rhs_counts = np.array(rhs_counts)
+        #entropy = -sum([rhs_counts[rhs]/den * math.log(rhs_counts[rhs]/den, 2) for rhs in rhs_counts])
+        entropy = -np.sum(rhs_counts/den * np.log2(rhs_counts/den))
+
+        # calculate the entropy after splitting on every argument
+        info_gain = [-1 for _ in range(NUM_ARGS)]
+        for j in valid_js:
+            info_gain[j] = entropy
+            for L, rhs_info in argsplit_infos[j].items():
+                den = np.sum(list(rhs_info.values()))
+                split_entropy = -sum([rhs_info[rhs]/den * math.log(rhs_info[rhs]/den, 2)
+                                        for rhs in rhs_info])
+                info_gain[j] -= den/len(val_list)*split_entropy
+        
+        # find the argument with the lowest entropy
+        best_arg = max(info_gain, key=info_gain.get)
+        best_split_info = argsplit_infos[best_arg]
+        if len(best_split_info) == 1:
+            # if this happens, it means that the best possible split is on a constant
+            # which means, all rhs values are the same
+            # but that case is already handled by the previous if statement (len(rhs_counts) == 1)
+            assert False, "This should not happen."
+        
+        val_lists_after_split = {}
+        for lhs, rhs in val_list:
+            L = lhs[best_arg]
+            if L not in val_lists_after_split:
+                val_lists_after_split[L] = {"val_lists": [], "rhs_vals": set([])}
+            
+            val_lists_after_split[L]["val_lists"].append((lhs, rhs))
+            val_lists_after_split[L]["rhs_vals"].add(rhs)
+
+        r2L_map = {}
+        merged_Ls = []
+        for L, val_list_after_split in val_lists_after_split.items():
+            if len(val_list_after_split["rhs_vals"]) > 1:
+                merged_Ls.append([L])
+            else:
+                rhs = list(val_list_after_split["rhs_vals"])[0]
+                if rhs in r2L_map:
+                    r2L_map[rhs].add(L)
+                else:
+                    r2L_map[rhs] = set([L])
+
+        ret = ""
+        forbidden_splits.add(best_arg)
+
+        allLs = sorted(merged_Ls + list(r2L_map.values()), key=lambda x: len(x))
+        for Ls in allLs[:-1]:
+            val_lists = []
+            for L in Ls:
+                val_lists += val_lists_after_split[L]["val_lists"]
+
+            if len(Ls) == 1:
+                cond = f"(= a{best_arg} {Ls.pop()})"
+            else:
+                cond = f"(or "
+                for L in Ls:
+                    cond += f"(= a{best_arg} {L}) "
+                cond += ")"
+            
+            ret += f"{'    '*indent}(ite {cond}\n"
+            ret += ID3(val_lists, indent+1, forbidden_splits)
+
+        lastLs = allLs[-1]
+        val_lists = []
+        Ls_str = ""
+        for L in lastLs:
+            val_lists += val_lists_after_split[L]["val_lists"]
+            Ls_str += f"{L}, "
+        ret += f";{'    '*indent}if a{best_arg} IN [{Ls_str}] \n"
+        ret += ID3(val_lists, indent+1, forbidden_splits)
+        ret += f"{'    '*indent}{')'*(len(allLs)-1)}\n"
+
+        forbidden_splits.remove(best_arg)
+        return ret
+    
+    ret += ID3(val_list, 1)
+    ret += ")"
+    return ret
+
 def get_ite_from_val_list(name, val_list, default_val=None, is_grouped=False, is_sorted=False):
     if len(val_list) == 0:
         return f"\t{default_val}"
@@ -170,7 +311,7 @@ def get_ite_from_val_list(name, val_list, default_val=None, is_grouped=False, is
     return f"\t(ite {cond} {rhs}\n{else_str})"
 
 class SynthGrammar:
-    def __init__(self, M: ProtocolModel, rnd_seed):
+    def __init__(self, M: ProtocolModel, rnd_seed, use_id3=True):
         self.M = M
         self.S = S = M.get_state('DUMMYSTATE')
         self.seed = rnd_seed
@@ -190,6 +331,7 @@ class SynthGrammar:
         
         self.counter_examples : List[CEX] = []
         self.known_invars : List[QExpr] = []
+        self.use_id3 = use_id3
 
         # vars:
         #   - $seed                  : seed passed on to z3
@@ -284,7 +426,7 @@ $dummy_vars
         universes[StateId] = set()
 
         for cex in counter_examples:
-            self._update_model_descs_in_loop(model_descs, cex)
+            self._update_model_descs_in_loop(model_descs, cex, cheap_constraints)
             self._update_universes_in_loop(universes, cex)
             # self._append_cex_desc_as_comment_in_loop(constraints, cex)
 
@@ -392,8 +534,8 @@ $dummy_vars
             for elem in univ:
                 universes[s].add(elem)
     
-    def _update_model_descs_in_loop(self, model_descs: Dict, cex: CEX):
-        model_desc = cex.get_model_desc()
+    def _update_model_descs_in_loop(self, model_descs: Dict, cex: CEX, cheap_constraints=False):
+        model_desc = cex.get_model_desc(cheap_constraints=cheap_constraints)
         for name, desc in model_desc.items():
             if name in model_descs:
                 model_descs[name] += desc
@@ -444,8 +586,10 @@ $dummy_vars
             farg_list = ' '.join(f'(a{i} {s})' for i, s in enumerate(sorts))
 
             fn_defn = f"(define-fun {name} ({farg_list}) {rng}\n"
-            fn_defn += get_ite_from_val_list2(name, desc)
-            # fn_defn += get_ite_from_val_list(name, desc)
+            if self.use_id3:
+                fn_defn += get_ite_from_val_list2(name, desc)
+            else:
+                fn_defn += get_ite_from_val_list(name, desc)
             fn_defn += ")\n"
 
             fn_defns.append(f"(declare-fun {name}_dummy ({' '.join(sorts)}) {rng})")

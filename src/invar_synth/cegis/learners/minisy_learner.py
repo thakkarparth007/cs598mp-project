@@ -15,12 +15,13 @@ class MinisyLearner(CEGISLearner):
     #   [ ] Just because our template has an epoch variable doesn't mean the invariant generated will use epoch at all. This causes duplicates that we must be aware of.
     def __init__(
         self, protocol_model, invars=[], max_terms = 5, load_N_pos_cex_from_traces=0, interactive=False, cheap_constraints=True,
-        run_name=None
+        run_name=None,
+        use_id3=True,
     ):
-        super().__init__(protocol_model, invars, max_terms, load_N_pos_cex_from_traces, interactive)
+        super().__init__(protocol_model, invars, max_terms, load_N_pos_cex_from_traces, interactive, cheap_constraints)
 
         self.minisy = MiniSyWrapper(run_name)
-        self.grammar = SynthGrammar(self.dummyM, 123)
+        self.grammar = SynthGrammar(self.dummyM, 123, use_id3=use_id3)
         self.cheap_constraints = cheap_constraints
     
     def get_candidates(self, qs, sorts, min_depth, max_depth):

@@ -32,7 +32,10 @@ class CEGISLearner():
     #   (X) Add the invariants discovered so far to the synth_str
     #   (X) Don't move to a new template till we can't find invariants for the current template
     #   [ ] Just because our template has an epoch variable doesn't mean the invariant generated will use epoch at all. This causes duplicates that we must be aware of.
-    def __init__(self, protocol_model: ProtocolModel, invars=[], max_terms = 5, load_N_pos_cex_from_traces=0, interactive=False):
+    def __init__(
+        self, protocol_model: ProtocolModel, invars=[], max_terms = 5, load_N_pos_cex_from_traces=0, interactive=False,
+        cheap_constraints=True
+    ):
         set_option('smt.random_seed', 123)
         self.cex_gen = CEXGen(protocol_model)
 
@@ -56,6 +59,7 @@ class CEGISLearner():
         self.safe = False
 
         self.interactive = interactive
+        self.cheap_constraints = cheap_constraints
 
     # $unique_invar_asserts ^ insert above    
     def loop(self, max_iters=10, min_depth=1, max_depth=4, debug=False, interactive=False):
@@ -63,17 +67,30 @@ class CEGISLearner():
 
         synth_generator = self.synth(min_depth, max_depth)
         for i in tqdm(range(max_iters)):
-            start = time.time()
-            cex = self.cex_gen.get_pos_cex(self.cur_invar, debug)
-            end = time.time()
-            print("Pos-CEX query time: {}".format(end-start))
+            need_new_pos_cex = True
+            if self.cheap_constraints:
+                for cex in self.counter_examples:
+                    if isinstance(cex, PositiveCEX):
+                        if cex.expand_lazy_valuations_set(self.cur_invar):
+                            need_new_pos_cex = False
+                            break
+
+            if need_new_pos_cex:
+                start = time.time()
+                cex = self.cex_gen.get_pos_cex(self.cur_invar, debug)
+                end = time.time()
+                print("Pos-CEX query time: {}".format(end-start))
+
+                if cex.exists():
+                    self.counter_examples.append(cex)
+                    self.perm_storage['cex'].append(cex)
+            else:
+                invar_qexpr = self.cur_invar(self.dummyM, self.dummyS)
+                tmpl_qs, tmpl_sorts = invar_qexpr.qs, invar_qexpr.sorts
+                tmpl = str((tmpl_qs, tmpl_sorts))
+                print(f"Expanded old cex {cex.id} to have ", len(cex.template_to_lazy_valuations[tmpl]), " lazy valuations under template ", tmpl)
+            
             if cex.exists():
-                self.counter_examples.append(cex)
-                self.perm_storage['cex'].append(cex)
-
-                # effectively only gets used when cheap constraints option is turned on
-                cex.expand_lazy_valuations_set(self.cur_invar)
-
                 # overwrite the current invariant, it's useless
                 self.cur_invar = next(synth_generator)
                 continue
