@@ -10,27 +10,32 @@ class MiniSyWrapper():
     def __init__(self, run_name=None):
         global run_file_loc
         mydir = Path(path.dirname(path.abspath(__file__)))
+        self.query_id = 0
 
         if run_name is not None:
-            file_loc = mydir/'../cegis/run_files/'
-            if not file_loc.exists():
-                file_loc.mkdir()
+            file_loc = mydir/'../cegis/run_files'
             file_count = len([f for f in file_loc.iterdir()])
-            run_name = str(file_count) + '_' + run_name + '.sy'
-            self.file_loc = (file_loc / run_name).resolve()
+            run_name_pref = str(file_count) + '_' + run_name
+
+            file_loc = file_loc/run_name_pref
         else:
-            self.file_loc = (mydir/'../cegis/test_synth.sy').resolve()
+            run_name_pref = 'test_cegis'
+            file_loc = (mydir/'../cegis'/run_name_pref)
+        
+        if not file_loc.exists():
+            file_loc.mkdir()
+        self.file_loc = file_loc.resolve()
 
         self.minisy_path = mydir/'../../../mini-sygus/scripts/minisy'
         
         assert self.minisy_path.exists()
         self.minisy_path = self.minisy_path.resolve()
         
-        run_file_loc = self.file_loc
-        print(f"Storing minisy stuff at: {run_file_loc}")
+        print(f"Storing minisy stuff at: {self.file_loc}/q_*.sy")
 
     def invoke(self, synth_str, min_depth, max_depth):
-        synth_file = self.file_loc
+        self.query_id += 1
+        synth_file = self.file_loc / f'q_{self.query_id}.sy'
         with open(synth_file,'w') as f:
             f.write(synth_str)
         
