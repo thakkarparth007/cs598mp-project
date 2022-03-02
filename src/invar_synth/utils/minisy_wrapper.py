@@ -16,20 +16,26 @@ class MiniSyWrapper():
                 file_loc.mkdir()
             file_count = len([f for f in file_loc.iterdir()])
             run_name = str(file_count) + '_' + run_name + '.sy'
-            self.file_loc = file_loc / run_name
+            self.file_loc = (file_loc / run_name).resolve()
         else:
-            self.file_loc = mydir/'../cegis/test_synth.sy'
+            self.file_loc = (mydir/'../cegis/test_synth.sy').resolve()
+
+        self.minisy_path = mydir/'../../../mini-sygus/scripts/minisy'
+        assert self.minisy_path.exists()
+        self.minisy_path = self.minisy_path.resolve()
 
     def invoke(self, synth_str, min_depth, max_depth):
         synth_file = self.file_loc
         with open(synth_file,'w') as f:
             f.write(synth_str)
         
-        cmd = f'source ~/.zshrc; minisy {synth_file} --min-depth={min_depth} --max-depth={max_depth}'
+        cmd = f'{self.minisy_path} {synth_file} --min-depth={min_depth} --max-depth={max_depth}'
         print(f"Running {cmd}")
         out = subprocess.check_output(
             cmd,
-            shell=True, executable="/bin/zsh", encoding='utf-8'
+            shell=True,
+            #executable="/bin/zsh",
+            encoding='utf-8'
         )
         lines = out.split('\n')
         defs = []

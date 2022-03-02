@@ -2,4 +2,4 @@
 
 cd ./docker
 docker-compose build
-docker-compose run 598mp bash
+docker-compose run --rm --user $UID:$GID 598mp bash
