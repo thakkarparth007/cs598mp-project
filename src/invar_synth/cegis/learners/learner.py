@@ -68,9 +68,12 @@ class CEGISLearner():
         self.end_time = end_time = time_loop_start + time_limit
 
         synth_generator = self.synth(min_depth, max_depth)
-        for i in tqdm(range(max_iters)):
-            if time.time() > end_time:
-                print(f"Time limit reached. Stopping after {i} iterations. Extra time: {time.time() - end_time}")
+        # for i in tqdm(range(max_iters)): # docker-compose mixes stderr and stdout, causing havoc with logging if tqdm is running
+        for i in (range(max_iters)):
+            now = time.time()
+            print(f"> Iteration: {i}/{max_iters} ({int(100*i/max_iters)}%),\tTime taken: {int(now - time_loop_start)}s,\tTime left: {int(end_time - now)}s")
+            if now > end_time:
+                print(f"Time limit reached. Stopping after {i} iterations. Extra time: {now - end_time}")
                 break
 
             # stats
