@@ -9,36 +9,23 @@
 )))
 
 (declare-datatypes ( (Epoch 0) ) ((
+(Epoch!val!0) 
+(Epoch!val!3) 
 (Epoch!val!2) 
 (Epoch!val!1) 
-(Epoch!val!0) 
-(Epoch!val!4) 
-(Epoch!val!3) 
 )))
 
 (declare-datatypes ( (ModelId 0) ) ((
 (Model_DUMMYMODEL) 
-(Model_48_pos) 
-(Model_1_pos) 
-(Model_41_pos) 
-(Model_77_ice) 
-(Model_47_pos) 
-(Model_44_pos) 
-(Model_36_pos) 
-(Model_0_pos) 
-(Model_39_pos) 
-(Model_42_pos) 
-(Model_46_pos) 
-(Model_51_pos) 
-(Model_38_pos) 
+(Model_46_ice) 
 (Model_5_pos) 
-(Model_43_pos) 
-(Model_37_pos) 
-(Model_50_pos) 
-(Model_49_pos) 
-(Model_2_pos) 
-(Model_45_pos) 
+(Model_42_ice) 
+(Model_0_pos) 
 (Model_40_pos) 
+(Model_47_ice) 
+(Model_43_ice) 
+(Model_44_ice) 
+(Model_45_ice) 
 )))
 
 (declare-datatypes ( (StateId 0) ) ((
@@ -51,363 +38,365 @@
 ;; definitions of functions defining models.
 (declare-fun ep_dummy (ModelId StateId Node) Epoch)
 (define-fun ep ((a0 ModelId) (a1 StateId) (a2 Node)) Epoch
-(ite (= a0 Model_DUMMYMODEL) (ep_dummy a0 a1 a2 )
-    (ite (= a0 Model_5_pos)
-        (ite (= a2 Node!val!0)
-            Epoch!val!2
-;        if a2 IN [Node!val!1, ] 
-            Epoch!val!1
-        )
-    (ite (= a0 Model_37_pos)
-        (ite (= a2 Node!val!0)
-            Epoch!val!0
-;        if a2 IN [Node!val!1, ] 
-            Epoch!val!2
-        )
-    (ite (= a0 Model_38_pos)
-        (ite (= a2 Node!val!0)
-            Epoch!val!0
-;        if a2 IN [Node!val!1, ] 
-            Epoch!val!2
-        )
-    (ite (= a0 Model_41_pos)
-        (ite (= a2 Node!val!0)
-            Epoch!val!0
-;        if a2 IN [Node!val!1, ] 
-            Epoch!val!2
-        )
-    (ite (= a0 Model_42_pos)
-        (ite (= a2 Node!val!0)
-            Epoch!val!0
-;        if a2 IN [Node!val!1, ] 
-            Epoch!val!2
-        )
-    (ite (= a0 Model_43_pos)
-        (ite (= a2 Node!val!0)
-            Epoch!val!0
-;        if a2 IN [Node!val!1, ] 
-            Epoch!val!2
-        )
-    (ite (= a0 Model_44_pos)
-        (ite (= a2 Node!val!0)
-            Epoch!val!0
-;        if a2 IN [Node!val!1, ] 
-            Epoch!val!2
-        )
-    (ite (= a0 Model_45_pos)
-        (ite (= a2 Node!val!0)
-            Epoch!val!0
-;        if a2 IN [Node!val!1, ] 
-            Epoch!val!2
-        )
-    (ite (= a0 Model_77_ice)
-        (ite (= a1 S1)
-            Epoch!val!1
-;        if a1 IN [S2, ] 
-            Epoch!val!2
-        )
-    (ite (= a0 Model_0_pos)
-        Epoch!val!1
-    (ite (= a0 Model_40_pos)
-        Epoch!val!3
-    (ite (or (= a0 Model_51_pos) (= a0 Model_46_pos) (= a0 Model_1_pos) (= a0 Model_50_pos) )
-        Epoch!val!0
-;    if a0 IN [Model_48_pos, Model_47_pos, Model_49_pos, Model_36_pos, Model_39_pos, Model_2_pos, ] 
-        Epoch!val!2
-    ))))))))))))
-))
+	(ite (and (= a0 Model_0_pos) (= a1 init) (= a2 Node!val!0) ) Epoch!val!1
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Node!val!0) ) Epoch!val!0
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Node!val!1) ) Epoch!val!1
+	(ite (and (= a0 Model_40_pos) (= a1 init) (= a2 Node!val!0) ) Epoch!val!2
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Node!val!0) ) Epoch!val!3
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Node!val!1) ) Epoch!val!3
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Node!val!0) ) Epoch!val!3
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Node!val!1) ) Epoch!val!3
+	(ite (and (= a0 Model_43_ice) (= a1 S1) (= a2 Node!val!0) ) Epoch!val!1
+	(ite (and (= a0 Model_43_ice) (= a1 S2) (= a2 Node!val!0) ) Epoch!val!2
+	(ite (and (= a0 Model_44_ice) (= a1 S1) (= a2 Node!val!0) ) Epoch!val!1
+	(ite (and (= a0 Model_44_ice) (= a1 S2) (= a2 Node!val!0) ) Epoch!val!2
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Node!val!0) ) Epoch!val!1
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Node!val!1) ) Epoch!val!1
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Node!val!0) ) Epoch!val!1
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Node!val!1) ) Epoch!val!1
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Node!val!0) ) Epoch!val!3
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Node!val!1) ) Epoch!val!1
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Node!val!0) ) Epoch!val!3
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Node!val!1) ) Epoch!val!1
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Node!val!0) ) Epoch!val!2
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Node!val!1) ) Epoch!val!1
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Node!val!0) ) Epoch!val!2
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Node!val!1) ) Epoch!val!1
+	(ep_dummy a0 a1 a2 ))))))))))))))))))))))))))
 
 (declare-fun held_dummy (ModelId StateId Node) Bool)
 (define-fun held ((a0 ModelId) (a1 StateId) (a2 Node)) Bool
-(ite (= a0 Model_DUMMYMODEL) (held_dummy a0 a1 a2 )
-    (ite (= a0 Model_5_pos)
-        (ite (= a2 Node!val!0)
-            false
-;        if a2 IN [Node!val!1, ] 
-            true
-        )
-    (ite (= a0 Model_37_pos)
-        (ite (= a2 Node!val!0)
-            false
-;        if a2 IN [Node!val!1, ] 
-            true
-        )
-    (ite (= a0 Model_38_pos)
-        (ite (= a2 Node!val!0)
-            false
-;        if a2 IN [Node!val!1, ] 
-            true
-        )
-    (ite (= a0 Model_41_pos)
-        (ite (= a2 Node!val!0)
-            false
-;        if a2 IN [Node!val!1, ] 
-            true
-        )
-    (ite (= a0 Model_42_pos)
-        (ite (= a2 Node!val!0)
-            false
-;        if a2 IN [Node!val!1, ] 
-            true
-        )
-    (ite (= a0 Model_43_pos)
-        (ite (= a2 Node!val!0)
-            false
-;        if a2 IN [Node!val!1, ] 
-            true
-        )
-    (ite (= a0 Model_44_pos)
-        (ite (= a2 Node!val!0)
-            false
-;        if a2 IN [Node!val!1, ] 
-            true
-        )
-    (ite (= a0 Model_45_pos)
-        (ite (= a2 Node!val!0)
-            false
-;        if a2 IN [Node!val!1, ] 
-            true
-        )
-    (ite (= a0 Model_77_ice)
-        (ite (= a1 S1)
-            false
-;        if a1 IN [S2, ] 
-            true
-        )
-;    if a0 IN [Model_48_pos, Model_51_pos, Model_47_pos, Model_49_pos, Model_36_pos, Model_1_pos, Model_0_pos, Model_39_pos, Model_40_pos, Model_50_pos, Model_2_pos, Model_46_pos, ] 
-        true
-    )))))))))
-))
+	(ite (and (= a0 Model_0_pos) (= a1 init) (= a2 Node!val!0) ) true
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Node!val!0) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Node!val!1) ) true
+	(ite (and (= a0 Model_40_pos) (= a1 init) (= a2 Node!val!0) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Node!val!0) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Node!val!1) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 S1) (= a2 Node!val!0) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 S2) (= a2 Node!val!0) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 S1) (= a2 Node!val!0) ) false
+	(ite (and (= a0 Model_44_ice) (= a1 S2) (= a2 Node!val!0) ) true
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Node!val!0) ) true
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Node!val!1) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Node!val!0) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Node!val!0) ) true
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Node!val!1) ) true
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Node!val!1) ) true
+	(held_dummy a0 a1 a2 ))))))))))))))))))))))))))
 
 (declare-fun transfer_dummy (ModelId StateId Epoch Node) Bool)
 (define-fun transfer ((a0 ModelId) (a1 StateId) (a2 Epoch) (a3 Node)) Bool
-(ite (= a0 Model_DUMMYMODEL) (transfer_dummy a0 a1 a2 a3 )
-    (ite (= a1 S1)
-        (ite (= a2 Epoch!val!0)
-            false
-;        if a2 IN [Epoch!val!2, Epoch!val!1, ] 
-            true
-        )
-    (ite (= a1 S2)
-        (ite (= a2 Epoch!val!0)
-            false
-;        if a2 IN [Epoch!val!2, Epoch!val!1, ] 
-            true
-        )
-;    if a1 IN [init, ] 
-        false
-    ))
-))
+	(ite (and (= a0 Model_0_pos) (= a1 init) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_0_pos) (= a1 init) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_0_pos) (= a1 init) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_40_pos) (= a1 init) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_40_pos) (= a1 init) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_40_pos) (= a1 init) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!3) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!3) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!3) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!3) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!1) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_43_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_43_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_43_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_44_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_44_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_44_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!1) ) true
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!3) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!3) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!3) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!3) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!1) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!1) ) true
+	(transfer_dummy a0 a1 a2 a3 ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 
 (declare-fun locked_dummy (ModelId StateId Epoch Node) Bool)
 (define-fun locked ((a0 ModelId) (a1 StateId) (a2 Epoch) (a3 Node)) Bool
-(ite (= a0 Model_DUMMYMODEL) (locked_dummy a0 a1 a2 a3 )
-    (ite (= a1 S2)
-        (ite (= a2 Epoch!val!2)
-            true
-;        if a2 IN [Epoch!val!0, Epoch!val!1, ] 
-            false
-        )
-;    if a1 IN [S1, init, ] 
-        false
-    )
-))
+	(ite (and (= a0 Model_0_pos) (= a1 init) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_0_pos) (= a1 init) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_0_pos) (= a1 init) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 init) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_40_pos) (= a1 init) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_40_pos) (= a1 init) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_40_pos) (= a1 init) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!3) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!3) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!3) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!3) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_43_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_44_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_44_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_44_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_44_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) true
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!3) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!3) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!1) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!3) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!3) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!1) ) true
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S1) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!0) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!2) (= a3 Node!val!1) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 S2) (= a2 Epoch!val!1) (= a3 Node!val!1) ) false
+	(locked_dummy a0 a1 a2 a3 ))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 
 (declare-fun le_dummy (ModelId Epoch Epoch) Bool)
 (define-fun le ((a0 ModelId) (a1 Epoch) (a2 Epoch)) Bool
-(ite (= a0 Model_DUMMYMODEL) (le_dummy a0 a1 a2 )
-    (ite (= a1 Epoch!val!0)
-        (ite (= a0 Model_0_pos)
-            (ite (= a2 Epoch!val!0)
-                true
-;            if a2 IN [Epoch!val!2, Epoch!val!1, ] 
-                false
-            )
-        (ite (= a0 Model_1_pos)
-            (ite (= a2 Epoch!val!0)
-                true
-;            if a2 IN [Epoch!val!2, Epoch!val!1, ] 
-                false
-            )
-        (ite (= a0 Model_5_pos)
-            (ite (= a2 Epoch!val!0)
-                true
-;            if a2 IN [Epoch!val!2, Epoch!val!1, ] 
-                false
-            )
-        (ite (= a0 Model_36_pos)
-            (ite (= a2 Epoch!val!1)
-                false
-;            if a2 IN [Epoch!val!0, Epoch!val!2, ] 
-                true
-            )
-        (ite (= a0 Model_39_pos)
-            (ite (or (= a2 Epoch!val!4) (= a2 Epoch!val!1) )
-                false
-;            if a2 IN [Epoch!val!0, Epoch!val!2, Epoch!val!3, ] 
-                true
-            )
-        (ite (= a0 Model_40_pos)
-            (ite (or (= a2 Epoch!val!0) (= a2 Epoch!val!2) )
-                true
-;            if a2 IN [Epoch!val!4, Epoch!val!1, Epoch!val!3, ] 
-                false
-            )
-        (ite (= a0 Model_46_pos)
-            (ite (= a2 Epoch!val!4)
-                false
-;            if a2 IN [Epoch!val!0, Epoch!val!1, Epoch!val!2, Epoch!val!3, ] 
-                true
-            )
-        (ite (= a0 Model_47_pos)
-            (ite (or (= a2 Epoch!val!4) (= a2 Epoch!val!1) )
-                false
-;            if a2 IN [Epoch!val!0, Epoch!val!2, Epoch!val!3, ] 
-                true
-            )
-        (ite (= a0 Model_48_pos)
-            (ite (or (= a2 Epoch!val!0) (= a2 Epoch!val!3) )
-                true
-;            if a2 IN [Epoch!val!4, Epoch!val!2, Epoch!val!1, ] 
-                false
-            )
-        (ite (= a0 Model_49_pos)
-            (ite (or (= a2 Epoch!val!4) (= a2 Epoch!val!2) )
-                false
-;            if a2 IN [Epoch!val!0, Epoch!val!1, Epoch!val!3, ] 
-                true
-            )
-        (ite (= a0 Model_50_pos)
-            (ite (= a2 Epoch!val!0)
-                true
-;            if a2 IN [Epoch!val!1, Epoch!val!2, Epoch!val!3, ] 
-                false
-            )
-        (ite (= a0 Model_51_pos)
-            (ite (= a2 Epoch!val!3)
-                false
-;            if a2 IN [Epoch!val!0, Epoch!val!2, Epoch!val!1, ] 
-                true
-            )
-;        if a0 IN [Model_38_pos, Model_77_ice, Model_44_pos, Model_43_pos, Model_41_pos, Model_45_pos, Model_37_pos, Model_2_pos, Model_42_pos, ] 
-            true
-        ))))))))))))
-    (ite (= a1 Epoch!val!2)
-        (ite (= a2 Epoch!val!0)
-            (ite (or (= a0 Model_48_pos) (= a0 Model_5_pos) (= a0 Model_1_pos) (= a0 Model_0_pos) (= a0 Model_50_pos) (= a0 Model_49_pos) )
-                true
-;            if a0 IN [Model_51_pos, Model_47_pos, Model_38_pos, Model_77_ice, Model_44_pos, Model_36_pos, Model_43_pos, Model_41_pos, Model_45_pos, Model_39_pos, Model_37_pos, Model_40_pos, Model_2_pos, Model_42_pos, Model_46_pos, ] 
-                false
-            )
-        (ite (= a2 Epoch!val!1)
-            (ite (or (= a0 Model_47_pos) (= a0 Model_36_pos) (= a0 Model_43_pos) (= a0 Model_45_pos) (= a0 Model_39_pos) (= a0 Model_37_pos) (= a0 Model_40_pos) (= a0 Model_2_pos) (= a0 Model_77_ice) )
-                false
-;            if a0 IN [Model_48_pos, Model_51_pos, Model_38_pos, Model_5_pos, Model_44_pos, Model_1_pos, Model_0_pos, Model_41_pos, Model_50_pos, Model_49_pos, Model_42_pos, Model_46_pos, ] 
-                true
-            )
-        (ite (= a2 Epoch!val!3)
-            (ite (or (= a0 Model_48_pos) (= a0 Model_49_pos) )
-                true
-;            if a0 IN [Model_51_pos, Model_47_pos, Model_39_pos, Model_40_pos, Model_50_pos, Model_46_pos, ] 
-                false
-            )
-        (ite (= a2 Epoch!val!2)
-            true
-;        if a2 IN [Epoch!val!4, ] 
-            false
-        ))))
-    (ite (= a1 Epoch!val!1)
-        (ite (= a2 Epoch!val!0)
-            (ite (or (= a0 Model_48_pos) (= a0 Model_47_pos) (= a0 Model_5_pos) (= a0 Model_36_pos) (= a0 Model_1_pos) (= a0 Model_0_pos) (= a0 Model_39_pos) (= a0 Model_40_pos) (= a0 Model_50_pos) )
-                true
-;            if a0 IN [Model_51_pos, Model_38_pos, Model_77_ice, Model_44_pos, Model_49_pos, Model_43_pos, Model_41_pos, Model_45_pos, Model_37_pos, Model_2_pos, Model_42_pos, Model_46_pos, ] 
-                false
-            )
-        (ite (= a2 Epoch!val!2)
-            (ite (or (= a0 Model_47_pos) (= a0 Model_36_pos) (= a0 Model_43_pos) (= a0 Model_45_pos) (= a0 Model_39_pos) (= a0 Model_37_pos) (= a0 Model_40_pos) (= a0 Model_2_pos) (= a0 Model_77_ice) )
-                true
-;            if a0 IN [Model_48_pos, Model_51_pos, Model_38_pos, Model_5_pos, Model_44_pos, Model_1_pos, Model_0_pos, Model_41_pos, Model_50_pos, Model_49_pos, Model_42_pos, Model_46_pos, ] 
-                false
-            )
-        (ite (= a2 Epoch!val!3)
-            (ite (or (= a0 Model_51_pos) (= a0 Model_46_pos) (= a0 Model_50_pos) )
-                false
-;            if a0 IN [Model_48_pos, Model_47_pos, Model_39_pos, Model_40_pos, Model_49_pos, ] 
-                true
-            )
-        (ite (= a2 Epoch!val!1)
-            true
-;        if a2 IN [Epoch!val!4, ] 
-            false
-        ))))
-    (ite (= a1 Epoch!val!3)
-        (ite (= a2 Epoch!val!0)
-            (ite (or (= a0 Model_51_pos) (= a0 Model_40_pos) (= a0 Model_50_pos) )
-                true
-;            if a0 IN [Model_48_pos, Model_47_pos, Model_39_pos, Model_49_pos, Model_46_pos, ] 
-                false
-            )
-        (ite (= a2 Epoch!val!2)
-            (ite (or (= a0 Model_48_pos) (= a0 Model_49_pos) )
-                false
-;            if a0 IN [Model_51_pos, Model_47_pos, Model_39_pos, Model_40_pos, Model_50_pos, Model_46_pos, ] 
-                true
-            )
-        (ite (= a2 Epoch!val!1)
-            (ite (or (= a0 Model_51_pos) (= a0 Model_46_pos) (= a0 Model_50_pos) )
-                true
-;            if a0 IN [Model_48_pos, Model_47_pos, Model_39_pos, Model_40_pos, Model_49_pos, ] 
-                false
-            )
-        (ite (= a2 Epoch!val!3)
-            true
-;        if a2 IN [Epoch!val!4, ] 
-            false
-        ))))
-;    if a1 IN [Epoch!val!4, ] 
-        true
-    ))))
-))
+	(ite (and (= a0 Model_0_pos) (= a1 Epoch!val!0) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_0_pos) (= a1 Epoch!val!0) (= a2 Epoch!val!2) ) false
+	(ite (and (= a0 Model_0_pos) (= a1 Epoch!val!0) (= a2 Epoch!val!1) ) false
+	(ite (and (= a0 Model_0_pos) (= a1 Epoch!val!2) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_0_pos) (= a1 Epoch!val!2) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_0_pos) (= a1 Epoch!val!2) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_0_pos) (= a1 Epoch!val!1) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_0_pos) (= a1 Epoch!val!1) (= a2 Epoch!val!2) ) false
+	(ite (and (= a0 Model_0_pos) (= a1 Epoch!val!1) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_5_pos) (= a1 Epoch!val!0) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_5_pos) (= a1 Epoch!val!0) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_5_pos) (= a1 Epoch!val!0) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_5_pos) (= a1 Epoch!val!2) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 Epoch!val!2) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_5_pos) (= a1 Epoch!val!2) (= a2 Epoch!val!1) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 Epoch!val!1) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_5_pos) (= a1 Epoch!val!1) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_5_pos) (= a1 Epoch!val!1) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_40_pos) (= a1 Epoch!val!0) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_40_pos) (= a1 Epoch!val!0) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_40_pos) (= a1 Epoch!val!0) (= a2 Epoch!val!1) ) false
+	(ite (and (= a0 Model_40_pos) (= a1 Epoch!val!2) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_40_pos) (= a1 Epoch!val!2) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_40_pos) (= a1 Epoch!val!2) (= a2 Epoch!val!1) ) false
+	(ite (and (= a0 Model_40_pos) (= a1 Epoch!val!1) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_40_pos) (= a1 Epoch!val!1) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_40_pos) (= a1 Epoch!val!1) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!3) (= a2 Epoch!val!3) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!3) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!3) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!3) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!3) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!3) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!1) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!3) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_42_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_43_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_43_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_43_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_43_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_43_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!1) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_43_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_43_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_44_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!1) ) false
+	(ite (and (= a0 Model_44_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_44_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_44_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_45_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_45_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_45_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_45_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_45_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!1) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_45_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_45_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!3) (= a2 Epoch!val!3) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!3) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!3) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!3) (= a2 Epoch!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!3) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!3) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!1) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!3) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_46_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_47_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!0) ) true
+	(ite (and (= a0 Model_47_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_47_ice) (= a1 Epoch!val!0) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_47_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!2) ) true
+	(ite (and (= a0 Model_47_ice) (= a1 Epoch!val!2) (= a2 Epoch!val!1) ) true
+	(ite (and (= a0 Model_47_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!0) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!2) ) false
+	(ite (and (= a0 Model_47_ice) (= a1 Epoch!val!1) (= a2 Epoch!val!1) ) true
+	(le_dummy a0 a1 a2 )))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))))
 
 (declare-fun zero_dummy (ModelId) Epoch)
 (define-fun zero ((a0 ModelId)) Epoch
-(ite (= a0 Model_DUMMYMODEL) (zero_dummy a0 )
-    (ite (= a0 Model_36_pos)
-        Epoch!val!1
-    (ite (or (= a0 Model_51_pos) (= a0 Model_50_pos) )
-        Epoch!val!3
-    (ite (or (= a0 Model_5_pos) (= a0 Model_1_pos) (= a0 Model_0_pos) )
-        Epoch!val!2
-    (ite (or (= a0 Model_48_pos) (= a0 Model_47_pos) (= a0 Model_39_pos) (= a0 Model_40_pos) (= a0 Model_49_pos) (= a0 Model_46_pos) )
-        Epoch!val!4
-;    if a0 IN [Model_38_pos, Model_77_ice, Model_44_pos, Model_43_pos, Model_41_pos, Model_45_pos, Model_37_pos, Model_2_pos, Model_42_pos, ] 
-        Epoch!val!0
-    ))))
-))
+	(ite (and (= a0 Model_0_pos) ) Epoch!val!2
+	(ite (and (= a0 Model_5_pos) ) Epoch!val!0
+	(ite (and (= a0 Model_40_pos) ) Epoch!val!1
+	(ite (and (= a0 Model_42_ice) ) Epoch!val!0
+	(ite (and (= a0 Model_43_ice) ) Epoch!val!0
+	(ite (and (= a0 Model_44_ice) ) Epoch!val!0
+	(ite (and (= a0 Model_45_ice) ) Epoch!val!0
+	(ite (and (= a0 Model_46_ice) ) Epoch!val!0
+	(ite (and (= a0 Model_47_ice) ) Epoch!val!0
+	(zero_dummy a0 )))))))))))
 
 (declare-fun one_dummy (ModelId) Epoch)
 (define-fun one ((a0 ModelId)) Epoch
-(ite (= a0 Model_DUMMYMODEL) (one_dummy a0 )
-    (ite (= a0 Model_40_pos)
-        Epoch!val!3
-    (ite (or (= a0 Model_5_pos) (= a0 Model_77_ice) (= a0 Model_0_pos) )
-        Epoch!val!1
-    (ite (or (= a0 Model_51_pos) (= a0 Model_46_pos) (= a0 Model_1_pos) (= a0 Model_50_pos) )
-        Epoch!val!0
-;    if a0 IN [Model_48_pos, Model_47_pos, Model_38_pos, Model_44_pos, Model_49_pos, Model_36_pos, Model_43_pos, Model_41_pos, Model_45_pos, Model_39_pos, Model_37_pos, Model_2_pos, Model_42_pos, ] 
-        Epoch!val!2
-    )))
-))
+	(ite (and (= a0 Model_0_pos) ) Epoch!val!1
+	(ite (and (= a0 Model_5_pos) ) Epoch!val!1
+	(ite (and (= a0 Model_40_pos) ) Epoch!val!2
+	(ite (and (= a0 Model_42_ice) ) Epoch!val!1
+	(ite (and (= a0 Model_43_ice) ) Epoch!val!1
+	(ite (and (= a0 Model_44_ice) ) Epoch!val!2
+	(ite (and (= a0 Model_45_ice) ) Epoch!val!1
+	(ite (and (= a0 Model_46_ice) ) Epoch!val!2
+	(ite (and (= a0 Model_47_ice) ) Epoch!val!2
+	(one_dummy a0 )))))))))))
 
 (declare-fun first_dummy (ModelId) Node)
 (define-fun first ((a0 ModelId)) Node
-(ite (= a0 Model_DUMMYMODEL) (first_dummy a0 )
-    (ite (or (= a0 Model_38_pos) (= a0 Model_5_pos) (= a0 Model_44_pos) (= a0 Model_43_pos) (= a0 Model_41_pos) (= a0 Model_45_pos) (= a0 Model_37_pos) (= a0 Model_42_pos) )
-        Node!val!1
-;    if a0 IN [Model_48_pos, Model_51_pos, Model_47_pos, Model_49_pos, Model_36_pos, Model_1_pos, Model_0_pos, Model_39_pos, Model_40_pos, Model_50_pos, Model_2_pos, Model_77_ice, Model_46_pos, ] 
-        Node!val!0
-    )
-))
+	(ite (and (= a0 Model_0_pos) ) Node!val!0
+	(ite (and (= a0 Model_5_pos) ) Node!val!1
+	(ite (and (= a0 Model_40_pos) ) Node!val!0
+	(ite (and (= a0 Model_42_ice) ) Node!val!0
+	(ite (and (= a0 Model_43_ice) ) Node!val!0
+	(ite (and (= a0 Model_44_ice) ) Node!val!0
+	(ite (and (= a0 Model_45_ice) ) Node!val!0
+	(ite (and (= a0 Model_46_ice) ) Node!val!1
+	(ite (and (= a0 Model_47_ice) ) Node!val!0
+	(first_dummy a0 )))))))))))
 
 (synth-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool
 
@@ -466,66 +455,44 @@
 (constraint (and (inv Model_0_pos init Node!val!0)))
 
 
-(constraint (and (inv Model_1_pos init Node!val!0)))
-
-
-(constraint (and (inv Model_2_pos init Node!val!0)))
-
-
-(constraint (and (inv Model_5_pos init Node!val!0)))
-
-
-(constraint (and (inv Model_36_pos init Node!val!0)))
-
-
-(constraint (and (inv Model_37_pos init Node!val!0)))
-
-
-(constraint (and (inv Model_38_pos init Node!val!0)))
-
-
-(constraint (and (inv Model_39_pos init Node!val!0)))
+(constraint (and (inv Model_5_pos init Node!val!0) (inv Model_5_pos init Node!val!1)))
 
 
 (constraint (and (inv Model_40_pos init Node!val!0)))
 
 
-(constraint (and (inv Model_41_pos init Node!val!0)))
+(constraint (or (not (and (inv Model_42_ice S1 Node!val!0) (inv Model_42_ice S1 Node!val!1)))
+    (and (and (inv Model_42_ice S1 Node!val!0) (inv Model_42_ice S1 Node!val!1))
+         (inv Model_42_ice S2 Node!val!0)
+         (inv Model_42_ice S2 Node!val!1))))
 
 
-(constraint (and (inv Model_42_pos init Node!val!0)))
+(constraint (or (not (and (inv Model_43_ice S1 Node!val!0)))
+    (and (and (inv Model_43_ice S1 Node!val!0))
+         (inv Model_43_ice S2 Node!val!0))))
 
 
-(constraint (and (inv Model_43_pos init Node!val!0)))
+(constraint (or (not (and (inv Model_44_ice S1 Node!val!0)))
+    (and (and (inv Model_44_ice S1 Node!val!0))
+         (inv Model_44_ice S2 Node!val!0))))
 
 
-(constraint (and (inv Model_44_pos init Node!val!0)))
+(constraint (or (not (and (inv Model_45_ice S1 Node!val!0) (inv Model_45_ice S1 Node!val!1)))
+    (and (and (inv Model_45_ice S1 Node!val!0) (inv Model_45_ice S1 Node!val!1))
+         (inv Model_45_ice S2 Node!val!0)
+         (inv Model_45_ice S2 Node!val!1))))
 
 
-(constraint (and (inv Model_45_pos init Node!val!0)))
+(constraint (or (not (and (inv Model_46_ice S1 Node!val!0) (inv Model_46_ice S1 Node!val!1)))
+    (and (and (inv Model_46_ice S1 Node!val!0) (inv Model_46_ice S1 Node!val!1))
+         (inv Model_46_ice S2 Node!val!0)
+         (inv Model_46_ice S2 Node!val!1))))
 
 
-(constraint (and (inv Model_46_pos init Node!val!0)))
-
-
-(constraint (and (inv Model_47_pos init Node!val!0)))
-
-
-(constraint (and (inv Model_48_pos init Node!val!0)))
-
-
-(constraint (and (inv Model_49_pos init Node!val!0)))
-
-
-(constraint (and (inv Model_50_pos init Node!val!0)))
-
-
-(constraint (and (inv Model_51_pos init Node!val!0)))
-
-
-(constraint (or (not (and (inv Model_77_ice S1 Node!val!0)))
-    (and (and (inv Model_77_ice S1 Node!val!0))
-         (inv Model_77_ice S2 Node!val!0))))
+(constraint (or (not (and (inv Model_47_ice S1 Node!val!0) (inv Model_47_ice S1 Node!val!1)))
+    (and (and (inv Model_47_ice S1 Node!val!0) (inv Model_47_ice S1 Node!val!1))
+         (inv Model_47_ice S2 Node!val!0)
+         (inv Model_47_ice S2 Node!val!1))))
 
 ; this one includes assertion of axioms, so no need to assert it again
 (assert (forall ((Epoch_1 Epoch))
@@ -543,18 +510,18 @@
            (le Model_DUMMYMODEL (zero Model_DUMMYMODEL) Epoch_1)
            (distinct (one Model_DUMMYMODEL) (zero Model_DUMMYMODEL)))))))
 (assert (forall ((Node_1 Node))
-  (not (locked Model_DUMMYMODEL
-               DUMMYSTATE
-               (zero Model_DUMMYMODEL)
-               (first Model_DUMMYMODEL)))))
-(assert (forall ((Node_1 Node))
-  (not (= (zero Model_DUMMYMODEL)
-          (ep Model_DUMMYMODEL DUMMYSTATE (first Model_DUMMYMODEL))))))
-(assert (forall ((Node_1 Node))
   (not (transfer Model_DUMMYMODEL
                  DUMMYSTATE
                  (zero Model_DUMMYMODEL)
                  (first Model_DUMMYMODEL)))))
+(assert (forall ((Node_1 Node))
+  (not (= (zero Model_DUMMYMODEL)
+          (ep Model_DUMMYMODEL DUMMYSTATE (first Model_DUMMYMODEL))))))
+(assert (forall ((Node_1 Node))
+  (not (locked Model_DUMMYMODEL
+               DUMMYSTATE
+               (zero Model_DUMMYMODEL)
+               (first Model_DUMMYMODEL)))))
 (assert (forall ((Node_1 Node))
   (not (locked Model_DUMMYMODEL DUMMYSTATE (zero Model_DUMMYMODEL) Node_1))))
 (assert (forall ((Node_1 Node))
@@ -566,25 +533,6 @@
               (first Model_DUMMYMODEL))
       (= (one Model_DUMMYMODEL)
          (ep Model_DUMMYMODEL DUMMYSTATE (first Model_DUMMYMODEL))))))
-(assert (forall ((Node_1 Node))
-  (and (le Model_DUMMYMODEL
-           (one Model_DUMMYMODEL)
-           (ep Model_DUMMYMODEL DUMMYSTATE (first Model_DUMMYMODEL)))
-       (le Model_DUMMYMODEL
-           (ep Model_DUMMYMODEL DUMMYSTATE Node_1)
-           (ep Model_DUMMYMODEL DUMMYSTATE Node_1)))))
-(assert (forall ((Node_1 Node))
-  (not (locked Model_DUMMYMODEL
-               DUMMYSTATE
-               (one Model_DUMMYMODEL)
-               (first Model_DUMMYMODEL)))))
-(assert (forall ((Node_1 Node))
-  (or (= (one Model_DUMMYMODEL)
-         (ep Model_DUMMYMODEL DUMMYSTATE (first Model_DUMMYMODEL)))
-      (transfer Model_DUMMYMODEL
-                DUMMYSTATE
-                (ep Model_DUMMYMODEL DUMMYSTATE (first Model_DUMMYMODEL))
-                (first Model_DUMMYMODEL)))))
 (assert (not (inv Model_DUMMYMODEL DUMMYSTATE Node!val!0)))
 
 ; the following is to assert that we don't get True as an invariant

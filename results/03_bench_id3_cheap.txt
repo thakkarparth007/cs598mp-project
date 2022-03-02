@@ -3579,7 +3579,7 @@ Total number of imp counter examples:  7
 Highest counter example id:  85
 Pos-CEX query time: 0.01642632484436035
 I-CEX query time: 0.034626007080078125
-WINNER:  ForAll(Node_1,
+f:  ForAll(Node_1,
        le(Model_DUMMYMODEL,
           one(Model_DUMMYMODEL),
           ep(Model_DUMMYMODEL, S, first(Model_DUMMYMODEL)))) 

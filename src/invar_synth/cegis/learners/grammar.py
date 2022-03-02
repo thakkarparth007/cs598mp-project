@@ -375,10 +375,10 @@ $fn_defns
         (Start Bool
             (
                 Atom
-                (and Atom Atom)
-                (or Atom Atom)
-;                (=> Atom Atom)
-                (not Atom)
+                (and Start Start)
+                (or Start Start)
+                (=> Start Start)
+                (not Start)
             )
         )
 
@@ -406,7 +406,7 @@ $unique_invar_asserts
 
 ; the following is to assert that we don't get True as an invariant
 $dummy_vars
-;(assert (not (inv Model_DUMMYMODEL DUMMYSTATE $dummy_args)))
+(assert (not (inv Model_DUMMYMODEL DUMMYSTATE $dummy_args)))
 
 (check-synth)
 
@@ -510,15 +510,17 @@ $dummy_vars
             
             unique_invar_asserts += f"(assert {inv1_z3expr.sexpr()})\n"
 
+        # TODO: Check if this works correctly. DISABLING THIS FOR NOW.
+        #       INSTEAD, the grammar file asserts that invariant eliminates *some* valuation (using dummy vars).
         # for asserting that this invariant eliminates some state
         # we just need to pick any arbitrary element of each sort        
-        qexpr_universes = [list(universes[s])[0] for s in tmpl_sorts]
-        inv_z3expr = synthesized_inv(
-            DUMMYMODEL.model_sym, DUMMYSTATE.state_sym,
-            *qexpr_universes
-        )
-        
-        unique_invar_asserts += f"(assert (not {inv_z3expr.sexpr()}))\n"
+        # qexpr_universes = [list(universes[s])[0] for s in tmpl_sorts]
+        # inv_z3expr = synthesized_inv(
+        #     DUMMYMODEL.model_sym, DUMMYSTATE.state_sym,
+        #     *qexpr_universes
+        # )
+        # unique_invar_asserts += f"(assert (not {inv_z3expr.sexpr()}))\n"
+
         return unique_invar_asserts
     
     def _update_universes_in_loop(self, universes: Dict, cex: CEX):
