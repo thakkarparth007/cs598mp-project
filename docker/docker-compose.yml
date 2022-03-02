@@ -1,0 +1,9 @@
+version: "3"
+services:
+  598mp:
+    container_name: 598mp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/598mp
