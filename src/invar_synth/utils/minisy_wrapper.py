@@ -8,6 +8,7 @@ from invar_synth.utils.qexpr import QExpr
 
 class MiniSyWrapper():
     def __init__(self, run_name=None):
+        global run_file_loc
         mydir = Path(path.dirname(path.abspath(__file__)))
 
         if run_name is not None:
@@ -21,8 +22,12 @@ class MiniSyWrapper():
             self.file_loc = (mydir/'../cegis/test_synth.sy').resolve()
 
         self.minisy_path = mydir/'../../../mini-sygus/scripts/minisy'
+        
         assert self.minisy_path.exists()
         self.minisy_path = self.minisy_path.resolve()
+        
+        run_file_loc = self.file_loc
+        print(f"Storing minisy stuff at: {run_file_loc}")
 
     def invoke(self, synth_str, min_depth, max_depth):
         synth_file = self.file_loc

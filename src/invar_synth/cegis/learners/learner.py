@@ -62,11 +62,29 @@ class CEGISLearner():
         self.cheap_constraints = cheap_constraints
 
     # $unique_invar_asserts ^ insert above    
-    def loop(self, max_iters=10, min_depth=1, max_depth=4, debug=False, interactive=False):
+    def loop(self, max_iters=10, time_limit=30, min_depth=1, max_depth=4, debug=False, interactive=False):
+        time_limit *= 60 # convert to seconds
         time_loop_start = time.time()
+        self.end_time = end_time = time_loop_start + time_limit
 
         synth_generator = self.synth(min_depth, max_depth)
         for i in tqdm(range(max_iters)):
+            if time.time() > end_time:
+                print(f"Time limit reached. Stopping after {i} iterations. Extra time: {time.time() - end_time}")
+                break
+
+            # stats
+            cex_type_counts = {'pos': 0, 'imp': 0, 'neg': 0, 'highest': 0}
+            for cex in self.counter_examples:
+                if isinstance(cex, PositiveCEX): cex_type_counts['pos'] += 1
+                elif isinstance(cex, NegativeCEX): cex_type_counts['neg'] += 1
+                else: cex_type_counts['imp'] += 1
+                cex_type_counts['highest'] = max(cex_type_counts['highest'], cex.id)
+            print("Total number of pos counter examples: ", cex_type_counts['pos'])
+            print("Total number of neg counter examples: ", cex_type_counts['neg'])
+            print("Total number of imp counter examples: ", cex_type_counts['imp'])
+            print("Highest counter example id: ", cex_type_counts['highest'])
+
             need_new_pos_cex = True
             if self.cheap_constraints:
                 for cex in self.counter_examples:
@@ -152,8 +170,8 @@ class CEGISLearner():
     
     def print_winners_so_far(self):
         print("==========================================================")
-        for inv in self.invars:
-            print("Inv: ", inv(self.dummyM, self.dummyS).z3expr)
+        for i, inv in enumerate(self.invars):
+            print(f"Inv#{i}: ", inv(self.dummyM, self.dummyS).z3expr)
         print("==========================================================")
         print(f"Protocol proved safe? : {self.safe}")
     
@@ -162,6 +180,10 @@ class CEGISLearner():
             valid_templates = [(qs, sorts) for qs, sorts in self.template_generator]
             templ_ptr = 0
             while templ_ptr < len(valid_templates):
+                if time.time() > self.end_time:
+                    print("Time limit exceeded")
+                    return
+
                 qs, sorts = valid_templates[templ_ptr]
                 print(f"Depth={depth}, Winners={len(self.invars)} template=", qs, sorts)
 
