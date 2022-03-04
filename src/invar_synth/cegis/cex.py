@@ -1,3 +1,4 @@
+from collections import defaultdict
 from functools import partial
 import typing
 from z3 import *
@@ -60,37 +61,6 @@ class CEX():
             (p V r) => q
         """
         raise NotImplementedError()
-    
-    def get_valuations_violating_invariant(
-        self,
-        S : ProtocolState,
-        invar_fn : Callable[[ProtocolModel, ProtocolState], QExpr],
-        all=False,
-        except_valuations=[]
-    ) -> typing.Union[None, Tuple[Symbol], List[Tuple[Symbol]]]:
-        """
-        Part of the cheap constraints idea - finds valuations of the invariant that violate it.
-        invar_fn is a function that takes M and S, and returns a QExpr
-        """
-        valuations = [] # list of tuples of size |args_of_invar_fn|
-        universes = []
-        invar_qexpr = invar_fn(self.M, S)
-        for s in invar_qexpr.sorts:
-            universes.append(self.M.get_universe(s))
-        
-        all_args = itertools.product(*universes)
-        for args in all_args:
-            if args in except_valuations:
-                continue
-            eval = self.z3model.eval(invar_qexpr.body(*args), model_completion=True)
-            if eval == False:
-                if all == False:
-                    return args
-                valuations.append(args)
-        
-        if len(valuations) == 0 and all == False:
-            return None
-        return valuations
 
     def get_formula_of_state(self, S, include_global=False):
         """
@@ -183,39 +153,101 @@ class CEX():
         
         return inv_expr
 
-class PositiveCEX(CEX):
+class LazyCEX(CEX):
     def __init__(self, solver, z3model, M, cand_invar, S):
         super().__init__(solver, z3model, M, cand_invar)
+
+        if not self.exists():
+            return
+
         self.S = S
-        self.cand_invar = cand_invar(M, S)
 
         # the following two are related to the cheap constraints idea.
         self.template_to_lazy_valuations = {} # maps template to list of valuations under that template.
                                               # the list is lazily expanded.
-        
-        # unused for now.
+
         # Expand the universe lazily too. i.e., only define state/model functions (e.g., held, le etc.)
         # relevant to the valuations under use.
-        if self.exists():
-            self.lazy_universes = {
-                sort : set(self.M.get_universe(sort)[:1]) for sort in self.M.sorts
-            }
-    
-    def get_model_desc(self, cheap_constraints=False):
-        return self.get_formula_of_state_for_ite(
-            self.S,
-            include_global=True,
-            cheap_universes=self.lazy_universes if cheap_constraints else None
-        )
-    
+        self.lazy_universes = {
+            # sort -> set of elements in the universe
+            s: set() for s in self.M.sorts
+        }
+
+        #### <UTILITIES TO HELP WITH COMPUTING CLOSURE OF LAZY UNIVERSE> ####
+             
+        # since global and state functions are automatically bound to the model/state, we don't need to worry about separating them.
+        self.constructors_by_domain = defaultdict(list)
+        # self.constructors_by_range = defaultdict(list)
+
+        for name, fn in list(self.M.globals.items()) + list(self.S.vars.items()):
+            start = 1 if name in self.M.globals else 2
+
+            if fn.func.range() not in self.M.sorts:
+                continue
+            
+            rng = fn.func.range()
+            # don't forget the constant functions
+            if fn.func.arity() == start:
+                self.lazy_universes[rng].add(self.z3model.eval(fn(), model_completion=True))
+
+            for i in range(start, fn.func.arity()):
+                # we don't deal with primitive types in lazy expansion. in fact, we never take primitive types as inputs to the functions.
+                # if we have to do that, we'll have to modify a lot of other things.
+                if fn.func.domain(i) in self.M.sorts:
+                    self.constructors_by_domain[fn.func.domain(i)].append(fn)
+
+            # if fn.func.range() not in self.M.sorts:
+            #     self.constructors_by_range[fn.func.range()].append(fn)
+        
+        #### </UTILITIES TO HELP WITH COMPUTING CLOSURE OF LAZY UNIVERSE> ####
+
+        # hack to fill the lazy universe properly
+        for s in self.M.sorts:
+            e = self.M.get_universe(s)[0]
+            self.add_to_lazy_universe(s, e)
+
+    def get_valuations_violating_invariant(
+        self,
+        S : ProtocolState,
+        invar_fn : Callable[[ProtocolModel, ProtocolState], QExpr],
+        all=False,
+        except_valuations=[]
+    ) -> typing.Union[None, Tuple[Symbol], List[Tuple[Symbol]]]:
+        """
+        Part of the cheap constraints idea - finds valuations of the invariant that violate it.
+        invar_fn is a function that takes M and S, and returns a QExpr
+        """
+        valuations = [] # list of tuples of size |args_of_invar_fn|
+        universes = []
+        invar_qexpr = invar_fn(self.M, S)
+        for s in invar_qexpr.sorts:
+            universes.append(self.M.get_universe(s))
+        
+        all_args = itertools.product(*universes)
+        for args in all_args:
+            args = list(args)
+            if len(except_valuations) > 0:
+                # print("Except_valuations", except_valuations)
+                # print("args", args)
+                # print("In or not: ", args in except_valuations)
+                if args in except_valuations:
+                    continue
+            eval = self.z3model.eval(invar_qexpr.body(*args), model_completion=True)
+            if eval == False:
+                if all == False:
+                    return args
+                valuations.append(args)
+        
+        if len(valuations) == 0 and all == False:
+            return None
+        return valuations
+
     def expand_lazy_valuations_set(self, invar_fn : Callable[[ProtocolModel, ProtocolState], QExpr]) -> Bool:
         """Returns True if successfully expanded, else False."""
         invar_qexpr = invar_fn(self.M, self.S)
         tmpl_qs, tmpl_sorts = invar_qexpr.qs, invar_qexpr.sorts
         tmpl = str((tmpl_qs, tmpl_sorts))
-        if tmpl not in self.template_to_lazy_valuations:
-            assert False, "Should've been filled in already"
-            self.template_to_lazy_valuations[tmpl] = []
+        assert tmpl in self.template_to_lazy_valuations, "Should've been filled in already"
 
         valuation = self.get_valuations_violating_invariant(
             self.S, invar_fn, all=False, except_valuations=self.template_to_lazy_valuations[tmpl]
@@ -224,13 +256,64 @@ class PositiveCEX(CEX):
             # the new invariant doesn't violate this counter example. No need to expand.
             return False
 
-        #assert valuation not in self.template_to_lazy_valuations[tmpl], \
-        #    f"Valuation {valuation} already in lazy valuations set."
+        assert valuation not in self.template_to_lazy_valuations[tmpl], \
+           f"Valuation {valuation} already in lazy valuations set."
+        
         self.template_to_lazy_valuations[tmpl].append(valuation)
-        for i, v in enumerate(valuation):
-            self.lazy_universes[tmpl_sorts[i]].add(v)
+        for s, v in zip(tmpl_sorts, valuation):
+            self.add_to_lazy_universe(s, v)
         
         return True
+    
+    def add_to_lazy_universe(self, sort, value):
+        if value in self.lazy_universes[sort]:
+            return
+        
+        self.lazy_universes[sort].add(value)
+        new_elems = [(sort, value)] # pairs of (s, e) that are new elements in the lazy universe
+
+        while len(new_elems) > 0:
+            s, e = new_elems.pop()
+            #print("BROOOOOOOO NEW VALUE BRO ", s, e)
+            #print("CONSTRUCTORS BY DOMAIN", self.constructors_by_domain)
+            for fn in self.constructors_by_domain[s]:
+                # we evaluate this function over all valuations that include e.
+                # whatever elements it constructs, we add to the lazy universe.
+
+                # first find universes of all arguments to fn.
+                arg_universes = []
+                insertion_points = []
+                for i in range(fn.func.arity()):
+                    dom = fn.func.domain(i)
+                    if dom not in self.lazy_universes:
+                        arg_universes.append(list(self.M.get_universe(fn.func.domain(i))))
+                    else:
+                        arg_universes.append(list(self.lazy_universes[dom]))
+                        # assumption - `e` is already in the lazy universe.
+                
+                    if dom == s:
+                        insertion_points.append(i)
+                
+                # print("ARG_UNIVERSES", arg_universes)
+                # print("INSERTION_POINTS", insertion_points)
+
+                rng = fn.func.range()
+                # now, instead of computing all *cartisian_products* of arg_universes, which would be wasteful
+                # as many of them would not have e,
+                # we iterate over insertion points, and fix e as that insertion point, and compute *cartisian_products* of rest of the arguments
+                for insertion_point in insertion_points:
+                    options = arg_universes[:insertion_point] + [[e]] + arg_universes[insertion_point+1:]
+                    # print("OPTIONS", options)
+                    for args in itertools.product(*options):
+                        # print("FN", fn)
+                        # print("INSERTION POINT", insertion_point)
+                        # print("NEW ELEM", e)
+                        # print("ARGS", args)
+                        # print("ARGS_UNIVERSES", arg_universes)
+                        value = self.z3model.eval(fn.func(*args), model_completion=True)
+                        if value not in self.lazy_universes[rng]:
+                            self.lazy_universes[rng].add(value)
+                            new_elems.append((rng, value))
     
     def generate_inv_expr_for_tmpl(self, tmpl_qs, tmpl_sorts, synthesized_inv, lazy=True):
         if not lazy:
@@ -249,17 +332,28 @@ class PositiveCEX(CEX):
                 [self.M.get_universe(s)[0] for s in tmpl_sorts]
             ]
             self.template_to_lazy_valuations[tmpl] = valuations
-            #valuations = [self.get_valuations_violating_invariant(
-            #    self.S,
-            #    lambda M, S: QForAll(tmpl_sorts, lambda *x: BoolVal(False)),
-            #    all=False
-            #)]
+            for s, v in zip(tmpl_sorts, valuations[0]):
+                self.add_to_lazy_universe(s, v)
 
         inv_expr = lambda M, S: QForAll(tmpl_sorts,
             partial(synthesized_inv, M.model_sym, S.state_sym))\
                 .eval_over_valuations(valuations)
         
         return inv_expr
+
+
+class PositiveCEX(LazyCEX):
+    def __init__(self, solver, z3model, M, cand_invar, S):
+        super().__init__(solver, z3model, M, cand_invar, S)
+        self.S = S
+        self.cand_invar = cand_invar(M, S)
+
+    def get_model_desc(self, cheap_constraints=False):
+        return self.get_formula_of_state_for_ite(
+            self.S,
+            include_global=True,
+            cheap_universes=self.lazy_universes if cheap_constraints else None
+        )
     
     def get_synth_constraint(self, known_invars, inv_fn, include_state=True):
         _, formula = self.get_formula_of_state(

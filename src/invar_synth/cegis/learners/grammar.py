@@ -426,14 +426,18 @@ $dummy_vars
         universes[StateId] = set()
 
         for cex in counter_examples:
-            self._update_model_descs_in_loop(model_descs, cex, cheap_constraints)
-            self._update_universes_in_loop(universes, cex)
-            # self._append_cex_desc_as_comment_in_loop(constraints, cex)
-
+            # do this step before calling _update* functions
+            # that's because while calling `generate_inv_expr_for_tmpl`, we might expand
+            # a lazy universe, so important to do this first.
+            # ideally there'd be a nicer way and we'd not have to worry about this internal detail.
             if isinstance(cex, PositiveCEX):
                 inv_expr = cex.generate_inv_expr_for_tmpl(tmpl_qs, tmpl_sorts, synthesized_inv, cheap_constraints)
             else:
                 inv_expr = cex.generate_inv_expr_for_tmpl(tmpl_qs, tmpl_sorts, synthesized_inv, False)
+
+            self._update_model_descs_in_loop(model_descs, cex, cheap_constraints)
+            self._update_universes_in_loop(universes, cex)
+            self._append_cex_desc_as_comment_in_loop(constraints, cex)
 
             constraint = cex.get_synth_constraint(known_invars, inv_expr, False)
             sexpr = constraint.sexpr()
