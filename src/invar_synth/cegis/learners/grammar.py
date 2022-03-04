@@ -1,6 +1,6 @@
 from typing import Dict, List
 from invar_synth.protocols.protocol import *
-from invar_synth.cegis.cex import CEX, ImplicationCEX, PositiveCEX
+from invar_synth.cegis.cex import CEX, ImplicationCEX, LazyCEX, PositiveCEX
 from invar_synth.utils.qexpr import QExpr
 
 import numpy as np
@@ -430,7 +430,7 @@ $dummy_vars
             # that's because while calling `generate_inv_expr_for_tmpl`, we might expand
             # a lazy universe, so important to do this first.
             # ideally there'd be a nicer way and we'd not have to worry about this internal detail.
-            if isinstance(cex, PositiveCEX):
+            if isinstance(cex, LazyCEX):
                 inv_expr = cex.generate_inv_expr_for_tmpl(tmpl_qs, tmpl_sorts, synthesized_inv, cheap_constraints)
             else:
                 inv_expr = cex.generate_inv_expr_for_tmpl(tmpl_qs, tmpl_sorts, synthesized_inv, False)

@@ -388,12 +388,13 @@ class NegativeCEX(CEX):
         #, (get_safety_property_as_expr(self.M, self.S))) #Implies(formula, Not(invar_expr))
 
 # %%
-class ImplicationCEX(CEX):
+class ImplicationCEX(LazyCEX):
     def __init__(self, solver, z3model, M, cand_invar, S1, S2):
-        super().__init__(solver, z3model, M, cand_invar)
+        super().__init__(solver, z3model, M, cand_invar, S1)
         self.S1 = S1
         self.S2 = S2
         self.cand_invar = cand_invar(M, S1)
+        self.lazy = False # will be set to True in generate_inv_expr_for_tmpl if the app is running in lazy mode. If constraint expansion is allowed to be lazy, so am I.
     
     def get_model_desc(self, cheap_constraints=False):
         formulas = self.get_formula_of_state_for_ite(self.S1, True)
@@ -402,20 +403,72 @@ class ImplicationCEX(CEX):
             formulas[name] += f
         return formulas
     
-    def get_synth_constraint(self, known_invars, inv_fn, include_state=True):
-        _, pre_formula = self.get_formula_of_state(self.S1, include_global=True)
-        _, post_formula = self.get_formula_of_state(self.S2) # no need for global here.
+    def expand_lazy_valuations_set(self, invar_fn : Callable[[ProtocolModel, ProtocolState], QExpr]) -> Bool:
+        """Returns True if successfully expanded, else False."""
 
-        inv1, inv2 = inv_fn(self.M, self.S1), inv_fn(self.M, self.S2)
+        for S in [self.S1, self.S2]:
+            self.S = S # lol.
+            if super().expand_lazy_valuations_set(invar_fn):
+                # don't need to expand on S2 if we already expanded on S1.
+                # that's because the lazy universe is shared.
+                # I'm abusing the implementation here by setting self.S, but this is a research prototype, in python.
+                return True
+        return False
+
+    def generate_inv_expr_for_tmpl(self, tmpl_qs, tmpl_sorts, synthesized_inv, lazy=True):
+        """
+        This function now returns a tuple of (inv_expr_lazy, inv_expr_full).
+        The lazy part is to be used for positive cex part of this counter example, and the full part is to be used for negative cex.
+        Of course, if the app is not running in lazy mode, both are the same.
+        """
+
+        self.lazy = lazy
+        inv_expr_full = super().generate_inv_expr_for_tmpl(tmpl_qs, tmpl_sorts, synthesized_inv, lazy=False)
+        if not lazy:
+            return inv_expr_full, inv_expr_full
+
+        assert "EXISTS" not in tmpl_qs, "Lazy invariant evaluation is only supported for \forall quantifiers."
+
+        tmpl = str((tmpl_qs, tmpl_sorts))
+        if tmpl in self.template_to_lazy_valuations:
+            valuations = self.template_to_lazy_valuations[tmpl]
+            if len(valuations) == 0:
+                print(self.solver)
+            assert len(valuations) > 0, f"No valuations to expand for template {tmpl}."
+        else:
+            valuations = [
+                [self.M.get_universe(s)[0] for s in tmpl_sorts]
+            ]
+            self.template_to_lazy_valuations[tmpl] = valuations
+            for s, v in zip(tmpl_sorts, valuations[0]):
+                self.add_to_lazy_universe(s, v)
+
+        inv_expr_lazy = lambda M, S: QForAll(tmpl_sorts,
+            partial(synthesized_inv, M.model_sym, S.state_sym))\
+                .eval_over_valuations(valuations)
+        
+        return inv_expr_lazy, inv_expr_full
+    
+    def get_synth_constraint(self, known_invars, inv_fns, include_state=True):
+        inv_lazy, inv_full = inv_fns
+        if not self.lazy:
+            assert inv_lazy == inv_full, "ImplicationCEX.get_synth_constraint() called with lazy=False, but inv_pos != inv_neg."
         
         if include_state:
+            assert not self.lazy, "Lazy invariant expansion is not supported for include_state=True."
+
+            inv1, inv2 = inv_full(self.M, self.S1), inv_full(self.M, self.S2)
+
+            _, pre_formula = self.get_formula_of_state(self.S1, include_global=True)
+            _, post_formula = self.get_formula_of_state(self.S2) # no need for global here.
+
             constraint1 = And(pre_formula, Not(inv1))
             constraint2 = And(pre_formula, inv1, post_formula, inv2)
 
             return Or(constraint1, constraint2)
         
-        constraint1 = Not(inv1)
-        constraint2 = And(inv1, inv2)
+        constraint1 = Not(inv_full(self.M, self.S1))
+        constraint2 = inv_lazy(self.M, self.S2) # And(inv_lazy(self.M, self.S1), inv_lazy(self.M, self.S2))
         return Or(constraint1, constraint2)
 
 # %%
