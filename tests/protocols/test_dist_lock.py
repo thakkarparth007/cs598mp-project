@@ -224,6 +224,9 @@ def parse(inv_str, vars):
 
     if inv_str == "first":
         return "M.first()"
+    
+    if inv_str == "zero":
+        return "M.zero()"
 
     vars.add(inv_str)
     return inv_str
@@ -237,7 +240,7 @@ def get_inv_fn(fn_name, inv_str, only_code=False):
             for v in vars]
 
     lamb_da = f"""lambda {','.join(vars)}: {inv_fn_str}"""
-    expr = f"""QForAll([{','.join(sorts)}], {lamb_da}).z3expr"""
+    expr = f"""QForAll([{','.join(sorts)}], {lamb_da})"""
 
     code = [f"return {expr}"]
 
@@ -343,11 +346,11 @@ def test_init_conds(all_invars, I, J, expect_pass, request):
     ("distai_invars", 0, 2, False),
     ("distai_invars", 1, 2, False),
     ("distai_invars", 2, 3, False),
-    ("swiss_invars",  0, 1, True),
-    ("swiss_invars",  0, None, True),
+    # ("swiss_invars",  0, 1, True),
+    # ("swiss_invars",  0, None, True),
 ] + [
-    # ("distai_invars", 0, i+1, True)
-    # for i in range(45)
+    ("distai_invars", 0, i+1, True)
+    for i in range(45)
 ])
 # @pytest.mark.parametrize("all_invars,I,J,expect_pass", [
 #     ("distai_invars", 0, 1, True),
@@ -371,8 +374,8 @@ def test_inductiveness(all_invars, I, J, expect_pass, request):
     for i, inv_i in (enumerate(all_invars[:])):
         solver.push()
         for j, inv_prev in enumerate(all_invars[:i+1]):
-            solver.add(inv_prev(M, S1), f"{i}_{j}")
-        solver.add(Not(inv_i(M, S2)), f"{i}_post")
+            solver.add(inv_prev(M, S1).z3expr, f"{i}_{j}")
+        solver.add(Not(inv_i(M, S2).z3expr), f"{i}_post")
 
         # we should get unsat for every action
         # otherwise, it means, that the invariant
@@ -557,9 +560,133 @@ def foobar():
 
             solver = Solver()
             solver.add(M.get_z3_axioms())
-            solver.add(Not(invars[i](M, M.get_state('S1'))))
+            solver.add(Not(invars[i](M, M.get_state('S1')).z3expr))
             if solver.check() == unsat:
                 print("\t^ this is implied by axioms")
 # %%
-#foobar()
+# foobar()
+# %%
+
+def some_other_debug_stuff(start, end):
+#     winners = """E1 = E1 & zero != ep(first)
+# ~transfer(zero,first) & zero != one
+# ~transfer(zero,N1)
+# ~locked(zero,first) | zero = one
+# ~locked(zero,N1)
+# le(one,ep(first))
+# ~locked(one,first)
+# ~locked(one,N1) | transfer(one,N1)
+# ~locked(E1,first) | transfer(E1,first)
+# ~locked(E1,first) | le(one,E1)
+# ~locked(E1,N1) | transfer(E1,N1)
+# zero != ep(N1) | ~held(N1)""".split("\n")
+
+#     winners = [get_inv_fn(f"winner{i}", w) for i, w in enumerate(winners)]
+
+    winners = [
+        # lambda M, S: QForAll([Node], lambda Node_1: Not(M.zero() == S.ep(M.first()))),
+
+        # lambda M, S: QForAll([Node], lambda Node_1: Or(Not(S.transfer( M.zero(), M.first())), M.zero() == M.one())),
+
+        # lambda M, S: QForAll([Node], lambda Node_1: Not(S.transfer(M.zero(), Node_1))),
+
+        # lambda M, S: QForAll([Node], lambda Node_1: Or(Not(S.locked( M.zero(), M.first())), M.zero() == M.one())),
+
+        # lambda M, S: QForAll([Node], lambda Node_1: Not(S.locked( M.zero(), Node_1))),
+
+        # lambda M, S: QForAll([Node], lambda Node_1: M.le( M.one(), S.ep(M.first()))),
+
+        # lambda M, S: QForAll([Node], lambda Node_1: Not(S.locked( M.one(), M.first()))),
+
+        # lambda M, S: QForAll([Node], lambda Node_1: Or(Not(S.locked( M.one(), Node_1)), S.transfer( M.one(), Node_1))),
+
+        # lambda M, S: QForAll([Epoch], lambda Epoch_1: Or(Not(S.locked( Epoch_1, M.first())), S.transfer( Epoch_1, M.first()))),
+
+        # lambda M, S: QForAll([Epoch], lambda Epoch_1: Or(Not(S.locked( Epoch_1, M.first())), M.le( M.one(), Epoch_1))),
+
+        # lambda M, S: QForAll([Node], lambda Node_1: Not(And(M.zero() == S.ep(Node_1), S.held(Node_1)))),
+
+        lambda M, S: QForAll([Node, Epoch], lambda Node_1, Epoch_1: Or(Not(S.locked( Epoch_1, Node_1)), S.transfer( Epoch_1, Node_1))),
+
+        # 23
+        lambda M, S: QForAll([Node, Epoch], lambda N1, E1: Or(M.le(E1, S.ep(N1)), Not(S.locked(E1, N1)))),
+
+        # 3
+        lambda M, S: QForAll([Epoch, Epoch, Node], lambda E1, E2, N1: Implies(And(M.le(E1, E2), Not(E1 == E2)), Or(M.le(E1, S.ep(N1)), Not(S.locked(E2, N1))))),
+
+        # 7
+        # le(E1, E2) & E1 != E2 & N1 != N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~locked(E2,N2)
+        lambda M, S: QForAll([Epoch, Epoch, Node, Node], lambda E1, E2, N1, N2: Implies(And(M.le(E1, E2), Not(E1 == E2), Not(N1 == N2)), Or(M.le(E1, S.ep(N1)), M.le(S.ep(N1), S.ep(N2)), Not(S.locked(E2, N2))))),
+
+        # 12
+        # le(E1, E2) & E1 != E2 & N1 != N2 -> le(E1,ep(N1)) | ~locked(E2,N2) | ~le(ep(N2),ep(N1))
+        lambda M, S: QForAll([Epoch, Epoch, Node, Node], lambda E1, E2, N1, N2: Implies(And(M.le(E1, E2), Not(E1 == E2), Not(N1 == N2)), Or(M.le(E1, S.ep(N1)), Not(S.locked(E2, N2)), Not(M.le(S.ep(N2), S.ep(N1)))))),
+
+        # 25
+        # N1 != N2 -> le(E1,ep(N1)) | le(ep(N1),ep(N2)) | ~le(E1,ep(N2))
+        lambda M, S: QForAll([Epoch, Node, Node], lambda E1, N1, N2: Implies(Not(N1 == N2), Or(M.le(E1, S.ep(N1)), M.le(S.ep(N1), S.ep(N2)), Not(M.le(E1, S.ep(N2)))))),
+
+        # 31
+        # N1 != N2 -> le(E1,ep(N1)) | ~locked(E1,N2) | ~le(ep(N2),ep(N1))
+        lambda M, S: QForAll([Epoch, Node, Node], lambda E1, N1, N2: Implies(Not(N1 == N2), Or(M.le(E1, S.ep(N1)), Not(S.locked(E1, N2)), Not(M.le(S.ep(N2), S.ep(N1)))))),
+    ]
+
+    winners = winners[start:end]
+    print(len(winners))
+
+    # cg = CEXGen(DistLockModel)
+    # cg.invars = winners
+
+    myM = M()
+
+    proven_counts, implied_counts = 0, 0
+    proven_stuff, implied_stuff = [], []
+
+    good_stuff = []
+    invars_strs = distai_invars_strs()
+    invars = distai_invars(invars_strs)
+    for i in range(len(invars)):
+        proven = False
+        cg = CEXGen(DistLockModel)
+        cg.invars = winners
+        cex = cg.get_implication_cex(invars[i])
+        if not cex.exists():
+            print(f"Proven {i}: `{invars_strs[i].strip()}`")
+            proven = True
+            proven_counts += 1
+            proven_stuff.append(i)
+
+        # checking for implication
+        solver = Solver()
+        solver.add(myM.get_z3_axioms())
+        
+        for w in winners:
+            solver.add(w(myM, myM.get_state('S1')).z3expr)
+        
+        solver.add(Not(invars[i](myM, myM.get_state('S1')).z3expr))
+        
+        # if solver.check() == unsat:
+        #     print("\t^ this is implied by axioms")
+        implied = True
+        implied_counts += 1
+        implied_stuff.append(i)
+        if solver.check() == sat:
+            # print(f"{i}: `{invars_strs[i].strip()}`")
+            implied = False
+            implied_counts -= 1
+            implied_stuff.pop()
+            if proven:
+                good_stuff.append(i)
+            
+
+        if proven or implied:
+            print(f"{i} Proven={proven}, Implied={implied}") # Invar={invars_strs[i].strip()}")
+    
+    print(f"Proven: {proven_counts}")
+    print(f"Implied: {implied_counts}")
+
+    print(f"Proven stuff: {proven_stuff}")
+    print(f"Implied stuff: {implied_stuff}")
+
+    return good_stuff
 # %%
