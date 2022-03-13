@@ -186,6 +186,9 @@ def test_init_conds(all_invars, I, J, expect_pass, request):
     ("distai_invars", 0, None, True),
     # Minimal subset of invariants that work
     ("distai_invars", 4, None, True),
+    # Each invariant in the minimal subset is independently inductive
+    ("distai_invars", 4, 5, True),
+    ("distai_invars", 5, 6, True),
     # This is the safety property. It should not be inductive by itself.
     ([lambda M, S: QForAll([Node, Node], lambda N1, N2: Implies(And(S.holds(N1), S.holds(N2)), N1 == N2)).z3expr], 
      0, None, False),
@@ -229,6 +232,9 @@ def test_inductiveness(all_invars, I, J, expect_pass, request):
     ("distai_invars", 0, None, True),
     # Minimal subset of invariants that work
     ("distai_invars", 4, None, True),
+    # Smaller than minimal subset of invariants does not work
+    ("distai_invars", 4, 5, False),
+    ("distai_invars", 5, 6, False),
     # No invariants, only axioms will be used
     ("distai_invars", 0, 0, False),
 ])
