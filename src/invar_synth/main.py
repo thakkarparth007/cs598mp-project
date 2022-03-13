@@ -7,7 +7,7 @@ import argparse
 argparser = argparse.ArgumentParser()
 argparser.add_argument('--run-name', dest='run_name', type=str) #, default='run')
 argparser.add_argument('--learner', type=str, default='minisy_learner')
-argparser.add_argument('--protocol', type=str, default='dist_lock')
+argparser.add_argument('--protocol', type=str, default='mutex')
 argparser.add_argument('--interactive', action='store_true')
 argparser.add_argument('--num-iters', dest='num_iters', type=int, default=10000)
 argparser.add_argument('--time-limit', dest='time_limit', type=int, default=15, help='Time limit in minutes')
@@ -32,9 +32,11 @@ def get_learner(learner_name):
         raise Exception(f'Unknown learner: {learner_name}')
 
 def get_protocol(protocol_name):
-    if protocol_name == 'dist_lock':
-        from invar_synth.protocols.dist_lock import DistLockModel
-        return DistLockModel
+    if protocol_name == 'mutex':
+        # from invar_synth.protocols.dist_lock import DistLockModel
+        # return DistLockModel
+        from invar_synth.protocols.ricart_agrawala import MutexModel
+        return MutexModel
     else:
         raise Exception(f'Unknown protocol: {protocol_name}')
 

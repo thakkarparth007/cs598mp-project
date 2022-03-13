@@ -364,21 +364,25 @@ $fn_defns
 
     ;; Declare the non-terminals that would be used in the grammar
 
-    (
-        (Start Bool)
+    (   
+        ;(Start Bool)
+        (Formula Bool)
         (Atom Bool)
         $non_terminals
     )
 
     ;; Define the grammar for allowed implementations of inv
     (
-        (Start Bool
+        ;(Start Bool
+        ;    ((=> $distinct Formula))
+        ;)
+        (Formula Bool
             (
                 Atom
-                (and Start Start)
-                (or Start Start)
-                (=> Start Start)
-                (not Start)
+                (and Formula Formula)
+                (or Formula Formula)
+                (=> Formula Formula)
+                (not Formula)
             )
         )
 
@@ -437,7 +441,7 @@ $dummy_vars
 
             self._update_model_descs_in_loop(model_descs, cex, cheap_constraints)
             self._update_universes_in_loop(universes, cex)
-            self._append_cex_desc_as_comment_in_loop(constraints, cex)
+            # self._append_cex_desc_as_comment_in_loop(constraints, cex)
 
             constraint = cex.get_synth_constraint(known_invars, inv_expr, False)
             sexpr = constraint.sexpr()
@@ -453,12 +457,17 @@ $dummy_vars
         dummy_vars = ""
         dummy_args = ""
         args_of_type = {t: [] for t in self.types}
+        distinct_vars = []
         for s in tmpl_sorts:
             arg_name = s.name().lower()[0] + str(len(args_of_type[s])+1)
             args_of_type[s].append(arg_name)
             inv_args += f"({arg_name} {s.name()}) "
             dummy_vars += f"(declare-fun {arg_name.upper()} () {s.name()})\n"
             dummy_args += arg_name.upper() + " "
+            distinct_vars.append(arg_name)
+        
+        
+        distinct_expr = 'true' if len(distinct_vars) == 1 else f"(and {' '.join(['(not (= ' + v1 + ' ' + v2 + '))' for v1 in distinct_vars for v2 in distinct_vars if v1 != v2])})"
         
         non_terminals = ""
         non_terminal_expansions = ""
@@ -486,6 +495,7 @@ $dummy_vars
             universe_declarations=universe_declarations.strip(),
             fn_defns=fn_defns.strip(),
             non_terminals=non_terminals.strip(),
+            distinct=distinct_expr,
             bool_predicates=bool_predicates.strip(),
             equality_atoms=equality_atoms.strip(),
             non_terminal_expansions=non_terminal_expansions.strip(),
@@ -576,6 +586,8 @@ $dummy_vars
                 universe_declarations.append("(Model_DUMMYMODEL) ")
             elif s == StateId:
                 universe_declarations.append("(DUMMYSTATE) ")
+            else:
+                universe_declarations.append(f"({s.name()}_dummy) ")
             for elem in elems:
                 universe_declarations.append(f"({elem}) ")
             universe_declarations.append(")))\n")
@@ -605,7 +617,7 @@ $dummy_vars
     
     def _get_terms_of_type(self, T, universe):
         terms = [str(e) for e in universe.get(T, [])]
-        for name in self.fns_by_type[T]:
+        for name in self.fns_by_type.get(T, []):
             fn = self.fns[name]
             fn_arg_types = ['m']
             start = 1
