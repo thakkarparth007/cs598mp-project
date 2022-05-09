@@ -127,7 +127,7 @@ def inv_fn_3(M, S, model=None, nodes=None, epochs=None):
     inv = ForAll([N, N1, E], body(N, N1, E))
     return inv
 
-@pytest.fixture
+# @pytest.fixture
 def swiss_invars():
     return [inv_fn_0, inv_fn_1, inv_fn_2, inv_fn_3]
 
@@ -136,7 +136,7 @@ def swiss_invars():
 
 # %%
 
-@pytest.fixture
+# @pytest.fixture
 def distai_invars_strs():
     return """
     le(E1, E2) & E1 ~= E2 -> le(E1,ep(N1)) | ~le(E2,ep(N1))
@@ -267,14 +267,14 @@ def get_inv_fn(fn_name, inv_str, only_code=False):
     exec(f"ldict['fn'] = {fn_name}")
     return ldict['fn']
 
-@pytest.fixture
+# @pytest.fixture
 def distai_invars(distai_invars_strs):
     return [
         get_inv_fn("inv_fn_" + str(i), inv)
         for i, inv in enumerate(distai_invars_strs)
     ]
 
-@pytest.fixture
+# @pytest.fixture
 def M():
     return DistLockModel('M1')
 # %%

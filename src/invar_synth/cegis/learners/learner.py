@@ -32,7 +32,10 @@ class CEGISLearner():
     #   (X) Add the invariants discovered so far to the synth_str
     #   (X) Don't move to a new template till we can't find invariants for the current template
     #   [ ] Just because our template has an epoch variable doesn't mean the invariant generated will use epoch at all. This causes duplicates that we must be aware of.
-    def __init__(self, protocol_model: ProtocolModel, invars=[], max_terms = 5, load_N_pos_cex_from_traces=0):
+    def __init__(
+        self, protocol_model: ProtocolModel, invars=[], max_terms = 5, load_N_pos_cex_from_traces=0, interactive=False,
+        cheap_constraints=True, iter_deep=True
+    ):
         set_option('smt.random_seed', 123)
         self.cex_gen = CEXGen(protocol_model)
 
@@ -45,7 +48,7 @@ class CEGISLearner():
         self.counter_examples = [] #self.dummyM.get_pos_cex_from_traces()[:load_N_pos_cex_from_traces]
 
         self.invars = [lambda M, S: M.get_axioms()] + invars
-        self.cur_invar = lambda M, S: QForAll([BoolSort()], lambda n1: False)
+        self.cur_invar = lambda M, S: QForAll([self.dummyM.sorts[0]], lambda n1: BoolVal(False))
         self.template_generator = list(template_generator(
             self.allowed_quantifiers,
             self.allowed_sorts,
@@ -55,17 +58,61 @@ class CEGISLearner():
         self.perm_storage['cex'] = []
         self.safe = False
 
+        self.interactive = interactive
+        self.cheap_constraints = cheap_constraints
+        self.iter_deep = iter_deep
+
     # $unique_invar_asserts ^ insert above    
-    def loop(self, max_iters=10, min_depth=1, max_depth=4, debug=False):
+    def loop(self, max_iters=10, time_limit=30, min_depth=1, max_depth=4, debug=False, interactive=False):
+        time_limit *= 60 # convert to seconds
+        time_loop_start = time.time()
+        self.end_time = end_time = time_loop_start + time_limit
+
         synth_generator = self.synth(min_depth, max_depth)
-        for i in tqdm(range(max_iters)):
-            start = time.time()
-            cex = self.cex_gen.get_pos_cex(self.cur_invar, debug)
-            end = time.time()
-            print("Pos-CEX query time: {}".format(end-start))
+        # for i in tqdm(range(max_iters)): # docker-compose mixes stderr and stdout, causing havoc with logging if tqdm is running
+        for i in (range(max_iters)):
+            now = time.time()
+            print(f"> Iteration: {i}/{max_iters} ({int(100*i/max_iters)}%),\tTime taken: {int(now - time_loop_start)}s,\tTime left: {int(end_time - now)}s")
+            if now > end_time:
+                print(f"Time limit reached. Stopping after {i} iterations. Extra time: {now - end_time}")
+                break
+
+            # stats
+            cex_type_counts = {'pos': 0, 'imp': 0, 'neg': 0, 'highest': 0}
+            for cex in self.counter_examples:
+                if isinstance(cex, PositiveCEX): cex_type_counts['pos'] += 1
+                elif isinstance(cex, NegativeCEX): cex_type_counts['neg'] += 1
+                else: cex_type_counts['imp'] += 1
+                cex_type_counts['highest'] = max(cex_type_counts['highest'], cex.id)
+            print("Total number of pos counter examples: ", cex_type_counts['pos'])
+            print("Total number of neg counter examples: ", cex_type_counts['neg'])
+            print("Total number of imp counter examples: ", cex_type_counts['imp'])
+            print("Highest counter example id: ", cex_type_counts['highest'])
+
+            need_new_pos_cex = True
+            if self.cheap_constraints:
+                for cex in self.counter_examples:
+                    if isinstance(cex, LazyCEX):
+                        if cex.expand_lazy_valuations_set(self.cur_invar):
+                            need_new_pos_cex = False
+                            break
+
+            if need_new_pos_cex:
+                start = time.time()
+                cex = self.cex_gen.get_pos_cex(self.cur_invar, debug)
+                end = time.time()
+                print("Pos-CEX query time: {}".format(end-start))
+
+                if cex.exists():
+                    self.counter_examples.append(cex)
+                    self.perm_storage['cex'].append(cex)
+            else:
+                invar_qexpr = self.cur_invar(self.dummyM, self.dummyS)
+                tmpl_qs, tmpl_sorts = invar_qexpr.qs, invar_qexpr.sorts
+                tmpl = str((tmpl_qs, tmpl_sorts))
+                print(f"Expanded old cex {cex.id} to have ", len(cex.template_to_lazy_valuations[tmpl]), " lazy valuations under template ", tmpl)
+            
             if cex.exists():
-                self.counter_examples.append(cex)
-                self.perm_storage['cex'].append(cex)
                 # overwrite the current invariant, it's useless
                 self.cur_invar = next(synth_generator)
                 continue
@@ -98,7 +145,8 @@ class CEGISLearner():
             # store the current invariant, because it's inductive
             self.invars.append(self.cur_invar)
             self.cex_gen.invars.append(self.cur_invar)
-            print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS).z3expr)
+            print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS).z3expr,
+                 f"\nFound after {time.time() - time_loop_start} seconds")
             # reset synth_generator
             synth_generator = self.synth(min_depth, max_depth)
 
@@ -110,13 +158,17 @@ class CEGISLearner():
             self.counter_examples = [cex for cex in self.counter_examples if (isinstance(cex, PositiveCEX))]
             
             start = time.time()
-            cex = self.cex_gen.get_neg_cex(debug)
+            cex = self.cex_gen.get_neg_cex(debug=debug)
             end = time.time()
             print("Neg-CEX query time: {}".format(end-start))
             if cex.exists():
                 #self.counter_examples.append(cex)
                 #self.perm_storage['cex'].append(cex)
-                self.cur_invar = next(synth_generator)
+                try:
+                    self.cur_invar = next(synth_generator)
+                except StopIteration:
+                    print("Time limit reached/No more invariants to synthesize")
+                    return False
             else:
                 print("No counter-example found.")
                 self.safe = True
@@ -126,20 +178,30 @@ class CEGISLearner():
     
     def print_winners_so_far(self):
         print("==========================================================")
-        for inv in self.invars:
-            print("Inv: ", inv(self.dummyM, self.dummyS).z3expr)
+        for i, inv in enumerate(self.invars):
+            print(f"Inv#{i}: ", inv(self.dummyM, self.dummyS).z3expr)
         print("==========================================================")
         print(f"Protocol proved safe? : {self.safe}")
     
     def synth(self, min_depth, max_depth):
+        depth_low = min_depth if self.iter_deep else max_depth # if we use max_depth, we'll only iterate once, but minisy will iterate for us
         for depth in range(min_depth, max_depth+1):
             valid_templates = [(qs, sorts) for qs, sorts in self.template_generator]
             templ_ptr = 0
             while templ_ptr < len(valid_templates):
-                qs, sorts = valid_templates[templ_ptr]
-                print(f"Depth={depth}, template=", qs, sorts)
+                if time.time() > self.end_time:
+                    print("Time limit exceeded")
+                    return
 
-                synthesized_invar_candidates = self.get_candidates(qs, sorts, min_depth=depth, max_depth=depth)
+                qs, sorts = valid_templates[templ_ptr]
+                print(f"Depth={depth}, Winners={len(self.invars)} template=", qs, sorts)
+
+                if self.iter_deep:
+                    synthesized_invar_candidates = self.get_candidates(qs, sorts, min_depth=depth, max_depth=depth)
+                else:
+                    synthesized_invar_candidates = self.get_candidates(qs, sorts, min_depth=1, max_depth=max_depth)
+                if self.interactive:
+                    input("Go?")
 
                 if len(synthesized_invar_candidates) == 0:
                     print(f"-------------------Depth={depth} Exhausted template ", qs, sorts, '-------------------\n')

@@ -1,23 +1,51 @@
 from z3 import *
 from invar_synth.protocols.protocol import ModelId, StateId
 import subprocess
+from pathlib import Path
+import os.path as path
 
 from invar_synth.utils.qexpr import QExpr
 
 class MiniSyWrapper():
-    def __init__(self):
-        pass
+    def __init__(self, run_name=None):
+        global run_file_loc
+        mydir = Path(path.dirname(path.abspath(__file__)))
+        self.query_id = 0
+
+        if run_name is not None:
+            file_loc = mydir/'../cegis/run_files'
+            file_count = len([f for f in file_loc.iterdir()])
+            run_name_pref = str(file_count) + '_' + run_name
+
+            file_loc = file_loc/run_name_pref
+        else:
+            run_name_pref = 'test_cegis'
+            file_loc = (mydir/'../cegis'/run_name_pref)
+        
+        if not file_loc.exists():
+            file_loc.mkdir()
+        self.file_loc = file_loc.resolve()
+
+        self.minisy_path = mydir/'../../../mini-sygus/scripts/minisy'
+        
+        assert self.minisy_path.exists()
+        self.minisy_path = self.minisy_path.resolve()
+        
+        print(f"Storing minisy stuff at: {self.file_loc}/q_*.sy")
 
     def invoke(self, synth_str, min_depth, max_depth):
-        synth_file = '/home/parth/598mp/src/invar_synth/cegis/test_synth.sy'
+        self.query_id += 1
+        synth_file = self.file_loc / f'q_{self.query_id}.sy'
         with open(synth_file,'w') as f:
             f.write(synth_str)
         
-        cmd = f'source ~/.zshrc; minisy {synth_file} --min-depth={min_depth} --max-depth={max_depth}'
+        cmd = f'{self.minisy_path} {synth_file} --min-depth={min_depth} --max-depth={max_depth}'
         print(f"Running {cmd}")
         out = subprocess.check_output(
             cmd,
-            shell=True, executable="/bin/zsh", encoding='utf-8'
+            shell=True,
+            #executable="/bin/zsh",
+            encoding='utf-8'
         )
         lines = out.split('\n')
         defs = []

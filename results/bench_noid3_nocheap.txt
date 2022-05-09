@@ -1,0 +1,513 @@
+Building 598mp
+Storing minisy stuff at: /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy
+Running with args: Namespace(run_name='bench_noid3_nocheap', learner='minisy_learner', protocol='dist_lock', interactive=False, num_iters=10, time_limit=60, max_depth=6, max_terms=3, cheap=False, id3=False).
+> Iteration: 0/10 (0%),	Time taken: 0s,	Time left: 3599s
+Total number of pos counter examples:  0
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Pos-CEX query time: 0.019640445709228516
+Depth=1, Winners=1 template= ['FORALL'] [Node]
+get_synth_str took 0.020593881607055664 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.0726771354675293
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=1 template= ['FORALL'] [Epoch]
+get_synth_str took 0.019876480102539062 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.06784296035766602
+-------------------Depth=1 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.01898789405822754 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.0703883171081543
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Node, Epoch]
+get_synth_str took 0.019282817840576172 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07095456123352051
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+get_synth_str took 0.021263599395751953 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07266378402709961
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.01935601234436035 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07472825050354004
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+get_synth_str took 0.020312070846557617 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.0716705322265625
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+get_synth_str took 0.021139144897460938 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07379937171936035
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+get_synth_str took 0.02626347541809082 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.08214235305786133
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=1 template= ['FORALL'] [Node]
+get_synth_str took 0.018279075622558594 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.06988239288330078
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=1 template= ['FORALL'] [Epoch]
+get_synth_str took 0.018911361694335938 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.06828904151916504
+-------------------Depth=2 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.01886439323425293 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.06998276710510254
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL'] [Node, Epoch]
+get_synth_str took 0.019624710083007812 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07043123245239258
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+get_synth_str took 0.024164915084838867 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07382440567016602
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.019673824310302734 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07200860977172852
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+get_synth_str took 0.020100831985473633 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07312822341918945
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+get_synth_str took 0.02120685577392578 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07468008995056152
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+get_synth_str took 0.029028892517089844 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.08309292793273926
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=1 template= ['FORALL'] [Node]
+get_synth_str took 0.018474578857421875 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.09296441078186035
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (= (zero m) (ep m s (first m)))))
+> Iteration: 1/10 (10%),	Time taken: 1s,	Time left: 3598s
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Pos-CEX query time: 0.021318435668945312
+I-CEX query time: 0.0350193977355957
+WINNER:  ForAll(Node_1,
+       Not(zero(Model_DUMMYMODEL) ==
+           ep(Model_DUMMYMODEL, S, first(Model_DUMMYMODEL)))) 
+Found after 1.8844871520996094 seconds
+Neg-CEX query time: 0.02475905418395996
+Depth=1, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.019444704055786133 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07000613212585449
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=2 template= ['FORALL'] [Epoch]
+get_synth_str took 0.021770477294921875 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.06827735900878906
+-------------------Depth=1 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.02089858055114746 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07399296760559082
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL'] [Node, Epoch]
+get_synth_str took 0.021147727966308594 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07202816009521484
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+get_synth_str took 0.021520614624023438 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07462906837463379
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.02006697654724121 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07369518280029297
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+get_synth_str took 0.021025896072387695 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07258915901184082
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+get_synth_str took 0.022467613220214844 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07376813888549805
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+get_synth_str took 0.026926040649414062 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.0835118293762207
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.019728660583496094 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.06993389129638672
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=2 template= ['FORALL'] [Epoch]
+get_synth_str took 0.01964712142944336 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.06933450698852539
+-------------------Depth=2 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.020070314407348633 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07080268859863281
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL'] [Node, Epoch]
+get_synth_str took 0.020314455032348633 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07110905647277832
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+get_synth_str took 0.02141714096069336 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07295036315917969
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.020416736602783203 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07178711891174316
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+get_synth_str took 0.020560264587402344 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.0715477466583252
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+get_synth_str took 0.022054195404052734 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.0774831771850586
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+get_synth_str took 0.027662992477416992 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.08320808410644531
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.019481182098388672 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.09421062469482422
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (= (one m) (ep m s (first m))))
+> Iteration: 2/10 (20%),	Time taken: 3s,	Time left: 3596s
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Pos-CEX query time: 0.016104698181152344
+I-CEX query time: 0.024821043014526367
+Depth=3, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.04279279708862305 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.1102445125579834
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (transfer m s (one m) (first m))))
+> Iteration: 3/10 (30%),	Time taken: 3s,	Time left: 3596s
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  5
+Pos-CEX query time: 0.016281604766845703
+I-CEX query time: 0.023849010467529297
+Depth=3, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.09546542167663574 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.34677648544311523
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (and (= n1 (first m)) (le m (one m) (one m))))
+> Iteration: 4/10 (40%),	Time taken: 4s,	Time left: 3595s
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  7
+Pos-CEX query time: 0.021818161010742188
+Depth=3, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.11687755584716797 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.39684104919433594
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (and (held m s (first m)) (= (one m) (ep m s (first m)))))
+> Iteration: 5/10 (50%),	Time taken: 4s,	Time left: 3595s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  8
+Pos-CEX query time: 0.017117977142333984
+I-CEX query time: 0.021768569946289062
+Depth=3, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.15642690658569336 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.44641852378845215
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (transfer m s (zero m) (first m))))
+> Iteration: 6/10 (60%),	Time taken: 5s,	Time left: 3594s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  10
+Pos-CEX query time: 0.01575303077697754
+I-CEX query time: 0.02895498275756836
+WINNER:  ForAll(Node_1,
+       Not(transfer(Model_DUMMYMODEL,
+                    S,
+                    zero(Model_DUMMYMODEL),
+                    first(Model_DUMMYMODEL)))) 
+Found after 5.641682386398315 seconds
+Neg-CEX query time: 0.030007600784301758
+Depth=1, Winners=3 template= ['FORALL'] [Node]
+get_synth_str took 0.0443263053894043 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.06905770301818848
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=3 template= ['FORALL'] [Epoch]
+get_synth_str took 0.044637441635131836 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.0706319808959961
+-------------------Depth=1 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.045899152755737305 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07247471809387207
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL'] [Node, Epoch]
+get_synth_str took 0.046076059341430664 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07449555397033691
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+get_synth_str took 0.04844069480895996 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07465386390686035
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.04645991325378418 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.0749807357788086
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+get_synth_str took 0.0482022762298584 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07538938522338867
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+get_synth_str took 0.05062103271484375 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.07692408561706543
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+get_synth_str took 0.05965709686279297 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.08533048629760742
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=3 template= ['FORALL'] [Node]
+get_synth_str took 0.04844379425048828 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.06984424591064453
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=3 template= ['FORALL'] [Epoch]
+get_synth_str took 0.04527902603149414 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.06978893280029297
+-------------------Depth=2 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.047231435775756836 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07250285148620605
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL'] [Node, Epoch]
+get_synth_str took 0.047418832778930664 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.0725090503692627
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+get_synth_str took 0.048950910568237305 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.08107209205627441
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.047466278076171875 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07494974136352539
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+get_synth_str took 0.04856228828430176 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07535815238952637
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+get_synth_str took 0.052817583084106445 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.07735729217529297
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+get_synth_str took 0.058854103088378906 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.08609747886657715
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=3 template= ['FORALL'] [Node]
+get_synth_str took 0.044054269790649414 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.11444902420043945
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (held m s (first m)) (locked m s (one m) (first m))))
+> Iteration: 7/10 (70%),	Time taken: 8s,	Time left: 3591s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  8
+Pos-CEX query time: 0.01521611213684082
+I-CEX query time: 0.026700973510742188
+Depth=3, Winners=3 template= ['FORALL'] [Node]
+get_synth_str took 0.09420156478881836 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3228745460510254
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (= (one m) (ep m s (first m))) (= (zero m) (ep m s (first m)))))
+> Iteration: 8/10 (80%),	Time taken: 8s,	Time left: 3591s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  15
+Pos-CEX query time: 0.017558574676513672
+I-CEX query time: 0.026746273040771484
+Depth=3, Winners=3 template= ['FORALL'] [Node]
+get_synth_str took 0.11962389945983887 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3899953365325928
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (transfer m s (one m) (first m))))
+> Iteration: 9/10 (90%),	Time taken: 9s,	Time left: 3590s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  17
+Pos-CEX query time: 0.016308307647705078
+I-CEX query time: 0.026041269302368164
+Depth=3, Winners=3 template= ['FORALL'] [Node]
+get_synth_str took 0.1708834171295166 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/12_bench_noid3_nocheap.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.47273921966552734
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (locked m s (one m) n1)))
+==========================================================
+Inv#0:  ForAll(Epoch_1,
+       ForAll(Epoch_2,
+              ForAll(Epoch_3,
+                     And(le(Model_DUMMYMODEL,
+                            Epoch_1,
+                            Epoch_1),
+                         Implies(And(le(Model_DUMMYMODEL,
+                                        Epoch_1,
+                                        Epoch_2),
+                                     le(Model_DUMMYMODEL,
+                                        Epoch_2,
+                                        Epoch_3)),
+                                 le(Model_DUMMYMODEL,
+                                    Epoch_1,
+                                    Epoch_3)),
+                         Implies(And(le(Model_DUMMYMODEL,
+                                        Epoch_1,
+                                        Epoch_2),
+                                     le(Model_DUMMYMODEL,
+                                        Epoch_2,
+                                        Epoch_1)),
+                                 Epoch_1 == Epoch_2),
+                         Or(le(Model_DUMMYMODEL,
+                               Epoch_1,
+                               Epoch_2),
+                            le(Model_DUMMYMODEL,
+                               Epoch_2,
+                               Epoch_1)),
+                         le(Model_DUMMYMODEL,
+                            zero(Model_DUMMYMODEL),
+                            Epoch_1),
+                         one(Model_DUMMYMODEL) !=
+                         zero(Model_DUMMYMODEL)))))
+Inv#1:  ForAll(Node_1,
+       Not(zero(Model_DUMMYMODEL) ==
+           ep(Model_DUMMYMODEL, S, first(Model_DUMMYMODEL))))
+Inv#2:  ForAll(Node_1,
+       Not(transfer(Model_DUMMYMODEL,
+                    S,
+                    zero(Model_DUMMYMODEL),
+                    first(Model_DUMMYMODEL))))
+==========================================================
+Protocol proved safe? : False

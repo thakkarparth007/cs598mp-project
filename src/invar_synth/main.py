@@ -5,8 +5,27 @@
 import argparse
 
 argparser = argparse.ArgumentParser()
+argparser.add_argument('--run-name', dest='run_name', type=str) #, default='run')
 argparser.add_argument('--learner', type=str, default='minisy_learner')
 argparser.add_argument('--protocol', type=str, default='dist_lock')
+argparser.add_argument('--interactive', action='store_true')
+argparser.add_argument('--num-iters', dest='num_iters', type=int, default=10000)
+argparser.add_argument('--time-limit', dest='time_limit', type=int, default=15, help='Time limit in minutes')
+argparser.add_argument('--max-depth', dest='max_depth', type=int, default=6)
+argparser.add_argument('--max-terms', dest='max_terms', type=int, default=3)
+
+argparser.add_argument('--cheap', dest='cheap', action='store_true')
+argparser.add_argument('--no-cheap', dest='cheap', action='store_false')
+argparser.set_defaults(cheap=False)
+
+argparser.add_argument('--id3', dest='id3', action='store_true')
+argparser.add_argument('--no-id3', dest='id3', action='store_false')
+argparser.set_defaults(id3=False)
+
+argparser.add_argument('--iter-deep', dest='iter_deep', action='store_true', help='Apply iterative deepening on the grammar')
+argparser.add_argument('--no-iter-deep', dest='iter_deep', action='store_false', help='Don\'t apply iterative deepening on the grammar')
+argparser.set_defaults(iter_deep=True)
+
 args = argparser.parse_args()
 
 def get_learner(learner_name):
@@ -27,9 +46,17 @@ def main():
     Learner = get_learner(args.learner)
     Protocol = get_protocol(args.protocol)
 
-    cegis_learner = Learner(Protocol, invars=[], max_terms=3, load_N_pos_cex_from_traces=0)
+    cegis_learner = Learner(
+        Protocol, invars=[], max_terms=args.max_terms, load_N_pos_cex_from_traces=0,
+        interactive=args.interactive,
+        cheap_constraints=args.cheap,
+        run_name = args.run_name,
+        use_id3 = args.id3,
+        iter_deep = args.iter_deep
+    )
     try:
-        cegis_learner.loop(max_depth=7, max_iters=500)
+        print(f'Running with args: {args}.')
+        cegis_learner.loop(max_depth=args.max_depth, max_iters=args.num_iters, time_limit=args.time_limit)
         # cegis_learner.template_generator = [(('FORALL', 'FORALL', 'FORALL'), (Node, Node, Epoch)),]
         # cegis_learner.loop(max_iters=1000, min_depth=4, max_depth=4)
     except:
