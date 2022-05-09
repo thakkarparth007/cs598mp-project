@@ -34,7 +34,7 @@ class CEGISLearner():
     #   [ ] Just because our template has an epoch variable doesn't mean the invariant generated will use epoch at all. This causes duplicates that we must be aware of.
     def __init__(
         self, protocol_model: ProtocolModel, invars=[], max_terms = 5, load_N_pos_cex_from_traces=0, interactive=False,
-        cheap_constraints=True
+        cheap_constraints=True, iter_deep=True
     ):
         set_option('smt.random_seed', 123)
         self.cex_gen = CEXGen(protocol_model)
@@ -60,6 +60,7 @@ class CEGISLearner():
 
         self.interactive = interactive
         self.cheap_constraints = cheap_constraints
+        self.iter_deep = iter_deep
 
     # $unique_invar_asserts ^ insert above    
     def loop(self, max_iters=10, time_limit=30, min_depth=1, max_depth=4, debug=False, interactive=False):
@@ -91,7 +92,7 @@ class CEGISLearner():
             need_new_pos_cex = True
             if self.cheap_constraints:
                 for cex in self.counter_examples:
-                    if isinstance(cex, PositiveCEX):
+                    if isinstance(cex, LazyCEX):
                         if cex.expand_lazy_valuations_set(self.cur_invar):
                             need_new_pos_cex = False
                             break
@@ -163,7 +164,11 @@ class CEGISLearner():
             if cex.exists():
                 #self.counter_examples.append(cex)
                 #self.perm_storage['cex'].append(cex)
-                self.cur_invar = next(synth_generator)
+                try:
+                    self.cur_invar = next(synth_generator)
+                except StopIteration:
+                    print("Time limit reached/No more invariants to synthesize")
+                    return False
             else:
                 print("No counter-example found.")
                 self.safe = True
@@ -179,6 +184,7 @@ class CEGISLearner():
         print(f"Protocol proved safe? : {self.safe}")
     
     def synth(self, min_depth, max_depth):
+        depth_low = min_depth if self.iter_deep else max_depth # if we use max_depth, we'll only iterate once, but minisy will iterate for us
         for depth in range(min_depth, max_depth+1):
             valid_templates = [(qs, sorts) for qs, sorts in self.template_generator]
             templ_ptr = 0
@@ -190,7 +196,10 @@ class CEGISLearner():
                 qs, sorts = valid_templates[templ_ptr]
                 print(f"Depth={depth}, Winners={len(self.invars)} template=", qs, sorts)
 
-                synthesized_invar_candidates = self.get_candidates(qs, sorts, min_depth=depth, max_depth=depth)
+                if self.iter_deep:
+                    synthesized_invar_candidates = self.get_candidates(qs, sorts, min_depth=depth, max_depth=depth)
+                else:
+                    synthesized_invar_candidates = self.get_candidates(qs, sorts, min_depth=1, max_depth=max_depth)
                 if self.interactive:
                     input("Go?")
 

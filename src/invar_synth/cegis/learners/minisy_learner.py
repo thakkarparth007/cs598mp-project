@@ -17,8 +17,9 @@ class MinisyLearner(CEGISLearner):
         self, protocol_model, invars=[], max_terms = 5, load_N_pos_cex_from_traces=0, interactive=False, cheap_constraints=True,
         run_name=None,
         use_id3=True,
+        iter_deep=True
     ):
-        super().__init__(protocol_model, invars, max_terms, load_N_pos_cex_from_traces, interactive, cheap_constraints)
+        super().__init__(protocol_model, invars, max_terms, load_N_pos_cex_from_traces, interactive, cheap_constraints, iter_deep)
 
         self.minisy = MiniSyWrapper(run_name)
         self.grammar = SynthGrammar(self.dummyM, 123, use_id3=use_id3)

@@ -168,9 +168,13 @@ class LazyCEX(CEX):
 
         # Expand the universe lazily too. i.e., only define state/model functions (e.g., held, le etc.)
         # relevant to the valuations under use.
+        # self.lazy_universes = {
+        #     # sort -> set of elements in the universe
+        #     s: set() for s in self.M.sorts
+        # }
         self.lazy_universes = {
             # sort -> set of elements in the universe
-            s: set() for s in self.M.sorts
+            s: set(z3model.get_universe(s)) for s in self.M.sorts
         }
 
         #### <UTILITIES TO HELP WITH COMPUTING CLOSURE OF LAZY UNIVERSE> ####

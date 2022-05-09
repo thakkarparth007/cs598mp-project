@@ -22,6 +22,10 @@ argparser.add_argument('--id3', dest='id3', action='store_true')
 argparser.add_argument('--no-id3', dest='id3', action='store_false')
 argparser.set_defaults(id3=False)
 
+argparser.add_argument('--iter-deep', dest='iter_deep', action='store_true', help='Apply iterative deepening on the grammar')
+argparser.add_argument('--no-iter-deep', dest='iter_deep', action='store_false', help='Don\'t apply iterative deepening on the grammar')
+argparser.set_defaults(iter_deep=True)
+
 args = argparser.parse_args()
 
 def get_learner(learner_name):
@@ -48,6 +52,7 @@ def main():
         cheap_constraints=args.cheap,
         run_name = args.run_name,
         use_id3 = args.id3,
+        iter_deep = args.iter_deep
     )
     try:
         print(f'Running with args: {args}.')

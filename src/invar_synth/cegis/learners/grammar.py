@@ -435,9 +435,9 @@ $dummy_vars
             else:
                 inv_expr = cex.generate_inv_expr_for_tmpl(tmpl_qs, tmpl_sorts, synthesized_inv, False)
 
-            self._update_model_descs_in_loop(model_descs, cex, cheap_constraints)
+            self._update_model_descs_in_loop(model_descs, cex, False) # cheap_constraints)
             self._update_universes_in_loop(universes, cex)
-            self._append_cex_desc_as_comment_in_loop(constraints, cex)
+            # self._append_cex_desc_as_comment_in_loop(constraints, cex)
 
             constraint = cex.get_synth_constraint(known_invars, inv_expr, False)
             sexpr = constraint.sexpr()
