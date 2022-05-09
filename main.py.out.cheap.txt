@@ -1,0 +1,2277 @@
+Storing minisy stuff at: /home/parth/598mp/src/invar_synth/cegis/run_files/35_cheap_fixed3_id3.sy
+Running with args: Namespace(cheap=True, id3=True, interactive=False, learner='minisy_learner', max_depth=6, max_terms=3, num_iters=10000, protocol='dist_lock', run_name='cheap_fixed3_id3', time_limit=1).
+Total number of pos counter examples:  0
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Pos-CEX query time: 0.022380590438842773
+Depth=1, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+get_synth_str took 0.012300968170166016 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2539491653442383
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=1 template= ['FORALL'] [Epoch]
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+get_synth_str took 0.010790109634399414 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.32953500747680664
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch)) Bool (not (= e1 (one m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  2  lazy valuations under template  (['FORALL'], [Epoch])
+Depth=1, Winners=1 template= ['FORALL'] [Epoch]
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 2 avg: 1.0526315789473684
+Size of val_list: 2 avg: 1.1
+Size of val_list: 4 avg: 1.2380952380952381
+Size of val_list: 1 avg: 1.2272727272727273
+Size of val_list: 1 avg: 1.2173913043478262
+Size of val_list: 1 avg: 1.2083333333333333
+get_synth_str took 0.0177614688873291 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.30890607833862305
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch)) Bool (not (= e1 (zero m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  3  lazy valuations under template  (['FORALL'], [Epoch])
+Depth=1, Winners=1 template= ['FORALL'] [Epoch]
+Size of val_list: 1 avg: 1.2
+Size of val_list: 1 avg: 1.1923076923076923
+Size of val_list: 3 avg: 1.2592592592592593
+Size of val_list: 3 avg: 1.3214285714285714
+Size of val_list: 9 avg: 1.5862068965517242
+Size of val_list: 1 avg: 1.5666666666666667
+Size of val_list: 1 avg: 1.5483870967741935
+Size of val_list: 1 avg: 1.53125
+get_synth_str took 0.040703535079956055 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2660226821899414
+-------------------Depth=1 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Node, Node]
+Size of val_list: 1 avg: 1.5151515151515151
+Size of val_list: 1 avg: 1.5
+Size of val_list: 3 avg: 1.542857142857143
+Size of val_list: 3 avg: 1.5833333333333333
+Size of val_list: 9 avg: 1.7837837837837838
+Size of val_list: 1 avg: 1.763157894736842
+Size of val_list: 1 avg: 1.7435897435897436
+Size of val_list: 1 avg: 1.725
+get_synth_str took 0.02407550811767578 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2731592655181885
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 1 avg: 1.7073170731707317
+Size of val_list: 1 avg: 1.6904761904761905
+Size of val_list: 3 avg: 1.7209302325581395
+Size of val_list: 3 avg: 1.75
+Size of val_list: 9 avg: 1.9111111111111112
+Size of val_list: 1 avg: 1.891304347826087
+Size of val_list: 1 avg: 1.872340425531915
+Size of val_list: 1 avg: 1.8541666666666667
+get_synth_str took 0.03305840492248535 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.270078182220459
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (= e1 (zero m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 1 avg: 1.836734693877551
+Size of val_list: 1 avg: 1.82
+Size of val_list: 3 avg: 1.8431372549019607
+Size of val_list: 3 avg: 1.8653846153846154
+Size of val_list: 9 avg: 2.0
+Size of val_list: 1 avg: 1.9814814814814814
+Size of val_list: 1 avg: 1.9636363636363636
+Size of val_list: 1 avg: 1.9464285714285714
+get_synth_str took 0.028669357299804688 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.25353503227233887
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (not (= e1 (one m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 1 avg: 1.9298245614035088
+Size of val_list: 1 avg: 1.9137931034482758
+Size of val_list: 3 avg: 1.9322033898305084
+Size of val_list: 3 avg: 1.95
+Size of val_list: 9 avg: 2.0655737704918034
+Size of val_list: 1 avg: 2.0483870967741935
+Size of val_list: 1 avg: 2.0317460317460316
+Size of val_list: 1 avg: 2.015625
+get_synth_str took 0.029447317123413086 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26303672790527344
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 1 avg: 2.0
+Size of val_list: 1 avg: 1.9848484848484849
+Size of val_list: 3 avg: 2.0
+Size of val_list: 3 avg: 2.014705882352941
+Size of val_list: 9 avg: 2.1159420289855073
+Size of val_list: 1 avg: 2.1
+Size of val_list: 1 avg: 2.084507042253521
+Size of val_list: 1 avg: 2.0694444444444446
+get_synth_str took 0.026928424835205078 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3532259464263916
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch) (e2 Epoch)) Bool (not (= e1 (zero m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 1 avg: 2.0547945205479454
+Size of val_list: 1 avg: 2.0405405405405403
+Size of val_list: 3 avg: 2.0533333333333332
+Size of val_list: 3 avg: 2.0657894736842106
+Size of val_list: 9 avg: 2.155844155844156
+Size of val_list: 1 avg: 2.141025641025641
+Size of val_list: 1 avg: 2.1265822784810124
+Size of val_list: 1 avg: 2.1125
+get_synth_str took 0.04556393623352051 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.27007102966308594
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch) (e2 Epoch)) Bool (not (= e2 (zero m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 1 avg: 2.0987654320987654
+Size of val_list: 1 avg: 2.0853658536585367
+Size of val_list: 3 avg: 2.0963855421686746
+Size of val_list: 3 avg: 2.107142857142857
+Size of val_list: 9 avg: 2.1882352941176473
+Size of val_list: 1 avg: 2.1744186046511627
+Size of val_list: 1 avg: 2.160919540229885
+Size of val_list: 1 avg: 2.147727272727273
+get_synth_str took 0.029053688049316406 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2689797878265381
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch) (e2 Epoch)) Bool (not (= e1 (one m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  4  lazy valuations under template  (['FORALL', 'FORALL'], [Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 1 avg: 2.134831460674157
+Size of val_list: 1 avg: 2.1222222222222222
+Size of val_list: 3 avg: 2.131868131868132
+Size of val_list: 3 avg: 2.141304347826087
+Size of val_list: 9 avg: 2.21505376344086
+Size of val_list: 1 avg: 2.202127659574468
+Size of val_list: 1 avg: 2.1894736842105265
+Size of val_list: 1 avg: 2.1770833333333335
+get_synth_str took 0.03403759002685547 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3107447624206543
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch) (e2 Epoch)) Bool (not (= e2 (one m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  5  lazy valuations under template  (['FORALL', 'FORALL'], [Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 1 avg: 2.1649484536082473
+Size of val_list: 1 avg: 2.1530612244897958
+Size of val_list: 3 avg: 2.1616161616161618
+Size of val_list: 3 avg: 2.17
+Size of val_list: 9 avg: 2.237623762376238
+Size of val_list: 1 avg: 2.2254901960784315
+Size of val_list: 1 avg: 2.2135922330097086
+Size of val_list: 1 avg: 2.201923076923077
+get_synth_str took 0.0314021110534668 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2653820514678955
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Size of val_list: 1 avg: 2.1904761904761907
+Size of val_list: 1 avg: 2.1792452830188678
+Size of val_list: 3 avg: 2.1869158878504673
+Size of val_list: 3 avg: 2.1944444444444446
+Size of val_list: 9 avg: 2.256880733944954
+Size of val_list: 1 avg: 2.2454545454545456
+Size of val_list: 1 avg: 2.234234234234234
+Size of val_list: 1 avg: 2.2232142857142856
+get_synth_str took 0.023133277893066406 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2916066646575928
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 1 avg: 2.2123893805309733
+Size of val_list: 1 avg: 2.2017543859649122
+Size of val_list: 3 avg: 2.208695652173913
+Size of val_list: 3 avg: 2.2155172413793105
+Size of val_list: 9 avg: 2.2735042735042734
+Size of val_list: 1 avg: 2.26271186440678
+Size of val_list: 1 avg: 2.2521008403361344
+Size of val_list: 1 avg: 2.2416666666666667
+get_synth_str took 0.02243328094482422 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.25600314140319824
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (e1 Epoch)) Bool (not (= e1 (one m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 1 avg: 2.231404958677686
+Size of val_list: 1 avg: 2.221311475409836
+Size of val_list: 3 avg: 2.227642276422764
+Size of val_list: 3 avg: 2.2338709677419355
+Size of val_list: 9 avg: 2.288
+Size of val_list: 1 avg: 2.2777777777777777
+Size of val_list: 1 avg: 2.267716535433071
+Size of val_list: 1 avg: 2.2578125
+get_synth_str took 0.0294950008392334 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.27405261993408203
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (e1 Epoch)) Bool (not (= e1 (zero m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 1 avg: 2.248062015503876
+Size of val_list: 1 avg: 2.2384615384615385
+Size of val_list: 3 avg: 2.2442748091603053
+Size of val_list: 3 avg: 2.25
+Size of val_list: 9 avg: 2.300751879699248
+Size of val_list: 1 avg: 2.291044776119403
+Size of val_list: 1 avg: 2.2814814814814817
+Size of val_list: 1 avg: 2.2720588235294117
+get_synth_str took 0.05091214179992676 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.25743627548217773
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 1 avg: 2.2627737226277373
+Size of val_list: 1 avg: 2.253623188405797
+Size of val_list: 3 avg: 2.258992805755396
+Size of val_list: 3 avg: 2.2642857142857142
+Size of val_list: 9 avg: 2.3120567375886525
+Size of val_list: 1 avg: 2.3028169014084505
+Size of val_list: 1 avg: 2.2937062937062938
+Size of val_list: 1 avg: 2.2847222222222223
+get_synth_str took 0.023569107055664062 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.28421854972839355
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch) (e2 Epoch)) Bool (not (= e1 (one m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 1 avg: 2.2758620689655173
+Size of val_list: 1 avg: 2.267123287671233
+Size of val_list: 3 avg: 2.272108843537415
+Size of val_list: 3 avg: 2.277027027027027
+Size of val_list: 9 avg: 2.3221476510067114
+Size of val_list: 1 avg: 2.3133333333333335
+Size of val_list: 1 avg: 2.3046357615894038
+Size of val_list: 1 avg: 2.2960526315789473
+get_synth_str took 0.029419660568237305 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.27446603775024414
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch) (e2 Epoch)) Bool (not (= e1 (zero m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 1 avg: 2.287581699346405
+Size of val_list: 1 avg: 2.279220779220779
+Size of val_list: 3 avg: 2.2838709677419353
+Size of val_list: 3 avg: 2.2884615384615383
+Size of val_list: 9 avg: 2.3312101910828025
+Size of val_list: 1 avg: 2.3227848101265822
+Size of val_list: 1 avg: 2.3144654088050314
+Size of val_list: 1 avg: 2.30625
+get_synth_str took 0.031874656677246094 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2963905334472656
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch) (e2 Epoch)) Bool (not (= e2 (zero m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 1 avg: 2.298136645962733
+Size of val_list: 1 avg: 2.2901234567901234
+Size of val_list: 3 avg: 2.294478527607362
+Size of val_list: 3 avg: 2.298780487804878
+Size of val_list: 9 avg: 2.3393939393939394
+Size of val_list: 1 avg: 2.3313253012048194
+Size of val_list: 1 avg: 2.3233532934131738
+Size of val_list: 1 avg: 2.3154761904761907
+get_synth_str took 0.025399446487426758 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.24758195877075195
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch) (e2 Epoch)) Bool (not (= e2 (one m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 1 avg: 2.3076923076923075
+Size of val_list: 1 avg: 2.3
+Size of val_list: 3 avg: 2.304093567251462
+Size of val_list: 3 avg: 2.308139534883721
+Size of val_list: 9 avg: 2.346820809248555
+Size of val_list: 1 avg: 2.339080459770115
+Size of val_list: 1 avg: 2.3314285714285714
+Size of val_list: 1 avg: 2.3238636363636362
+get_synth_str took 0.028026819229125977 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2514231204986572
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 1 avg: 2.3163841807909606
+Size of val_list: 1 avg: 2.308988764044944
+Size of val_list: 3 avg: 2.3128491620111733
+Size of val_list: 3 avg: 2.316666666666667
+Size of val_list: 9 avg: 2.3535911602209945
+Size of val_list: 1 avg: 2.3461538461538463
+Size of val_list: 1 avg: 2.33879781420765
+Size of val_list: 1 avg: 2.3315217391304346
+get_synth_str took 0.04140591621398926 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2592747211456299
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch) (e2 Epoch) (e3 Epoch)) Bool (not (= e1 (one m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Epoch, Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 1 avg: 2.324324324324324
+Size of val_list: 1 avg: 2.317204301075269
+Size of val_list: 3 avg: 2.320855614973262
+Size of val_list: 3 avg: 2.324468085106383
+Size of val_list: 9 avg: 2.35978835978836
+Size of val_list: 1 avg: 2.3526315789473684
+Size of val_list: 1 avg: 2.345549738219895
+Size of val_list: 1 avg: 2.3385416666666665
+get_synth_str took 0.03225350379943848 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.24336600303649902
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch) (e2 Epoch) (e3 Epoch)) Bool (not (= e2 (one m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Epoch, Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 1 avg: 2.33160621761658
+Size of val_list: 1 avg: 2.3247422680412373
+Size of val_list: 3 avg: 2.3282051282051284
+Size of val_list: 3 avg: 2.3316326530612246
+Size of val_list: 9 avg: 2.3654822335025383
+Size of val_list: 1 avg: 2.3585858585858586
+Size of val_list: 1 avg: 2.351758793969849
+Size of val_list: 1 avg: 2.345
+get_synth_str took 0.024138927459716797 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26195335388183594
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch) (e2 Epoch) (e3 Epoch)) Bool (not (= e3 (one m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Epoch, Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 1 avg: 2.3383084577114426
+Size of val_list: 1 avg: 2.3316831683168315
+Size of val_list: 3 avg: 2.334975369458128
+Size of val_list: 3 avg: 2.338235294117647
+Size of val_list: 9 avg: 2.370731707317073
+Size of val_list: 1 avg: 2.3640776699029127
+Size of val_list: 1 avg: 2.357487922705314
+Size of val_list: 1 avg: 2.3509615384615383
+get_synth_str took 0.027189254760742188 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3193473815917969
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch) (e2 Epoch) (e3 Epoch)) Bool (not (= e2 (zero m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Epoch, Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 1 avg: 2.3444976076555024
+Size of val_list: 1 avg: 2.3380952380952382
+Size of val_list: 3 avg: 2.3412322274881516
+Size of val_list: 3 avg: 2.3443396226415096
+Size of val_list: 9 avg: 2.375586854460094
+Size of val_list: 1 avg: 2.369158878504673
+Size of val_list: 1 avg: 2.3627906976744186
+Size of val_list: 1 avg: 2.3564814814814814
+get_synth_str took 0.029810428619384766 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2600581645965576
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch) (e2 Epoch) (e3 Epoch)) Bool (not (= e1 (zero m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Epoch, Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 1 avg: 2.3502304147465436
+Size of val_list: 1 avg: 2.3440366972477062
+Size of val_list: 3 avg: 2.34703196347032
+Size of val_list: 3 avg: 2.35
+Size of val_list: 9 avg: 2.3800904977375565
+Size of val_list: 1 avg: 2.373873873873874
+Size of val_list: 1 avg: 2.367713004484305
+Size of val_list: 1 avg: 2.361607142857143
+get_synth_str took 0.030685901641845703 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3029747009277344
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (e1 Epoch) (e2 Epoch) (e3 Epoch)) Bool (not (= e3 (zero m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Expanded old cex 0 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Epoch, Epoch, Epoch])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 1 avg: 2.3555555555555556
+Size of val_list: 1 avg: 2.349557522123894
+Size of val_list: 3 avg: 2.352422907488987
+Size of val_list: 3 avg: 2.3552631578947367
+Size of val_list: 9 avg: 2.3842794759825328
+Size of val_list: 1 avg: 2.378260869565217
+Size of val_list: 1 avg: 2.3722943722943723
+Size of val_list: 1 avg: 2.3663793103448274
+get_synth_str took 0.02832484245300293 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26319169998168945
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 1 avg: 2.3605150214592276
+Size of val_list: 1 avg: 2.3547008547008548
+Size of val_list: 3 avg: 2.3574468085106384
+Size of val_list: 3 avg: 2.360169491525424
+Size of val_list: 9 avg: 2.388185654008439
+Size of val_list: 1 avg: 2.3823529411764706
+Size of val_list: 1 avg: 2.3765690376569037
+Size of val_list: 1 avg: 2.370833333333333
+get_synth_str took 0.026671648025512695 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2626838684082031
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=1 template= ['FORALL'] [Epoch]
+Size of val_list: 1 avg: 2.3651452282157677
+Size of val_list: 1 avg: 2.3595041322314048
+Size of val_list: 3 avg: 2.3621399176954734
+Size of val_list: 3 avg: 2.3647540983606556
+Size of val_list: 9 avg: 2.3918367346938774
+Size of val_list: 1 avg: 2.386178861788618
+Size of val_list: 1 avg: 2.380566801619433
+Size of val_list: 1 avg: 2.375
+get_synth_str took 0.022834062576293945 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.25162649154663086
+-------------------Depth=2 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL'] [Node, Node]
+Size of val_list: 1 avg: 2.3694779116465865
+Size of val_list: 1 avg: 2.364
+Size of val_list: 3 avg: 2.366533864541833
+Size of val_list: 3 avg: 2.369047619047619
+Size of val_list: 9 avg: 2.3952569169960474
+Size of val_list: 1 avg: 2.3897637795275593
+Size of val_list: 1 avg: 2.384313725490196
+Size of val_list: 1 avg: 2.37890625
+get_synth_str took 0.026501893997192383 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.26409482955932617
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 1 avg: 2.3735408560311284
+Size of val_list: 1 avg: 2.368217054263566
+Size of val_list: 3 avg: 2.370656370656371
+Size of val_list: 3 avg: 2.373076923076923
+Size of val_list: 9 avg: 2.3984674329501914
+Size of val_list: 1 avg: 2.3931297709923665
+Size of val_list: 1 avg: 2.387832699619772
+Size of val_list: 1 avg: 2.382575757575758
+get_synth_str took 0.026311159133911133 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2583022117614746
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 1 avg: 2.3773584905660377
+Size of val_list: 1 avg: 2.3721804511278197
+Size of val_list: 3 avg: 2.3745318352059925
+Size of val_list: 3 avg: 2.376865671641791
+Size of val_list: 9 avg: 2.4014869888475836
+Size of val_list: 1 avg: 2.3962962962962964
+Size of val_list: 1 avg: 2.3911439114391144
+Size of val_list: 1 avg: 2.386029411764706
+get_synth_str took 0.02625107765197754 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.25754284858703613
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Size of val_list: 1 avg: 2.380952380952381
+Size of val_list: 1 avg: 2.375912408759124
+Size of val_list: 3 avg: 2.3781818181818184
+Size of val_list: 3 avg: 2.380434782608696
+Size of val_list: 9 avg: 2.404332129963899
+Size of val_list: 1 avg: 2.3992805755395685
+Size of val_list: 1 avg: 2.3942652329749103
+Size of val_list: 1 avg: 2.3892857142857142
+get_synth_str took 0.028610944747924805 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.24335670471191406
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 1 avg: 2.3843416370106763
+Size of val_list: 1 avg: 2.379432624113475
+Size of val_list: 3 avg: 2.381625441696113
+Size of val_list: 3 avg: 2.3838028169014085
+Size of val_list: 9 avg: 2.407017543859649
+Size of val_list: 1 avg: 2.402097902097902
+Size of val_list: 1 avg: 2.397212543554007
+Size of val_list: 1 avg: 2.392361111111111
+get_synth_str took 0.022243022918701172 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2635681629180908
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 1 avg: 2.387543252595156
+Size of val_list: 1 avg: 2.382758620689655
+Size of val_list: 3 avg: 2.3848797250859106
+Size of val_list: 3 avg: 2.386986301369863
+Size of val_list: 9 avg: 2.409556313993174
+Size of val_list: 1 avg: 2.4047619047619047
+Size of val_list: 1 avg: 2.4
+Size of val_list: 1 avg: 2.39527027027027
+get_synth_str took 0.022700071334838867 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.25174546241760254
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 1 avg: 2.3905723905723906
+Size of val_list: 1 avg: 2.3859060402684564
+Size of val_list: 3 avg: 2.387959866220736
+Size of val_list: 3 avg: 2.39
+Size of val_list: 9 avg: 2.4119601328903655
+Size of val_list: 1 avg: 2.4072847682119205
+Size of val_list: 1 avg: 2.402640264026403
+Size of val_list: 1 avg: 2.398026315789474
+get_synth_str took 0.024034976959228516 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.26545047760009766
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 1 avg: 2.3934426229508197
+Size of val_list: 1 avg: 2.388888888888889
+Size of val_list: 3 avg: 2.3908794788273617
+Size of val_list: 3 avg: 2.392857142857143
+Size of val_list: 9 avg: 2.414239482200647
+Size of val_list: 1 avg: 2.4096774193548387
+Size of val_list: 1 avg: 2.405144694533762
+Size of val_list: 1 avg: 2.4006410256410255
+get_synth_str took 0.027042388916015625 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.577998161315918
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (and (= (one m) (ep m s (first m))) (= (one m) (ep m s (first m)))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Pos-CEX query time: 0.022388458251953125
+I-CEX query time: 0.023081541061401367
+Depth=3, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 3 avg: 2.402555910543131
+Size of val_list: 3 avg: 2.4044585987261144
+Size of val_list: 9 avg: 2.425396825396825
+Size of val_list: 9 avg: 2.4462025316455698
+Size of val_list: 18 avg: 2.495268138801262
+Size of val_list: 2 avg: 2.493710691823899
+Size of val_list: 2 avg: 2.4921630094043885
+Size of val_list: 2 avg: 2.490625
+get_synth_str took 0.15696191787719727 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.5465688705444336
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (and (= (one m) (ep m s (first m))) (held m s (first m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  2
+Pos-CEX query time: 0.027081727981567383
+I-CEX query time: 0.020314931869506836
+Depth=3, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 7 avg: 2.5046728971962615
+Size of val_list: 7 avg: 2.518633540372671
+Size of val_list: 21 avg: 2.5758513931888545
+Size of val_list: 21 avg: 2.632716049382716
+Size of val_list: 27 avg: 2.707692307692308
+Size of val_list: 3 avg: 2.708588957055215
+Size of val_list: 3 avg: 2.709480122324159
+Size of val_list: 3 avg: 2.7103658536585367
+get_synth_str took 0.5069713592529297 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.36182212829589844
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (transfer m s (one m) (first m)) (= (one m) (ep m s (first m)))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  4
+Pos-CEX query time: 0.01615738868713379
+I-CEX query time: 0.02290058135986328
+Depth=3, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 9 avg: 2.729483282674772
+Size of val_list: 9 avg: 2.7484848484848485
+Size of val_list: 27 avg: 2.821752265861027
+Size of val_list: 27 avg: 2.894578313253012
+Size of val_list: 36 avg: 2.993993993993994
+Size of val_list: 4 avg: 2.997005988023952
+Size of val_list: 4 avg: 3.0
+Size of val_list: 4 avg: 3.0029761904761907
+get_synth_str took 0.5992987155914307 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2930934429168701
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (held m s n1) (le m (one m) (zero m))))
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  6
+Pos-CEX query time: 0.019104957580566406
+Depth=3, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 10 avg: 3.0237388724035608
+Size of val_list: 10 avg: 3.044378698224852
+Size of val_list: 28 avg: 3.117994100294985
+Size of val_list: 28 avg: 3.1911764705882355
+Size of val_list: 37 avg: 3.2903225806451615
+Size of val_list: 5 avg: 3.2953216374269005
+Size of val_list: 5 avg: 3.3002915451895043
+Size of val_list: 5 avg: 3.3052325581395348
+get_synth_str took 0.6342811584472656 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2970755100250244
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (transfer m s (one m) (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  7
+Pos-CEX query time: 0.011979818344116211
+I-CEX query time: 0.015025615692138672
+Depth=3, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 14 avg: 3.336231884057971
+Size of val_list: 14 avg: 3.367052023121387
+Size of val_list: 40 avg: 3.472622478386167
+Size of val_list: 40 avg: 3.5775862068965516
+Size of val_list: 46 avg: 3.6991404011461317
+Size of val_list: 6 avg: 3.7057142857142855
+Size of val_list: 6 avg: 3.7122507122507122
+Size of val_list: 6 avg: 3.71875
+get_synth_str took 0.9096298217773438 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3408498764038086
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (transfer m s (zero m) (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  9
+Pos-CEX query time: 0.01543426513671875
+I-CEX query time: 0.022647857666015625
+WINNER:  ForAll(Node_1,
+       Not(transfer(Model_DUMMYMODEL,
+                    S,
+                    zero(Model_DUMMYMODEL),
+                    first(Model_DUMMYMODEL)))) 
+Found after 17.093765258789062 seconds
+Neg-CEX query time: 0.018134117126464844
+Depth=1, Winners=2 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 3.7138810198300285
+Size of val_list: 2 avg: 3.709039548022599
+Size of val_list: 4 avg: 3.7098591549295774
+Size of val_list: 4 avg: 3.710674157303371
+Size of val_list: 10 avg: 3.7282913165266107
+Size of val_list: 2 avg: 3.723463687150838
+Size of val_list: 2 avg: 3.7186629526462394
+Size of val_list: 2 avg: 3.713888888888889
+get_synth_str took 0.051841020584106445 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.36456918716430664
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=2 template= ['FORALL'] [Epoch]
+Size of val_list: 2 avg: 3.709141274238227
+Size of val_list: 2 avg: 3.7044198895027622
+Size of val_list: 4 avg: 3.7052341597796143
+Size of val_list: 4 avg: 3.706043956043956
+Size of val_list: 10 avg: 3.723287671232877
+Size of val_list: 2 avg: 3.7185792349726774
+Size of val_list: 2 avg: 3.7138964577656677
+Size of val_list: 2 avg: 3.7092391304347827
+get_synth_str took 0.06163358688354492 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.29198336601257324
+-------------------Depth=1 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL'] [Node, Node]
+Size of val_list: 2 avg: 3.7046070460704605
+Size of val_list: 2 avg: 3.7
+Size of val_list: 4 avg: 3.700808625336927
+Size of val_list: 4 avg: 3.7016129032258065
+Size of val_list: 10 avg: 3.7184986595174263
+Size of val_list: 2 avg: 3.713903743315508
+Size of val_list: 2 avg: 3.7093333333333334
+Size of val_list: 2 avg: 3.7047872340425534
+get_synth_str took 0.05115771293640137 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.27762603759765625
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 2 avg: 3.7002652519893897
+Size of val_list: 2 avg: 3.695767195767196
+Size of val_list: 4 avg: 3.6965699208443272
+Size of val_list: 4 avg: 3.6973684210526314
+Size of val_list: 10 avg: 3.713910761154856
+Size of val_list: 2 avg: 3.7094240837696337
+Size of val_list: 2 avg: 3.7049608355091386
+Size of val_list: 2 avg: 3.7005208333333335
+get_synth_str took 0.045128583908081055 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2726161479949951
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch)) Bool (or (= n1 (first m)) (= e1 (one m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  7
+Expanded old cex 7 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Epoch])
+Depth=1, Winners=2 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 2 avg: 3.696103896103896
+Size of val_list: 2 avg: 3.6917098445595853
+Size of val_list: 5 avg: 3.695090439276486
+Size of val_list: 5 avg: 3.698453608247423
+Size of val_list: 13 avg: 3.7223650385604112
+Size of val_list: 2 avg: 3.717948717948718
+Size of val_list: 2 avg: 3.713554987212276
+Size of val_list: 2 avg: 3.7091836734693877
+get_synth_str took 0.07253861427307129 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2729325294494629
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 2 avg: 3.704834605597964
+Size of val_list: 2 avg: 3.700507614213198
+Size of val_list: 5 avg: 3.7037974683544306
+Size of val_list: 5 avg: 3.707070707070707
+Size of val_list: 13 avg: 3.730478589420655
+Size of val_list: 2 avg: 3.7261306532663316
+Size of val_list: 2 avg: 3.7218045112781954
+Size of val_list: 2 avg: 3.7175
+get_synth_str took 0.0933525562286377 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.32227182388305664
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Size of val_list: 2 avg: 3.7132169576059852
+Size of val_list: 2 avg: 3.708955223880597
+Size of val_list: 5 avg: 3.7121588089330024
+Size of val_list: 5 avg: 3.7153465346534653
+Size of val_list: 13 avg: 3.7382716049382716
+Size of val_list: 2 avg: 3.7339901477832513
+Size of val_list: 2 avg: 3.72972972972973
+Size of val_list: 2 avg: 3.7254901960784315
+get_synth_str took 0.07265663146972656 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.31569457054138184
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 2 avg: 3.7212713936430317
+Size of val_list: 2 avg: 3.7170731707317075
+Size of val_list: 5 avg: 3.7201946472019465
+Size of val_list: 5 avg: 3.7233009708737863
+Size of val_list: 13 avg: 3.7457627118644066
+Size of val_list: 2 avg: 3.741545893719807
+Size of val_list: 2 avg: 3.7373493975903616
+Size of val_list: 2 avg: 3.733173076923077
+get_synth_str took 0.11879467964172363 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.28636622428894043
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (e1 Epoch)) Bool (or (= e1 (one m)) (= n2 (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  7
+Expanded old cex 7 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Epoch])
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 2 avg: 3.7290167865707433
+Size of val_list: 2 avg: 3.72488038277512
+Size of val_list: 5 avg: 3.727923627684964
+Size of val_list: 5 avg: 3.730952380952381
+Size of val_list: 13 avg: 3.7529691211401426
+Size of val_list: 2 avg: 3.748815165876777
+Size of val_list: 2 avg: 3.74468085106383
+Size of val_list: 2 avg: 3.740566037735849
+get_synth_str took 0.08641791343688965 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.31511998176574707
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 2 avg: 3.736470588235294
+Size of val_list: 2 avg: 3.732394366197183
+Size of val_list: 5 avg: 3.7353629976580796
+Size of val_list: 5 avg: 3.7383177570093458
+Size of val_list: 13 avg: 3.7599067599067597
+Size of val_list: 2 avg: 3.755813953488372
+Size of val_list: 2 avg: 3.7517401392111367
+Size of val_list: 2 avg: 3.747685185185185
+get_synth_str took 0.07168364524841309 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26698994636535645
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch) (e2 Epoch)) Bool (or (= e2 (one m)) (= n1 (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  7
+Expanded old cex 7 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Epoch, Epoch])
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 2 avg: 3.74364896073903
+Size of val_list: 2 avg: 3.73963133640553
+Size of val_list: 5 avg: 3.7425287356321837
+Size of val_list: 5 avg: 3.7454128440366974
+Size of val_list: 13 avg: 3.7665903890160184
+Size of val_list: 2 avg: 3.7625570776255706
+Size of val_list: 2 avg: 3.7585421412300684
+Size of val_list: 2 avg: 3.7545454545454544
+get_synth_str took 0.08228421211242676 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.32630491256713867
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (e1 Epoch) (e2 Epoch)) Bool (or (= n1 (first m)) (= e1 (one m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  7
+Expanded old cex 7 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Epoch, Epoch])
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 2 avg: 3.750566893424036
+Size of val_list: 2 avg: 3.746606334841629
+Size of val_list: 5 avg: 3.749435665914221
+Size of val_list: 5 avg: 3.7522522522522523
+Size of val_list: 13 avg: 3.7730337078651686
+Size of val_list: 2 avg: 3.7690582959641254
+Size of val_list: 2 avg: 3.7651006711409396
+Size of val_list: 2 avg: 3.7611607142857144
+get_synth_str took 0.06395339965820312 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26858019828796387
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 2 avg: 3.757238307349666
+Size of val_list: 2 avg: 3.7533333333333334
+Size of val_list: 5 avg: 3.7560975609756095
+Size of val_list: 5 avg: 3.7588495575221237
+Size of val_list: 13 avg: 3.7792494481236205
+Size of val_list: 2 avg: 3.7753303964757707
+Size of val_list: 2 avg: 3.7714285714285714
+Size of val_list: 2 avg: 3.767543859649123
+get_synth_str took 0.06605100631713867 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2895996570587158
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=2 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 3.763676148796499
+Size of val_list: 2 avg: 3.7598253275109172
+Size of val_list: 5 avg: 3.762527233115468
+Size of val_list: 5 avg: 3.765217391304348
+Size of val_list: 13 avg: 3.7852494577006506
+Size of val_list: 2 avg: 3.7813852813852815
+Size of val_list: 2 avg: 3.777537796976242
+Size of val_list: 2 avg: 3.773706896551724
+get_synth_str took 0.07139849662780762 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.27055978775024414
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=2 template= ['FORALL'] [Epoch]
+Size of val_list: 2 avg: 3.7698924731182797
+Size of val_list: 2 avg: 3.7660944206008584
+Size of val_list: 5 avg: 3.7687366167023555
+Size of val_list: 5 avg: 3.7713675213675213
+Size of val_list: 13 avg: 3.791044776119403
+Size of val_list: 2 avg: 3.7872340425531914
+Size of val_list: 2 avg: 3.78343949044586
+Size of val_list: 2 avg: 3.7796610169491527
+get_synth_str took 0.0744180679321289 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.24617385864257812
+-------------------Depth=2 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL'] [Node, Node]
+Size of val_list: 2 avg: 3.7758985200845667
+Size of val_list: 2 avg: 3.7721518987341773
+Size of val_list: 5 avg: 3.774736842105263
+Size of val_list: 5 avg: 3.777310924369748
+Size of val_list: 13 avg: 3.79664570230608
+Size of val_list: 2 avg: 3.792887029288703
+Size of val_list: 2 avg: 3.789144050104384
+Size of val_list: 2 avg: 3.785416666666667
+get_synth_str took 0.07628917694091797 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.27220797538757324
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 2 avg: 3.7817047817047817
+Size of val_list: 2 avg: 3.7780082987551866
+Size of val_list: 5 avg: 3.780538302277433
+Size of val_list: 5 avg: 3.7830578512396693
+Size of val_list: 13 avg: 3.802061855670103
+Size of val_list: 2 avg: 3.7983539094650207
+Size of val_list: 2 avg: 3.7946611909650922
+Size of val_list: 2 avg: 3.790983606557377
+get_synth_str took 0.06039071083068848 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.26259803771972656
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 2 avg: 3.787321063394683
+Size of val_list: 2 avg: 3.783673469387755
+Size of val_list: 5 avg: 3.786150712830957
+Size of val_list: 5 avg: 3.7886178861788617
+Size of val_list: 13 avg: 3.8073022312373226
+Size of val_list: 2 avg: 3.8036437246963564
+Size of val_list: 2 avg: 3.8
+Size of val_list: 2 avg: 3.7963709677419355
+get_synth_str took 0.06278800964355469 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.24886298179626465
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Size of val_list: 2 avg: 3.7927565392354126
+Size of val_list: 2 avg: 3.789156626506024
+Size of val_list: 5 avg: 3.791583166332665
+Size of val_list: 5 avg: 3.794
+Size of val_list: 13 avg: 3.812375249500998
+Size of val_list: 2 avg: 3.808764940239044
+Size of val_list: 2 avg: 3.805168986083499
+Size of val_list: 2 avg: 3.8015873015873014
+get_synth_str took 0.07379364967346191 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2870171070098877
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 2 avg: 3.798019801980198
+Size of val_list: 2 avg: 3.794466403162055
+Size of val_list: 5 avg: 3.796844181459566
+Size of val_list: 5 avg: 3.7992125984251968
+Size of val_list: 13 avg: 3.817288801571709
+Size of val_list: 2 avg: 3.8137254901960786
+Size of val_list: 2 avg: 3.8101761252446185
+Size of val_list: 2 avg: 3.806640625
+get_synth_str took 0.07331323623657227 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.28287839889526367
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 2 avg: 3.8031189083820665
+Size of val_list: 2 avg: 3.799610894941634
+Size of val_list: 5 avg: 3.8019417475728154
+Size of val_list: 5 avg: 3.804263565891473
+Size of val_list: 13 avg: 3.8220502901353965
+Size of val_list: 2 avg: 3.8185328185328187
+Size of val_list: 2 avg: 3.815028901734104
+Size of val_list: 2 avg: 3.8115384615384613
+get_synth_str took 0.07558488845825195 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2719302177429199
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 2 avg: 3.8080614203454894
+Size of val_list: 2 avg: 3.8045977011494254
+Size of val_list: 5 avg: 3.8068833652007648
+Size of val_list: 5 avg: 3.8091603053435112
+Size of val_list: 13 avg: 3.8266666666666667
+Size of val_list: 2 avg: 3.82319391634981
+Size of val_list: 2 avg: 3.8197343453510437
+Size of val_list: 2 avg: 3.816287878787879
+get_synth_str took 0.07708287239074707 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2612309455871582
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=2 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 3.8128544423440456
+Size of val_list: 2 avg: 3.809433962264151
+Size of val_list: 5 avg: 3.8116760828625234
+Size of val_list: 5 avg: 3.81390977443609
+Size of val_list: 13 avg: 3.831144465290807
+Size of val_list: 2 avg: 3.8277153558052435
+Size of val_list: 2 avg: 3.824299065420561
+Size of val_list: 2 avg: 3.8208955223880596
+get_synth_str took 0.07613945007324219 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.28470516204833984
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (= (zero m) (ep m s (first m))) (held m s (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  7
+Pos-CEX query time: 0.01290440559387207
+I-CEX query time: 0.017802953720092773
+Depth=3, Winners=2 template= ['FORALL'] [Node]
+Size of val_list: 6 avg: 3.824953445065177
+Size of val_list: 6 avg: 3.828996282527881
+Size of val_list: 21 avg: 3.8608534322820036
+Size of val_list: 21 avg: 3.8925925925925924
+Size of val_list: 29 avg: 3.9390018484288354
+Size of val_list: 3 avg: 3.937269372693727
+Size of val_list: 3 avg: 3.9355432780847144
+Size of val_list: 3 avg: 3.9338235294117645
+get_synth_str took 0.3394129276275635 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.31111788749694824
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (= (one m) (ep m s (first m))) (= (zero m) (ep m s (first m)))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  14
+Pos-CEX query time: 0.01936030387878418
+I-CEX query time: 0.027370929718017578
+Depth=3, Winners=2 template= ['FORALL'] [Node]
+Size of val_list: 8 avg: 3.9412844036697248
+Size of val_list: 8 avg: 3.948717948717949
+Size of val_list: 27 avg: 3.9908592321755028
+Size of val_list: 27 avg: 4.032846715328467
+Size of val_list: 38 avg: 4.09471766848816
+Size of val_list: 4 avg: 4.094545454545455
+Size of val_list: 4 avg: 4.09437386569873
+Size of val_list: 4 avg: 4.094202898550725
+get_synth_str took 0.6045961380004883 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.30043482780456543
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (transfer m s (zero m) n1)))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  16
+Pos-CEX query time: 0.01689910888671875
+I-CEX query time: 0.024866819381713867
+WINNER:  ForAll(Node_1,
+       Not(transfer(Model_DUMMYMODEL,
+                    S,
+                    zero(Model_DUMMYMODEL),
+                    Node_1))) 
+Found after 27.081649780273438 seconds
+Neg-CEX query time: 0.022627592086791992
+Depth=1, Winners=3 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 4.090415913200723
+Size of val_list: 2 avg: 4.086642599277979
+Size of val_list: 5 avg: 4.088288288288289
+Size of val_list: 5 avg: 4.089928057553957
+Size of val_list: 13 avg: 4.1059245960502695
+Size of val_list: 2 avg: 4.102150537634409
+Size of val_list: 2 avg: 4.098389982110913
+Size of val_list: 2 avg: 4.0946428571428575
+get_synth_str took 0.08467555046081543 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3417854309082031
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=3 template= ['FORALL'] [Epoch]
+Size of val_list: 2 avg: 4.090909090909091
+Size of val_list: 2 avg: 4.087188612099644
+Size of val_list: 5 avg: 4.088809946714032
+Size of val_list: 5 avg: 4.090425531914893
+Size of val_list: 13 avg: 4.106194690265487
+Size of val_list: 2 avg: 4.102473498233215
+Size of val_list: 2 avg: 4.098765432098766
+Size of val_list: 2 avg: 4.095070422535211
+get_synth_str took 0.08014440536499023 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26449036598205566
+-------------------Depth=1 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL'] [Node, Node]
+Size of val_list: 2 avg: 4.0913884007029875
+Size of val_list: 2 avg: 4.087719298245614
+Size of val_list: 5 avg: 4.089316987740806
+Size of val_list: 5 avg: 4.090909090909091
+Size of val_list: 13 avg: 4.106457242582897
+Size of val_list: 2 avg: 4.102787456445993
+Size of val_list: 2 avg: 4.099130434782609
+Size of val_list: 2 avg: 4.095486111111111
+get_synth_str took 0.06700825691223145 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26447224617004395
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 2 avg: 4.091854419410745
+Size of val_list: 2 avg: 4.088235294117647
+Size of val_list: 5 avg: 4.089810017271157
+Size of val_list: 5 avg: 4.091379310344828
+Size of val_list: 13 avg: 4.10671256454389
+Size of val_list: 2 avg: 4.103092783505154
+Size of val_list: 2 avg: 4.099485420240137
+Size of val_list: 2 avg: 4.095890410958904
+get_synth_str took 0.07778239250183105 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2509915828704834
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 2 avg: 4.092307692307692
+Size of val_list: 2 avg: 4.088737201365188
+Size of val_list: 5 avg: 4.090289608177172
+Size of val_list: 5 avg: 4.091836734693878
+Size of val_list: 13 avg: 4.106960950764007
+Size of val_list: 2 avg: 4.103389830508474
+Size of val_list: 2 avg: 4.0998307952622675
+Size of val_list: 2 avg: 4.096283783783784
+get_synth_str took 0.06859564781188965 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2565019130706787
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Size of val_list: 2 avg: 4.09274873524452
+Size of val_list: 2 avg: 4.089225589225589
+Size of val_list: 5 avg: 4.090756302521008
+Size of val_list: 5 avg: 4.092281879194631
+Size of val_list: 13 avg: 4.107202680067002
+Size of val_list: 2 avg: 4.103678929765886
+Size of val_list: 2 avg: 4.10016694490818
+Size of val_list: 2 avg: 4.096666666666667
+get_synth_str took 0.06663298606872559 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.27309584617614746
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 2 avg: 4.093178036605657
+Size of val_list: 2 avg: 4.089700996677741
+Size of val_list: 5 avg: 4.091210613598673
+Size of val_list: 5 avg: 4.0927152317880795
+Size of val_list: 13 avg: 4.107438016528926
+Size of val_list: 2 avg: 4.103960396039604
+Size of val_list: 2 avg: 4.100494233937397
+Size of val_list: 2 avg: 4.097039473684211
+get_synth_str took 0.0818016529083252 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26312947273254395
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 2 avg: 4.093596059113301
+Size of val_list: 2 avg: 4.090163934426229
+Size of val_list: 5 avg: 4.091653027823241
+Size of val_list: 5 avg: 4.0931372549019605
+Size of val_list: 13 avg: 4.107667210440456
+Size of val_list: 2 avg: 4.1042345276872965
+Size of val_list: 2 avg: 4.100813008130081
+Size of val_list: 2 avg: 4.097402597402597
+get_synth_str took 0.09382772445678711 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.3274564743041992
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 2 avg: 4.094003241491086
+Size of val_list: 2 avg: 4.090614886731392
+Size of val_list: 5 avg: 4.092084006462035
+Size of val_list: 5 avg: 4.093548387096774
+Size of val_list: 13 avg: 4.107890499194847
+Size of val_list: 2 avg: 4.104501607717042
+Size of val_list: 2 avg: 4.101123595505618
+Size of val_list: 2 avg: 4.097756410256411
+get_synth_str took 0.0811612606048584 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26149892807006836
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=3 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 4.0944
+Size of val_list: 2 avg: 4.0910543130990416
+Size of val_list: 5 avg: 4.092503987240829
+Size of val_list: 5 avg: 4.093949044585988
+Size of val_list: 13 avg: 4.108108108108108
+Size of val_list: 2 avg: 4.104761904761904
+Size of val_list: 2 avg: 4.101426307448494
+Size of val_list: 2 avg: 4.098101265822785
+get_synth_str took 0.08612251281738281 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3149721622467041
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=3 template= ['FORALL'] [Epoch]
+Size of val_list: 2 avg: 4.0947867298578196
+Size of val_list: 2 avg: 4.091482649842272
+Size of val_list: 5 avg: 4.092913385826772
+Size of val_list: 5 avg: 4.09433962264151
+Size of val_list: 13 avg: 4.108320251177394
+Size of val_list: 2 avg: 4.105015673981192
+Size of val_list: 2 avg: 4.101721439749609
+Size of val_list: 2 avg: 4.0984375
+get_synth_str took 0.07356071472167969 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3077871799468994
+-------------------Depth=2 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL'] [Node, Node]
+Size of val_list: 2 avg: 4.095163806552262
+Size of val_list: 2 avg: 4.09190031152648
+Size of val_list: 5 avg: 4.093312597200622
+Size of val_list: 5 avg: 4.09472049689441
+Size of val_list: 13 avg: 4.108527131782946
+Size of val_list: 2 avg: 4.105263157894737
+Size of val_list: 2 avg: 4.102009273570324
+Size of val_list: 2 avg: 4.098765432098766
+get_synth_str took 0.08793354034423828 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.3251655101776123
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 2 avg: 4.09553158705701
+Size of val_list: 2 avg: 4.092307692307692
+Size of val_list: 5 avg: 4.093701996927804
+Size of val_list: 5 avg: 4.095092024539877
+Size of val_list: 13 avg: 4.108728943338438
+Size of val_list: 2 avg: 4.105504587155964
+Size of val_list: 2 avg: 4.102290076335878
+Size of val_list: 2 avg: 4.099085365853658
+get_synth_str took 0.08361172676086426 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2833735942840576
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 2 avg: 4.095890410958904
+Size of val_list: 2 avg: 4.092705167173253
+Size of val_list: 5 avg: 4.094081942336874
+Size of val_list: 5 avg: 4.095454545454546
+Size of val_list: 13 avg: 4.1089258698941
+Size of val_list: 2 avg: 4.1057401812688825
+Size of val_list: 2 avg: 4.102564102564102
+Size of val_list: 2 avg: 4.099397590361446
+get_synth_str took 0.0766592025756836 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2414112091064453
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Size of val_list: 2 avg: 4.09624060150376
+Size of val_list: 2 avg: 4.093093093093093
+Size of val_list: 5 avg: 4.0944527736131935
+Size of val_list: 5 avg: 4.095808383233533
+Size of val_list: 13 avg: 4.109118086696562
+Size of val_list: 2 avg: 4.105970149253731
+Size of val_list: 2 avg: 4.102831594634873
+Size of val_list: 2 avg: 4.099702380952381
+get_synth_str took 0.07664203643798828 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2831110954284668
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 2 avg: 4.096582466567607
+Size of val_list: 2 avg: 4.093471810089021
+Size of val_list: 5 avg: 4.094814814814815
+Size of val_list: 5 avg: 4.096153846153846
+Size of val_list: 13 avg: 4.10930576070901
+Size of val_list: 2 avg: 4.106194690265487
+Size of val_list: 2 avg: 4.103092783505154
+Size of val_list: 2 avg: 4.1
+get_synth_str took 0.06772947311401367 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2653334140777588
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 2 avg: 4.096916299559472
+Size of val_list: 2 avg: 4.093841642228739
+Size of val_list: 5 avg: 4.095168374816984
+Size of val_list: 5 avg: 4.0964912280701755
+Size of val_list: 13 avg: 4.109489051094891
+Size of val_list: 2 avg: 4.106413994169096
+Size of val_list: 2 avg: 4.10334788937409
+Size of val_list: 2 avg: 4.100290697674419
+get_synth_str took 0.07535934448242188 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2573840618133545
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 2 avg: 4.097242380261248
+Size of val_list: 2 avg: 4.094202898550725
+Size of val_list: 5 avg: 4.095513748191028
+Size of val_list: 5 avg: 4.0968208092485545
+Size of val_list: 13 avg: 4.109668109668109
+Size of val_list: 2 avg: 4.106628242074928
+Size of val_list: 2 avg: 4.103597122302158
+Size of val_list: 2 avg: 4.100574712643678
+get_synth_str took 0.07950878143310547 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2862682342529297
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=3 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 4.097560975609756
+Size of val_list: 2 avg: 4.0945558739255015
+Size of val_list: 5 avg: 4.09585121602289
+Size of val_list: 5 avg: 4.097142857142857
+Size of val_list: 13 avg: 4.109843081312411
+Size of val_list: 2 avg: 4.1068376068376065
+Size of val_list: 2 avg: 4.103840682788051
+Size of val_list: 2 avg: 4.1008522727272725
+get_synth_str took 0.07557868957519531 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2749974727630615
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (held m s (first m)) (= (zero m) (ep m s (first m)))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  7
+Pos-CEX query time: 0.014340400695800781
+I-CEX query time: 0.024858951568603516
+Depth=3, Winners=3 template= ['FORALL'] [Node]
+Size of val_list: 6 avg: 4.10354609929078
+Size of val_list: 6 avg: 4.106232294617564
+Size of val_list: 21 avg: 4.13012729844413
+Size of val_list: 21 avg: 4.153954802259887
+Size of val_list: 29 avg: 4.188998589562765
+Size of val_list: 3 avg: 4.187323943661972
+Size of val_list: 3 avg: 4.185654008438819
+Size of val_list: 3 avg: 4.183988764044944
+get_synth_str took 0.30588698387145996 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2826509475708008
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (locked m s (one m) (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  21
+Pos-CEX query time: 0.011879682540893555
+I-CEX query time: 0.02245354652404785
+Depth=3, Winners=3 template= ['FORALL'] [Node]
+Size of val_list: 8 avg: 4.189340813464236
+Size of val_list: 8 avg: 4.19467787114846
+Size of val_list: 27 avg: 4.2265734265734265
+Size of val_list: 27 avg: 4.2583798882681565
+Size of val_list: 38 avg: 4.305439330543933
+Size of val_list: 4 avg: 4.305013927576602
+Size of val_list: 4 avg: 4.304589707927677
+Size of val_list: 4 avg: 4.304166666666666
+get_synth_str took 0.5182797908782959 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2759265899658203
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (= (zero m) (ep m s (first m))) (held m s n1)))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  23
+Expanded old cex 7 to have  2  lazy valuations under template  (['FORALL'], [Node])
+Depth=3, Winners=3 template= ['FORALL'] [Node]
+Size of val_list: 8 avg: 4.309292649098475
+Size of val_list: 8 avg: 4.314404432132964
+Size of val_list: 27 avg: 4.345781466113416
+Size of val_list: 27 avg: 4.37707182320442
+Size of val_list: 38 avg: 4.423448275862069
+Size of val_list: 4 avg: 4.422865013774104
+Size of val_list: 4 avg: 4.422283356258597
+Size of val_list: 4 avg: 4.4217032967032965
+get_synth_str took 0.5657193660736084 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.26721668243408203
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (transfer m s (one m) (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  23
+Pos-CEX query time: 0.012871503829956055
+I-CEX query time: 0.01603841781616211
+Depth=3, Winners=3 template= ['FORALL'] [Node]
+Size of val_list: 12 avg: 4.432098765432099
+Size of val_list: 12 avg: 4.442465753424657
+Size of val_list: 39 avg: 4.489740082079344
+Size of val_list: 39 avg: 4.536885245901639
+Size of val_list: 47 avg: 4.5948158253751705
+Size of val_list: 5 avg: 4.5953678474114446
+Size of val_list: 5 avg: 4.595918367346939
+Size of val_list: 5 avg: 4.596467391304348
+get_synth_str took 0.7861473560333252 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.27995872497558594
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (= (one m) (ep m s (first m))) (= (zero m) (ep m s (first m)))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  25
+Pos-CEX query time: 0.01549386978149414
+I-CEX query time: 0.023600101470947266
+Depth=3, Winners=3 template= ['FORALL'] [Node]
+Size of val_list: 14 avg: 4.609226594301221
+Size of val_list: 14 avg: 4.621951219512195
+Size of val_list: 45 avg: 4.6765899864682
+Size of val_list: 45 avg: 4.731081081081081
+Size of val_list: 56 avg: 4.800269905533064
+Size of val_list: 6 avg: 4.80188679245283
+Size of val_list: 6 avg: 4.8034993270524895
+Size of val_list: 6 avg: 4.80510752688172
+get_synth_str took 0.9758353233337402 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.3251793384552002
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (locked m s (zero m) (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  27
+Pos-CEX query time: 0.01381230354309082
+I-CEX query time: 0.024907588958740234
+WINNER:  ForAll(Node_1,
+       Not(locked(Model_DUMMYMODEL,
+                  S,
+                  zero(Model_DUMMYMODEL),
+                  first(Model_DUMMYMODEL)))) 
+Found after 38.74537944793701 seconds
+Neg-CEX query time: 0.020012617111206055
+Depth=1, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 4.801342281879195
+Size of val_list: 2 avg: 4.797587131367292
+Size of val_list: 5 avg: 4.7978580990629185
+Size of val_list: 5 avg: 4.798128342245989
+Size of val_list: 13 avg: 4.809078771695594
+Size of val_list: 2 avg: 4.8053333333333335
+Size of val_list: 2 avg: 4.801597869507323
+Size of val_list: 2 avg: 4.797872340425532
+get_synth_str took 0.06946945190429688 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2589271068572998
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=4 template= ['FORALL'] [Epoch]
+Size of val_list: 2 avg: 4.794156706507304
+Size of val_list: 2 avg: 4.790450928381963
+Size of val_list: 5 avg: 4.790728476821192
+Size of val_list: 5 avg: 4.791005291005291
+Size of val_list: 13 avg: 4.801849405548217
+Size of val_list: 2 avg: 4.798153034300792
+Size of val_list: 2 avg: 4.794466403162056
+Size of val_list: 2 avg: 4.79078947368421
+get_synth_str took 0.07504010200500488 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.25327014923095703
+-------------------Depth=1 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=1, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+Size of val_list: 2 avg: 4.78712220762155
+Size of val_list: 2 avg: 4.783464566929134
+Size of val_list: 5 avg: 4.783748361730013
+Size of val_list: 5 avg: 4.784031413612565
+Size of val_list: 13 avg: 4.794771241830065
+Size of val_list: 2 avg: 4.7911227154047
+Size of val_list: 2 avg: 4.78748370273794
+Size of val_list: 2 avg: 4.783854166666667
+get_synth_str took 0.06762337684631348 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26540517807006836
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=4 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 2 avg: 4.780234070221066
+Size of val_list: 2 avg: 4.776623376623377
+Size of val_list: 5 avg: 4.776913099870298
+Size of val_list: 5 avg: 4.77720207253886
+Size of val_list: 13 avg: 4.78783958602846
+Size of val_list: 2 avg: 4.784237726098191
+Size of val_list: 2 avg: 4.780645161290322
+Size of val_list: 2 avg: 4.777061855670103
+get_synth_str took 0.07630634307861328 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2676525115966797
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, Winners=4 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 2 avg: 4.773487773487774
+Size of val_list: 2 avg: 4.769922879177378
+Size of val_list: 5 avg: 4.7702182284980745
+Size of val_list: 5 avg: 4.77051282051282
+Size of val_list: 13 avg: 4.781049935979514
+Size of val_list: 2 avg: 4.7774936061381075
+Size of val_list: 2 avg: 4.773946360153257
+Size of val_list: 2 avg: 4.770408163265306
+get_synth_str took 0.07241058349609375 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2575709819793701
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=1, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Size of val_list: 2 avg: 4.76687898089172
+Size of val_list: 2 avg: 4.763358778625954
+Size of val_list: 5 avg: 4.7636594663278276
+Size of val_list: 5 avg: 4.7639593908629445
+Size of val_list: 13 avg: 4.774397972116604
+Size of val_list: 2 avg: 4.770886075949367
+Size of val_list: 2 avg: 4.767383059418457
+Size of val_list: 2 avg: 4.763888888888889
+get_synth_str took 0.07886838912963867 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2789430618286133
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 2 avg: 4.760403530895334
+Size of val_list: 2 avg: 4.7569269521410575
+Size of val_list: 5 avg: 4.757232704402516
+Size of val_list: 5 avg: 4.757537688442211
+Size of val_list: 13 avg: 4.767879548306148
+Size of val_list: 2 avg: 4.764411027568922
+Size of val_list: 2 avg: 4.760951188986232
+Size of val_list: 2 avg: 4.7575
+get_synth_str took 0.06580281257629395 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2782750129699707
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 2 avg: 4.754057428214732
+Size of val_list: 2 avg: 4.750623441396509
+Size of val_list: 5 avg: 4.75093399750934
+Size of val_list: 5 avg: 4.751243781094527
+Size of val_list: 13 avg: 4.761490683229813
+Size of val_list: 2 avg: 4.758064516129032
+Size of val_list: 2 avg: 4.754646840148699
+Size of val_list: 2 avg: 4.751237623762377
+get_synth_str took 0.07403326034545898 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2620255947113037
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=1, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 2 avg: 4.7478368355995055
+Size of val_list: 2 avg: 4.7444444444444445
+Size of val_list: 5 avg: 4.744759556103576
+Size of val_list: 5 avg: 4.745073891625616
+Size of val_list: 13 avg: 4.755227552275523
+Size of val_list: 2 avg: 4.7518427518427515
+Size of val_list: 2 avg: 4.748466257668712
+Size of val_list: 2 avg: 4.745098039215686
+get_synth_str took 0.07610940933227539 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.30004286766052246
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 4.741738066095471
+Size of val_list: 2 avg: 4.73838630806846
+Size of val_list: 5 avg: 4.738705738705739
+Size of val_list: 5 avg: 4.739024390243903
+Size of val_list: 13 avg: 4.749086479902558
+Size of val_list: 2 avg: 4.745742092457421
+Size of val_list: 2 avg: 4.742405832320777
+Size of val_list: 2 avg: 4.739077669902913
+get_synth_str took 0.07367348670959473 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.26081228256225586
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=4 template= ['FORALL'] [Epoch]
+Size of val_list: 2 avg: 4.735757575757575
+Size of val_list: 2 avg: 4.732445520581114
+Size of val_list: 5 avg: 4.732769044740024
+Size of val_list: 5 avg: 4.733091787439614
+Size of val_list: 13 avg: 4.743063932448734
+Size of val_list: 2 avg: 4.739759036144578
+Size of val_list: 2 avg: 4.736462093862816
+Size of val_list: 2 avg: 4.733173076923077
+get_synth_str took 0.07131457328796387 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2606322765350342
+-------------------Depth=2 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=2, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+Size of val_list: 2 avg: 4.729891956782713
+Size of val_list: 2 avg: 4.726618705035971
+Size of val_list: 5 avg: 4.726946107784431
+Size of val_list: 5 avg: 4.7272727272727275
+Size of val_list: 13 avg: 4.73715651135006
+Size of val_list: 2 avg: 4.733890214797136
+Size of val_list: 2 avg: 4.730631704410012
+Size of val_list: 2 avg: 4.727380952380952
+get_synth_str took 0.0649259090423584 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2472524642944336
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=4 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 2 avg: 4.724137931034483
+Size of val_list: 2 avg: 4.720902612826603
+Size of val_list: 5 avg: 4.72123368920522
+Size of val_list: 5 avg: 4.721563981042654
+Size of val_list: 13 avg: 4.731360946745562
+Size of val_list: 2 avg: 4.7281323877068555
+Size of val_list: 2 avg: 4.7249114521841795
+Size of val_list: 2 avg: 4.721698113207547
+get_synth_str took 0.07189035415649414 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.28548669815063477
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, Winners=4 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 2 avg: 4.71849234393404
+Size of val_list: 2 avg: 4.715294117647058
+Size of val_list: 5 avg: 4.7156286721504115
+Size of val_list: 5 avg: 4.715962441314554
+Size of val_list: 13 avg: 4.725674091441969
+Size of val_list: 2 avg: 4.72248243559719
+Size of val_list: 2 avg: 4.719298245614035
+Size of val_list: 2 avg: 4.716121495327103
+get_synth_str took 0.07277488708496094 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2720015048980713
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=2, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Size of val_list: 2 avg: 4.712952158693115
+Size of val_list: 2 avg: 4.70979020979021
+Size of val_list: 5 avg: 4.710128055878929
+Size of val_list: 5 avg: 4.71046511627907
+Size of val_list: 13 avg: 4.720092915214867
+Size of val_list: 2 avg: 4.716937354988399
+Size of val_list: 2 avg: 4.713789107763615
+Size of val_list: 2 avg: 4.710648148148148
+get_synth_str took 0.07488417625427246 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2571251392364502
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 2 avg: 4.707514450867052
+Size of val_list: 2 avg: 4.704387990762124
+Size of val_list: 5 avg: 4.704728950403691
+Size of val_list: 5 avg: 4.7050691244239635
+Size of val_list: 13 avg: 4.714614499424626
+Size of val_list: 2 avg: 4.711494252873563
+Size of val_list: 2 avg: 4.708381171067738
+Size of val_list: 2 avg: 4.705275229357798
+get_synth_str took 0.07194662094116211 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2670307159423828
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 2 avg: 4.702176403207331
+Size of val_list: 2 avg: 4.69908466819222
+Size of val_list: 5 avg: 4.699428571428571
+Size of val_list: 5 avg: 4.699771689497717
+Size of val_list: 13 avg: 4.709236031927024
+Size of val_list: 2 avg: 4.70615034168565
+Size of val_list: 2 avg: 4.703071672354949
+Size of val_list: 2 avg: 4.7
+get_synth_str took 0.07198095321655273 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2673196792602539
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=2, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 2 avg: 4.696935300794552
+Size of val_list: 2 avg: 4.6938775510204085
+Size of val_list: 5 avg: 4.694224235560589
+Size of val_list: 5 avg: 4.6945701357466065
+Size of val_list: 13 avg: 4.703954802259887
+Size of val_list: 2 avg: 4.700902934537246
+Size of val_list: 2 avg: 4.697857948139797
+Size of val_list: 2 avg: 4.69481981981982
+get_synth_str took 0.07286691665649414 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.30466580390930176
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 4.691788526434196
+Size of val_list: 2 avg: 4.68876404494382
+Size of val_list: 5 avg: 4.689113355780022
+Size of val_list: 5 avg: 4.689461883408072
+Size of val_list: 13 avg: 4.698768197088466
+Size of val_list: 2 avg: 4.6957494407158835
+Size of val_list: 2 avg: 4.692737430167598
+Size of val_list: 2 avg: 4.689732142857143
+get_synth_str took 0.07939314842224121 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2787809371948242
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (transfer m s (one m) (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  7
+Pos-CEX query time: 0.011616945266723633
+I-CEX query time: 0.01696920394897461
+Depth=3, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 6 avg: 4.691192865105909
+Size of val_list: 6 avg: 4.692650334075724
+Size of val_list: 17 avg: 4.706340378197997
+Size of val_list: 17 avg: 4.72
+Size of val_list: 22 avg: 4.739178690344062
+Size of val_list: 3 avg: 4.737250554323725
+Size of val_list: 3 avg: 4.735326688815061
+Size of val_list: 3 avg: 4.7334070796460175
+get_synth_str took 0.26215195655822754 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.27483367919921875
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (= (zero m) (ep m s (first m))) (= (one m) (ep m s (first m)))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  32
+Pos-CEX query time: 0.014497995376586914
+I-CEX query time: 0.02464914321899414
+Depth=3, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 8 avg: 4.737016574585636
+Size of val_list: 8 avg: 4.7406181015452535
+Size of val_list: 23 avg: 4.7607497243660415
+Size of val_list: 23 avg: 4.780837004405286
+Size of val_list: 31 avg: 4.80968096809681
+Size of val_list: 4 avg: 4.808791208791209
+Size of val_list: 4 avg: 4.807903402854007
+Size of val_list: 4 avg: 4.807017543859649
+get_synth_str took 0.45090508460998535 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2876749038696289
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (transfer m s (zero m) (first m)) (held m s (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  34
+Pos-CEX query time: 0.014403343200683594
+I-CEX query time: 0.027131319046020508
+Depth=3, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 12 avg: 4.814895947426068
+Size of val_list: 12 avg: 4.822757111597374
+Size of val_list: 39 avg: 4.860109289617486
+Size of val_list: 39 avg: 4.897379912663755
+Size of val_list: 47 avg: 4.9432933478735
+Size of val_list: 5 avg: 4.943355119825708
+Size of val_list: 5 avg: 4.943416757344941
+Size of val_list: 5 avg: 4.943478260869565
+get_synth_str took 0.8224010467529297 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.31275010108947754
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (locked m s (one m) n1)))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  36
+Pos-CEX query time: 0.0150299072265625
+I-CEX query time: 0.027437925338745117
+Depth=3, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 16 avg: 4.955483170466884
+Size of val_list: 16 avg: 4.967462039045553
+Size of val_list: 55 avg: 5.021668472372697
+Size of val_list: 55 avg: 5.075757575757576
+Size of val_list: 63 avg: 5.138378378378379
+Size of val_list: 6 avg: 5.139308855291577
+Size of val_list: 6 avg: 5.140237324703344
+Size of val_list: 6 avg: 5.141163793103448
+get_synth_str took 1.1573176383972168 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.31592893600463867
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (locked m s (zero m) n1)))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  38
+Pos-CEX query time: 0.01285243034362793
+I-CEX query time: 0.026628494262695312
+WINNER:  ForAll(Node_1,
+       Not(locked(Model_DUMMYMODEL,
+                  S,
+                  zero(Model_DUMMYMODEL),
+                  Node_1))) 
+Found after 49.38565111160278 seconds
+Neg-CEX query time: 0.022458314895629883
+Depth=1, Winners=5 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 5.13778256189451
+Size of val_list: 2 avg: 5.134408602150538
+Size of val_list: 5 avg: 5.134264232008593
+Size of val_list: 5 avg: 5.134120171673819
+Size of val_list: 13 avg: 5.142550911039657
+Size of val_list: 2 avg: 5.139186295503212
+Size of val_list: 2 avg: 5.1358288770053475
+Size of val_list: 2 avg: 5.132478632478633
+get_synth_str took 0.06771254539489746 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.25603246688842773
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=5 template= ['FORALL'] [Epoch]
+Size of val_list: 2 avg: 5.129135538954109
+Size of val_list: 2 avg: 5.1257995735607675
+Size of val_list: 5 avg: 5.125665601703941
+Size of val_list: 5 avg: 5.125531914893617
+Size of val_list: 13 avg: 5.133900106269926
+Size of val_list: 2 avg: 5.130573248407643
+Size of val_list: 2 avg: 5.127253446447508
+Size of val_list: 2 avg: 5.123940677966102
+get_synth_str took 0.08086776733398438 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.28613710403442383
+-------------------Depth=1 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=1, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+Size of val_list: 2 avg: 5.12063492063492
+Size of val_list: 2 avg: 5.117336152219873
+Size of val_list: 5 avg: 5.117212249208025
+Size of val_list: 5 avg: 5.117088607594937
+Size of val_list: 13 avg: 5.125395152792413
+Size of val_list: 2 avg: 5.122105263157895
+Size of val_list: 2 avg: 5.11882229232387
+Size of val_list: 2 avg: 5.1155462184873945
+get_synth_str took 0.07052087783813477 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2932295799255371
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=5 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 2 avg: 5.112277019937041
+Size of val_list: 2 avg: 5.109014675052411
+Size of val_list: 5 avg: 5.10890052356021
+Size of val_list: 5 avg: 5.108786610878661
+Size of val_list: 13 avg: 5.117032392894462
+Size of val_list: 2 avg: 5.113778705636744
+Size of val_list: 2 avg: 5.110531803962461
+Size of val_list: 2 avg: 5.107291666666667
+get_synth_str took 0.07082796096801758 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2611382007598877
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=1, Winners=5 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 2 avg: 5.104058272632674
+Size of val_list: 2 avg: 5.100831600831601
+Size of val_list: 5 avg: 5.1007268951194185
+Size of val_list: 5 avg: 5.100622406639004
+Size of val_list: 13 avg: 5.108808290155441
+Size of val_list: 2 avg: 5.105590062111801
+Size of val_list: 2 avg: 5.102378490175801
+Size of val_list: 2 avg: 5.099173553719008
+get_synth_str took 0.07648277282714844 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.28216052055358887
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=1, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Size of val_list: 2 avg: 5.095975232198143
+Size of val_list: 2 avg: 5.092783505154639
+Size of val_list: 5 avg: 5.092687950566426
+Size of val_list: 5 avg: 5.092592592592593
+Size of val_list: 13 avg: 5.100719424460432
+Size of val_list: 2 avg: 5.097535934291581
+Size of val_list: 2 avg: 5.094358974358975
+Size of val_list: 2 avg: 5.091188524590164
+get_synth_str took 0.07378816604614258 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26782989501953125
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=1, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 2 avg: 5.088024564994882
+Size of val_list: 2 avg: 5.084867075664621
+Size of val_list: 5 avg: 5.084780388151175
+Size of val_list: 5 avg: 5.08469387755102
+Size of val_list: 13 avg: 5.0927624872579
+Size of val_list: 2 avg: 5.089613034623218
+Size of val_list: 2 avg: 5.0864699898270604
+Size of val_list: 2 avg: 5.083333333333333
+get_synth_str took 0.06810665130615234 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.27645158767700195
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=1, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 2 avg: 5.08020304568528
+Size of val_list: 2 avg: 5.077079107505071
+Size of val_list: 5 avg: 5.077001013171226
+Size of val_list: 5 avg: 5.076923076923077
+Size of val_list: 13 avg: 5.084934277047522
+Size of val_list: 2 avg: 5.081818181818182
+Size of val_list: 2 avg: 5.0787083753784055
+Size of val_list: 2 avg: 5.075604838709677
+get_synth_str took 0.07660913467407227 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.2858133316040039
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=1, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 2 avg: 5.072507552870091
+Size of val_list: 2 avg: 5.069416498993964
+Size of val_list: 5 avg: 5.0693467336683415
+Size of val_list: 5 avg: 5.069277108433735
+Size of val_list: 13 avg: 5.077231695085255
+Size of val_list: 2 avg: 5.074148296593187
+Size of val_list: 2 avg: 5.071071071071071
+Size of val_list: 2 avg: 5.068
+get_synth_str took 0.07356572151184082 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=1 --max-depth=1
+Time taken for synth:  0.26575326919555664
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=5 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 5.064935064935065
+Size of val_list: 2 avg: 5.06187624750499
+Size of val_list: 5 avg: 5.061814556331007
+Size of val_list: 5 avg: 5.061752988047809
+Size of val_list: 13 avg: 5.069651741293533
+Size of val_list: 2 avg: 5.066600397614314
+Size of val_list: 2 avg: 5.063555114200596
+Size of val_list: 2 avg: 5.060515873015873
+get_synth_str took 0.09049725532531738 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2588825225830078
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=5 template= ['FORALL'] [Epoch]
+Size of val_list: 2 avg: 5.057482656095144
+Size of val_list: 2 avg: 5.054455445544554
+Size of val_list: 5 avg: 5.054401582591494
+Size of val_list: 5 avg: 5.054347826086956
+Size of val_list: 13 avg: 5.062191510365252
+Size of val_list: 2 avg: 5.059171597633136
+Size of val_list: 2 avg: 5.05615763546798
+Size of val_list: 2 avg: 5.053149606299213
+get_synth_str took 0.07406067848205566 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2641746997833252
+-------------------Depth=2 Exhausted template  ['FORALL'] [Epoch] -------------------
+
+Depth=2, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+Size of val_list: 2 avg: 5.050147492625369
+Size of val_list: 2 avg: 5.047151277013753
+Size of val_list: 5 avg: 5.047105004906771
+Size of val_list: 5 avg: 5.047058823529412
+Size of val_list: 13 avg: 5.05484818805093
+Size of val_list: 2 avg: 5.051859099804306
+Size of val_list: 2 avg: 5.048875855327468
+Size of val_list: 2 avg: 5.0458984375
+get_synth_str took 0.07014584541320801 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.26720261573791504
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=5 template= ['FORALL', 'FORALL'] [Node, Epoch]
+Size of val_list: 2 avg: 5.042926829268293
+Size of val_list: 2 avg: 5.039961013645224
+Size of val_list: 5 avg: 5.039922103213242
+Size of val_list: 5 avg: 5.03988326848249
+Size of val_list: 13 avg: 5.0476190476190474
+Size of val_list: 2 avg: 5.0446601941747575
+Size of val_list: 2 avg: 5.041707080504365
+Size of val_list: 2 avg: 5.038759689922481
+get_synth_str took 0.07836484909057617 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.27634191513061523
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Epoch] -------------------
+
+Depth=2, Winners=5 template= ['FORALL', 'FORALL'] [Epoch, Epoch]
+Size of val_list: 2 avg: 5.035818005808325
+Size of val_list: 2 avg: 5.032882011605416
+Size of val_list: 5 avg: 5.032850241545893
+Size of val_list: 5 avg: 5.032818532818533
+Size of val_list: 13 avg: 5.040501446480231
+Size of val_list: 2 avg: 5.03757225433526
+Size of val_list: 2 avg: 5.034648700673725
+Size of val_list: 2 avg: 5.031730769230769
+get_synth_str took 0.07234358787536621 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2862834930419922
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Epoch, Epoch] -------------------
+
+Depth=2, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+Size of val_list: 2 avg: 5.028818443804035
+Size of val_list: 2 avg: 5.025911708253359
+Size of val_list: 5 avg: 5.02588686481304
+Size of val_list: 5 avg: 5.025862068965517
+Size of val_list: 13 avg: 5.033492822966507
+Size of val_list: 2 avg: 5.030592734225621
+Size of val_list: 2 avg: 5.0276981852913085
+Size of val_list: 2 avg: 5.0248091603053435
+get_synth_str took 0.07668519020080566 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.27516674995422363
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+Depth=2, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch]
+Size of val_list: 2 avg: 5.021925643469971
+Size of val_list: 2 avg: 5.019047619047619
+Size of val_list: 5 avg: 5.019029495718364
+Size of val_list: 5 avg: 5.019011406844107
+Size of val_list: 13 avg: 5.02659069325736
+Size of val_list: 2 avg: 5.023719165085389
+Size of val_list: 2 avg: 5.02085308056872
+Size of val_list: 2 avg: 5.017992424242424
+get_synth_str took 0.0718684196472168 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.2679476737976074
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Epoch] -------------------
+
+Depth=2, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch]
+Size of val_list: 2 avg: 5.015137180700094
+Size of val_list: 2 avg: 5.012287334593573
+Size of val_list: 5 avg: 5.012275731822474
+Size of val_list: 5 avg: 5.0122641509433965
+Size of val_list: 13 avg: 5.019792648444863
+Size of val_list: 2 avg: 5.016949152542373
+Size of val_list: 2 avg: 5.014111006585137
+Size of val_list: 2 avg: 5.011278195488722
+get_synth_str took 0.08162975311279297 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.26563310623168945
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Epoch, Epoch] -------------------
+
+Depth=2, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch]
+Size of val_list: 2 avg: 5.0084507042253525
+Size of val_list: 2 avg: 5.00562851782364
+Size of val_list: 5 avg: 5.005623242736645
+Size of val_list: 5 avg: 5.00561797752809
+Size of val_list: 13 avg: 5.0130963517305895
+Size of val_list: 2 avg: 5.010280373831776
+Size of val_list: 2 avg: 5.007469654528478
+Size of val_list: 2 avg: 5.004664179104478
+get_synth_str took 0.07391357421875 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=2 --max-depth=2
+Time taken for synth:  0.26830577850341797
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Epoch, Epoch, Epoch] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=5 template= ['FORALL'] [Node]
+Size of val_list: 2 avg: 5.001863932898416
+Size of val_list: 2 avg: 4.999068901303538
+Size of val_list: 5 avg: 4.999069767441861
+Size of val_list: 5 avg: 4.99907063197026
+Size of val_list: 13 avg: 5.006499535747446
+Size of val_list: 2 avg: 5.003710575139147
+Size of val_list: 2 avg: 5.000926784059314
+Size of val_list: 2 avg: 4.9981481481481485
+get_synth_str took 0.0753791332244873 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.282184362411499
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (locked m s (one m) (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  7
+Pos-CEX query time: 0.012152910232543945
+I-CEX query time: 0.025812387466430664
+Depth=3, Winners=5 template= ['FORALL'] [Node]
+Size of val_list: 4 avg: 4.99722479185939
+Size of val_list: 4 avg: 4.996303142329021
+Size of val_list: 11 avg: 5.001846722068329
+Size of val_list: 11 avg: 5.007380073800738
+Size of val_list: 22 avg: 5.023041474654378
+Size of val_list: 3 avg: 5.0211786372007365
+Size of val_list: 3 avg: 5.019319227230911
+Size of val_list: 3 avg: 5.017463235294118
+get_synth_str took 0.2417304515838623 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.26567673683166504
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (= (zero m) (ep m s (first m))) (held m s (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  43
+Pos-CEX query time: 0.015566825866699219
+I-CEX query time: 0.023528337478637695
+Depth=3, Winners=5 template= ['FORALL'] [Node]
+Size of val_list: 8 avg: 5.02020202020202
+Size of val_list: 8 avg: 5.022935779816514
+Size of val_list: 27 avg: 5.0430797433547205
+Size of val_list: 27 avg: 5.063186813186813
+Size of val_list: 38 avg: 5.093321134492223
+Size of val_list: 4 avg: 5.092321755027422
+Size of val_list: 4 avg: 5.091324200913242
+Size of val_list: 4 avg: 5.0903284671532845
+get_synth_str took 0.5778274536132812 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.2854328155517578
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (transfer m s (one m) (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  45
+Pos-CEX query time: 0.013062715530395508
+I-CEX query time: 0.02051544189453125
+Depth=3, Winners=5 template= ['FORALL'] [Node]
+Size of val_list: 12 avg: 5.096627164995442
+Size of val_list: 12 avg: 5.102914389799635
+Size of val_list: 39 avg: 5.13375796178344
+Size of val_list: 39 avg: 5.164545454545454
+Size of val_list: 47 avg: 5.202543142597639
+Size of val_list: 5 avg: 5.202359346642468
+Size of val_list: 5 avg: 5.202175883952856
+Size of val_list: 5 avg: 5.2019927536231885
+get_synth_str took 0.7798092365264893 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.28244757652282715
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (= (one m) (ep m s (first m))) (= (zero m) (ep m s (first m)))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  47
+Pos-CEX query time: 0.01606464385986328
+I-CEX query time: 0.02540278434753418
+Depth=3, Winners=5 template= ['FORALL'] [Node]
+Size of val_list: 14 avg: 5.209954751131222
+Size of val_list: 14 avg: 5.217902350813743
+Size of val_list: 45 avg: 5.253839205058717
+Size of val_list: 45 avg: 5.28971119133574
+Size of val_list: 56 avg: 5.335437330928765
+Size of val_list: 6 avg: 5.336036036036036
+Size of val_list: 6 avg: 5.336633663366337
+Size of val_list: 6 avg: 5.337230215827338
+get_synth_str took 1.0093834400177002 seconds
+Running source ~/.zshrc; minisy /home/parth/598mp/src/invar_synth/utils/../cegis/run_files/35_cheap_fixed3_id3.sy --min-depth=3 --max-depth=3
+Time taken for synth:  0.33997106552124023
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (= (zero m) (ep m s (first m))) (= n1 (first m))))
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  49
+Pos-CEX query time: 0.02147507667541504
+Time limit exceeded
+Error
+==========================================================
+Inv#0:  ForAll(Epoch_1,
+       ForAll(Epoch_2,
+              ForAll(Epoch_3,
+                     And(le(Model_DUMMYMODEL,
+                            Epoch_1,
+                            Epoch_1),
+                         Implies(And(le(Model_DUMMYMODEL,
+                                        Epoch_1,
+                                        Epoch_2),
+                                     le(Model_DUMMYMODEL,
+                                        Epoch_2,
+                                        Epoch_3)),
+                                 le(Model_DUMMYMODEL,
+                                    Epoch_1,
+                                    Epoch_3)),
+                         Implies(And(le(Model_DUMMYMODEL,
+                                        Epoch_1,
+                                        Epoch_2),
+                                     le(Model_DUMMYMODEL,
+                                        Epoch_2,
+                                        Epoch_1)),
+                                 Epoch_1 == Epoch_2),
+                         Or(le(Model_DUMMYMODEL,
+                               Epoch_1,
+                               Epoch_2),
+                            le(Model_DUMMYMODEL,
+                               Epoch_2,
+                               Epoch_1)),
+                         le(Model_DUMMYMODEL,
+                            zero(Model_DUMMYMODEL),
+                            Epoch_1),
+                         one(Model_DUMMYMODEL) !=
+                         zero(Model_DUMMYMODEL)))))
+Inv#1:  ForAll(Node_1,
+       Not(transfer(Model_DUMMYMODEL,
+                    S,
+                    zero(Model_DUMMYMODEL),
+                    first(Model_DUMMYMODEL))))
+Inv#2:  ForAll(Node_1,
+       Not(transfer(Model_DUMMYMODEL,
+                    S,
+                    zero(Model_DUMMYMODEL),
+                    Node_1)))
+Inv#3:  ForAll(Node_1,
+       Not(locked(Model_DUMMYMODEL,
+                  S,
+                  zero(Model_DUMMYMODEL),
+                  first(Model_DUMMYMODEL))))
+Inv#4:  ForAll(Node_1,
+       Not(locked(Model_DUMMYMODEL,
+                  S,
+                  zero(Model_DUMMYMODEL),
+                  Node_1)))
+==========================================================
+Protocol proved safe? : False
