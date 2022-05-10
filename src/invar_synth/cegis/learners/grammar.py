@@ -576,6 +576,8 @@ $dummy_vars
                 universe_declarations.append("(Model_DUMMYMODEL) ")
             elif s == StateId:
                 universe_declarations.append("(DUMMYSTATE) ")
+            else:
+                universe_declarations.append(f"({s.name()}_DUMMYVAR) ")
             for elem in elems:
                 universe_declarations.append(f"({elem}) ")
             universe_declarations.append(")))\n")
@@ -605,16 +607,17 @@ $dummy_vars
     
     def _get_terms_of_type(self, T, universe):
         terms = [str(e) for e in universe.get(T, [])]
-        for name in self.fns_by_type[T]:
-            fn = self.fns[name]
-            fn_arg_types = ['m']
-            start = 1
-            if name in self.S.vars:
-                fn_arg_types += ['s']
-                start = 2
-            fn_arg_types += [str(fn.domain(i)) + "_"
-                             for i in range(start, fn.arity())]
-            fn_arg_types = ' '.join(fn_arg_types)
-            terms.append(f"({name} {fn_arg_types})")
+        if T in self.fns_by_type:
+            for name in self.fns_by_type[T]:
+                fn = self.fns[name]
+                fn_arg_types = ['m']
+                start = 1
+                if name in self.S.vars:
+                    fn_arg_types += ['s']
+                    start = 2
+                fn_arg_types += [str(fn.domain(i)) + "_"
+                                for i in range(start, fn.arity())]
+                fn_arg_types = ' '.join(fn_arg_types)
+                terms.append(f"({name} {fn_arg_types})")
         
         return terms

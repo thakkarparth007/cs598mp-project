@@ -39,6 +39,9 @@ def get_protocol(protocol_name):
     if protocol_name == 'dist_lock':
         from invar_synth.protocols.dist_lock import DistLockModel
         return DistLockModel
+    elif protocol_name == 'ricart_agrawala':
+        from invar_synth.protocols.ricart_agrawala import MutexModel
+        return MutexModel
     else:
         raise Exception(f'Unknown protocol: {protocol_name}')
 
