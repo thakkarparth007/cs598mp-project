@@ -1,0 +1,2898 @@
+Building 598mp
+Storing minisy stuff at: /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_*.sy
+Running with args: Namespace(run_name='eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala', learner='minisy_learner', protocol='ricart_agrawala', interactive=False, num_iters=10000, time_limit=30, max_depth=6, max_terms=3, cheap=True, id3=False, iter_deep=True).
+> Iteration: 0/10000 (0%),	Time taken: 0s,	Time left: 1799s
+Total number of pos counter examples:  0
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Pos-CEX query time: 0.01487588882446289
+Depth=1, Winners=1 template= ['FORALL'] [Node]
+get_synth_str took 0.005055665969848633 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_1.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0013244152069091797
+Time taken for smt query:  0.016154050827026367
+Time taken for synth:  0.07802534103393555
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.00652313232421875 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_2.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0013127326965332031
+Time taken for smt query:  0.01768660545349121
+Time taken for synth:  0.07875633239746094
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (= n1 n2))
+> Iteration: 1/10000 (0%),	Time taken: 0s,	Time left: 1799s
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Pos-CEX query time: 0.015039443969726562
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.01662731170654297 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_3.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0013706684112548828
+Time taken for smt query:  0.018015146255493164
+Time taken for synth:  0.07971978187561035
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (= n1 n2))
+> Iteration: 2/10000 (0%),	Time taken: 0s,	Time left: 1799s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  1
+Expanded old cex 1 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.015832901000976562 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_4.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0014162063598632812
+Time taken for smt query:  0.017491579055786133
+Time taken for synth:  0.08305096626281738
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.017531156539916992 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_5.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0014371871948242188
+Time taken for smt query:  0.018496274948120117
+Time taken for synth:  0.08038139343261719
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (= n2 n3))
+> Iteration: 3/10000 (0%),	Time taken: 0s,	Time left: 1799s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  1
+Expanded old cex 1 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.016445636749267578 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_6.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0016977787017822266
+Time taken for smt query:  0.01826190948486328
+Time taken for synth:  0.0810232162475586
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (= n1 n2))
+> Iteration: 4/10000 (0%),	Time taken: 0s,	Time left: 1799s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  1
+Expanded old cex 1 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=1, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.016233205795288086 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_7.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0015528202056884766
+Time taken for smt query:  0.016544580459594727
+Time taken for synth:  0.07958149909973145
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=1 template= ['FORALL'] [Node]
+get_synth_str took 0.015693187713623047 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_8.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0014905929565429688
+Time taken for smt query:  0.016218185424804688
+Time taken for synth:  0.07787084579467773
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.01624155044555664 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_9.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0012116432189941406
+Time taken for smt query:  0.016533613204956055
+Time taken for synth:  0.07857394218444824
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.016739845275878906 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_10.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0015382766723632812
+Time taken for smt query:  0.016476154327392578
+Time taken for synth:  0.07863521575927734
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=1 template= ['FORALL'] [Node]
+get_synth_str took 0.015548467636108398 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_11.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.001466989517211914
+Time taken for smt query:  0.016840219497680664
+Time taken for synth:  0.07805609703063965
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, Winners=1 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.01630687713623047 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_12.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0024368762969970703
+Time taken for smt query:  0.018604516983032227
+Time taken for synth:  0.08040738105773926
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.01712322235107422 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_13.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0029380321502685547
+Time taken for smt query:  0.02037191390991211
+Time taken for synth:  0.08361554145812988
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (= n2 n3) (= n1 n3)))
+> Iteration: 5/10000 (0%),	Time taken: 1s,	Time left: 1798s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  1
+Expanded old cex 1 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=3, Winners=1 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.01701974868774414 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_14.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0031714439392089844
+Time taken for smt query:  0.020266056060791016
+Time taken for synth:  0.08875131607055664
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, Winners=1 template= ['FORALL'] [Node]
+get_synth_str took 0.015474319458007812 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_15.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0034987926483154297
+Time taken for smt query:  0.020604848861694336
+Time taken for synth:  0.08430814743041992
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (requested m s n1 n1) (holds m s n1)))
+> Iteration: 6/10000 (0%),	Time taken: 1s,	Time left: 1798s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  1
+Pos-CEX query time: 0.012666463851928711
+I-CEX query time: 0.02699112892150879
+Depth=4, Winners=1 template= ['FORALL'] [Node]
+get_synth_str took 0.01915907859802246 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_16.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0033309459686279297
+Time taken for smt query:  0.02009725570678711
+Time taken for synth:  0.08485174179077148
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (requested m s n1 n1) (replied m s n1 n1)))
+> Iteration: 7/10000 (0%),	Time taken: 1s,	Time left: 1798s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  3
+Pos-CEX query time: 0.012870073318481445
+I-CEX query time: 0.02456974983215332
+Depth=4, Winners=1 template= ['FORALL'] [Node]
+get_synth_str took 0.02379775047302246 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_17.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.003556489944458008
+Time taken for smt query:  0.020744800567626953
+Time taken for synth:  0.08447146415710449
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (replied m s n1 n1) (holds m s n1)))
+> Iteration: 8/10000 (0%),	Time taken: 1s,	Time left: 1798s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  5
+Pos-CEX query time: 0.012717247009277344
+I-CEX query time: 0.03657650947570801
+WINNER:  ForAll(Node_1,
+       Or(Not(replied(Model_DUMMYMODEL, S, Node_1, Node_1)),
+          holds(Model_DUMMYMODEL, S, Node_1))) 
+Found after 1.8696885108947754 seconds
+Neg-CEX query time: 0.014152765274047852
+Depth=1, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.015522003173828125 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_18.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.001552581787109375
+Time taken for smt query:  0.016569852828979492
+Time taken for synth:  0.07843399047851562
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.017208337783813477 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_19.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0014090538024902344
+Time taken for smt query:  0.017877817153930664
+Time taken for synth:  0.0836331844329834
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.018225669860839844 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_20.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0014584064483642578
+Time taken for smt query:  0.016749143600463867
+Time taken for synth:  0.07944345474243164
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.016756057739257812 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_21.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0015006065368652344
+Time taken for smt query:  0.01673269271850586
+Time taken for synth:  0.07924985885620117
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.017344951629638672 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_22.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0012345314025878906
+Time taken for smt query:  0.0171358585357666
+Time taken for synth:  0.0787501335144043
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.018337011337280273 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_23.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.001405954360961914
+Time taken for smt query:  0.016518354415893555
+Time taken for synth:  0.07887101173400879
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.01692795753479004 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_24.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.001562356948852539
+Time taken for smt query:  0.016582012176513672
+Time taken for synth:  0.0783226490020752
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, Winners=2 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.01770496368408203 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_25.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0023500919342041016
+Time taken for smt query:  0.019109249114990234
+Time taken for synth:  0.08159971237182617
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, Winners=2 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.018696308135986328 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_26.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0029709339141845703
+Time taken for smt query:  0.020734310150146484
+Time taken for synth:  0.08437466621398926
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.01727771759033203 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_27.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0035283565521240234
+Time taken for smt query:  0.02247476577758789
+Time taken for synth:  0.08706092834472656
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (requested m s n1 n1) (holds m s n1)))
+> Iteration: 9/10000 (0%),	Time taken: 2s,	Time left: 1797s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  1
+Pos-CEX query time: 0.01275324821472168
+I-CEX query time: 0.02619481086730957
+Depth=4, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.020384550094604492 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_28.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.003405332565307617
+Time taken for smt query:  0.02183365821838379
+Time taken for synth:  0.08688950538635254
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (requested m s n1 n1) (replied m s n1 n1)))
+> Iteration: 10/10000 (0%),	Time taken: 3s,	Time left: 1796s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  10
+Pos-CEX query time: 0.016184091567993164
+I-CEX query time: 0.02943587303161621
+Depth=4, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.024610519409179688 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_29.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0033578872680664062
+Time taken for smt query:  0.022078990936279297
+Time taken for synth:  0.08747124671936035
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (holds m s n1) (replied m s n1 n1)))
+> Iteration: 11/10000 (0%),	Time taken: 3s,	Time left: 1796s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  12
+Pos-CEX query time: 0.013244390487670898
+I-CEX query time: 0.023285865783691406
+Depth=4, Winners=2 template= ['FORALL'] [Node]
+get_synth_str took 0.02887558937072754 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_30.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0034236907958984375
+Time taken for smt query:  0.022583484649658203
+Time taken for synth:  0.08927536010742188
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (replied m s n1 n1) (requested m s n1 n1)))
+> Iteration: 12/10000 (0%),	Time taken: 3s,	Time left: 1796s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  14
+Pos-CEX query time: 0.014001846313476562
+I-CEX query time: 0.03855776786804199
+WINNER:  ForAll(Node_1,
+       Or(Not(replied(Model_DUMMYMODEL, S, Node_1, Node_1)),
+          requested(Model_DUMMYMODEL, S, Node_1, Node_1))) 
+Found after 3.4206132888793945 seconds
+Neg-CEX query time: 0.015259265899658203
+Depth=1, Winners=3 template= ['FORALL'] [Node]
+get_synth_str took 0.01621270179748535 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_31.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0013916492462158203
+Time taken for smt query:  0.016867876052856445
+Time taken for synth:  0.07922887802124023
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.01793050765991211 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_32.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.001332998275756836
+Time taken for smt query:  0.01679706573486328
+Time taken for synth:  0.07965946197509766
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.018881559371948242 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_33.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0014503002166748047
+Time taken for smt query:  0.017996549606323242
+Time taken for synth:  0.08093380928039551
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=3 template= ['FORALL'] [Node]
+get_synth_str took 0.017265796661376953 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_34.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0014624595642089844
+Time taken for smt query:  0.017334938049316406
+Time taken for synth:  0.08156108856201172
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.018912076950073242 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_35.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0012085437774658203
+Time taken for smt query:  0.0163118839263916
+Time taken for synth:  0.07761764526367188
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.019123554229736328 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_36.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.00144195556640625
+Time taken for smt query:  0.01645684242248535
+Time taken for synth:  0.07790780067443848
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=3 template= ['FORALL'] [Node]
+get_synth_str took 0.017506122589111328 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_37.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0014710426330566406
+Time taken for smt query:  0.016615867614746094
+Time taken for synth:  0.07884955406188965
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, Winners=3 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.018504619598388672 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_38.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.002274751663208008
+Time taken for smt query:  0.019510984420776367
+Time taken for synth:  0.08274340629577637
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, Winners=3 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.018735885620117188 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_39.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0030450820922851562
+Time taken for smt query:  0.022037506103515625
+Time taken for synth:  0.08770179748535156
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, Winners=3 template= ['FORALL'] [Node]
+get_synth_str took 0.0174407958984375 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_40.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0033745765686035156
+Time taken for smt query:  0.02244091033935547
+Time taken for synth:  0.08891081809997559
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (requested m s n1 n1) (holds m s n1)))
+> Iteration: 13/10000 (0%),	Time taken: 4s,	Time left: 1795s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  1
+Pos-CEX query time: 0.012501955032348633
+I-CEX query time: 0.027629375457763672
+Depth=4, Winners=3 template= ['FORALL'] [Node]
+get_synth_str took 0.020932435989379883 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_41.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.003403902053833008
+Time taken for smt query:  0.02174997329711914
+Time taken for synth:  0.0871877670288086
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (requested m s n1 n1)))
+> Iteration: 14/10000 (0%),	Time taken: 4s,	Time left: 1795s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  19
+Pos-CEX query time: 0.013804435729980469
+I-CEX query time: 0.04053139686584473
+WINNER:  ForAll(Node_1,
+       Not(requested(Model_DUMMYMODEL, S, Node_1, Node_1))) 
+Found after 4.654980421066284 seconds
+Neg-CEX query time: 0.015157222747802734
+Depth=1, Winners=4 template= ['FORALL'] [Node]
+get_synth_str took 0.01683974266052246 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_42.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.00146484375
+Time taken for smt query:  0.01682877540588379
+Time taken for synth:  0.08002758026123047
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.018482446670532227 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_43.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0012788772583007812
+Time taken for smt query:  0.017203569412231445
+Time taken for synth:  0.07923245429992676
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.01954793930053711 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_44.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0015187263488769531
+Time taken for smt query:  0.01663994789123535
+Time taken for synth:  0.0799102783203125
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=4 template= ['FORALL'] [Node]
+get_synth_str took 0.018435239791870117 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_45.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0015168190002441406
+Time taken for smt query:  0.016620874404907227
+Time taken for synth:  0.07877945899963379
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.019303560256958008 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_46.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0013756752014160156
+Time taken for smt query:  0.0180056095123291
+Time taken for synth:  0.08433914184570312
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.01985454559326172 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_47.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0014874935150146484
+Time taken for smt query:  0.01644420623779297
+Time taken for synth:  0.07861542701721191
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=4 template= ['FORALL'] [Node]
+get_synth_str took 0.01774430274963379 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_48.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0014257431030273438
+Time taken for smt query:  0.01735401153564453
+Time taken for synth:  0.08130860328674316
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.01927971839904785 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_49.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.002258777618408203
+Time taken for smt query:  0.018912553787231445
+Time taken for synth:  0.08245110511779785
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.019904136657714844 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_50.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.002927541732788086
+Time taken for smt query:  0.020395278930664062
+Time taken for synth:  0.08420300483703613
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, Winners=4 template= ['FORALL'] [Node]
+get_synth_str took 0.017843961715698242 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_51.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0034296512603759766
+Time taken for smt query:  0.020944833755493164
+Time taken for synth:  0.08620858192443848
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (holds m s n1) (replied m s n1 n1)))
+> Iteration: 15/10000 (0%),	Time taken: 5s,	Time left: 1794s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  1
+Pos-CEX query time: 0.012477397918701172
+I-CEX query time: 0.025733232498168945
+Depth=4, Winners=4 template= ['FORALL'] [Node]
+get_synth_str took 0.020684242248535156 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_52.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.003448963165283203
+Time taken for smt query:  0.020442724227905273
+Time taken for synth:  0.08489513397216797
+-------------------Depth=4 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=4, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.024241924285888672 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_53.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008946895599365234
+Time taken for smt query:  0.03381228446960449
+Time taken for synth:  0.10480070114135742
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (replied m s n1 n2)))
+> Iteration: 16/10000 (0%),	Time taken: 5s,	Time left: 1794s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  24
+Pos-CEX query time: 0.013968944549560547
+I-CEX query time: 0.02375960350036621
+Depth=4, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.034253597259521484 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_54.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008883476257324219
+Time taken for smt query:  0.04047679901123047
+Time taken for synth:  0.11089515686035156
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (replied m s n1 n2)))
+> Iteration: 17/10000 (0%),	Time taken: 6s,	Time left: 1793s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  26
+Expanded old cex 26 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.0340571403503418 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_55.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008841991424560547
+Time taken for smt query:  0.058412790298461914
+Time taken for synth:  0.12864255905151367
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (requested m s n2 n1)))
+> Iteration: 18/10000 (0%),	Time taken: 6s,	Time left: 1793s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  26
+Expanded old cex 26 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.0341801643371582 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_56.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008954048156738281
+Time taken for smt query:  0.06329631805419922
+Time taken for synth:  0.13327360153198242
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (holds m s n2) (= n1 n2)))
+> Iteration: 19/10000 (0%),	Time taken: 6s,	Time left: 1793s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  26
+Pos-CEX query time: 0.01546788215637207
+I-CEX query time: 0.031147241592407227
+Depth=4, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.04758477210998535 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_57.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0091705322265625
+Time taken for smt query:  0.07524943351745605
+Time taken for synth:  0.14901137351989746
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (holds m s n2) (holds m s n1)))
+> Iteration: 20/10000 (0%),	Time taken: 6s,	Time left: 1793s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  28
+Expanded old cex 28 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.04711294174194336 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_58.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.00909566879272461
+Time taken for smt query:  0.09280276298522949
+Time taken for synth:  0.16280651092529297
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (requested m s n2 n1)))
+> Iteration: 21/10000 (0%),	Time taken: 7s,	Time left: 1792s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  28
+Pos-CEX query time: 0.014034271240234375
+I-CEX query time: 0.019407033920288086
+Depth=4, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.05887651443481445 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_59.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.009032964706420898
+Time taken for smt query:  0.09889626502990723
+Time taken for synth:  0.1688532829284668
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (requested m s n2 n1)))
+> Iteration: 22/10000 (0%),	Time taken: 7s,	Time left: 1792s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  30
+Expanded old cex 30 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.06021523475646973 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_60.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008967876434326172
+Time taken for smt query:  0.10811305046081543
+Time taken for synth:  0.1795797348022461
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (requested m s n1 n2)))
+> Iteration: 23/10000 (0%),	Time taken: 7s,	Time left: 1792s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  30
+Expanded old cex 30 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.059824228286743164 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_61.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008978128433227539
+Time taken for smt query:  0.11698031425476074
+Time taken for synth:  0.18759560585021973
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (holds m s n1) (or (= n1 n2) (= n1 n2))))
+> Iteration: 24/10000 (0%),	Time taken: 7s,	Time left: 1792s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  30
+Expanded old cex 28 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.05908536911010742 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_62.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.00876760482788086
+Time taken for smt query:  0.12686562538146973
+Time taken for synth:  0.19674968719482422
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.0709233283996582 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_63.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012749910354614258
+Time taken for smt query:  0.09943151473999023
+Time taken for synth:  0.17561101913452148
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n2 n3)))
+> Iteration: 25/10000 (0%),	Time taken: 8s,	Time left: 1791s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  30
+Expanded old cex 26 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.06460165977478027 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_64.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012775421142578125
+Time taken for smt query:  0.16053318977355957
+Time taken for synth:  0.2349560260772705
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (replied m s n3 n1)))
+> Iteration: 26/10000 (0%),	Time taken: 8s,	Time left: 1791s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  30
+Expanded old cex 26 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.06479477882385254 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_65.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012730121612548828
+Time taken for smt query:  0.17481136322021484
+Time taken for synth:  0.24887704849243164
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (or (or (= n1 n3) (= n1 n2)) (and (= n2 n3) (= n2 n3))))
+> Iteration: 27/10000 (0%),	Time taken: 9s,	Time left: 1790s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  30
+Pos-CEX query time: 0.016170978546142578
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08677196502685547 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_66.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012694358825683594
+Time taken for smt query:  0.1859598159790039
+Time taken for synth:  0.26058483123779297
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n2 n1)))
+> Iteration: 28/10000 (0%),	Time taken: 9s,	Time left: 1790s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 26 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08477640151977539 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_67.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01276087760925293
+Time taken for smt query:  0.1964409351348877
+Time taken for synth:  0.2707350254058838
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n1 n3)))
+> Iteration: 29/10000 (0%),	Time taken: 9s,	Time left: 1790s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 26 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08548927307128906 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_68.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012892007827758789
+Time taken for smt query:  0.20148634910583496
+Time taken for synth:  0.27597689628601074
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (not (= n1 n2)) (or (= n1 n3) (= n2 n3))))
+> Iteration: 30/10000 (0%),	Time taken: 10s,	Time left: 1789s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 31 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08801484107971191 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_69.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012955904006958008
+Time taken for smt query:  0.2193608283996582
+Time taken for synth:  0.29450368881225586
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n3) (= n1 n3)))
+> Iteration: 31/10000 (0%),	Time taken: 10s,	Time left: 1789s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 28 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08535170555114746 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_70.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012886762619018555
+Time taken for smt query:  0.2657592296600342
+Time taken for synth:  0.3403282165527344
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n3) (= n1 n2)))
+> Iteration: 32/10000 (0%),	Time taken: 11s,	Time left: 1788s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 28 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.0863351821899414 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_71.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012459993362426758
+Time taken for smt query:  0.31847214698791504
+Time taken for synth:  0.39753007888793945
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n2) (holds m s n3)))
+> Iteration: 33/10000 (0%),	Time taken: 11s,	Time left: 1788s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 28 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.09479236602783203 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_72.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013240337371826172
+Time taken for smt query:  0.32326459884643555
+Time taken for synth:  0.4110598564147949
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n2) (or (= n2 n3) (= n1 n3))))
+> Iteration: 34/10000 (0%),	Time taken: 12s,	Time left: 1787s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 28 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.09128427505493164 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_73.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013099193572998047
+Time taken for smt query:  0.38253331184387207
+Time taken for synth:  0.4651360511779785
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (replied m s n3 n2)))
+> Iteration: 35/10000 (0%),	Time taken: 12s,	Time left: 1787s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 26 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.10500788688659668 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_74.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013507843017578125
+Time taken for smt query:  0.37604403495788574
+Time taken for synth:  0.4600026607513428
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n1) (= n1 n2)))
+> Iteration: 36/10000 (0%),	Time taken: 13s,	Time left: 1786s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 28 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08733296394348145 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_75.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012671470642089844
+Time taken for smt query:  0.3345813751220703
+Time taken for synth:  0.40847039222717285
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n1 n3)))
+> Iteration: 37/10000 (0%),	Time taken: 14s,	Time left: 1785s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 30 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08865761756896973 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_76.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012508869171142578
+Time taken for smt query:  0.3797750473022461
+Time taken for synth:  0.4592435359954834
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n3 n2)))
+> Iteration: 38/10000 (0%),	Time taken: 14s,	Time left: 1785s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 26 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08795022964477539 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_77.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012750625610351562
+Time taken for smt query:  0.3973500728607178
+Time taken for synth:  0.4714372158050537
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n1 n2)))
+> Iteration: 39/10000 (0%),	Time taken: 15s,	Time left: 1784s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 30 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08846879005432129 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_78.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012670755386352539
+Time taken for smt query:  0.4075334072113037
+Time taken for synth:  0.4809398651123047
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n3 n1)))
+> Iteration: 40/10000 (0%),	Time taken: 15s,	Time left: 1784s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 30 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08750748634338379 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_79.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012779474258422852
+Time taken for smt query:  0.442471981048584
+Time taken for synth:  0.5172271728515625
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n2 n3) (and (= n1 n2) (= n1 n2))))
+> Iteration: 41/10000 (0%),	Time taken: 16s,	Time left: 1783s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 30 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.09011387825012207 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_80.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012802362442016602
+Time taken for smt query:  0.43216824531555176
+Time taken for synth:  0.5071620941162109
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n1) (or (= n2 n3) (= n2 n3))))
+> Iteration: 42/10000 (0%),	Time taken: 17s,	Time left: 1782s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 30 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08754730224609375 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_81.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012796640396118164
+Time taken for smt query:  0.44891953468322754
+Time taken for synth:  0.5231950283050537
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n1 n2) (or (= n1 n3) (= n1 n3))))
+> Iteration: 43/10000 (0%),	Time taken: 18s,	Time left: 1781s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Expanded old cex 30 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08919358253479004 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_82.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012980937957763672
+Time taken for smt query:  0.47008633613586426
+Time taken for synth:  0.5455706119537354
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n3 n2) (or (= n1 n2) (= n1 n3))))
+> Iteration: 44/10000 (0%),	Time taken: 18s,	Time left: 1781s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  31
+Pos-CEX query time: 0.013505220413208008
+I-CEX query time: 0.02533435821533203
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.11738133430480957 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_83.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012774467468261719
+Time taken for smt query:  0.5978009700775146
+Time taken for synth:  0.6720156669616699
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n2 n3) (or (= n1 n3) (= n1 n2))))
+> Iteration: 45/10000 (0%),	Time taken: 19s,	Time left: 1780s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  33
+Expanded old cex 33 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.11712265014648438 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_84.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012835502624511719
+Time taken for smt query:  0.7334799766540527
+Time taken for synth:  0.8084924221038818
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n3 n2) (or (= n1 n3) (= n1 n2))))
+> Iteration: 46/10000 (0%),	Time taken: 20s,	Time left: 1779s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  33
+Expanded old cex 33 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.12370848655700684 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_85.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0129241943359375
+Time taken for smt query:  0.7413990497589111
+Time taken for synth:  0.815648078918457
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n2) (or (= n1 n2) (= n1 n3))))
+> Iteration: 47/10000 (0%),	Time taken: 21s,	Time left: 1778s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  33
+Pos-CEX query time: 0.013200759887695312
+I-CEX query time: 0.019610166549682617
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14623785018920898 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_86.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012715578079223633
+Time taken for smt query:  0.9481921195983887
+Time taken for synth:  1.0223844051361084
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n3) (or (= n2 n3) (= n1 n2))))
+> Iteration: 48/10000 (0%),	Time taken: 23s,	Time left: 1776s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Expanded old cex 28 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14695453643798828 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_87.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01299738883972168
+Time taken for smt query:  0.9759292602539062
+Time taken for synth:  1.052964448928833
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n1 n2) (or (= n1 n3) (= n2 n3))))
+> Iteration: 49/10000 (0%),	Time taken: 24s,	Time left: 1775s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Expanded old cex 33 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14720630645751953 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_88.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0129852294921875
+Time taken for smt query:  0.9502377510070801
+Time taken for synth:  1.0255131721496582
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n2 n1) (or (= n2 n3) (= n1 n3))))
+> Iteration: 50/10000 (0%),	Time taken: 25s,	Time left: 1774s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Expanded old cex 33 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14568161964416504 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_89.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013129472732543945
+Time taken for smt query:  0.9629685878753662
+Time taken for synth:  1.0384559631347656
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n2 n3) (or (= n1 n3) (= n1 n2))))
+> Iteration: 51/10000 (0%),	Time taken: 27s,	Time left: 1772s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Expanded old cex 35 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14673256874084473 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_90.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012936115264892578
+Time taken for smt query:  0.9928607940673828
+Time taken for synth:  1.0692555904388428
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n1) (or (= n1 n2) (= n2 n3))))
+> Iteration: 52/10000 (0%),	Time taken: 28s,	Time left: 1771s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Expanded old cex 33 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14907145500183105 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_91.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013243675231933594
+Time taken for smt query:  0.9781630039215088
+Time taken for synth:  1.0549845695495605
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n1) (or (= n1 n2) (= n2 n3))))
+> Iteration: 53/10000 (0%),	Time taken: 30s,	Time left: 1769s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Expanded old cex 35 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14949703216552734 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_92.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012998819351196289
+Time taken for smt query:  1.0055828094482422
+Time taken for synth:  1.0799510478973389
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n1 n3) (or (= n1 n2) (= n2 n3))))
+> Iteration: 54/10000 (0%),	Time taken: 31s,	Time left: 1768s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Expanded old cex 33 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.17474770545959473 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_93.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012928247451782227
+Time taken for smt query:  1.0135719776153564
+Time taken for synth:  1.088974952697754
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n2) (or (= n1 n2) (= n1 n3))))
+> Iteration: 55/10000 (0%),	Time taken: 33s,	Time left: 1766s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Expanded old cex 35 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.1483771800994873 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_94.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01300358772277832
+Time taken for smt query:  1.0152862071990967
+Time taken for synth:  1.0901720523834229
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n1 n3) (or (= n2 n3) (= n1 n2))))
+> Iteration: 56/10000 (0%),	Time taken: 34s,	Time left: 1765s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Expanded old cex 35 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.1481475830078125 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_95.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012717485427856445
+Time taken for smt query:  1.042541265487671
+Time taken for synth:  1.1174201965332031
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n2 n1) (or (= n1 n3) (= n2 n3))))
+> Iteration: 57/10000 (0%),	Time taken: 36s,	Time left: 1763s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Expanded old cex 35 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.1502854824066162 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_96.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013077735900878906
+Time taken for smt query:  1.0317752361297607
+Time taken for synth:  1.106924057006836
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n1 n2) (or (= n2 n3) (= n1 n3))))
+> Iteration: 58/10000 (0%),	Time taken: 37s,	Time left: 1762s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Expanded old cex 35 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=4 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14868688583374023 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_97.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012924432754516602
+Time taken for smt query:  1.0266788005828857
+Time taken for synth:  1.1027252674102783
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 4===========================
+
+Depth=5, Winners=4 template= ['FORALL'] [Node]
+get_synth_str took 0.11779403686523438 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_98.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.017143726348876953
+Time taken for smt query:  0.0637674331665039
+Time taken for synth:  0.1437833309173584
+-------------------Depth=5 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=5, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.12678194046020508 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_99.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.06074690818786621
+Time taken for smt query:  2.0110154151916504
+Time taken for synth:  2.133976936340332
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (replied m s n2 n1) (holds m s n1))))
+> Iteration: 59/10000 (0%),	Time taken: 41s,	Time left: 1758s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  35
+Pos-CEX query time: 0.012968301773071289
+I-CEX query time: 0.029378414154052734
+Depth=5, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.1407179832458496 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_100.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.06015777587890625
+Time taken for smt query:  2.295158863067627
+Time taken for synth:  2.417635202407837
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (requested m s n2 n1) (holds m s n2))))
+> Iteration: 60/10000 (0%),	Time taken: 44s,	Time left: 1755s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  7
+Highest counter example id:  37
+Pos-CEX query time: 0.013527870178222656
+I-CEX query time: 0.0186460018157959
+Depth=5, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.14770030975341797 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_101.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.0602419376373291
+Time taken for smt query:  2.8558945655822754
+Time taken for synth:  2.9808380603790283
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (replied m s n2 n1) (holds m s n1))))
+> Iteration: 61/10000 (0%),	Time taken: 47s,	Time left: 1752s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  8
+Highest counter example id:  39
+Expanded old cex 37 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.14906668663024902 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_102.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05842995643615723
+Time taken for smt query:  2.8450820446014404
+Time taken for synth:  2.966233015060425
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (requested m s n1 n2) (holds m s n2))))
+> Iteration: 62/10000 (0%),	Time taken: 50s,	Time left: 1749s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  8
+Highest counter example id:  39
+Pos-CEX query time: 0.013820648193359375
+I-CEX query time: 0.019527435302734375
+Depth=5, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.16301655769348145 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_103.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05989551544189453
+Time taken for smt query:  3.150392770767212
+Time taken for synth:  3.2748231887817383
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (replied m s n1 n2) (holds m s n2))))
+> Iteration: 63/10000 (0%),	Time taken: 54s,	Time left: 1745s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  9
+Highest counter example id:  41
+Expanded old cex 37 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.16008377075195312 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_104.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05768084526062012
+Time taken for smt query:  3.308483600616455
+Time taken for synth:  3.429290771484375
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (holds m s n2) (requested m s n2 n1))))
+> Iteration: 64/10000 (0%),	Time taken: 58s,	Time left: 1741s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  9
+Highest counter example id:  41
+Expanded old cex 39 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.16063213348388672 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_105.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05809164047241211
+Time taken for smt query:  3.2804863452911377
+Time taken for synth:  3.4006760120391846
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (holds m s n1) (requested m s n1 n2))))
+> Iteration: 65/10000 (0%),	Time taken: 61s,	Time left: 1738s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  9
+Highest counter example id:  41
+Expanded old cex 39 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.16689538955688477 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_106.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05966925621032715
+Time taken for smt query:  3.3155789375305176
+Time taken for synth:  3.4381816387176514
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (requested m s n2 n1) (holds m s n1))))
+> Iteration: 66/10000 (0%),	Time taken: 65s,	Time left: 1734s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  9
+Highest counter example id:  41
+Expanded old cex 41 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=4 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.1605818271636963 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_107.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.058825016021728516
+Time taken for smt query:  3.3957133293151855
+Time taken for synth:  3.517805814743042
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (replied m s n2 n1) (replied m s n1 n2))))
+> Iteration: 67/10000 (0%),	Time taken: 69s,	Time left: 1730s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  9
+Highest counter example id:  41
+Pos-CEX query time: 0.013687849044799805
+I-CEX query time: 0.040306806564331055
+WINNER:  ForAll(Node_1,
+       ForAll(Node_2,
+              Not(And(replied(Model_DUMMYMODEL,
+                              S,
+                              Node_2,
+                              Node_1),
+                      replied(Model_DUMMYMODEL,
+                              S,
+                              Node_1,
+                              Node_2))))) 
+Found after 69.28397226333618 seconds
+Neg-CEX query time: 0.015729188919067383
+Depth=1, Winners=5 template= ['FORALL'] [Node]
+get_synth_str took 0.03808784484863281 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_108.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0015766620635986328
+Time taken for smt query:  0.01729750633239746
+Time taken for synth:  0.08368420600891113
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.04047036170959473 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_109.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0012950897216796875
+Time taken for smt query:  0.01658177375793457
+Time taken for synth:  0.080352783203125
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.0409388542175293 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_110.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0014612674713134766
+Time taken for smt query:  0.016550302505493164
+Time taken for synth:  0.08089375495910645
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=5 template= ['FORALL'] [Node]
+get_synth_str took 0.03789544105529785 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_111.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0015308856964111328
+Time taken for smt query:  0.016887187957763672
+Time taken for synth:  0.08046245574951172
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.03949475288391113 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_112.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.00125885009765625
+Time taken for smt query:  0.016555309295654297
+Time taken for synth:  0.07975244522094727
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.04079627990722656 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_113.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.001476287841796875
+Time taken for smt query:  0.016682147979736328
+Time taken for synth:  0.0816185474395752
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=5 template= ['FORALL'] [Node]
+get_synth_str took 0.03874349594116211 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_114.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0014655590057373047
+Time taken for smt query:  0.016774654388427734
+Time taken for synth:  0.08028435707092285
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.039337158203125 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_115.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0023076534271240234
+Time taken for smt query:  0.01976776123046875
+Time taken for synth:  0.08691811561584473
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.04106426239013672 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_116.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0030074119567871094
+Time taken for smt query:  0.022333860397338867
+Time taken for synth:  0.09219193458557129
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, Winners=5 template= ['FORALL'] [Node]
+get_synth_str took 0.03867745399475098 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_117.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0034351348876953125
+Time taken for smt query:  0.021746397018432617
+Time taken for synth:  0.08729076385498047
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (holds m s n1) (replied m s n1 n1)))
+> Iteration: 68/10000 (0%),	Time taken: 70s,	Time left: 1729s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  31
+Pos-CEX query time: 0.012569665908813477
+I-CEX query time: 0.026147842407226562
+Depth=4, Winners=5 template= ['FORALL'] [Node]
+get_synth_str took 0.04217982292175293 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_118.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.003496408462524414
+Time taken for smt query:  0.020839452743530273
+Time taken for synth:  0.08724808692932129
+-------------------Depth=4 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=4, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.04475283622741699 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_119.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008840560913085938
+Time taken for smt query:  0.03661012649536133
+Time taken for synth:  0.10700130462646484
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (holds m s n1) (= n1 n2)))
+> Iteration: 69/10000 (0%),	Time taken: 70s,	Time left: 1729s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  46
+Pos-CEX query time: 0.015306472778320312
+I-CEX query time: 0.03147554397583008
+Depth=4, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.055072784423828125 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_120.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.00880742073059082
+Time taken for smt query:  0.04397130012512207
+Time taken for synth:  0.11515188217163086
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (holds m s n2) (= n1 n2)))
+> Iteration: 70/10000 (0%),	Time taken: 71s,	Time left: 1728s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  48
+Expanded old cex 48 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.05426740646362305 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_121.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.00870203971862793
+Time taken for smt query:  0.06127619743347168
+Time taken for synth:  0.13173723220825195
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (replied m s n2 n1) (replied m s n2 n2)))
+> Iteration: 71/10000 (0%),	Time taken: 71s,	Time left: 1728s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  48
+Pos-CEX query time: 0.017840147018432617
+I-CEX query time: 0.025844812393188477
+Depth=4, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.06741023063659668 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_122.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008793115615844727
+Time taken for smt query:  0.0721731185913086
+Time taken for synth:  0.14394307136535645
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (holds m s n1) (= n1 n2)))
+> Iteration: 72/10000 (0%),	Time taken: 71s,	Time left: 1728s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  50
+Expanded old cex 48 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.06824707984924316 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_123.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008962154388427734
+Time taken for smt query:  0.07923245429992676
+Time taken for synth:  0.1514742374420166
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (requested m s n1 n2)))
+> Iteration: 73/10000 (0%),	Time taken: 71s,	Time left: 1728s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  50
+Expanded old cex 50 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.06876420974731445 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_124.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008968830108642578
+Time taken for smt query:  0.09728026390075684
+Time taken for synth:  0.17018651962280273
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (requested m s n2 n1) (and (= n1 n2) (= n1 n2))))
+> Iteration: 74/10000 (0%),	Time taken: 72s,	Time left: 1727s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  50
+Expanded old cex 50 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.06743121147155762 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_125.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008974790573120117
+Time taken for smt query:  0.10465145111083984
+Time taken for synth:  0.17690420150756836
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (requested m s n1 n2)))
+> Iteration: 75/10000 (0%),	Time taken: 72s,	Time left: 1727s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  50
+Pos-CEX query time: 0.014410972595214844
+I-CEX query time: 0.020846128463745117
+Depth=4, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.08220410346984863 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_126.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.009041786193847656
+Time taken for smt query:  0.11485123634338379
+Time taken for synth:  0.18845558166503906
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (requested m s n2 n1)))
+> Iteration: 76/10000 (0%),	Time taken: 72s,	Time left: 1727s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 52 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.08118629455566406 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_127.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.00904393196105957
+Time taken for smt query:  0.12244939804077148
+Time taken for synth:  0.19454598426818848
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (requested m s n1 n2)))
+> Iteration: 77/10000 (0%),	Time taken: 73s,	Time left: 1726s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 52 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.0807645320892334 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_128.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.009013891220092773
+Time taken for smt query:  0.13048744201660156
+Time taken for synth:  0.2052476406097412
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.09004592895507812 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_129.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012652158737182617
+Time taken for smt query:  0.11594033241271973
+Time taken for synth:  0.1902327537536621
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n1 n2) (or (= n2 n3) (= n2 n3))))
+> Iteration: 78/10000 (0%),	Time taken: 73s,	Time left: 1726s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 48 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08473777770996094 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_130.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012768268585205078
+Time taken for smt query:  0.17100858688354492
+Time taken for synth:  0.24741101264953613
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n3 n2) (requested m s n1 n1)))
+> Iteration: 79/10000 (0%),	Time taken: 74s,	Time left: 1725s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 48 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08669185638427734 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_131.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012865781784057617
+Time taken for smt query:  0.18333101272583008
+Time taken for synth:  0.2599928379058838
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (replied m s n1 n2)))
+> Iteration: 80/10000 (0%),	Time taken: 74s,	Time left: 1725s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 48 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08699369430541992 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_132.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012689590454101562
+Time taken for smt query:  0.19728302955627441
+Time taken for synth:  0.2725677490234375
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (replied m s n1 n3)))
+> Iteration: 81/10000 (0%),	Time taken: 74s,	Time left: 1725s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 48 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.09052371978759766 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_133.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012794017791748047
+Time taken for smt query:  0.21772289276123047
+Time taken for synth:  0.2986268997192383
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (replied m s n3 n2)))
+> Iteration: 82/10000 (0%),	Time taken: 75s,	Time left: 1724s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 50 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.09530949592590332 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_134.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01303720474243164
+Time taken for smt query:  0.2752647399902344
+Time taken for synth:  0.352996826171875
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n2 n3)))
+> Iteration: 83/10000 (0%),	Time taken: 75s,	Time left: 1724s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 50 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.09235310554504395 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_135.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012948274612426758
+Time taken for smt query:  0.30856776237487793
+Time taken for synth:  0.38753175735473633
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (replied m s n3 n1)))
+> Iteration: 84/10000 (0%),	Time taken: 76s,	Time left: 1723s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 48 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.0893707275390625 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_136.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012808561325073242
+Time taken for smt query:  0.3234894275665283
+Time taken for synth:  0.4187631607055664
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n2 n3)))
+> Iteration: 85/10000 (0%),	Time taken: 76s,	Time left: 1723s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 50 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.0874478816986084 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_137.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012668132781982422
+Time taken for smt query:  0.31970858573913574
+Time taken for synth:  0.3949429988861084
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (replied m s n3 n1)))
+> Iteration: 86/10000 (0%),	Time taken: 77s,	Time left: 1722s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 50 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08685564994812012 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_138.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012588024139404297
+Time taken for smt query:  0.32885122299194336
+Time taken for synth:  0.4053456783294678
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n3 n2) (or (= n1 n3) (= n1 n3))))
+> Iteration: 87/10000 (0%),	Time taken: 78s,	Time left: 1721s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 50 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08876681327819824 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_139.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012689828872680664
+Time taken for smt query:  0.34580397605895996
+Time taken for synth:  0.42182397842407227
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n3 n1)))
+> Iteration: 88/10000 (0%),	Time taken: 78s,	Time left: 1721s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 52 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08829569816589355 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_140.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012841939926147461
+Time taken for smt query:  0.38133788108825684
+Time taken for synth:  0.4576699733734131
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n1 n3)))
+> Iteration: 89/10000 (0%),	Time taken: 79s,	Time left: 1720s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 50 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08811521530151367 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_141.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012639045715332031
+Time taken for smt query:  0.3978433609008789
+Time taken for synth:  0.47429800033569336
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n2 n3)))
+> Iteration: 90/10000 (0%),	Time taken: 80s,	Time left: 1719s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 52 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08807706832885742 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_142.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013044118881225586
+Time taken for smt query:  0.4067659378051758
+Time taken for synth:  0.4838733673095703
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n3 n2)))
+> Iteration: 91/10000 (0%),	Time taken: 80s,	Time left: 1719s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 52 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08864045143127441 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_143.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012751579284667969
+Time taken for smt query:  0.4340543746948242
+Time taken for synth:  0.5099692344665527
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n2) (or (= n1 n3) (= n1 n3))))
+> Iteration: 92/10000 (0%),	Time taken: 81s,	Time left: 1718s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 52 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08932042121887207 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_144.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012797355651855469
+Time taken for smt query:  0.45125889778137207
+Time taken for synth:  0.5274238586425781
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n1 n3) (and (= n1 n2) (= n1 n2))))
+> Iteration: 93/10000 (0%),	Time taken: 82s,	Time left: 1717s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Expanded old cex 52 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.0905909538269043 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_145.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012819051742553711
+Time taken for smt query:  0.4613626003265381
+Time taken for synth:  0.5370583534240723
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n2 n3) (or (= n1 n2) (= n1 n3))))
+> Iteration: 94/10000 (0%),	Time taken: 82s,	Time left: 1717s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  52
+Pos-CEX query time: 0.0149078369140625
+I-CEX query time: 0.028884410858154297
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.1171712875366211 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_146.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012865781784057617
+Time taken for smt query:  0.5965151786804199
+Time taken for synth:  0.6726534366607666
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n1 n2) (or (= n2 n3) (= n1 n3))))
+> Iteration: 95/10000 (0%),	Time taken: 83s,	Time left: 1716s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  54
+Expanded old cex 54 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.11878466606140137 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_147.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012969970703125
+Time taken for smt query:  0.733856201171875
+Time taken for synth:  0.8097684383392334
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n3 n2) (or (= n1 n2) (= n1 n3))))
+> Iteration: 96/10000 (0%),	Time taken: 84s,	Time left: 1715s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  54
+Expanded old cex 54 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.11873602867126465 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_148.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013162851333618164
+Time taken for smt query:  0.7502124309539795
+Time taken for synth:  0.8284280300140381
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n2) (or (= n2 n3) (= n1 n2))))
+> Iteration: 97/10000 (0%),	Time taken: 86s,	Time left: 1713s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  54
+Expanded old cex 48 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.11941838264465332 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_149.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013120174407958984
+Time taken for smt query:  0.7684407234191895
+Time taken for synth:  0.8454525470733643
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n3 n1) (or (= n2 n3) (= n1 n2))))
+> Iteration: 98/10000 (0%),	Time taken: 87s,	Time left: 1712s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  54
+Expanded old cex 54 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.12029099464416504 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_150.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012917757034301758
+Time taken for smt query:  0.7404196262359619
+Time taken for synth:  0.8166470527648926
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n2 n3) (or (= n1 n2) (= n1 n3))))
+> Iteration: 99/10000 (0%),	Time taken: 88s,	Time left: 1711s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  54
+Expanded old cex 54 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.11784482002258301 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_151.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012765884399414062
+Time taken for smt query:  0.7211534976959229
+Time taken for synth:  0.7969739437103271
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n2 n3) (not (= n1 n3))))
+> Iteration: 100/10000 (1%),	Time taken: 89s,	Time left: 1710s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  54
+Expanded old cex 52 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.12071013450622559 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_152.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012651443481445312
+Time taken for smt query:  0.74808669090271
+Time taken for synth:  0.8237545490264893
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n1 n3) (or (= n1 n2) (= n2 n3))))
+> Iteration: 101/10000 (1%),	Time taken: 90s,	Time left: 1709s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  54
+Expanded old cex 54 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.12036538124084473 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_153.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013089656829833984
+Time taken for smt query:  0.7610507011413574
+Time taken for synth:  0.836580753326416
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n2 n3) (or (= n1 n3) (= n1 n2))))
+> Iteration: 102/10000 (1%),	Time taken: 91s,	Time left: 1708s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  54
+Pos-CEX query time: 0.014059066772460938
+I-CEX query time: 0.021588802337646484
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.15119409561157227 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_154.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012912750244140625
+Time taken for smt query:  0.9599552154541016
+Time taken for synth:  1.036813497543335
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n2 n1) (or (= n2 n3) (= n1 n3))))
+> Iteration: 103/10000 (1%),	Time taken: 92s,	Time left: 1707s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  56
+Expanded old cex 54 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.1490035057067871 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_155.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012975454330444336
+Time taken for smt query:  0.9572832584381104
+Time taken for synth:  1.034855842590332
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n2 n3) (or (= n1 n2) (= n1 n3))))
+> Iteration: 104/10000 (1%),	Time taken: 94s,	Time left: 1705s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  56
+Expanded old cex 56 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14841699600219727 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_156.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013050317764282227
+Time taken for smt query:  1.0032224655151367
+Time taken for synth:  1.0803771018981934
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n2) (or (= n1 n2) (= n1 n3))))
+> Iteration: 105/10000 (1%),	Time taken: 95s,	Time left: 1704s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  56
+Expanded old cex 56 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14815926551818848 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_157.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012940645217895508
+Time taken for smt query:  1.0392029285430908
+Time taken for synth:  1.1148905754089355
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n1) (or (= n1 n2) (= n2 n3))))
+> Iteration: 106/10000 (1%),	Time taken: 97s,	Time left: 1702s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  56
+Expanded old cex 56 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14882540702819824 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_158.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013032913208007812
+Time taken for smt query:  0.9996109008789062
+Time taken for synth:  1.0762197971343994
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n1 n2) (or (= n1 n3) (= n2 n3))))
+> Iteration: 107/10000 (1%),	Time taken: 98s,	Time left: 1701s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  56
+Expanded old cex 56 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14915251731872559 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_159.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01287531852722168
+Time taken for smt query:  1.0154480934143066
+Time taken for synth:  1.0919675827026367
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n2 n1) (or (= n1 n3) (= n2 n3))))
+> Iteration: 108/10000 (1%),	Time taken: 100s,	Time left: 1699s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  56
+Expanded old cex 56 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14887237548828125 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_160.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013021230697631836
+Time taken for smt query:  1.004112720489502
+Time taken for synth:  1.0809247493743896
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n1 n3) (or (= n2 n3) (= n1 n2))))
+> Iteration: 109/10000 (1%),	Time taken: 101s,	Time left: 1698s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  56
+Expanded old cex 56 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=5 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.1505126953125 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_161.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01297903060913086
+Time taken for smt query:  1.0494446754455566
+Time taken for synth:  1.1263854503631592
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 4===========================
+
+Depth=5, Winners=5 template= ['FORALL'] [Node]
+get_synth_str took 0.11786890029907227 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_162.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.01690196990966797
+Time taken for smt query:  0.06285762786865234
+Time taken for synth:  0.14270520210266113
+-------------------Depth=5 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=5, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.12616991996765137 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_163.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05717301368713379
+Time taken for smt query:  1.9936151504516602
+Time taken for synth:  2.1132028102874756
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (holds m s n1) (requested m s n1 n2))))
+> Iteration: 110/10000 (1%),	Time taken: 105s,	Time left: 1694s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  56
+Pos-CEX query time: 0.013852119445800781
+I-CEX query time: 0.021020889282226562
+Depth=5, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.13826704025268555 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_164.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05962109565734863
+Time taken for smt query:  2.2891149520874023
+Time taken for synth:  2.413490056991577
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (requested m s n1 n2) (holds m s n1))))
+> Iteration: 111/10000 (1%),	Time taken: 108s,	Time left: 1691s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  7
+Highest counter example id:  58
+Expanded old cex 58 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=5 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.13704419136047363 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_165.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.059586524963378906
+Time taken for smt query:  2.3268702030181885
+Time taken for synth:  2.450953483581543
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (holds m s n1) (replied m s n2 n1))))
+> Iteration: 112/10000 (1%),	Time taken: 111s,	Time left: 1688s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  7
+Highest counter example id:  58
+Pos-CEX query time: 0.016318321228027344
+I-CEX query time: 0.04298043251037598
+WINNER:  ForAll(Node_1,
+       ForAll(Node_2,
+              Not(And(holds(Model_DUMMYMODEL, S, Node_1),
+                      replied(Model_DUMMYMODEL,
+                              S,
+                              Node_2,
+                              Node_1))))) 
+Found after 111.39723873138428 seconds
+Neg-CEX query time: 0.017028093338012695
+Depth=1, Winners=6 template= ['FORALL'] [Node]
+get_synth_str took 0.03878450393676758 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_166.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0015668869018554688
+Time taken for smt query:  0.01732778549194336
+Time taken for synth:  0.08344149589538574
+-------------------Depth=1 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=1, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.04083251953125 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_167.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0013098716735839844
+Time taken for smt query:  0.017171382904052734
+Time taken for synth:  0.08280038833618164
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=1, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.04228329658508301 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_168.sy --min-depth=1 --max-depth=1
+Time taken for grammar generation:  0.0014727115631103516
+Time taken for smt query:  0.01733684539794922
+Time taken for synth:  0.08356809616088867
+-------------------Depth=1 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 1===========================
+
+Depth=2, Winners=6 template= ['FORALL'] [Node]
+get_synth_str took 0.039775848388671875 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_169.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0015881061553955078
+Time taken for smt query:  0.01692366600036621
+Time taken for synth:  0.08282113075256348
+-------------------Depth=2 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=2, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.04140138626098633 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_170.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0013933181762695312
+Time taken for smt query:  0.017796039581298828
+Time taken for synth:  0.08388328552246094
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=2, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.0418398380279541 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_171.sy --min-depth=2 --max-depth=2
+Time taken for grammar generation:  0.0014801025390625
+Time taken for smt query:  0.017274856567382812
+Time taken for synth:  0.08526825904846191
+-------------------Depth=2 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 2===========================
+
+Depth=3, Winners=6 template= ['FORALL'] [Node]
+get_synth_str took 0.03969907760620117 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_172.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.001584768295288086
+Time taken for smt query:  0.017865657806396484
+Time taken for synth:  0.08871722221374512
+-------------------Depth=3 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=3, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.04036307334899902 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_173.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.0023474693298339844
+Time taken for smt query:  0.02032947540283203
+Time taken for synth:  0.08694648742675781
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=3, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.04268503189086914 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_174.sy --min-depth=3 --max-depth=3
+Time taken for grammar generation:  0.002943277359008789
+Time taken for smt query:  0.022906064987182617
+Time taken for synth:  0.08909153938293457
+-------------------Depth=3 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 3===========================
+
+Depth=4, Winners=6 template= ['FORALL'] [Node]
+get_synth_str took 0.03928852081298828 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_175.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0034668445587158203
+Time taken for smt query:  0.023601055145263672
+Time taken for synth:  0.09064722061157227
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (holds m s n1) (replied m s n1 n1)))
+> Iteration: 113/10000 (1%),	Time taken: 112s,	Time left: 1687s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  31
+Pos-CEX query time: 0.012689828872680664
+I-CEX query time: 0.02764725685119629
+Depth=4, Winners=6 template= ['FORALL'] [Node]
+get_synth_str took 0.04265999794006348 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_176.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.0034563541412353516
+Time taken for smt query:  0.02167344093322754
+Time taken for synth:  0.0897221565246582
+-------------------Depth=4 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=4, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.04673957824707031 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_177.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008984804153442383
+Time taken for smt query:  0.03773689270019531
+Time taken for synth:  0.11061263084411621
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (replied m s n2 n1)))
+> Iteration: 114/10000 (1%),	Time taken: 113s,	Time left: 1686s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  63
+Pos-CEX query time: 0.014792203903198242
+I-CEX query time: 0.027411699295043945
+Depth=4, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.05597710609436035 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_178.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.009062767028808594
+Time taken for smt query:  0.04619860649108887
+Time taken for synth:  0.12154865264892578
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (replied m s n2 n1)))
+> Iteration: 115/10000 (1%),	Time taken: 113s,	Time left: 1686s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  65
+Expanded old cex 65 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.054826974868774414 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_179.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.009006738662719727
+Time taken for smt query:  0.06645750999450684
+Time taken for synth:  0.14065098762512207
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (replied m s n1 n2)))
+> Iteration: 116/10000 (1%),	Time taken: 113s,	Time left: 1686s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  65
+Expanded old cex 65 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.05608320236206055 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_180.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.009042739868164062
+Time taken for smt query:  0.0734701156616211
+Time taken for synth:  0.14713001251220703
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (holds m s n2) (and (= n1 n2) (= n1 n2))))
+> Iteration: 117/10000 (1%),	Time taken: 113s,	Time left: 1686s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  65
+Pos-CEX query time: 0.015495061874389648
+I-CEX query time: 0.03522753715515137
+Depth=4, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.06814098358154297 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_181.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008950471878051758
+Time taken for smt query:  0.0847921371459961
+Time taken for synth:  0.15857434272766113
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (requested m s n2 n1)))
+> Iteration: 118/10000 (1%),	Time taken: 114s,	Time left: 1685s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  67
+Pos-CEX query time: 0.014548301696777344
+I-CEX query time: 0.021488428115844727
+Depth=4, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.08010268211364746 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_182.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.008989572525024414
+Time taken for smt query:  0.0911564826965332
+Time taken for synth:  0.1642301082611084
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (requested m s n2 n1)))
+> Iteration: 119/10000 (1%),	Time taken: 114s,	Time left: 1685s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 69 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.07935214042663574 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_183.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.009314298629760742
+Time taken for smt query:  0.10973882675170898
+Time taken for synth:  0.1831343173980713
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (requested m s n1 n2)))
+> Iteration: 120/10000 (1%),	Time taken: 114s,	Time left: 1685s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 69 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.08210229873657227 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_184.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.00926351547241211
+Time taken for smt query:  0.12224721908569336
+Time taken for synth:  0.196547269821167
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (holds m s n1) (and (= n1 n2) (= n1 n2))))
+> Iteration: 121/10000 (1%),	Time taken: 114s,	Time left: 1685s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 67 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.0818934440612793 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_185.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.009093046188354492
+Time taken for smt query:  0.12997794151306152
+Time taken for synth:  0.20456743240356445
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (holds m s n2) (= n1 n2)))
+> Iteration: 122/10000 (1%),	Time taken: 115s,	Time left: 1684s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 67 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.08347344398498535 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_186.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.00895380973815918
+Time taken for smt query:  0.13544297218322754
+Time taken for synth:  0.21040105819702148
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL'] [Node, Node] -------------------
+
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.09089851379394531 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_187.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012668609619140625
+Time taken for smt query:  0.1193854808807373
+Time taken for synth:  0.19692182540893555
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n3) (and (= n2 n3) (= n1 n3))))
+> Iteration: 123/10000 (1%),	Time taken: 115s,	Time left: 1684s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 67 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08559823036193848 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_188.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012728452682495117
+Time taken for smt query:  0.1752488613128662
+Time taken for synth:  0.2512195110321045
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (replied m s n3 n2)))
+> Iteration: 124/10000 (1%),	Time taken: 116s,	Time left: 1683s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 65 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08818888664245605 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_189.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012609243392944336
+Time taken for smt query:  0.23295927047729492
+Time taken for synth:  0.30894041061401367
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (replied m s n2 n1)))
+> Iteration: 125/10000 (1%),	Time taken: 116s,	Time left: 1683s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 65 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08611249923706055 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_190.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013146400451660156
+Time taken for smt query:  0.2550225257873535
+Time taken for synth:  0.3310863971710205
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (replied m s n2 n3)))
+> Iteration: 126/10000 (1%),	Time taken: 117s,	Time left: 1682s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 65 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08815336227416992 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_191.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012819766998291016
+Time taken for smt query:  0.2608811855316162
+Time taken for synth:  0.3375852108001709
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n2 n3)))
+> Iteration: 127/10000 (1%),	Time taken: 117s,	Time left: 1682s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 65 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08727264404296875 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_192.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012799263000488281
+Time taken for smt query:  0.28041720390319824
+Time taken for synth:  0.35715556144714355
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n3 n2)))
+> Iteration: 128/10000 (1%),	Time taken: 118s,	Time left: 1681s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 65 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08932971954345703 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_193.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013175249099731445
+Time taken for smt query:  0.3013927936553955
+Time taken for synth:  0.3867785930633545
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n2 n1)))
+> Iteration: 129/10000 (1%),	Time taken: 118s,	Time left: 1681s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 69 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08893418312072754 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_194.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012999773025512695
+Time taken for smt query:  0.35469794273376465
+Time taken for synth:  0.4351155757904053
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n3 n2)))
+> Iteration: 130/10000 (1%),	Time taken: 119s,	Time left: 1680s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 69 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08866620063781738 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_195.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01308131217956543
+Time taken for smt query:  0.35764026641845703
+Time taken for synth:  0.43737125396728516
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n2) (not (= n1 n2))))
+> Iteration: 131/10000 (1%),	Time taken: 120s,	Time left: 1679s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 69 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.09077024459838867 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_196.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012857913970947266
+Time taken for smt query:  0.3733797073364258
+Time taken for synth:  0.44951486587524414
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (not (requested m s n2 n3)))
+> Iteration: 132/10000 (1%),	Time taken: 120s,	Time left: 1679s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 69 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.08939552307128906 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_197.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013136625289916992
+Time taken for smt query:  0.39703989028930664
+Time taken for synth:  0.47589588165283203
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n2) (and (= n1 n3) (= n2 n3))))
+> Iteration: 133/10000 (1%),	Time taken: 121s,	Time left: 1678s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Expanded old cex 67 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.09257292747497559 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_198.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012758970260620117
+Time taken for smt query:  0.39948034286499023
+Time taken for synth:  0.4764673709869385
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n3 n2) (or (= n1 n3) (= n1 n2))))
+> Iteration: 134/10000 (1%),	Time taken: 122s,	Time left: 1677s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Pos-CEX query time: 0.014984846115112305
+I-CEX query time: 0.03097367286682129
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.12577581405639648 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_199.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012779951095581055
+Time taken for smt query:  0.5352370738983154
+Time taken for synth:  0.6113870143890381
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n2 n1) (and (= n2 n3) (= n2 n3))))
+> Iteration: 135/10000 (1%),	Time taken: 122s,	Time left: 1677s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  71
+Expanded old cex 69 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.11767101287841797 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_200.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01299142837524414
+Time taken for smt query:  0.5574100017547607
+Time taken for synth:  0.639850378036499
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n1) (and (= n2 n3) (= n2 n3))))
+> Iteration: 136/10000 (1%),	Time taken: 123s,	Time left: 1676s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  71
+Expanded old cex 67 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.11912679672241211 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_201.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012834310531616211
+Time taken for smt query:  0.5697321891784668
+Time taken for synth:  0.6494500637054443
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n2 n3) (or (= n1 n2) (= n1 n3))))
+> Iteration: 137/10000 (1%),	Time taken: 124s,	Time left: 1675s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  71
+Expanded old cex 71 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.11920762062072754 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_202.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012874603271484375
+Time taken for smt query:  0.6993515491485596
+Time taken for synth:  0.7770888805389404
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n2) (or (= n1 n3) (= n1 n3))))
+> Iteration: 138/10000 (1%),	Time taken: 125s,	Time left: 1674s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  71
+Expanded old cex 67 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.11926555633544922 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_203.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013002872467041016
+Time taken for smt query:  0.7208304405212402
+Time taken for synth:  0.7974138259887695
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n2) (or (= n1 n2) (= n1 n3))))
+> Iteration: 139/10000 (1%),	Time taken: 126s,	Time left: 1673s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  71
+Expanded old cex 71 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.11791563034057617 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_204.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012760162353515625
+Time taken for smt query:  0.7277040481567383
+Time taken for synth:  0.8057610988616943
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n1 n3) (and (= n1 n2) (= n1 n2))))
+> Iteration: 140/10000 (1%),	Time taken: 127s,	Time left: 1672s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  71
+Expanded old cex 65 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.1196279525756836 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_205.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012863636016845703
+Time taken for smt query:  0.7218546867370605
+Time taken for synth:  0.7982363700866699
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n1 n2) (or (= n1 n3) (= n1 n3))))
+> Iteration: 141/10000 (1%),	Time taken: 128s,	Time left: 1671s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  71
+Expanded old cex 69 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.12003874778747559 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_206.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01300358772277832
+Time taken for smt query:  0.7335155010223389
+Time taken for synth:  0.8111362457275391
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n1) (or (= n1 n3) (= n1 n3))))
+> Iteration: 142/10000 (1%),	Time taken: 129s,	Time left: 1670s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  71
+Expanded old cex 67 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.1217200756072998 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_207.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012891292572021484
+Time taken for smt query:  0.7184441089630127
+Time taken for synth:  0.7962658405303955
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n2) (or (= n1 n2) (= n1 n3))))
+> Iteration: 143/10000 (1%),	Time taken: 130s,	Time left: 1669s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  71
+Pos-CEX query time: 0.01471400260925293
+I-CEX query time: 0.022548437118530273
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14854168891906738 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_208.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012958049774169922
+Time taken for smt query:  0.9611668586730957
+Time taken for synth:  1.0380730628967285
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (holds m s n2) (or (= n2 n3) (= n1 n3))))
+> Iteration: 144/10000 (1%),	Time taken: 132s,	Time left: 1667s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Expanded old cex 67 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14879751205444336 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_209.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01287698745727539
+Time taken for smt query:  0.9797935485839844
+Time taken for synth:  1.0575780868530273
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n2 n1) (or (= n1 n3) (= n2 n3))))
+> Iteration: 145/10000 (1%),	Time taken: 133s,	Time left: 1666s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Expanded old cex 71 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.17847704887390137 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_210.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01288604736328125
+Time taken for smt query:  0.9568815231323242
+Time taken for synth:  1.0348398685455322
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n3 n1) (or (= n1 n2) (= n2 n3))))
+> Iteration: 146/10000 (1%),	Time taken: 134s,	Time left: 1665s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Expanded old cex 71 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14917349815368652 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_211.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012814521789550781
+Time taken for smt query:  0.969022274017334
+Time taken for synth:  1.0464346408843994
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n2 n3) (or (= n1 n2) (= n1 n3))))
+> Iteration: 147/10000 (1%),	Time taken: 136s,	Time left: 1663s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Expanded old cex 73 to have  2  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14987826347351074 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_212.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013018608093261719
+Time taken for smt query:  1.0152440071105957
+Time taken for synth:  1.0928163528442383
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n1) (or (= n1 n2) (= n2 n3))))
+> Iteration: 148/10000 (1%),	Time taken: 137s,	Time left: 1662s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Expanded old cex 73 to have  3  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14818286895751953 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_213.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01287698745727539
+Time taken for smt query:  0.9831867218017578
+Time taken for synth:  1.0594332218170166
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n1 n2) (or (= n1 n3) (= n2 n3))))
+> Iteration: 149/10000 (1%),	Time taken: 139s,	Time left: 1660s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Expanded old cex 71 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.14868688583374023 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_214.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.013254642486572266
+Time taken for smt query:  1.0039260387420654
+Time taken for synth:  1.0811963081359863
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (replied m s n1 n3) (or (= n1 n2) (= n2 n3))))
+> Iteration: 150/10000 (1%),	Time taken: 140s,	Time left: 1659s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Expanded old cex 71 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.1521623134613037 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_215.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01291203498840332
+Time taken for smt query:  1.007028579711914
+Time taken for synth:  1.0852370262145996
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n3 n2) (or (= n1 n2) (= n1 n3))))
+> Iteration: 151/10000 (1%),	Time taken: 142s,	Time left: 1657s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Expanded old cex 73 to have  4  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.15118741989135742 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_216.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012986421585083008
+Time taken for smt query:  1.0246520042419434
+Time taken for synth:  1.1016247272491455
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n2 n1) (or (= n2 n3) (= n1 n3))))
+> Iteration: 152/10000 (1%),	Time taken: 143s,	Time left: 1656s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Expanded old cex 73 to have  5  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.15073800086975098 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_217.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.01279759407043457
+Time taken for smt query:  1.0265626907348633
+Time taken for synth:  1.1034948825836182
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n1 n2) (or (= n2 n3) (= n1 n3))))
+> Iteration: 153/10000 (1%),	Time taken: 145s,	Time left: 1654s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Expanded old cex 73 to have  6  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.1511383056640625 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_218.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012790918350219727
+Time taken for smt query:  1.0104384422302246
+Time taken for synth:  1.0874838829040527
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node) (n3 Node)) Bool (=> (requested m s n1 n3) (or (= n2 n3) (= n1 n2))))
+> Iteration: 154/10000 (1%),	Time taken: 146s,	Time left: 1653s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Expanded old cex 73 to have  7  lazy valuations under template  (['FORALL', 'FORALL', 'FORALL'], [Node, Node, Node])
+Depth=4, Winners=6 template= ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node]
+get_synth_str took 0.1516096591949463 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_219.sy --min-depth=4 --max-depth=4
+Time taken for grammar generation:  0.012914419174194336
+Time taken for smt query:  1.0403282642364502
+Time taken for synth:  1.1177165508270264
+-------------------Depth=4 Exhausted template  ['FORALL', 'FORALL', 'FORALL'] [Node, Node, Node] -------------------
+
+=================Depth exhausted: 4===========================
+
+Depth=5, Winners=6 template= ['FORALL'] [Node]
+get_synth_str took 0.11976051330566406 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_220.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.017283916473388672
+Time taken for smt query:  0.06315469741821289
+Time taken for synth:  0.14545440673828125
+-------------------Depth=5 Exhausted template  ['FORALL'] [Node] -------------------
+
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.12900996208190918 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_221.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.059574127197265625
+Time taken for smt query:  1.9570319652557373
+Time taken for synth:  2.080733299255371
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (holds m s n1) (requested m s n1 n2))))
+> Iteration: 155/10000 (1%),	Time taken: 150s,	Time left: 1649s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  73
+Pos-CEX query time: 0.014450311660766602
+I-CEX query time: 0.02336430549621582
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.13990139961242676 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_222.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.060390472412109375
+Time taken for smt query:  2.3014981746673584
+Time taken for synth:  2.4268345832824707
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (requested m s n1 n2) (holds m s n2))))
+> Iteration: 156/10000 (1%),	Time taken: 153s,	Time left: 1646s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  7
+Highest counter example id:  75
+Pos-CEX query time: 0.015111684799194336
+I-CEX query time: 0.02278900146484375
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.15085506439208984 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_223.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05903339385986328
+Time taken for smt query:  2.8252968788146973
+Time taken for synth:  2.950356960296631
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (requested m s n2 n1) (holds m s n1))))
+> Iteration: 157/10000 (1%),	Time taken: 156s,	Time left: 1643s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  8
+Highest counter example id:  77
+Expanded old cex 77 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.14771127700805664 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_224.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.06337189674377441
+Time taken for smt query:  2.8447415828704834
+Time taken for synth:  2.977353811264038
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (holds m s n2) (requested m s n1 n2))))
+> Iteration: 158/10000 (1%),	Time taken: 159s,	Time left: 1640s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  8
+Highest counter example id:  77
+Expanded old cex 77 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.15116524696350098 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_225.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.0590970516204834
+Time taken for smt query:  2.937438726425171
+Time taken for synth:  3.066472291946411
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (requested m s n2 n1) (holds m s n2))))
+> Iteration: 159/10000 (1%),	Time taken: 163s,	Time left: 1636s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  8
+Highest counter example id:  77
+Expanded old cex 75 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.1500997543334961 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_226.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05900835990905762
+Time taken for smt query:  3.0243947505950928
+Time taken for synth:  3.148402214050293
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (holds m s n1) (requested m s n1 n2))))
+> Iteration: 160/10000 (1%),	Time taken: 166s,	Time left: 1633s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  8
+Highest counter example id:  77
+Expanded old cex 75 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.14936208724975586 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_227.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05996990203857422
+Time taken for smt query:  3.03629469871521
+Time taken for synth:  3.16204571723938
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (requested m s n1 n2) (replied m s n1 n2))))
+> Iteration: 161/10000 (1%),	Time taken: 169s,	Time left: 1630s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  8
+Highest counter example id:  77
+Pos-CEX query time: 0.014384031295776367
+I-CEX query time: 0.022218942642211914
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.16176199913024902 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_228.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05947279930114746
+Time taken for smt query:  3.280428409576416
+Time taken for synth:  3.4045026302337646
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (replied m s n2 n1) (requested m s n1 n2))))
+> Iteration: 162/10000 (1%),	Time taken: 173s,	Time left: 1626s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  9
+Highest counter example id:  79
+Pos-CEX query time: 0.014075756072998047
+I-CEX query time: 0.02519392967224121
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.174241304397583 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_229.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.06035137176513672
+Time taken for smt query:  3.633018732070923
+Time taken for synth:  3.758596897125244
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (requested m s n1 n2) (replied m s n2 n1))))
+> Iteration: 163/10000 (1%),	Time taken: 177s,	Time left: 1622s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  10
+Highest counter example id:  81
+Expanded old cex 81 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.17262578010559082 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_230.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05881166458129883
+Time taken for smt query:  3.7906792163848877
+Time taken for synth:  3.9140377044677734
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (replied m s n2 n1) (requested m s n2 n1))))
+> Iteration: 164/10000 (1%),	Time taken: 181s,	Time left: 1618s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  10
+Highest counter example id:  81
+Expanded old cex 79 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.1738579273223877 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_231.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.058618783950805664
+Time taken for smt query:  3.7298388481140137
+Time taken for synth:  3.8534398078918457
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (replied m s n1 n2) (requested m s n1 n2))))
+> Iteration: 165/10000 (1%),	Time taken: 185s,	Time left: 1614s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  10
+Highest counter example id:  81
+Expanded old cex 79 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.17428112030029297 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_232.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.060028791427612305
+Time taken for smt query:  3.9852657318115234
+Time taken for synth:  4.110641241073608
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (requested m s n2 n1) (requested m s n1 n2))))
+> Iteration: 166/10000 (1%),	Time taken: 190s,	Time left: 1609s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  10
+Highest counter example id:  81
+Pos-CEX query time: 0.014628887176513672
+I-CEX query time: 0.022095441818237305
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.18468046188354492 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_233.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.058554649353027344
+Time taken for smt query:  4.3273210525512695
+Time taken for synth:  4.450336694717407
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (replied m s n1 n2) (requested m s n2 n1))))
+> Iteration: 167/10000 (1%),	Time taken: 195s,	Time left: 1604s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  11
+Highest counter example id:  83
+Expanded old cex 81 to have  3  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.1890120506286621 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_234.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.05877804756164551
+Time taken for smt query:  4.410158634185791
+Time taken for synth:  4.533120632171631
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (not (and (requested m s n1 n2) (requested m s n2 n1))))
+> Iteration: 168/10000 (1%),	Time taken: 199s,	Time left: 1600s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  11
+Highest counter example id:  83
+Expanded old cex 83 to have  2  lazy valuations under template  (['FORALL', 'FORALL'], [Node, Node])
+Depth=5, Winners=6 template= ['FORALL', 'FORALL'] [Node, Node]
+get_synth_str took 0.18744850158691406 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/65_eval_2_--cheap_--no-id3_--iter-deep_ricart_agrawala/q_235.sy --min-depth=5 --max-depth=5
+Time taken for grammar generation:  0.059897661209106445
+Time taken for smt query:  4.605034112930298
+Time taken for synth:  4.729924917221069
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node) (n2 Node)) Bool (=> (not (or (= n1 n2) (= n1 n2))) (=> (holds m s n2) (replied m s n2 n1))))
+> Iteration: 169/10000 (1%),	Time taken: 204s,	Time left: 1595s
+Total number of pos counter examples:  3
+Total number of neg counter examples:  0
+Total number of imp counter examples:  11
+Highest counter example id:  83
+Pos-CEX query time: 0.01470804214477539
+I-CEX query time: 0.04294133186340332
+WINNER:  ForAll(Node_1,
+       ForAll(Node_2,
+              Or(replied(Model_DUMMYMODEL,
+                         S,
+                         Node_2,
+                         Node_1),
+                 Not(holds(Model_DUMMYMODEL, S, Node_2)),
+                 Node_1 == Node_2))) 
+Found after 205.11149191856384 seconds
+Neg-CEX query time: 0.017841577529907227
+No counter-example found.
+==========================================================
+Inv#0:  ForAll(Node_1, True)
+Inv#1:  ForAll(Node_1,
+       Or(Not(replied(Model_DUMMYMODEL, S, Node_1, Node_1)),
+          holds(Model_DUMMYMODEL, S, Node_1)))
+Inv#2:  ForAll(Node_1,
+       Or(Not(replied(Model_DUMMYMODEL, S, Node_1, Node_1)),
+          requested(Model_DUMMYMODEL, S, Node_1, Node_1)))
+Inv#3:  ForAll(Node_1,
+       Not(requested(Model_DUMMYMODEL, S, Node_1, Node_1)))
+Inv#4:  ForAll(Node_1,
+       ForAll(Node_2,
+              Not(And(replied(Model_DUMMYMODEL,
+                              S,
+                              Node_2,
+                              Node_1),
+                      replied(Model_DUMMYMODEL,
+                              S,
+                              Node_1,
+                              Node_2)))))
+Inv#5:  ForAll(Node_1,
+       ForAll(Node_2,
+              Not(And(holds(Model_DUMMYMODEL, S, Node_1),
+                      replied(Model_DUMMYMODEL,
+                              S,
+                              Node_2,
+                              Node_1)))))
+Inv#6:  ForAll(Node_1,
+       ForAll(Node_2,
+              Or(Not(holds(Model_DUMMYMODEL, S, Node_2)),
+                 replied(Model_DUMMYMODEL,
+                         S,
+                         Node_2,
+                         Node_1),
+                 Node_1 == Node_2)))
+==========================================================
+Protocol proved safe? : True
