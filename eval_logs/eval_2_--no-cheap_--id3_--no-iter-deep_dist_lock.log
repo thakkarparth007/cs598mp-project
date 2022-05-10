@@ -1,0 +1,887 @@
+Building 598mp
+Storing minisy stuff at: /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_*.sy
+Running with args: Namespace(run_name='eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock', learner='minisy_learner', protocol='dist_lock', interactive=False, num_iters=10000, time_limit=30, max_depth=6, max_terms=3, cheap=False, id3=True, iter_deep=False).
+> Iteration: 0/10000 (0%),	Time taken: 0s,	Time left: 1799s
+Total number of pos counter examples:  0
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Pos-CEX query time: 0.02335667610168457
+Depth=1, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 1 avg: 1.0
+Size of val_list: 1 avg: 1.0
+Size of val_list: 3 avg: 1.6666666666666667
+Size of val_list: 3 avg: 2.0
+Size of val_list: 9 avg: 3.4
+Size of val_list: 1 avg: 3.0
+Size of val_list: 1 avg: 2.7142857142857144
+Size of val_list: 1 avg: 2.5
+get_synth_str took 0.03930091857910156 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_1.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6436939239501953
+Time taken for smt query:  7.0596864223480225
+Time taken for synth:  8.767067670822144
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (= (one m) (ep m s (first m))) (or (=> (= n1 (first m)) (not (= n1 (first m)))) (or (=> (= n1 (first m)) (= (zero m) (one m))) (not (= n1 (first m)))))))
+> Iteration: 1/10000 (0%),	Time taken: 8s,	Time left: 1791s
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  0
+Pos-CEX query time: 0.018941402435302734
+I-CEX query time: 0.030147075653076172
+Depth=1, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 3 avg: 2.5555555555555554
+Size of val_list: 3 avg: 2.6
+Size of val_list: 9 avg: 3.1818181818181817
+Size of val_list: 9 avg: 3.6666666666666665
+Size of val_list: 18 avg: 4.769230769230769
+Size of val_list: 2 avg: 4.571428571428571
+Size of val_list: 2 avg: 4.4
+Size of val_list: 2 avg: 4.25
+get_synth_str took 0.1776564121246338 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_2.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6568348407745361
+Time taken for smt query:  9.854285955429077
+Time taken for synth:  11.57522988319397
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (held m s (first m)))
+> Iteration: 2/10000 (0%),	Time taken: 20s,	Time left: 1779s
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  2
+Pos-CEX query time: 0.0189054012298584
+I-CEX query time: 0.02596116065979004
+Depth=1, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 7 avg: 4.411764705882353
+Size of val_list: 7 avg: 4.555555555555555
+Size of val_list: 25 avg: 5.631578947368421
+Size of val_list: 25 avg: 6.6
+Size of val_list: 34 avg: 7.904761904761905
+Size of val_list: 3 avg: 7.681818181818182
+Size of val_list: 3 avg: 7.478260869565218
+Size of val_list: 3 avg: 7.291666666666667
+get_synth_str took 0.556102991104126 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_3.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6513168811798096
+Time taken for smt query:  34.20610499382019
+Time taken for synth:  35.92109131813049
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (and (not (or (and (= (zero m) (one m)) (= (zero m) (one m))) (or (= (zero m) (one m)) (= (zero m) (one m))))) (=> (=> (and (= n1 (first m)) (= n1 (first m))) (not (= n1 (first m)))) (not (not (= (zero m) (one m)))))))
+> Iteration: 3/10000 (0%),	Time taken: 57s,	Time left: 1742s
+Total number of pos counter examples:  1
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  4
+Pos-CEX query time: 0.025361299514770508
+Depth=1, Winners=1 template= ['FORALL'] [Node]
+Size of val_list: 9 avg: 7.36
+Size of val_list: 9 avg: 7.423076923076923
+Size of val_list: 31 avg: 8.296296296296296
+Size of val_list: 31 avg: 9.107142857142858
+Size of val_list: 43 avg: 10.275862068965518
+Size of val_list: 4 avg: 10.066666666666666
+Size of val_list: 4 avg: 9.870967741935484
+Size of val_list: 4 avg: 9.6875
+get_synth_str took 0.7386023998260498 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_4.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6578893661499023
+Time taken for smt query:  32.682687520980835
+Time taken for synth:  34.40421104431152
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (le m (one m) (ep m s (first m))))
+> Iteration: 4/10000 (0%),	Time taken: 92s,	Time left: 1707s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  5
+Pos-CEX query time: 0.020229339599609375
+I-CEX query time: 0.029204607009887695
+WINNER:  ForAll(Node_1,
+       le(Model_DUMMYMODEL,
+          one(Model_DUMMYMODEL),
+          ep(Model_DUMMYMODEL, S, first(Model_DUMMYMODEL)))) 
+Found after 92.374831199646 seconds
+Neg-CEX query time: 0.021565675735473633
+Depth=1, Winners=2 template= ['FORALL'] [Node]
+Size of val_list: 3 avg: 9.484848484848484
+Size of val_list: 3 avg: 9.294117647058824
+Size of val_list: 9 avg: 9.285714285714286
+Size of val_list: 9 avg: 9.277777777777779
+Size of val_list: 18 avg: 9.513513513513514
+Size of val_list: 2 avg: 9.31578947368421
+Size of val_list: 2 avg: 9.128205128205128
+Size of val_list: 2 avg: 8.95
+get_synth_str took 0.1475355625152588 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_5.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.648355484008789
+Time taken for smt query:  17.515138387680054
+Time taken for synth:  19.227549076080322
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (held m s (first m)))
+> Iteration: 5/10000 (0%),	Time taken: 111s,	Time left: 1688s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  5
+Pos-CEX query time: 0.01835322380065918
+I-CEX query time: 0.02787637710571289
+Depth=1, Winners=2 template= ['FORALL'] [Node]
+Size of val_list: 7 avg: 8.902439024390244
+Size of val_list: 7 avg: 8.857142857142858
+Size of val_list: 25 avg: 9.232558139534884
+Size of val_list: 25 avg: 9.590909090909092
+Size of val_list: 34 avg: 10.133333333333333
+Size of val_list: 3 avg: 9.978260869565217
+Size of val_list: 3 avg: 9.829787234042554
+Size of val_list: 3 avg: 9.6875
+get_synth_str took 0.4775383472442627 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_6.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6485333442687988
+Time taken for smt query:  45.43360757827759
+Time taken for synth:  47.14603924751282
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (not (or (and (= (zero m) (one m)) (= (zero m) (one m))) (or (= (zero m) (one m)) (= (zero m) (one m))))) (and (= (one m) (ep m s (first m))) (held m s (first m)))))
+> Iteration: 6/10000 (0%),	Time taken: 159s,	Time left: 1640s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  10
+Pos-CEX query time: 0.0196378231048584
+I-CEX query time: 0.025624990463256836
+Depth=1, Winners=2 template= ['FORALL'] [Node]
+Size of val_list: 11 avg: 9.714285714285714
+Size of val_list: 11 avg: 9.74
+Size of val_list: 37 avg: 10.27450980392157
+Size of val_list: 37 avg: 10.788461538461538
+Size of val_list: 43 avg: 11.39622641509434
+Size of val_list: 4 avg: 11.25925925925926
+Size of val_list: 4 avg: 11.127272727272727
+Size of val_list: 4 avg: 11.0
+get_synth_str took 0.7674984931945801 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_7.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6533937454223633
+Time taken for smt query:  48.580092906951904
+Time taken for synth:  50.297940492630005
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (= (one m) (ep m s (first m))))
+> Iteration: 7/10000 (0%),	Time taken: 210s,	Time left: 1589s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  12
+Pos-CEX query time: 0.019355297088623047
+I-CEX query time: 0.028255224227905273
+Depth=1, Winners=2 template= ['FORALL'] [Node]
+Size of val_list: 13 avg: 11.035087719298245
+Size of val_list: 13 avg: 11.068965517241379
+Size of val_list: 43 avg: 11.610169491525424
+Size of val_list: 43 avg: 12.133333333333333
+Size of val_list: 52 avg: 12.78688524590164
+Size of val_list: 5 avg: 12.661290322580646
+Size of val_list: 5 avg: 12.53968253968254
+Size of val_list: 5 avg: 12.421875
+get_synth_str took 1.0375096797943115 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_8.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6482250690460205
+Time taken for smt query:  76.85749435424805
+Time taken for synth:  78.57046246528625
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (transfer m s (one m) (first m))))
+> Iteration: 8/10000 (0%),	Time taken: 290s,	Time left: 1509s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  14
+Pos-CEX query time: 0.018749713897705078
+I-CEX query time: 0.0254366397857666
+Depth=1, Winners=2 template= ['FORALL'] [Node]
+Size of val_list: 17 avg: 12.492307692307692
+Size of val_list: 17 avg: 12.56060606060606
+Size of val_list: 59 avg: 13.253731343283581
+Size of val_list: 59 avg: 13.926470588235293
+Size of val_list: 68 avg: 14.710144927536232
+Size of val_list: 6 avg: 14.585714285714285
+Size of val_list: 6 avg: 14.464788732394366
+Size of val_list: 6 avg: 14.347222222222221
+get_synth_str took 1.4550716876983643 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_9.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6588096618652344
+Time taken for smt query:  80.43948578834534
+Time taken for synth:  82.16370463371277
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (not (transfer m s (zero m) (first m))))))
+> Iteration: 9/10000 (0%),	Time taken: 373s,	Time left: 1426s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  16
+Pos-CEX query time: 0.01882648468017578
+I-CEX query time: 0.036072731018066406
+WINNER:  ForAll(Node_1,
+       Not(transfer(Model_DUMMYMODEL,
+                    S,
+                    zero(Model_DUMMYMODEL),
+                    first(Model_DUMMYMODEL)))) 
+Found after 373.9337668418884 seconds
+Neg-CEX query time: 0.023311853408813477
+Depth=1, Winners=3 template= ['FORALL'] [Node]
+Size of val_list: 3 avg: 14.191780821917808
+Size of val_list: 3 avg: 14.04054054054054
+Size of val_list: 9 avg: 13.973333333333333
+Size of val_list: 9 avg: 13.907894736842104
+Size of val_list: 18 avg: 13.96103896103896
+Size of val_list: 2 avg: 13.807692307692308
+Size of val_list: 2 avg: 13.658227848101266
+Size of val_list: 2 avg: 13.5125
+get_synth_str took 0.14623641967773438 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_10.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6569850444793701
+Time taken for smt query:  17.198956966400146
+Time taken for synth:  18.92049217224121
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (or (held m s (first m)) (and (or (locked m s (one m) n1) (or (= (zero m) (one m)) (= (zero m) (one m)))) (not (not (= (zero m) (one m)))))))
+> Iteration: 10/10000 (0%),	Time taken: 393s,	Time left: 1406s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  5
+Pos-CEX query time: 0.018319368362426758
+I-CEX query time: 0.02755141258239746
+Depth=1, Winners=3 template= ['FORALL'] [Node]
+Size of val_list: 7 avg: 13.432098765432098
+Size of val_list: 7 avg: 13.353658536585366
+Size of val_list: 25 avg: 13.493975903614459
+Size of val_list: 25 avg: 13.630952380952381
+Size of val_list: 34 avg: 13.870588235294118
+Size of val_list: 3 avg: 13.744186046511627
+Size of val_list: 3 avg: 13.620689655172415
+Size of val_list: 3 avg: 13.5
+get_synth_str took 0.4750943183898926 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_11.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6735877990722656
+Time taken for smt query:  41.766352891922
+Time taken for synth:  43.509846210479736
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (= (one m) (ep m s (first m))))
+> Iteration: 11/10000 (0%),	Time taken: 437s,	Time left: 1362s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  21
+Pos-CEX query time: 0.020455360412597656
+I-CEX query time: 0.02989363670349121
+Depth=1, Winners=3 template= ['FORALL'] [Node]
+Size of val_list: 9 avg: 13.44943820224719
+Size of val_list: 9 avg: 13.4
+Size of val_list: 31 avg: 13.593406593406593
+Size of val_list: 31 avg: 13.782608695652174
+Size of val_list: 43 avg: 14.096774193548388
+Size of val_list: 4 avg: 13.98936170212766
+Size of val_list: 4 avg: 13.884210526315789
+Size of val_list: 4 avg: 13.78125
+get_synth_str took 0.7386443614959717 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_12.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6574409008026123
+Time taken for smt query:  100.30636644363403
+Time taken for synth:  102.02869200706482
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (=> (transfer m s (zero m) n1) (or (= (zero m) (one m)) (= (zero m) (one m)))))))
+> Iteration: 12/10000 (0%),	Time taken: 539s,	Time left: 1260s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  23
+Pos-CEX query time: 0.019418954849243164
+I-CEX query time: 0.03592395782470703
+WINNER:  ForAll(Node_1,
+       Or(Not(transfer(Model_DUMMYMODEL,
+                       S,
+                       zero(Model_DUMMYMODEL),
+                       Node_1)),
+          zero(Model_DUMMYMODEL) == one(Model_DUMMYMODEL))) 
+Found after 539.9346265792847 seconds
+Neg-CEX query time: 0.025394678115844727
+Depth=1, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 3 avg: 13.670103092783505
+Size of val_list: 3 avg: 13.561224489795919
+Size of val_list: 9 avg: 13.515151515151516
+Size of val_list: 9 avg: 13.47
+Size of val_list: 18 avg: 13.514851485148515
+Size of val_list: 2 avg: 13.401960784313726
+Size of val_list: 2 avg: 13.29126213592233
+Size of val_list: 2 avg: 13.182692307692308
+get_synth_str took 0.146575927734375 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_13.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6467366218566895
+Time taken for smt query:  20.64425754547119
+Time taken for synth:  22.35550594329834
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (= (one m) (ep m s (first m))))
+> Iteration: 13/10000 (0%),	Time taken: 562s,	Time left: 1237s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  5
+Pos-CEX query time: 0.0182492733001709
+I-CEX query time: 0.03101205825805664
+Depth=1, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 5 avg: 13.104761904761904
+Size of val_list: 5 avg: 13.028301886792454
+Size of val_list: 15 avg: 13.046728971962617
+Size of val_list: 15 avg: 13.064814814814815
+Size of val_list: 27 avg: 13.192660550458715
+Size of val_list: 3 avg: 13.1
+Size of val_list: 3 avg: 13.00900900900901
+Size of val_list: 3 avg: 12.919642857142858
+get_synth_str took 0.3762094974517822 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_14.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.641406536102295
+Time taken for smt query:  16.063942909240723
+Time taken for synth:  17.77192449569702
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (and (and (not (= n1 (first m))) (not (= n1 (first m)))) (not (and (= n1 (first m)) (= (zero m) (one m))))) (or (and (not (= (zero m) (one m))) (or (= (zero m) (one m)) (= (zero m) (one m)))) (= (zero m) (ep m s n1)))))
+> Iteration: 14/10000 (0%),	Time taken: 580s,	Time left: 1219s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  28
+Pos-CEX query time: 0.021060466766357422
+I-CEX query time: 0.03642702102661133
+Depth=1, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 9 avg: 12.88495575221239
+Size of val_list: 9 avg: 12.850877192982455
+Size of val_list: 31 avg: 13.008695652173913
+Size of val_list: 31 avg: 13.163793103448276
+Size of val_list: 43 avg: 13.418803418803419
+Size of val_list: 4 avg: 13.338983050847459
+Size of val_list: 4 avg: 13.260504201680673
+Size of val_list: 4 avg: 13.183333333333334
+get_synth_str took 0.7989563941955566 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_15.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.646559476852417
+Time taken for smt query:  53.53189206123352
+Time taken for synth:  55.24601125717163
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (or (held m s (first m)) (and (= (zero m) (one m)) (= (zero m) (one m)))))))
+> Iteration: 15/10000 (0%),	Time taken: 636s,	Time left: 1163s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  30
+Pos-CEX query time: 0.021195650100708008
+I-CEX query time: 0.02860403060913086
+Depth=1, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 13 avg: 13.181818181818182
+Size of val_list: 13 avg: 13.180327868852459
+Size of val_list: 47 avg: 13.455284552845528
+Size of val_list: 47 avg: 13.725806451612904
+Size of val_list: 59 avg: 14.088
+Size of val_list: 5 avg: 14.015873015873016
+Size of val_list: 5 avg: 13.94488188976378
+Size of val_list: 5 avg: 13.875
+get_synth_str took 1.2618980407714844 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_16.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.704289436340332
+Time taken for smt query:  59.24821949005127
+Time taken for synth:  61.01833248138428
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (and (= (one m) (ep m s (first m))) (held m s (first m))))))
+> Iteration: 16/10000 (0%),	Time taken: 699s,	Time left: 1100s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  32
+Pos-CEX query time: 0.021270275115966797
+I-CEX query time: 0.026599884033203125
+Depth=1, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 17 avg: 13.89922480620155
+Size of val_list: 17 avg: 13.923076923076923
+Size of val_list: 59 avg: 14.267175572519085
+Size of val_list: 59 avg: 14.606060606060606
+Size of val_list: 68 avg: 15.007518796992482
+Size of val_list: 6 avg: 14.940298507462687
+Size of val_list: 6 avg: 14.874074074074073
+Size of val_list: 6 avg: 14.808823529411764
+get_synth_str took 1.5231175422668457 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_17.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.7429935932159424
+Time taken for smt query:  49.86845064163208
+Time taken for synth:  51.676971435546875
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (=> (locked m s (one m) n1) (or (= (zero m) (one m)) (= (zero m) (one m)))))))
+> Iteration: 17/10000 (0%),	Time taken: 752s,	Time left: 1047s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  34
+Pos-CEX query time: 0.020064830780029297
+I-CEX query time: 0.03531360626220703
+Depth=1, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 21 avg: 14.854014598540147
+Size of val_list: 21 avg: 14.898550724637682
+Size of val_list: 75 avg: 15.33093525179856
+Size of val_list: 75 avg: 15.757142857142858
+Size of val_list: 84 avg: 16.24113475177305
+Size of val_list: 7 avg: 16.176056338028168
+Size of val_list: 7 avg: 16.111888111888113
+Size of val_list: 7 avg: 16.04861111111111
+get_synth_str took 2.1254324913024902 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_18.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.7456684112548828
+Time taken for smt query:  93.5518262386322
+Time taken for synth:  95.36238551139832
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (not (transfer m s (one m) n1)))))
+> Iteration: 18/10000 (0%),	Time taken: 849s,	Time left: 950s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  36
+Pos-CEX query time: 0.020443201065063477
+I-CEX query time: 0.030689001083374023
+Depth=1, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 27 avg: 16.124137931034483
+Size of val_list: 27 avg: 16.198630136986303
+Size of val_list: 99 avg: 16.761904761904763
+Size of val_list: 99 avg: 17.31756756756757
+Size of val_list: 100 avg: 17.87248322147651
+Size of val_list: 8 avg: 17.80666666666667
+Size of val_list: 8 avg: 17.741721854304636
+Size of val_list: 8 avg: 17.67763157894737
+get_synth_str took 2.569612741470337 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_19.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.7041010856628418
+Time taken for smt query:  68.68823432922363
+Time taken for synth:  70.45917272567749
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (not (transfer m s (one m) (first m))))))
+> Iteration: 19/10000 (0%),	Time taken: 922s,	Time left: 877s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  6
+Highest counter example id:  38
+Pos-CEX query time: 0.020478248596191406
+I-CEX query time: 0.028005123138427734
+Depth=1, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 31 avg: 17.764705882352942
+Size of val_list: 31 avg: 17.850649350649352
+Size of val_list: 115 avg: 18.47741935483871
+Size of val_list: 115 avg: 19.096153846153847
+Size of val_list: 116 avg: 19.713375796178344
+Size of val_list: 9 avg: 19.645569620253166
+Size of val_list: 9 avg: 19.57861635220126
+Size of val_list: 9 avg: 19.5125
+get_synth_str took 2.936312437057495 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_20.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6593701839447021
+Time taken for smt query:  93.98632502555847
+Time taken for synth:  95.7123556137085
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (=> (not (= n1 (first m))) (= (one m) (ep m s (first m)))))))
+> Iteration: 20/10000 (0%),	Time taken: 1021s,	Time left: 778s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  7
+Highest counter example id:  40
+Pos-CEX query time: 0.022620677947998047
+I-CEX query time: 0.04833817481994629
+Depth=1, Winners=4 template= ['FORALL'] [Node]
+Size of val_list: 35 avg: 19.608695652173914
+Size of val_list: 35 avg: 19.703703703703702
+Size of val_list: 131 avg: 20.386503067484664
+Size of val_list: 131 avg: 21.0609756097561
+Size of val_list: 132 avg: 21.733333333333334
+Size of val_list: 10 avg: 21.662650602409638
+Size of val_list: 10 avg: 21.592814371257486
+Size of val_list: 10 avg: 21.523809523809526
+get_synth_str took 3.579099416732788 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_21.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6593937873840332
+Time taken for smt query:  87.64688301086426
+Time taken for synth:  89.37402057647705
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (not (locked m s (one m) (first m))))))
+> Iteration: 21/10000 (0%),	Time taken: 1114s,	Time left: 685s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  8
+Highest counter example id:  42
+Pos-CEX query time: 0.02096843719482422
+I-CEX query time: 0.034475088119506836
+WINNER:  ForAll(Node_1,
+       Not(locked(Model_DUMMYMODEL,
+                  S,
+                  one(Model_DUMMYMODEL),
+                  first(Model_DUMMYMODEL)))) 
+Found after 1114.7520141601562 seconds
+Neg-CEX query time: 0.025397539138793945
+Depth=1, Winners=5 template= ['FORALL'] [Node]
+Size of val_list: 3 avg: 21.414201183431953
+Size of val_list: 3 avg: 21.305882352941175
+Size of val_list: 9 avg: 21.23391812865497
+Size of val_list: 9 avg: 21.162790697674417
+Size of val_list: 18 avg: 21.14450867052023
+Size of val_list: 2 avg: 21.03448275862069
+Size of val_list: 2 avg: 20.925714285714285
+Size of val_list: 2 avg: 20.818181818181817
+get_synth_str took 0.1485121250152588 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_22.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.647888422012329
+Time taken for smt query:  15.307021379470825
+Time taken for synth:  17.02055048942566
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (= (one m) (ep m s (first m))))
+> Iteration: 22/10000 (0%),	Time taken: 1131s,	Time left: 668s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  5
+Pos-CEX query time: 0.01905226707458496
+I-CEX query time: 0.03305649757385254
+Depth=1, Winners=5 template= ['FORALL'] [Node]
+Size of val_list: 5 avg: 20.728813559322035
+Size of val_list: 5 avg: 20.640449438202246
+Size of val_list: 15 avg: 20.608938547486034
+Size of val_list: 15 avg: 20.57777777777778
+Size of val_list: 27 avg: 20.613259668508288
+Size of val_list: 3 avg: 20.516483516483518
+Size of val_list: 3 avg: 20.420765027322403
+Size of val_list: 3 avg: 20.32608695652174
+get_synth_str took 0.37647151947021484 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_23.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6605112552642822
+Time taken for smt query:  22.4294376373291
+Time taken for synth:  24.156343698501587
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (and (or (or (or (= (zero m) (one m)) (= (zero m) (one m))) (held m s (first m))) (not (not (= (zero m) (one m))))) (=> (not (not (= (zero m) (one m)))) (or (not (= (zero m) (one m))) (held m s (first m))))))
+> Iteration: 23/10000 (0%),	Time taken: 1156s,	Time left: 643s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  47
+Pos-CEX query time: 0.02239370346069336
+I-CEX query time: 0.03005671501159668
+Depth=1, Winners=5 template= ['FORALL'] [Node]
+Size of val_list: 9 avg: 20.264864864864865
+Size of val_list: 9 avg: 20.204301075268816
+Size of val_list: 31 avg: 20.262032085561497
+Size of val_list: 31 avg: 20.319148936170212
+Size of val_list: 43 avg: 20.43915343915344
+Size of val_list: 4 avg: 20.352631578947367
+Size of val_list: 4 avg: 20.267015706806284
+Size of val_list: 4 avg: 20.182291666666668
+get_synth_str took 0.7574689388275146 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_24.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6471869945526123
+Time taken for smt query:  35.37380075454712
+Time taken for synth:  37.08793544769287
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (and (and (not (= n1 (first m))) (not (= n1 (first m)))) (locked m s (zero m) (first m)))))
+> Iteration: 24/10000 (0%),	Time taken: 1194s,	Time left: 605s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  49
+Pos-CEX query time: 0.020931005477905273
+I-CEX query time: 0.05546402931213379
+WINNER:  ForAll(Node_1,
+       Not(And(Not(Node_1 == first(Model_DUMMYMODEL)),
+               locked(Model_DUMMYMODEL,
+                      S,
+                      zero(Model_DUMMYMODEL),
+                      first(Model_DUMMYMODEL))))) 
+Found after 1194.5137224197388 seconds
+Neg-CEX query time: 0.025928497314453125
+Depth=1, Winners=6 template= ['FORALL'] [Node]
+Size of val_list: 3 avg: 20.093264248704664
+Size of val_list: 3 avg: 20.00515463917526
+Size of val_list: 9 avg: 19.94871794871795
+Size of val_list: 9 avg: 19.892857142857142
+Size of val_list: 18 avg: 19.883248730964468
+Size of val_list: 2 avg: 19.792929292929294
+Size of val_list: 2 avg: 19.7035175879397
+Size of val_list: 2 avg: 19.615
+get_synth_str took 0.14945483207702637 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_25.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6499779224395752
+Time taken for smt query:  23.034199237823486
+Time taken for synth:  24.751135110855103
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (held m s (first m)))
+> Iteration: 25/10000 (0%),	Time taken: 1219s,	Time left: 580s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  5
+Pos-CEX query time: 0.01886582374572754
+I-CEX query time: 0.03044915199279785
+Depth=1, Winners=6 template= ['FORALL'] [Node]
+Size of val_list: 7 avg: 19.55223880597015
+Size of val_list: 7 avg: 19.49009900990099
+Size of val_list: 25 avg: 19.517241379310345
+Size of val_list: 25 avg: 19.544117647058822
+Size of val_list: 34 avg: 19.614634146341462
+Size of val_list: 3 avg: 19.533980582524272
+Size of val_list: 3 avg: 19.454106280193237
+Size of val_list: 3 avg: 19.375
+get_synth_str took 0.4772932529449463 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_26.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6564874649047852
+Time taken for smt query:  62.35081601142883
+Time taken for synth:  64.0743088722229
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (= (one m) (ep m s (first m))))
+> Iteration: 26/10000 (0%),	Time taken: 1284s,	Time left: 515s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  54
+Pos-CEX query time: 0.022101879119873047
+I-CEX query time: 0.03410148620605469
+Depth=1, Winners=6 template= ['FORALL'] [Node]
+Size of val_list: 9 avg: 19.32535885167464
+Size of val_list: 9 avg: 19.276190476190475
+Size of val_list: 31 avg: 19.33175355450237
+Size of val_list: 31 avg: 19.38679245283019
+Size of val_list: 43 avg: 19.497652582159624
+Size of val_list: 4 avg: 19.425233644859812
+Size of val_list: 4 avg: 19.35348837209302
+Size of val_list: 4 avg: 19.28240740740741
+get_synth_str took 0.7437613010406494 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_27.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.6613445281982422
+Time taken for smt query:  80.96879434585571
+Time taken for synth:  82.6962742805481
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (transfer m s (one m) (first m))))
+> Iteration: 27/10000 (0%),	Time taken: 1367s,	Time left: 432s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  56
+Pos-CEX query time: 0.02254176139831543
+I-CEX query time: 0.032884836196899414
+Depth=1, Winners=6 template= ['FORALL'] [Node]
+Size of val_list: 13 avg: 19.253456221198157
+Size of val_list: 13 avg: 19.224770642201836
+Size of val_list: 47 avg: 19.35159817351598
+Size of val_list: 47 avg: 19.477272727272727
+Size of val_list: 59 avg: 19.65610859728507
+Size of val_list: 5 avg: 19.59009009009009
+Size of val_list: 5 avg: 19.524663677130047
+Size of val_list: 5 avg: 19.459821428571427
+get_synth_str took 1.1341538429260254 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_28.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.7109365463256836
+Time taken for smt query:  46.320866107940674
+Time taken for synth:  48.098146200180054
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (or (or (or (= (zero m) (one m)) (= (zero m) (one m))) (or (= (zero m) (one m)) (= (zero m) (one m)))) (or (locked m s (zero m) n1) (or (= (zero m) (one m)) (= (zero m) (one m)))))))
+> Iteration: 28/10000 (0%),	Time taken: 1416s,	Time left: 383s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  58
+Pos-CEX query time: 0.022856950759887695
+I-CEX query time: 0.035462141036987305
+WINNER:  ForAll(Node_1,
+       Not(Or(zero(Model_DUMMYMODEL) ==
+              one(Model_DUMMYMODEL),
+              locked(Model_DUMMYMODEL,
+                     S,
+                     zero(Model_DUMMYMODEL),
+                     Node_1)))) 
+Found after 1416.893348455429 seconds
+Neg-CEX query time: 0.02805471420288086
+Depth=1, Winners=7 template= ['FORALL'] [Node]
+Size of val_list: 3 avg: 19.386666666666667
+Size of val_list: 3 avg: 19.3141592920354
+Size of val_list: 9 avg: 19.26872246696035
+Size of val_list: 9 avg: 19.223684210526315
+Size of val_list: 18 avg: 19.21834061135371
+Size of val_list: 2 avg: 19.143478260869564
+Size of val_list: 2 avg: 19.06926406926407
+Size of val_list: 2 avg: 18.995689655172413
+get_synth_str took 0.14917206764221191 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_29.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.7359023094177246
+Time taken for smt query:  20.79356598854065
+Time taken for synth:  22.595670223236084
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (held m s (first m)))
+> Iteration: 29/10000 (0%),	Time taken: 1439s,	Time left: 360s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  0
+Highest counter example id:  5
+Pos-CEX query time: 0.019227027893066406
+I-CEX query time: 0.032399892807006836
+Depth=1, Winners=7 template= ['FORALL'] [Node]
+Size of val_list: 7 avg: 18.94420600858369
+Size of val_list: 7 avg: 18.89316239316239
+Size of val_list: 25 avg: 18.919148936170213
+Size of val_list: 25 avg: 18.944915254237287
+Size of val_list: 34 avg: 19.008438818565402
+Size of val_list: 3 avg: 18.941176470588236
+Size of val_list: 3 avg: 18.8744769874477
+Size of val_list: 3 avg: 18.808333333333334
+get_synth_str took 0.48215699195861816 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_30.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.748227834701538
+Time taken for smt query:  45.771767139434814
+Time taken for synth:  47.5893337726593
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (le m (one m) (one m)) (le m (ep m s (first m)) (one m))))
+> Iteration: 30/10000 (0%),	Time taken: 1487s,	Time left: 312s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  1
+Highest counter example id:  63
+Pos-CEX query time: 0.026212215423583984
+I-CEX query time: 0.03604888916015625
+Depth=1, Winners=7 template= ['FORALL'] [Node]
+Size of val_list: 9 avg: 18.767634854771785
+Size of val_list: 9 avg: 18.727272727272727
+Size of val_list: 31 avg: 18.77777777777778
+Size of val_list: 31 avg: 18.827868852459016
+Size of val_list: 43 avg: 18.926530612244896
+Size of val_list: 4 avg: 18.865853658536587
+Size of val_list: 4 avg: 18.805668016194332
+Size of val_list: 4 avg: 18.745967741935484
+get_synth_str took 0.7365107536315918 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_31.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.7276108264923096
+Time taken for smt query:  36.77763652801514
+Time taken for synth:  38.5712308883667
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (and (= (one m) (ep m s (first m))) (held m s (first m))))))
+> Iteration: 31/10000 (0%),	Time taken: 1527s,	Time left: 272s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  2
+Highest counter example id:  65
+Pos-CEX query time: 0.022807836532592773
+I-CEX query time: 0.03040480613708496
+Depth=1, Winners=7 template= ['FORALL'] [Node]
+Size of val_list: 13 avg: 18.72289156626506
+Size of val_list: 13 avg: 18.7
+Size of val_list: 43 avg: 18.796812749003983
+Size of val_list: 43 avg: 18.892857142857142
+Size of val_list: 52 avg: 19.023715415019762
+Size of val_list: 5 avg: 18.968503937007874
+Size of val_list: 5 avg: 18.91372549019608
+Size of val_list: 5 avg: 18.859375
+get_synth_str took 1.060988187789917 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_32.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.7394921779632568
+Time taken for smt query:  70.68435740470886
+Time taken for synth:  72.48999738693237
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (=> (locked m s (one m) n1) (and (not (not (= (zero m) (one m)))) (not (not (= (zero m) (one m)))))))
+> Iteration: 32/10000 (0%),	Time taken: 1600s,	Time left: 199s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  3
+Highest counter example id:  67
+Pos-CEX query time: 0.021738052368164062
+I-CEX query time: 0.03969144821166992
+Depth=1, Winners=7 template= ['FORALL'] [Node]
+Size of val_list: 17 avg: 18.852140077821012
+Size of val_list: 17 avg: 18.844961240310077
+Size of val_list: 59 avg: 19.0
+Size of val_list: 59 avg: 19.153846153846153
+Size of val_list: 68 avg: 19.340996168582375
+Size of val_list: 6 avg: 19.290076335877863
+Size of val_list: 6 avg: 19.23954372623574
+Size of val_list: 6 avg: 19.189393939393938
+get_synth_str took 1.4982836246490479 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_33.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.7391889095306396
+Time taken for smt query:  58.472307443618774
+Time taken for synth:  60.27793502807617
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (not (transfer m s (one m) (first m))))))
+> Iteration: 33/10000 (0%),	Time taken: 1662s,	Time left: 137s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  4
+Highest counter example id:  69
+Pos-CEX query time: 0.02371382713317871
+I-CEX query time: 0.034964799880981445
+Depth=1, Winners=7 template= ['FORALL'] [Node]
+Size of val_list: 21 avg: 19.19622641509434
+Size of val_list: 21 avg: 19.203007518796994
+Size of val_list: 75 avg: 19.411985018726593
+Size of val_list: 75 avg: 19.619402985074625
+Size of val_list: 84 avg: 19.858736059479554
+Size of val_list: 7 avg: 19.81111111111111
+Size of val_list: 7 avg: 19.763837638376383
+Size of val_list: 7 avg: 19.716911764705884
+get_synth_str took 1.9154772758483887 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_34.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.7245430946350098
+Time taken for smt query:  106.62835168838501
+Time taken for synth:  108.41993498802185
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (=> (not (= n1 (first m))) (= (one m) (ep m s (first m)))))))
+> Iteration: 34/10000 (0%),	Time taken: 1773s,	Time left: 26s
+Total number of pos counter examples:  2
+Total number of neg counter examples:  0
+Total number of imp counter examples:  5
+Highest counter example id:  71
+Pos-CEX query time: 0.02304553985595703
+I-CEX query time: 0.04487943649291992
+Depth=1, Winners=7 template= ['FORALL'] [Node]
+Size of val_list: 25 avg: 19.736263736263737
+Size of val_list: 25 avg: 19.755474452554743
+Size of val_list: 91 avg: 20.014545454545456
+Size of val_list: 91 avg: 20.27173913043478
+Size of val_list: 100 avg: 20.55956678700361
+Size of val_list: 8 avg: 20.514388489208635
+Size of val_list: 8 avg: 20.469534050179213
+Size of val_list: 8 avg: 20.425
+get_synth_str took 2.4241185188293457 seconds
+Running /598mp/mini-sygus/scripts/minisy /598mp/src/invar_synth/cegis/run_files/36_eval_2_--no-cheap_--id3_--no-iter-deep_dist_lock/q_35.sy --min-depth=1 --max-depth=6
+Time taken for grammar generation:  1.7421519756317139
+Time taken for smt query:  79.59328007698059
+Time taken for synth:  81.40370655059814
+Candidate:  (define-fun inv ((m ModelId) (s StateId) (n1 Node)) Bool (not (not (=> (not (= n1 (first m))) (= (zero m) (ep m s n1))))))
+> Iteration: 35/10000 (0%),	Time taken: 1856s,	Time left: -56s
+Time limit reached. Stopping after 35 iterations. Extra time: 56.90191173553467
+==========================================================
+Inv#0:  ForAll(Epoch_1,
+       ForAll(Epoch_2,
+              ForAll(Epoch_3,
+                     And(le(Model_DUMMYMODEL,
+                            Epoch_1,
+                            Epoch_1),
+                         Implies(And(le(Model_DUMMYMODEL,
+                                        Epoch_1,
+                                        Epoch_2),
+                                     le(Model_DUMMYMODEL,
+                                        Epoch_2,
+                                        Epoch_3)),
+                                 le(Model_DUMMYMODEL,
+                                    Epoch_1,
+                                    Epoch_3)),
+                         Implies(And(le(Model_DUMMYMODEL,
+                                        Epoch_1,
+                                        Epoch_2),
+                                     le(Model_DUMMYMODEL,
+                                        Epoch_2,
+                                        Epoch_1)),
+                                 Epoch_1 == Epoch_2),
+                         Or(le(Model_DUMMYMODEL,
+                               Epoch_1,
+                               Epoch_2),
+                            le(Model_DUMMYMODEL,
+                               Epoch_2,
+                               Epoch_1)),
+                         le(Model_DUMMYMODEL,
+                            zero(Model_DUMMYMODEL),
+                            Epoch_1),
+                         one(Model_DUMMYMODEL) !=
+                         zero(Model_DUMMYMODEL)))))
+Inv#1:  ForAll(Node_1,
+       le(Model_DUMMYMODEL,
+          one(Model_DUMMYMODEL),
+          ep(Model_DUMMYMODEL, S, first(Model_DUMMYMODEL))))
+Inv#2:  ForAll(Node_1,
+       Not(transfer(Model_DUMMYMODEL,
+                    S,
+                    zero(Model_DUMMYMODEL),
+                    first(Model_DUMMYMODEL))))
+Inv#3:  ForAll(Node_1,
+       Or(Not(transfer(Model_DUMMYMODEL,
+                       S,
+                       zero(Model_DUMMYMODEL),
+                       Node_1)),
+          zero(Model_DUMMYMODEL) == one(Model_DUMMYMODEL)))
+Inv#4:  ForAll(Node_1,
+       Not(locked(Model_DUMMYMODEL,
+                  S,
+                  one(Model_DUMMYMODEL),
+                  first(Model_DUMMYMODEL))))
+Inv#5:  ForAll(Node_1,
+       Not(And(Not(Node_1 == first(Model_DUMMYMODEL)),
+               locked(Model_DUMMYMODEL,
+                      S,
+                      zero(Model_DUMMYMODEL),
+                      first(Model_DUMMYMODEL)))))
+Inv#6:  ForAll(Node_1,
+       Not(Or(zero(Model_DUMMYMODEL) ==
+              one(Model_DUMMYMODEL),
+              locked(Model_DUMMYMODEL,
+                     S,
+                     zero(Model_DUMMYMODEL),
+                     Node_1))))
+==========================================================
+Protocol proved safe? : False
