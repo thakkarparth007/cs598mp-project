@@ -15,6 +15,7 @@ import pandas as pd
 Node = DeclareSort('Node')
 Epoch = DeclareSort('Epoch')
 
+
 class DistLockState(ProtocolState):
     def __init__(self, model_sym, name):
         super().__init__(model_sym, name)
@@ -99,7 +100,10 @@ class DistLockModel(ProtocolModel):
     def get_pos_cex_from_traces(self):
         cexes = []
 
-        df = pd.read_csv("/home/parth/598mp/DistAI/traces/distributed_lock.csv")
+        curdir = os.path.abspath('.')
+        distai_traces_path = os.path.join(os.path.join(curdir,"distai"),"traces")
+
+        df = pd.read_csv(os.path.join(distai_traces_path,"distributed_lock.csv"))
         cols = df.columns
         
         N1, N2 = Consts('N1 N2', Node)
