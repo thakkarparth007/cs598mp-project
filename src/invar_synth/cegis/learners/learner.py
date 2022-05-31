@@ -47,7 +47,7 @@ class CEGISLearner():
 
         self.counter_examples = [] #self.dummyM.get_pos_cex_from_traces()[:load_N_pos_cex_from_traces]
 
-        self.invars = [lambda M, S: M.get_axioms()] + invars
+        self.invars = []#[lambda M, S: M.get_axioms()] + invars
         self.cur_invar = lambda M, S: QForAll([self.dummyM.sorts[0]], lambda n1: BoolVal(False))
         self.template_generator = list(template_generator(
             self.allowed_quantifiers,
@@ -117,48 +117,49 @@ class CEGISLearner():
                 self.cur_invar = next(synth_generator)
                 continue
 
-            # # now that we've found an invariant that includes the initial
-            # # state, we don't need to worry about positive counter examples
-            # # because all future invariants will be ANDed with the
-            # # invariants that include the initial state.
-            # self.counter_examples = []
-
-            start = time.time()
-            cex = self.cex_gen.get_implication_cex(self.cur_invar, debug)
-            end = time.time()
-            print("I-CEX query time: {}".format(end-start))
-            if cex.exists():
-                self.counter_examples.append(cex)
-                self.perm_storage['cex'].append(cex)
-                # overwrite the current invariant, it's useless
-                self.cur_invar = next(synth_generator)
-                continue
-            
-            # # check if our invariant is already implied by existing invariants
-            # # if so, it's useless
-            # solver = Solver()
-            # known_invars = And(*[inv(M, S) for inv in self.invars])
-            # solver.add(Not(Implies(known_invars, self.cur_invar(M, S))))
-            # if solver.check() == unsat and False:
+            # Comment out checking for implication counterexamples; we don't need it for fosep
+            # # # now that we've found an invariant that includes the initial
+            # # # state, we don't need to worry about positive counter examples
+            # # # because all future invariants will be ANDed with the
+            # # # invariants that include the initial state.
+            # # self.counter_examples = []
+            #
+            # start = time.time()
+            # cex = self.cex_gen.get_implication_cex(self.cur_invar, debug)
+            # end = time.time()
+            # print("I-CEX query time: {}".format(end-start))
+            # if cex.exists():
+            #     self.counter_examples.append(cex)
+            #     self.perm_storage['cex'].append(cex)
+            #     # overwrite the current invariant, it's useless
+            #     self.cur_invar = next(synth_generator)
             #     continue
-            
-            # store the current invariant, because it's inductive
-            self.invars.append(self.cur_invar)
-            self.cex_gen.invars.append(self.cur_invar)
-            print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS).z3expr,
-                 f"\nFound after {time.time() - time_loop_start} seconds")
-            # reset synth_generator
-            synth_generator = self.synth(min_depth, max_depth)
-
-            # throw away all inductive cexs.
-            # because the inductive cexs may be spurios.
-            # ideally, we only wanna throw away those inductive cexs where
-            # cur_invar(cex.S1) is false. Meaning, that counter example's pre state
-            # is unreachable. (see discussion with adithya)
-            self.counter_examples = [cex for cex in self.counter_examples if (isinstance(cex, PositiveCEX))]
+            #
+            # # # check if our invariant is already implied by existing invariants
+            # # # if so, it's useless
+            # # solver = Solver()
+            # # known_invars = And(*[inv(M, S) for inv in self.invars])
+            # # solver.add(Not(Implies(known_invars, self.cur_invar(M, S))))
+            # # if solver.check() == unsat and False:
+            # #     continue
+            #
+            # # store the current invariant, because it's inductive
+            # self.invars.append(self.cur_invar)
+            # self.cex_gen.invars.append(self.cur_invar)
+            # print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS).z3expr,
+            #      f"\nFound after {time.time() - time_loop_start} seconds")
+            # # reset synth_generator
+            # synth_generator = self.synth(min_depth, max_depth)
+            #
+            # # throw away all inductive cexs.
+            # # because the inductive cexs may be spurios.
+            # # ideally, we only wanna throw away those inductive cexs where
+            # # cur_invar(cex.S1) is false. Meaning, that counter example's pre state
+            # # is unreachable. (see discussion with adithya)
+            # self.counter_examples = [cex for cex in self.counter_examples if (isinstance(cex, PositiveCEX))]
             
             start = time.time()
-            cex = self.cex_gen.get_neg_cex(debug=debug)
+            cex = self.cex_gen.get_neg_cex(self.cur_invar, debug=debug)
             end = time.time()
             print("Neg-CEX query time: {}".format(end-start))
             if cex.exists():

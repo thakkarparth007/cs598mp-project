@@ -42,8 +42,12 @@ def get_protocol(protocol_name):
     elif protocol_name == 'ricart_agrawala':
         from invar_synth.protocols.ricart_agrawala import MutexModel
         return MutexModel
+    elif protocol_name == 'fosep':
+        from invar_synth.protocols.fosep import FOSepModel
+        return FOSepModel
     else:
         raise Exception(f'Unknown protocol: {protocol_name}')
+
 
 def main():
     Learner = get_learner(args.learner)

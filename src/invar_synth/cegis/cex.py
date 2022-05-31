@@ -10,6 +10,7 @@ from invar_synth.utils.qexpr import QExpr, QForAll
 
 cex_id = 0
 
+
 class CEX():
     def __init__(self, solver, z3model, M, cand_invar):
         global cex_id
@@ -505,13 +506,16 @@ class CEXGen():
         M = self.protocol_model(f'{self.cex_ctr}_pos')
         S = M.get_state('init')
 
-        inv = lambda M, S: And(*[inv(M, S).z3expr for inv in self.invars])
+        target_formula = M.get_target_formula()
+
+        # inv = lambda M, S: And(*[inv(M, S).z3expr for inv in self.invars])
 
         solver = SolverWrapper(debug=debug)
-        solver.add(M.get_z3_init_state_cond(), "1")
-        solver.add(M.get_z3_axioms(), "2") # not sure if this is required
+        # solver.add(M.get_z3_init_state_cond(), "1")
+        # solver.add(M.get_z3_axioms(), "2") # not sure if this is required
         # solver.add(inv(M, S), "3") # redundant
-        solver.add(Not(cand_invar(M, S).z3expr), "4")
+        solver.add(Not(cand_invar(M, S).z3expr), "PosNotCand")
+        solver.add(target_formula(M, S), "PosTarget")
 
         if solver.check() == sat:
             self.cex_ctr += 1
@@ -519,20 +523,24 @@ class CEXGen():
         
         return PositiveCEX(solver, None, M, cand_invar, S)
     
-    def get_neg_cex(self, cur_invar=None, debug=False):
+    def get_neg_cex(self, cur_invar, debug=False):
         M = self.protocol_model(f'{self.cex_ctr}_neg')
         S = M.get_state('S1')
 
-        inv = lambda M, S: And(*[inv(M, S).z3expr for inv in self.invars])
+        target_formula = M.get_target_formula()
+
+        # inv = lambda M, S: And(*[inv(M, S).z3expr for inv in self.invars])
 
         solver = SolverWrapper(debug=debug)
-        solver.add(M.get_z3_axioms(), "2")
-        solver.add(inv(M, S), "3")
-        if cur_invar is not None:
-            solver.add(cur_invar(M, S).z3expr, "4")
-        else:
-            cur_invar = self.invars[-1]
-        solver.add(Not(M.get_z3_safety_cond(S)), "5")
+        # solver.add(M.get_z3_axioms(), "2")
+        # solver.add(inv(M, S), "3")
+        # if cur_invar is not None:
+        #     solver.add(cur_invar(M, S).z3expr, "4")
+        # else:
+        #     cur_invar = self.invars[-1]
+        # solver.add(Not(M.get_z3_safety_cond(S)), "5")
+        solver.add(cur_invar(M, S).z3expr, "NegCand")
+        solver.add(Not(target_formula(M, S)), "NegNotTarget")
 
         if solver.check() == sat:
             self.cex_ctr += 1
