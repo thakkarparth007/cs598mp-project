@@ -17,7 +17,8 @@ def template_generator(allowed_quantifiers, allowed_sorts, max_terms = 5):
         else:
             return itertools.combinations_with_replacement(options, how_many)
     
-    for i in range(1, max_terms+1):
+    # changed 1 to 2 temp.
+    for i in range(2, max_terms+1):
         # loop over i-permutations of quantifiers
         for quantifiers in picker(allowed_quantifiers, i):
             # loop over i-permutations of sorts
@@ -96,6 +97,8 @@ class CEGISLearner():
                         if cex.expand_lazy_valuations_set(self.cur_invar):
                             need_new_pos_cex = False
                             break
+            
+            self.__reuse_fn_defns = not need_new_pos_cex
 
             if need_new_pos_cex:
                 start = time.time()
@@ -123,16 +126,16 @@ class CEGISLearner():
             # # invariants that include the initial state.
             # self.counter_examples = []
 
-            start = time.time()
-            cex = self.cex_gen.get_implication_cex(self.cur_invar, debug)
-            end = time.time()
-            print("I-CEX query time: {}".format(end-start))
-            if cex.exists():
-                self.counter_examples.append(cex)
-                self.perm_storage['cex'].append(cex)
-                # overwrite the current invariant, it's useless
-                self.cur_invar = next(synth_generator)
-                continue
+            # start = time.time()
+            # cex = self.cex_gen.get_implication_cex(self.cur_invar, debug)
+            # end = time.time()
+            # print("I-CEX query time: {}".format(end-start))
+            # if cex.exists():
+            #     self.counter_examples.append(cex)
+            #     self.perm_storage['cex'].append(cex)
+            #     # overwrite the current invariant, it's useless
+            #     self.cur_invar = next(synth_generator)
+            #     continue
             
             # # check if our invariant is already implied by existing invariants
             # # if so, it's useless
@@ -143,19 +146,19 @@ class CEGISLearner():
             #     continue
             
             # store the current invariant, because it's inductive
-            self.invars.append(self.cur_invar)
-            self.cex_gen.invars.append(self.cur_invar)
-            print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS).z3expr,
-                 f"\nFound after {time.time() - time_loop_start} seconds")
-            # reset synth_generator
-            synth_generator = self.synth(min_depth, max_depth)
+            # self.invars.append(self.cur_invar)
+            # self.cex_gen.invars.append(self.cur_invar)
+            # print("WINNER: ", self.cur_invar(self.dummyM, self.dummyS).z3expr,
+            #      f"\nFound after {time.time() - time_loop_start} seconds")
+            # # reset synth_generator
+            # synth_generator = self.synth(min_depth, max_depth)
 
             # throw away all inductive cexs.
             # because the inductive cexs may be spurios.
             # ideally, we only wanna throw away those inductive cexs where
             # cur_invar(cex.S1) is false. Meaning, that counter example's pre state
             # is unreachable. (see discussion with adithya)
-            self.counter_examples = [cex for cex in self.counter_examples if (isinstance(cex, PositiveCEX))]
+            # self.counter_examples = [cex for cex in self.counter_examples if (isinstance(cex, PositiveCEX))]
             
             start = time.time()
             cex = self.cex_gen.get_neg_cex(debug=debug)
@@ -197,9 +200,9 @@ class CEGISLearner():
                 print(f"Depth={depth}, Winners={len(self.invars)} template=", qs, sorts)
 
                 if self.iter_deep:
-                    synthesized_invar_candidates = self.get_candidates(qs, sorts, min_depth=depth, max_depth=depth)
+                    synthesized_invar_candidates = self.get_candidates(qs, sorts, min_depth=depth, max_depth=depth, reuse_fn_defns=self.__reuse_fn_defns)
                 else:
-                    synthesized_invar_candidates = self.get_candidates(qs, sorts, min_depth=1, max_depth=max_depth)
+                    synthesized_invar_candidates = self.get_candidates(qs, sorts, min_depth=1, max_depth=max_depth, reuse_fn_defns=self.__reuse_fn_defns)
                 if self.interactive:
                     input("Go?")
 

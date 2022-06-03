@@ -25,11 +25,12 @@ class MinisyLearner(CEGISLearner):
         self.grammar = SynthGrammar(self.dummyM, 123, use_id3=use_id3)
         self.cheap_constraints = cheap_constraints
     
-    def get_candidates(self, qs, sorts, min_depth, max_depth):
+    def get_candidates(self, qs, sorts, min_depth, max_depth, reuse_fn_defns=False):
         start = time.time()
         synth_str = self.grammar.get_synth_str(
             qs, sorts, self.counter_examples, self.invars,
-            cheap_constraints=self.cheap_constraints
+            cheap_constraints=self.cheap_constraints,
+            reuse_fn_defns=reuse_fn_defns
         )
         end = time.time()
         print('get_synth_str took {} seconds'.format(end-start))

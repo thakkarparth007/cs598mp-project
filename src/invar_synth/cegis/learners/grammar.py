@@ -412,7 +412,7 @@ $dummy_vars
 
 """)
 
-    def get_synth_str(self, tmpl_qs, tmpl_sorts, counter_examples, known_invars, cheap_constraints=False):
+    def get_synth_str(self, tmpl_qs, tmpl_sorts, counter_examples, known_invars, cheap_constraints=False, reuse_fn_defns=False):
         synthesized_inv = Function('inv', ModelId, StateId, *(tmpl_sorts + [BoolSort()]))
 
         universes = {}
@@ -447,7 +447,11 @@ $dummy_vars
         
         universe_declarations = self._get_universe_decls_as_str(universes)
         
-        fn_defns = self._get_fn_defns_as_str(model_descs)
+        if reuse_fn_defns:
+            fn_defns = self.__fn_defns
+        else:
+            fn_defns = self._get_fn_defns_as_str(model_descs)
+            self.__fn_defns = fn_defns
 
         inv_args = ""
         dummy_vars = ""

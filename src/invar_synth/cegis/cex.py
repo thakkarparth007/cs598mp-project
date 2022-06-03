@@ -483,6 +483,8 @@ class CEXGen():
         self.cex_ctr = 0
         self.protocol_model = protocol_model
 
+        self.NUM_ELEMS = 10
+
     def add_invariant(self, inv):
         self.invars.append(inv)
     
@@ -508,10 +510,16 @@ class CEXGen():
         inv = lambda M, S: And(*[inv(M, S).z3expr for inv in self.invars])
 
         solver = SolverWrapper(debug=debug)
-        solver.add(M.get_z3_init_state_cond(), "1")
-        solver.add(M.get_z3_axioms(), "2") # not sure if this is required
+        # solver.add(M.get_z3_init_state_cond(), "1")
+        # solver.add(M.get_z3_axioms(), "2") # not sure if this is required
         # solver.add(inv(M, S), "3") # redundant
         solver.add(Not(cand_invar(M, S).z3expr), "4")
+        print(M.real_formula)
+        solver.add(M.real_formula(M, S).z3expr, "5")
+
+        # for s in M.sorts:
+        #     elems = [Const(str(s) + str(i), s) for i in range(self.NUM_ELEMS)]
+        #     solver.add(Distinct(*elems), "5"+str(s))
 
         if solver.check() == sat:
             self.cex_ctr += 1
@@ -520,19 +528,28 @@ class CEXGen():
         return PositiveCEX(solver, None, M, cand_invar, S)
     
     def get_neg_cex(self, cur_invar=None, debug=False):
+        assert cur_invar is not None
+        assert len(self.invars) == 0
+
         M = self.protocol_model(f'{self.cex_ctr}_neg')
         S = M.get_state('S1')
 
-        inv = lambda M, S: And(*[inv(M, S).z3expr for inv in self.invars])
+        # inv = lambda M, S: And(*[inv(M, S).z3expr for inv in self.invars])
 
         solver = SolverWrapper(debug=debug)
-        solver.add(M.get_z3_axioms(), "2")
-        solver.add(inv(M, S), "3")
-        if cur_invar is not None:
-            solver.add(cur_invar(M, S).z3expr, "4")
-        else:
-            cur_invar = self.invars[-1]
-        solver.add(Not(M.get_z3_safety_cond(S)), "5")
+        # solver.add(M.get_z3_axioms(), "2")
+        solver.add(cur_invar(M, S).z3expr, "3")
+        solver.add(Not(M.real_formula(M, S).z3expr), "4")
+
+        # if cur_invar is not None:
+        #     solver.add(cur_invar(M, S).z3expr, "4")
+        # else:
+        #     cur_invar = self.invars[-1]
+        # solver.add(Not(M.get_z3_safety_cond(S)), "5")
+
+        # for s in M.sorts:
+        #     elems = [Const(str(s) + str(i), s) for i in range(self.NUM_ELEMS)]
+        #     solver.add(Distinct(*elems), "5"+str(s))
 
         if solver.check() == sat:
             self.cex_ctr += 1
@@ -541,6 +558,8 @@ class CEXGen():
         return NegativeCEX(solver, None, M, cur_invar, S)
     
     def get_implication_cex(self, cand_invar, debug=False):
+        raise NotImplementedError()
+
         M = self.protocol_model(f'{self.cex_ctr}_ice')
         S1 = M.get_state('S1')
         S2 = M.get_state('S2')
@@ -553,6 +572,10 @@ class CEXGen():
         solver.add(cand_invar(M, S1).z3expr, "3")
         solver.add(inv(M, S2), "4") #-> do we need this?
         solver.add(Not(cand_invar(M, S2).z3expr), "5")
+        
+        for s in M.sorts:
+            elems = [Const(str(s) + str(i), s) for i in range(self.NUM_ELEMS)]
+            solver.add(Distinct(*elems), "5"+str(s))
 
         # optimization: check for counter examples that are safe
         solver.push()

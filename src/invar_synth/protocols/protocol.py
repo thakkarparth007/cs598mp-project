@@ -1,6 +1,7 @@
 # %%
 
 import sys
+from typing import Callable
 sys.path.append('/home/parth/598mp/')
 
 from z3 import *
@@ -109,7 +110,13 @@ class ProtocolAction():
         raise NotImplementedError()
 
 class ProtocolModel():
-    def __init__(self, protocol_name, model_name, sorts, state_class: ProtocolState):
+    def __init__(self,
+        protocol_name,
+        model_name,
+        sorts,
+        state_class: ProtocolState,
+        # real_formula: Callable[["ProtocolModel", "ProtocolState"], QExpr]
+    ):
         self.protocol_name = protocol_name
         self.model_name = f'Model_{model_name}'
         self.sorts = sorts
@@ -120,6 +127,8 @@ class ProtocolModel():
         self.globals = {}
         self.states = {}
         self.actions = {}
+
+        # self.real_formula = real_formula
     
     def _add_global_fn(self, name, *types):
         assert name not in self.globals, f'{name} already registered'
