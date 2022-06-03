@@ -72,11 +72,36 @@ def get_ite_from_val_list2(name, val_list):
         # find the argument with the lowest entropy
         best_arg = max(info_gain, key=info_gain.get)
         best_split_info = argsplit_infos[best_arg]
-        if len(best_split_info) == 1:
-            # if this happens, it means that the best possible split is on a constant
-            # which means, all rhs values are the same
-            # but that case is already handled by the previous if statement (len(rhs_counts) == 1)
-            assert False, "This should not happen."
+
+        # Commenting this out because the assumption is wrong.
+        # Simple example:
+        # ValList: [
+        #     ([Model_27_pos, init, Node!val!0, Node!val!0], True),
+        #     ([Model_27_pos, init, Node!val!0, Node!val!1], False),
+        #     ([Model_27_pos, init, Node!val!1, Node!val!0], False),
+        #     ([Model_27_pos, init, Node!val!1, Node!val!1], True)
+        # ]
+        # ArgSplitInfo: {0: {Model_27_pos: {True: 2, False: 2}}, 1: {init: {True: 2, False: 2}}, 2: {Node!val!0: {True: 1, False: 1}, Node!val!1: {False: 1, True: 1}}, 3: {Node!val!0: {True: 1, False: 1}, Node!val!1: {False: 1, True: 1}}}
+        # InfoGain: {0: -1, 1: 0.0, 2: 0.0, 3: 0.0}
+        # BestArg: 1
+        # BestSplitInfo: {init: {True: 2, False: 2}}
+        # ForbiddenSplits: {0}
+        # rhs_counts: {True: 2, False: 2}
+        #
+        # Splitting on idx 1/2/3 -- each gives the same entropy. So "which means, all rhs values are the same" is not correct.
+        #
+        # if len(best_split_info) == 1:
+        #     # if this happens, it means that the best possible split is on a constant
+        #     # which means, all rhs values are the same
+        #     # but that case is already handled by the previous if statement (len(rhs_counts) == 1)
+        #     print("ValList:" , val_list)
+        #     print("ArgSplitInfo:", argsplit_infos)
+        #     print("InfoGain:", info_gain)
+        #     print("BestArg:", best_arg)
+        #     print("BestSplitInfo:", best_split_info)
+        #     print("ForbiddenSplits:", forbidden_splits)
+        #     print("rhs_counts:", rhs_counts)
+        #     assert False, "This should not happen."
         
         val_lists_after_split = {}
         for lhs, rhs in val_list:
